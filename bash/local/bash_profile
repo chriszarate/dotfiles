@@ -1,0 +1,24 @@
+# Trimmed from https://github.com/mathiasbynens/dotfiles
+
+# Source .bashrc
+[ -r ~/.bashrc ] && source ~/.bashrc
+
+# Source .bach_aliases
+[ -r ~/.bash_aliases ] && source ~/.bash_aliases
+
+# Always open a tmux session.
+if [[ "$TERM" != screen* ]]; then
+  tmux attach
+fi
+
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh

@@ -1,0 +1,26 @@
+## Exports
+export PS1="\u@\h:\w$ "
+
+
+## Functions
+
+# Open SSH sessions in new tmux window and connect to a nested tmux session.
+function tmux_ssh () {
+  if [ -n "$2" ]; then
+    ssh "$@"
+  else
+    tmux new-window -n "$1" """ssh -t "$1" 'tmux attach'"""
+  fi
+}
+alias ssh="tmux_ssh"
+
+# Change to directory of the frontmost Finder window.
+function cdf () {
+  cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
+}
+
+# Find the target of a redirecting URL.
+function expandurl () {
+# wget -S $1 2>&1 | grep ^Location;
+  curl -sIL $1 | grep '^Location' | tail -n 1 | awk '{print $2}'
+}
