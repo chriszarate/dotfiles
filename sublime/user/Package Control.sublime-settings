@@ -1,0 +1,14 @@
+{
+	"auto_upgrade_last_run": null,
+	"installed_packages":
+	[
+		"BracketHighlighter",
+		"Emmet",
+		"Git",
+		"Package Control",
+		"Print to HTML",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"Theme - Soda"
+	]
+}
