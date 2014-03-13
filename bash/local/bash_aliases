@@ -1,7 +1,10 @@
 # Trimmed from https://github.com/mathiasbynens/dotfiles
 
-# Generate a simple HTTP server
+# Generate a simple HTTP server on port 8000
 alias server="python -m SimpleHTTPServer"
+
+# Generate a PHP server on port 8000
+alias phpserver="php -S localhost:8000"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
