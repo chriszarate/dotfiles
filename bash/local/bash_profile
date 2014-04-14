@@ -3,8 +3,11 @@
 # Source .bashrc
 [ -r ~/.bashrc ] && source ~/.bashrc
 
-# Source .bach_aliases
+# Source .bash_aliases
 [ -r ~/.bash_aliases ] && source ~/.bash_aliases
+
+# Source .local_exports (private or local-specific stuff)
+[ -r ~/.local_exports ] && source ~/.local_exports
 
 # Always open a tmux session.
 if [[ "$TERM" != screen* ]]; then
