@@ -1,5 +1,6 @@
 ## Exports
 export PS1="\u@\h:\w$ "
+export EDITOR=vim
 
 
 ## Functions
