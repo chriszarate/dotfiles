@@ -25,3 +25,16 @@ function expandurl () {
 # wget -S $1 2>&1 | grep ^Location;
   curl -sIL $1 | grep '^Location' | tail -n 1 | awk '{print $2}'
 }
+
+# Change git remote by supplying user/repo.
+function gitremote () {
+  if [ -d ".git" ] && [ -n "$1" ]; then
+    git remote rm origin
+    git remote add origin git@github.com:${1}.git
+    git config master.remote origin
+    git config master.merge refs/heads/master
+    echo "Updated git remote to git@github.com:${1}.git"
+  else
+    echo "Not a git repository."
+  fi
+}
