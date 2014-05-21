@@ -1,6 +1,20 @@
 ## Exports
-export PS1="\u@\h:\w$ "
 export EDITOR=vim
+
+
+## Prompt
+
+function parse_git_status {
+  git status -b --porcelain 2>/dev/null | awk -F'[#\./ ]+' '{print $2}' |
+  while read statusline; do
+    if [[ -n "$git_has_branch" && -n "$statusline" ]]; then
+      printf "*"
+      break
+    fi
+    printf \|$statusline && git_has_branch="yes"
+  done
+}
+export PS1='\[\e[1;32m\]\w\[\033[0m\]$(parse_git_status)$ '
 
 
 ## Functions
