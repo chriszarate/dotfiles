@@ -3,7 +3,12 @@ export EDITOR=vim
 
 
 ## Prompt
+export PS1='\[\e[1;32m\]\w\[\033[0m\]$(parse_git_status)$ '
 
+
+## Functions
+
+# Get git repository status in shorthand form (branch name and cleanliness).
 function parse_git_status {
   git status -b --porcelain 2>/dev/null | awk -F'[#\./ ]+' '{print $2}' |
   while read statusline; do
@@ -14,10 +19,6 @@ function parse_git_status {
     printf \|$statusline && git_has_branch="yes"
   done
 }
-export PS1='\[\e[1;32m\]\w\[\033[0m\]$(parse_git_status)$ '
-
-
-## Functions
 
 # Open SSH sessions in new tmux window and connect to a nested tmux session.
 function tmux_ssh () {
