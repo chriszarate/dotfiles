@@ -13,10 +13,10 @@ function parse_git_status () {
   git status -b --porcelain 2>/dev/null | awk -F'[#\./ ]+' '{print $2}' |
   while read statusline; do
     if [[ -n "$git_has_branch" && -n "$statusline" ]]; then
-      printf "\033[35m*"
+      printf "\033[35m⌾"
       break
     fi
-    printf "#$statusline" && git_has_branch="yes"
+    printf "⎇ $statusline" && git_has_branch="yes"
   done
 }
 
