@@ -4,6 +4,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = /usr/bin/vim
+	askpass = git-gui--askpass
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
