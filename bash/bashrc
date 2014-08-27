@@ -53,3 +53,11 @@ function gitremote () {
     echo "Not a git repository."
   fi
 }
+
+# Generate a random food emoji, because....
+function random_emoji () {
+  emoji="  🍵 🍶 🍼 🍺 🍻 🍸 🍹 🍷 🍴 🍕 🍔 🍟 🍗 🍖 🍝 🍛 🍤 🍱 🍣 🍥 🍙 🍘 🍚 🍜 🍲 🍢 🍡 🍳 🍞 🍩 🍮 🍦 🍨 🍧 🎂 🍰 🍪 🍫 🍬 🍭 🍯 🍎 🍏 🍊 🍋 🍒 🍇 🍉 🍓 🍑 🍈 🍌 🍐 🍍 🍠 🍆 🍅 🌽"
+  emoji_array=($emoji)
+  # Bash $RANDOM is terrible; use jot.
+  echo ${emoji_array[$(jot -r 1 0 ${#emoji_array[*]})]}
+}
