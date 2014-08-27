@@ -15,7 +15,7 @@ if [[ "$TERM" != screen* ]]; then
 fi
 
 # Connect to ssh-agent session (requires keychain).
-eval `keychain --eval --agents ssh --nogui`
+eval `keychain --eval --quiet --agents ssh --nogui`
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
