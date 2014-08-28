@@ -25,7 +25,7 @@ function tmux_ssh () {
   if [ -n "$2" ]; then
     ssh "$@"
   else
-    tmux new-window -n "$1" """ssh -t "$1" '(command -v tmux >/dev/null 2>&1 && (tmux attach || tmux new-session -s ssh)) || bash -l'"""
+    tmux new-window -n "$1" """ssh -t "$1" '(command -v tmux >/dev/null 2>&1 && (tmux attach || tmux new-session -s ssh)) || bash -l'""" && tmux_food
   fi
 }
 alias ssh="tmux_ssh"
@@ -66,10 +66,22 @@ function random_el () {
   echo ${array[$(jot -r 1 0 `expr ${#array[*]} - 1`)]}
 }
 
+# Generate a random food emoji.
+function random_food () {
+  if [ -e "/System/Library/Fonts/Apple Color Emoji.ttf" ]; then
+    echo $(random_el "🍺 🍸 🍹 🍷 🍕 🍔 🍟 🍗 🍖 🍝 🍤 🍣 🍥 🍜 🍡 🍞 🍩 🍦 🍨 🍰 🍪 🍫 🍬 🍭 🍎 🍏 🍊 🍋 🍒 🍇 🍉 🍓 🍑 🍌 🍐 🍍 🍆 🍅  ")
+  else
+    echo ""
+  fi
+}
+
 # Set tmux window status using food emoji as index.
-if [[ "$TERM" = screen* ]] && [ -n "$TMUX" ]; then
-  tmux_index=$(random_el "🍺 🍸 🍹 🍷 🍕 🍔 🍟 🍗 🍖 🍝 🍤 🍣 🍥 🍜 🍡 🍞 🍩 🍦 🍨 🍰 🍪 🍫 🍬 🍭 🍎 🍏 🍊 🍋 🍒 🍇 🍉 🍓 🍑 🍌 🍐 🍍 🍆 🍅  ")
-  tmux set-option quiet on
-  tmux set-window window-status-current-format " $tmux_index  #W "
-  tmux set-window window-status-format " $tmux_index  #W "
-fi
+function tmux_food () {
+  if [[ "$TERM" = screen* ]] && [ -n "$TMUX" ]; then
+    tmux_index=$(random_food)
+    tmux set-option quiet on
+    tmux set-window window-status-current-format " $tmux_index  #W "
+    tmux set-window window-status-format " $tmux_index  #W "
+  fi
+}
+tmux_food
