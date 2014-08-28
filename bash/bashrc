@@ -54,10 +54,22 @@ function gitremote () {
   fi
 }
 
-# Generate a random food emoji, because....
-function random_emoji () {
-  emoji="  🍵 🍶 🍼 🍺 🍻 🍸 🍹 🍷 🍴 🍕 🍔 🍟 🍗 🍖 🍝 🍛 🍤 🍱 🍣 🍥 🍙 🍘 🍚 🍜 🍲 🍢 🍡 🍳 🍞 🍩 🍮 🍦 🍨 🍧 🎂 🍰 🍪 🍫 🍬 🍭 🍯 🍎 🍏 🍊 🍋 🍒 🍇 🍉 🍓 🍑 🍈 🍌 🍐 🍍 🍠 🍆 🍅 🌽"
-  emoji_array=($emoji)
-  # Bash $RANDOM is terrible; use jot.
-  echo ${emoji_array[$(jot -r 1 0 ${#emoji_array[*]})]}
+# Randomize string (space-separated values).
+function randomize_string () {
+  echo $@ | tr " " "\n" | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' | tr "\n" " "
 }
+
+# Extract a random item from a string (space-separated values).
+function random_el () {
+  local array=($(randomize_string $@))
+  # Bash $RANDOM is terrible; use jot.
+  echo ${array[$(jot -r 1 0 `expr ${#array[*]} - 1`)]}
+}
+
+# Set tmux window status using food emoji as index.
+if [[ "$TERM" = screen* ]] && [ -n "$TMUX" ]; then
+  tmux_index=$(random_el "🍺 🍸 🍹 🍷 🍕 🍔 🍟 🍗 🍖 🍝 🍤 🍣 🍥 🍜 🍡 🍞 🍩 🍦 🍨 🍰 🍪 🍫 🍬 🍭 🍎 🍏 🍊 🍋 🍒 🍇 🍉 🍓 🍑 🍌 🍐 🍍 🍆 🍅  ")
+  tmux set-option quiet on
+  tmux set-window window-status-current-format " $tmux_index  #W "
+  tmux set-window window-status-format " $tmux_index  #W "
+fi
