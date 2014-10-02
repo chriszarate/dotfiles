@@ -23,6 +23,9 @@ function parse_git_status () {
 # Open SSH sessions in new tmux window and connect to a nested tmux session.
 function tmux_ssh () {
   if [ -n "$2" ]; then
+    if [ "$1" = "-notmux" ]; then
+      shift
+    fi
     ssh "$@"
   else
     tmux new-window -n "$1" """ssh -t "$1" '(command -v tmux >/dev/null 2>&1 && (tmux attach || tmux new-session -s ssh)) || bash -l'""" && tmux_food
