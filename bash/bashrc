@@ -32,6 +32,7 @@ function tmux_ssh () {
   fi
 }
 alias ssh="tmux_ssh"
+alias pssh="tmux_ssh -notmux"
 
 # Change to directory of the frontmost Finder window.
 function cdf () {
