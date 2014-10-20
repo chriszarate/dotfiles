@@ -86,3 +86,6 @@ alias ec2show="aws ec2 describe-instances --query 'Reservations[*].Instances[*].
 # Show/hide hidden and system files
 alias showhidden="defaults write com.apple.finder AppleShowAllFiles YES"
 alias hidehidden="defaults write com.apple.finder AppleShowAllFiles NO"
+
+# Redraw tmux window by detaching all other clients.
+alias redraw="tmux detach -a"
