@@ -1,7 +1,10 @@
 # Trimmed from https://github.com/mathiasbynens/dotfiles
 
-# Set PATH
-export PATH="/usr/local/bin:$PATH"
+# Add local paths
+PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
+# Remove duplicate entries, preserving order
+export PATH=$(echo "$PATH" | awk -v RS=':' -v ORS=':' '!a[$1]++' | awk '{gsub(/:$/,""); print}')
 
 # Source .bashrc
 [ -r ~/.bashrc ] && source ~/.bashrc
