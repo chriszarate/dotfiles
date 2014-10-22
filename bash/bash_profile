@@ -1,5 +1,8 @@
 # Trimmed from https://github.com/mathiasbynens/dotfiles
 
+# Set PATH
+export PATH="/usr/local/bin:$PATH"
+
 # Source .bashrc
 [ -r ~/.bashrc ] && source ~/.bashrc
 
