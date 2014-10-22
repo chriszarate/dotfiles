@@ -1,0 +1,13 @@
+ansible
+awscli
+bind
+dnsmasq
+git
+imagemagick
+keychain
+node
+pv
+sshuttle
+tmux
+weechat
+wget
