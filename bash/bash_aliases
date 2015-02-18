@@ -88,3 +88,7 @@ alias hidehidden="defaults write com.apple.finder AppleShowAllFiles NO"
 
 # Redraw tmux window by detaching all other clients.
 alias redraw="tmux detach -a"
+
+# PHP PHAR aliases.
+alias wp="php ~/.phar/wp-cli.phar"
+alias phpunit="php ~/.phar/phpunit.phar"
