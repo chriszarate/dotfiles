@@ -1,0 +1,53 @@
+{
+    "themes.theme": "rain.monokai-dark-soda",
+    "fonts.fontSize": "14px",
+    "spaceUnits": 2,
+    "useTabChar": false,
+    "wordWrap": false,
+    "quickview.enabled": true,
+    "linting.enabled": true,
+    "linting.collapsed": true,
+    "language": {
+        "javascript": {
+            "linting.prefer": [
+                "JSHint"
+            ],
+            "linting.usePreferredOnly": true
+        }
+    },
+    "com.github.dsbonev.WhitespaceNormalizer.enabled": "true",
+    "com.github.dsbonev.WhitespaceNormalizer.trim": "true",
+    "com.github.dsbonev.WhitespaceNormalizer.transf": "true",
+    "com.github.dsbonev.WhitespaceNormalizer.eofnl": "true",
+    "brackets-git.gitPath": "/usr/local/bin/git",
+    "brackets-git.stripWhitespaceFromCommits": true,
+    "brackets-git.addEndlineToTheEndOfFile": true,
+    "brackets-git.removeByteOrderMark": false,
+    "brackets-git.normalizeLineEndings": true,
+    "brackets-git.useGitGutter": true,
+    "brackets-git.markModifiedInTree": true,
+    "brackets-git.showBashButton": true,
+    "brackets-git.showReportBugButton": true,
+    "brackets-git.useCodeInspection": true,
+    "brackets-git.useGitFtp": false,
+    "brackets-git.useVerboseDiff": false,
+    "brackets-git.useDifftool": false,
+    "brackets-git.showTerminalIcon": false,
+    "brackets-git.clearWhitespaceOnSave": false,
+    "brackets-git.avatarType": "AVATAR_COLOR",
+    "brackets-git.dateMode": 1,
+    "brackets-git.dateFormat": null,
+    "brackets-git.enableAdvancedFeatures": false,
+    "brackets-git.panelShortcut": "Ctrl-Alt-G",
+    "brackets-git.commitCurrentShortcut": null,
+    "brackets-git.commitAllShortcut": null,
+    "brackets-git.bashShortcut": null,
+    "brackets-git.pushShortcut": null,
+    "brackets-git.pullShortcut": null,
+    "brackets-git.gotoPrevChangeShortcut": null,
+    "brackets-git.gotoNextChangeShortcut": null,
+    "brackets-git.gitTimeout": 30,
+    "brackets-git.terminalCommand": null,
+    "brackets-git.terminalCommandArgs": null,
+    "brackets-git.debugMode": false
+}

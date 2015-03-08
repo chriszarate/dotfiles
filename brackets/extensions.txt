@@ -1,0 +1,9 @@
+brackets-code-folding
+camden.csslint
+colorhints
+drewkoch.icons
+dsbonev.whitespace-normalizer
+interactive-linter
+rain.monokai-dark-soda
+renanveroneze.brackets-open-terminal-here
+zaggino.brackets-git
