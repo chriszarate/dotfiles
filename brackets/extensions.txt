@@ -1,9 +1,9 @@
 brackets-code-folding
 camden.csslint
+camden.jshint
 colorhints
-drewkoch.icons
 dsbonev.whitespace-normalizer
-interactive-linter
+globexdesigns.brackets-jscs
 rain.monokai-dark-soda
 renanveroneze.brackets-open-terminal-here
 zaggino.brackets-git

@@ -10,7 +10,8 @@
     "language": {
         "javascript": {
             "linting.prefer": [
-                "JSHint"
+                "JSHint",
+                "JSCS"
             ],
             "linting.usePreferredOnly": true
         }
@@ -49,5 +50,7 @@
     "brackets-git.gitTimeout": 30,
     "brackets-git.terminalCommand": null,
     "brackets-git.terminalCommandArgs": null,
-    "brackets-git.debugMode": false
+    "brackets-git.debugMode": false,
+    "styleActiveLine": true,
+    "closeBrackets": true
 }
