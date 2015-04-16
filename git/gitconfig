@@ -7,3 +7,5 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[alias]
+	ahead = log --stat --branches --not --remotes
