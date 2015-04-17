@@ -74,7 +74,7 @@ function parse_git_status () {
   fi
 
   if [ "$conflicts" != "0" ]; then
-    flags="${flags}${flags_conflicts_color} ✖${conflicts}"
+    flags="${flags}${flags_conflicts_color} ✗${conflicts}"
   fi
   
   if [ "$stashed" != "0" ]; then
