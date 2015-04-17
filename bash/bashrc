@@ -8,31 +8,98 @@ export PS1='\w$(parse_git_status)$ '
 
 ## Functions
 
-# Get git repository status in shorthand form (branch name and cleanliness).
+# Get git repository status in shorthand form. Condensed form of:
+# https://github.com/magicmonty/bash-git-prompt
 function parse_git_status () {
-  open_string=""
-  close_string=""
-  while IFS= read statusline; do
-    if [[ -n "$statusline" ]]; then
-      # Branch name
-      if [[ "$statusline" == $'## '* ]]; then
-        git_branch="\001\033[48;5;236;38;5;015m\002⎇ ${statusline:3}\001\033[0m\002"
-      fi
-      # Staged for commit
-      if [[ -z "$git_staged" && "$statusline" =~ ^[MADR] ]]; then
-        git_staged="\001\033[32m\002●\001\033[0m\002"
-      fi
-      # Modified files
-      if [[ -z "$git_modified" && "$statusline" == $' M '* ]]; then
-        git_modified="\001\033[33m\002●\001\033[0m\002"
-      fi
-      # Untracked files
-      if [[ -z "$git_untracked" && "$statusline" == $'?'* ]]; then
-        git_untracked="\001\033[31m\002●\001\033[0m\002"
+
+  # Get actual path to this directory for non-symlinked resources.
+  # http://stackoverflow.com/questions/59895
+  if [ -z "$__BASH_SOURCE_DIR" ]; then
+    local SOURCE="${BASH_SOURCE[0]}"
+    while [ -h "$SOURCE" ]; do
+      local DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+      SOURCE="$(readlink "$SOURCE")"
+      [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+    done
+    __BASH_SOURCE_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  fi
+
+  local -a git_status=($(source "$__BASH_SOURCE_DIR/bash_git_prompt" 2>/dev/null))
+
+  local branch="${git_status[0]}"
+  local remote="${git_status[1]}"
+  local staged="${git_status[2]}"
+  local conflicts="${git_status[3]}"
+  local changed="${git_status[4]}"
+  local untracked="${git_status[5]}"
+  local stashed="${git_status[6]}"
+
+  local flags=""
+
+  local branch_text_color="3"      # yellow
+  local branch_ahead_color="2"     # green
+  local branch_behind_color="1"    # red
+
+  local flags_conflicts_color="1"  # red
+  local flags_stashed_color="6"    # cyan
+  local flags_untracked_color="5"  # magenta
+  local flags_changed_color="5"    # magenta
+  local flags_staged_color="2"     # green
+
+  local open_color="\001\033[3"
+  local close_color="m\002"
+
+  branch_text_color="$open_color$branch_text_color$close_color"
+  branch_ahead_color="$open_color$branch_ahead_color$close_color"
+  branch_behind_color="$open_color$branch_behind_color$close_color"
+
+  flags_conflicts_color="$open_color$flags_conflicts_color$close_color"
+  flags_stashed_color="$open_color$flags_stashed_color$close_color"
+  flags_untracked_color="$open_color$flags_untracked_color$close_color"
+  flags_changed_color="$open_color$flags_changed_color$close_color"
+  flags_staged_color="$open_color$flags_staged_color$close_color"
+
+  if [ -n "$branch" ] && [ "$branch" != "_PREHASH_" ]; then
+    if [ -n "$remote" ] && [ "$remote" != "_NO_REMOTE_TRACKING_" ]; then
+      local tracking=" ⥮"
+      if [ "$remote" != "." ]; then
+        remote=${remote//_AHEAD_/${branch_ahead_color} ▲}
+        remote=${remote//_BEHIND_/${branch_behind_color} ▼}
+        tracking="$tracking$remote"
       fi
     fi
-  done <<< "$(git status -b --porcelain 2>/dev/null)"
-  echo -en "${git_branch}${git_staged}${git_modified}${git_untracked}"
+    echo -en "$branch_text_color ⎇ ${branch}${tracking}"
+  else
+    return
+  fi
+
+  if [ "$conflicts" != "0" ]; then
+    flags="${flags}${flags_conflicts_color} ✖${conflicts}"
+  fi
+  
+  if [ "$stashed" != "0" ]; then
+    flags="${flags}${flags_stashed_color} ⚑${stashed}"
+  fi
+  
+  if [ "$staged" != "0" ]; then
+    flags="${flags}${flags_staged_color} ●${staged}"
+  fi
+  
+  if [ "$changed" != "0" ]; then
+   flags="${flags}${flags_changed_color} ●${changed}"
+  fi
+  
+  if [ "$untracked" != "0" ]; then
+    flags="${flags}${flags_untracked_color} ○${untracked}"
+  fi
+  
+  if [ -n "$flags" ]; then
+    echo -en "${flags}"
+  fi
+
+  # Reset colors.
+  echo -en "\001\033[0m\002 "
+
 }
 
 # Open SSH sessions in new tmux window and connect to a nested tmux session.
