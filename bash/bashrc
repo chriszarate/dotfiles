@@ -18,9 +18,9 @@ function parse_git_status () {
   local conflicts_symbol="✗"
   local stashed_symbol="⚑"
   local todos_symbol="✓"
-  local untracked_symbol="●"
+  local untracked_symbol="○"
   local changed_symbol="●"
-  local staged_symbol="○"
+  local staged_symbol="●"
 
   # Colors
   local text_color="3"       # yellow
