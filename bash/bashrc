@@ -12,87 +12,74 @@ export PS1='\w$(parse_git_status)$ '
 # https://github.com/magicmonty/bash-git-prompt
 function parse_git_status () {
 
+  # Symbols
+  local branch_symbol="⎇ "
+  local tracking_symbol="⥮"
+  local conflicts_symbol="✗"
+  local stashed_symbol="⚑"
+  local todos_symbol="✓"
+  local untracked_symbol="●"
+  local changed_symbol="●"
+  local staged_symbol="○"
+
+  # Colors
+  local text_color="3"       # yellow
+  local ahead_color="2"      # green
+  local behind_color="1"     # red
+  local conflicts_color="1"  # red
+  local stashed_color="6"    # cyan
+  local todos_color="5"      # magenta
+  local untracked_color="5"  # magenta
+  local changed_color="5"    # magenta
+  local staged_color="2"     # green
+
+  # Get git repository status.
   local -a git_status=($(source "$__BASH_SOURCE_DIR/bash_git_prompt" 2>/dev/null))
 
-  local branch="${git_status[0]}"
-  local remote="${git_status[1]}"
-  local staged="${git_status[2]}"
-  local conflicts="${git_status[3]}"
-  local changed="${git_status[4]}"
-  local untracked="${git_status[5]}"
-  local stashed="${git_status[6]}"
-
-  local flags=""
-
-  local branch_text_color="3"      # yellow
-  local branch_ahead_color="2"     # green
-  local branch_behind_color="1"    # red
-
-  local flags_conflicts_color="1"  # red
-  local flags_stashed_color="6"    # cyan
-  local flags_todos_color="5"      # magenta
-  local flags_untracked_color="5"  # magenta
-  local flags_changed_color="5"    # magenta
-  local flags_staged_color="2"     # green
-
-  local open_color="\001\033[3"
-  local close_color="m\002"
-
-  branch_text_color="$open_color$branch_text_color$close_color"
-  branch_ahead_color="$open_color$branch_ahead_color$close_color"
-  branch_behind_color="$open_color$branch_behind_color$close_color"
-
-  flags_conflicts_color="$open_color$flags_conflicts_color$close_color"
-  flags_stashed_color="$open_color$flags_stashed_color$close_color"
-  flags_todos_color="$open_color$flags_todos_color$close_color"
-  flags_untracked_color="$open_color$flags_untracked_color$close_color"
-  flags_changed_color="$open_color$flags_changed_color$close_color"
-  flags_staged_color="$open_color$flags_staged_color$close_color"
-
-  # Test for initialized git repository; otherwise, bail.
-  if [ -n "$branch" ] && [ "$branch" != "_PREHASH_" ]; then
-    if [ -n "$remote" ] && [ "$remote" != "_NO_REMOTE_TRACKING_" ]; then
-      local tracking=" ⥮"
-      if [ "$remote" != "." ]; then
-        remote=${remote//_AHEAD_/${branch_ahead_color} ▲}
-        remote=${remote//_BEHIND_/${branch_behind_color} ▼}
-        tracking="$tracking$remote"
-      fi
-    fi
-    echo -en "$branch_text_color ⎇ ${branch}${tracking}"
-  else
+  # Bail if we are not in an initialized git repository.
+  if [ -z "${git_status[0]}" ] || [ "${git_status[0]}" = "_PREHASH_" ]; then
     return
   fi
 
-  if [ "$conflicts" != "0" ]; then
-    flags="${flags}${flags_conflicts_color} ✗${conflicts}"
-  fi
-
-  if [ "$stashed" != "0" ]; then
-    flags="${flags}${flags_stashed_color} ⚑${stashed}"
-  fi
+  # Create local variables.
+  local counter=0
+  for arg in branch remote staged conflicts changed untracked stashed; do
+    eval local $arg="\${git_status[$counter]}"
+    let counter=counter+1
+  done
 
   # Count any TODOs in project files.
   local todos="$(git grep -F 'TODO' | wc -l | bc)"
-  if [ "$todos" != "0" ]; then
-    flags="${flags}${flags_todos_color} ✓${todos}"
-  fi
 
-  if [ "$staged" != "0" ]; then
-    flags="${flags}${flags_staged_color} ●${staged}"
-  fi
+  # Convert colors to ANSI codes
+  local open_color="\001\033[3"
+  local close_color="m\002"
+  for arg in text ahead behind conflicts stashed todos untracked staged changed; do
+    eval ${arg}_color=\$open_color\$${arg}_color\$close_color
+  done
 
-  if [ "$changed" != "0" ]; then
-   flags="${flags}${flags_changed_color} ●${changed}"
+  # Print local branch name, whether or not we are tracking a remote branch,
+  # and the number of commits we are ahead/behind, if applicable.
+  if [ -n "$remote" ] && [ "$remote" != "_NO_REMOTE_TRACKING_" ]; then
+    local tracking=" $tracking_symbol"
+    if [ "$remote" != "." ]; then
+      remote=${remote//_AHEAD_/${ahead_color} ▲}
+      remote=${remote//_BEHIND_/${behind_color} ▼}
+      tracking="$tracking$remote"
+    fi
   fi
+  echo -en "$text_color $branch_symbol$branch$tracking"
 
-  if [ "$untracked" != "0" ]; then
-    flags="${flags}${flags_untracked_color} ○${untracked}"
-  fi
-
-  if [ -n "$flags" ]; then
-    echo -en "${flags}"
-  fi
+  # Print flags for various properties of our current git status.
+  local flags=""
+  for arg in conflicts stashed todos untracked staged changed; do
+    if [ "${!arg}" != "0" ]; then
+      local color=${arg}_color
+      local symbol=${arg}_symbol
+      flags="$flags${!color} ${!symbol}${!arg}"
+    fi
+  done
+  echo -en "$flags"
 
   # Reset colors.
   echo -en "\001\033[0m\002 "
