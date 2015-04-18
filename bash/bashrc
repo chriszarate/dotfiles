@@ -12,18 +12,6 @@ export PS1='\w$(parse_git_status)$ '
 # https://github.com/magicmonty/bash-git-prompt
 function parse_git_status () {
 
-  # Get actual path to this directory for non-symlinked resources.
-  # http://stackoverflow.com/questions/59895
-  if [ -z "$__BASH_SOURCE_DIR" ]; then
-    local SOURCE="${BASH_SOURCE[0]}"
-    while [ -h "$SOURCE" ]; do
-      local DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-      SOURCE="$(readlink "$SOURCE")"
-      [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
-    done
-    __BASH_SOURCE_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-  fi
-
   local -a git_status=($(source "$__BASH_SOURCE_DIR/bash_git_prompt" 2>/dev/null))
 
   local branch="${git_status[0]}"
@@ -76,23 +64,23 @@ function parse_git_status () {
   if [ "$conflicts" != "0" ]; then
     flags="${flags}${flags_conflicts_color} ✗${conflicts}"
   fi
-  
+
   if [ "$stashed" != "0" ]; then
     flags="${flags}${flags_stashed_color} ⚑${stashed}"
   fi
-  
+
   if [ "$staged" != "0" ]; then
     flags="${flags}${flags_staged_color} ●${staged}"
   fi
-  
+
   if [ "$changed" != "0" ]; then
    flags="${flags}${flags_changed_color} ●${changed}"
   fi
-  
+
   if [ "$untracked" != "0" ]; then
     flags="${flags}${flags_untracked_color} ○${untracked}"
   fi
-  
+
   if [ -n "$flags" ]; then
     echo -en "${flags}"
   fi
@@ -139,3 +127,20 @@ function gitremote () {
     echo "Not a git repository."
   fi
 }
+
+# Get actual path to this directory for non-symlinked resources.
+# http://stackoverflow.com/questions/59895
+function get_bash_source_dir () {
+  local SOURCE="${BASH_SOURCE[0]}"
+  while [ -h "$SOURCE" ]; do
+    local DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+  done
+  echo "$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+}
+
+
+## Variables
+
+__BASH_SOURCE_DIR="$(get_bash_source_dir)"
