@@ -30,6 +30,7 @@ function parse_git_status () {
 
   local flags_conflicts_color="1"  # red
   local flags_stashed_color="6"    # cyan
+  local flags_todos_color="5"      # magenta
   local flags_untracked_color="5"  # magenta
   local flags_changed_color="5"    # magenta
   local flags_staged_color="2"     # green
@@ -43,10 +44,12 @@ function parse_git_status () {
 
   flags_conflicts_color="$open_color$flags_conflicts_color$close_color"
   flags_stashed_color="$open_color$flags_stashed_color$close_color"
+  flags_todos_color="$open_color$flags_todos_color$close_color"
   flags_untracked_color="$open_color$flags_untracked_color$close_color"
   flags_changed_color="$open_color$flags_changed_color$close_color"
   flags_staged_color="$open_color$flags_staged_color$close_color"
 
+  # Test for initialized git repository; otherwise, bail.
   if [ -n "$branch" ] && [ "$branch" != "_PREHASH_" ]; then
     if [ -n "$remote" ] && [ "$remote" != "_NO_REMOTE_TRACKING_" ]; then
       local tracking=" ⥮"
@@ -67,6 +70,12 @@ function parse_git_status () {
 
   if [ "$stashed" != "0" ]; then
     flags="${flags}${flags_stashed_color} ⚑${stashed}"
+  fi
+
+  # Count any TODOs in project files.
+  local todos="$(git grep -F 'TODO' | wc -l | bc)"
+  if [ "$todos" != "0" ]; then
+    flags="${flags}${flags_todos_color} ✓${todos}"
   fi
 
   if [ "$staged" != "0" ]; then
