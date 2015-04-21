@@ -18,9 +18,9 @@ function parse_git_status () {
   local conflicts_symbol="✗"
   local stashed_symbol="⚑"
   local todos_symbol="✓"
-  local untracked_symbol="○"
-  local changed_symbol="●"
   local staged_symbol="●"
+  local changed_symbol="●"
+  local untracked_symbol="○"
 
   # Colors
   local text_color="3"       # yellow
@@ -29,9 +29,9 @@ function parse_git_status () {
   local conflicts_color="1"  # red
   local stashed_color="6"    # cyan
   local todos_color="5"      # magenta
-  local untracked_color="5"  # magenta
-  local changed_color="5"    # magenta
   local staged_color="2"     # green
+  local changed_color="5"    # magenta
+  local untracked_color="5"  # magenta
 
   # Get git repository status.
   local -a git_status=($(source "$__BASH_SOURCE_DIR/bash_git_prompt" 2>/dev/null))
@@ -54,7 +54,7 @@ function parse_git_status () {
   # Convert colors to ANSI codes
   local open_color="\001\033[3"
   local close_color="m\002"
-  for arg in text ahead behind conflicts stashed todos untracked staged changed; do
+  for arg in text ahead behind conflicts stashed todos staged changed untracked; do
     eval ${arg}_color=\$open_color\$${arg}_color\$close_color
   done
 
@@ -72,7 +72,7 @@ function parse_git_status () {
 
   # Print flags for various properties of our current git status.
   local flags=""
-  for arg in conflicts stashed todos untracked staged changed; do
+  for arg in conflicts stashed todos staged changed untracked; do
     if [ "${!arg}" != "0" ]; then
       local color=${arg}_color
       local symbol=${arg}_symbol
