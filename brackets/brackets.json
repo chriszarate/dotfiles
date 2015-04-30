@@ -49,5 +49,6 @@
     "brackets-git.terminalCommandArgs": null,
     "brackets-git.debugMode": false,
     "styleActiveLine": true,
-    "closeBrackets": true
+    "closeBrackets": true,
+    "denniskehrig.ShowWhitespace.checked": true
 }

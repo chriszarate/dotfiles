@@ -7,3 +7,4 @@ JSCS
 JSHint
 Monokai Dark Soda
 Open Terminal Here
+Show Whitespace
