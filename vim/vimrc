@@ -1,0 +1,20 @@
+" Vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Statusline
+set laststatus=2
+
+" Plugins
+Plugin 'gmarik/Vundle.vim'
+Plugin 'daylerees/colour-schemes', { 'rtp': 'vim/' }
+Plugin 'itchyny/lightline.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+filetype plugin indent on
+
+" Theme
+colorscheme peacock

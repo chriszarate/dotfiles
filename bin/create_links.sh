@@ -13,3 +13,4 @@ ln -s $dotfiles/git/gitignore_global .gitignore_global
 ln -s $dotfiles/jshint/jshintrc .jshintrc
 ln -s $dotfiles/jshint/jscsrc .jscsrc
 ln -s $dotfiles/tmux/tmux.conf .tmux.conf
+ln -s $dotfiles/vim/vimrc .vimrc
