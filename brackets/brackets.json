@@ -6,7 +6,7 @@
     "wordWrap": false,
     "quickview.enabled": true,
     "linting.enabled": true,
-    "linting.collapsed": true,
+    "linting.collapsed": false,
     "language": {
         "javascript": {
             "linting.prefer": [
@@ -16,10 +16,7 @@
             "linting.usePreferredOnly": true
         }
     },
-    "com.github.dsbonev.WhitespaceNormalizer.enabled": "true",
-    "com.github.dsbonev.WhitespaceNormalizer.trim": "true",
-    "com.github.dsbonev.WhitespaceNormalizer.transf": "true",
-    "com.github.dsbonev.WhitespaceNormalizer.eofnl": "true",
+    "brackets-editorconfig.enabled": true,
     "brackets-git.gitPath": "/usr/local/bin/git",
     "brackets-git.stripWhitespaceFromCommits": true,
     "brackets-git.addEndlineToTheEndOfFile": true,

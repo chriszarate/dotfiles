@@ -1,9 +1,9 @@
-brackets-code-folding
-camden.csslint
-camden.jshint
-colorhints
-dsbonev.whitespace-normalizer
-globexdesigns.brackets-jscs
-rain.monokai-dark-soda
-renanveroneze.brackets-open-terminal-here
-zaggino.brackets-git
+Code Folding
+Brackets Git
+colorHints
+CSSLint
+EditorConfig
+JSCS
+JSHint
+Monokai Dark Soda
+Open Terminal Here
