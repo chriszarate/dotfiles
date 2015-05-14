@@ -94,7 +94,7 @@ function tmux_ssh () {
     fi
     ssh "$@"
   else
-    tmux new-window -n "$1" """ssh -t "$1" '(command -v tmux >/dev/null 2>&1 && (tmux attach || tmux new-session -s ssh)) || bash -l'"""
+    tmux new-window -n "$1" """ssh -t "$1" 'tmux attach -t $(whoami) >/dev/null 2>&1 || tmux new-session -s $(whoami) >/dev/null 2>&1 || bash -l'"""
   fi
 }
 alias ssh="tmux_ssh"
