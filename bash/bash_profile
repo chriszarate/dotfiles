@@ -17,7 +17,7 @@ export PATH=$(echo "$PATH" | awk -v RS=':' -v ORS=':' '!a[$1]++' | awk '{gsub(/:
 
 # Always open a tmux session.
 if [[ "$TERM" != screen* ]]; then
-  tmux attach
+  tmux attach -t $(whoami) >/dev/null 2>&1 || tmux new-session -s $(whoami)
 fi
 
 # Connect to ssh-agent session (requires keychain).
