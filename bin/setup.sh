@@ -3,11 +3,15 @@
 # Relative to home directory.
 dotfiles=".dotfiles"
 
+# Change shell to fish.
+fish_path="$(which fish)"
+if ! grep -Fxq "$fish_path" /etc/shells; then
+  echo "$fish_path" | sudo tee -a /etc/shells > /dev/null
+fi
+chsh -s $fish_path
+
 # Create symbolic links.
 cd ~
-ln -s $dotfiles/bash/bash_aliases .bash_aliases
-ln -s $dotfiles/bash/bash_profile .bash_profile
-ln -s $dotfiles/bash/bashrc .bashrc
 ln -s $dotfiles/editor/editorconfig .editorconfig
 ln -s $dotfiles/input/inputrc .inputrc
 ln -s $dotfiles/git/gitconfig .gitconfig

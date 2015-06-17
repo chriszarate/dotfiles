@@ -2,6 +2,7 @@ ansible
 awscli
 bind
 dnsmasq
+fish
 git
 imagemagick
 keychain
