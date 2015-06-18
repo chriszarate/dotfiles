@@ -20,8 +20,6 @@ alias sudo "sudo "
 alias is-git "git rev-parse --is-inside-work-tree >/dev/null 2>&1"
 alias git-origin "git remote -v | sed -E -e 's/^origin.*github.com[:\/]([^\.]+).git.*/\1/' -e '1!d'"
 alias github-url "echo https://github.com/(is-git; and git-origin)"
-alias gh "open (github-url)"
-alias ghi "open (github-url)/issues"
 alias gst "git status --short --branch"
 
 # Stopwatch
