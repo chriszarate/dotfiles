@@ -1,6 +1,5 @@
 ansible
 awscli
-bind
 dnsmasq
 fish
 git
@@ -9,6 +8,7 @@ keychain
 node
 pv
 sshuttle
+thefuck
 tmux
 weechat
 wget
