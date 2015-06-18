@@ -20,12 +20,17 @@ if [ "$SHELL" != "$fish_path" ]; then
 fi
 
 # Create symbolic links.
-cd ~
-ln -s $dotfiles/editor/editorconfig .editorconfig
-ln -s $dotfiles/input/inputrc .inputrc
-ln -s $dotfiles/git/gitconfig .gitconfig
-ln -s $dotfiles/git/gitignore_global .gitignore_global
-ln -s $dotfiles/jshint/jshintrc .jshintrc
-ln -s $dotfiles/jshint/jscsrc .jscsrc
-ln -s $dotfiles/tmux/tmux.conf .tmux.conf
-ln -s $dotfiles/vim/vimrc .vimrc
+for config in \
+  /editor/editorconfig \
+  /input/inputrc \
+  /git/gitconfig \
+  /git/gitignore_global \
+  /jshint/jshintrc \
+  /jshint/jscsrc \
+  /tmux/tmux.conf \
+  /vim/vimrc
+do
+  if [ ! -e ~/.$(basename $config) ]; then
+    ln -s $dotfiles$config ~/.$(basename $config)
+  fi
+done
