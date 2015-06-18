@@ -6,7 +6,7 @@ dotfiles=".dotfiles"
 # Install brew packages
 if [ "$(uname)" = "Darwin" ]; then
   while read pkg; do
-    brew install $pkg
+    command -v $pkg >/dev/null 2>&1 || brew install $pkg
   done <~/$dotfiles/brew/packages.txt
 fi
 
