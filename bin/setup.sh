@@ -15,7 +15,9 @@ fish_path="$(which fish)"
 if ! grep -Fxq "$fish_path" /etc/shells; then
   echo "$fish_path" | sudo tee -a /etc/shells > /dev/null
 fi
-chsh -s $fish_path
+if [ "$SHELL" != "$fish_path" ]; then
+  chsh -s $fish_path
+fi
 
 # Create symbolic links.
 cd ~
