@@ -19,7 +19,18 @@ if [ "$SHELL" != "$fish_path" ]; then
   chsh -s $fish_path
 fi
 
-# Create symbolic links.
+# Symlink fish config.
+for config in \
+  /fish/config.fish \
+  /fish/functions \
+  /fish/inc
+do
+  if [ ! -e ~/.config$config ]; then
+    ln -s ~/$dotfiles$config ~/.config$config
+  fi
+done
+
+# Add additional symlinks.
 for config in \
   /editor/editorconfig \
   /input/inputrc \
