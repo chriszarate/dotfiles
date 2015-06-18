@@ -14,3 +14,6 @@ switch $TERM
   case '*'
     tmux attach -t (whoami) >/dev/null 2>&1; or tmux new-session -s (whoami)
 end
+
+# Connect to ssh-agent session (requires keychain).
+eval (keychain --eval --quiet --agents ssh --nogui)
