@@ -1,4 +1,6 @@
-for file in aliases prompt
+set fish_greeting ""
+
+for file in aliases
   source ~/.config/fish/inc/$file.fish
 end
 

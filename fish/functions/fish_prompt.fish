@@ -1,5 +1,3 @@
-set fish_greeting ""
-
 set __fish_git_prompt_show_informative_status true
 set __fish_git_prompt_showupstream 'verbose'
 
