@@ -1,6 +1,6 @@
 set fish_greeting ""
 
-for file in aliases
+for file in aliases exports
   source ~/.config/fish/inc/$file.fish
 end
 
