@@ -3,7 +3,7 @@
 	email = chris@zarate.org
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = /usr/bin/vim
+	editor = vim +start
 	compression = 0
 [filter "media"]
 	clean = git-media-clean %f
