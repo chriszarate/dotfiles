@@ -3,6 +3,13 @@
 # Relative to home directory.
 dotfiles=".dotfiles"
 
+# Install brew packages
+if [ "$(uname)" = "Darwin" ]; then
+  while read pkg; do
+    brew install $pkg
+  done <~/$dotfiles/brew/packages.txt
+fi
+
 # Change shell to fish.
 fish_path="$(which fish)"
 if ! grep -Fxq "$fish_path" /etc/shells; then
