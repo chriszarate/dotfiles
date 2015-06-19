@@ -1,6 +1,6 @@
 # Git aliases
-alias gh "open (github-url)"
-alias ghi "open (github-url)/issues"
+alias gh "open https://github.com/(__is_git; and __git_origin)"
+alias ghi "open https://github.com/(__is_git; and __git_origin)/issues"
 
 # Recursively delete `.DS_Store` files
 alias cleanup "find . -type f -name '*.DS_Store' -ls -delete"
