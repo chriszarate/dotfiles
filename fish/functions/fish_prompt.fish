@@ -2,6 +2,7 @@ set __fish_git_prompt_describe_style 'branch'
 set __fish_git_prompt_show_informative_status true
 set __fish_git_prompt_showupstream 'verbose'
 
+set __fish_git_prompt_color 666666
 set __fish_git_prompt_color_bare blue
 set __fish_git_prompt_color_branch yellow
 set __fish_git_prompt_color_branch_detached red
@@ -28,10 +29,9 @@ set __fish_git_prompt_char_upstream_prefix ' ⥮'
 
 function fish_prompt
   set -l last_status $status
-  set_color $fish_color_cwd
+  set_color green
   printf '%s' (prompt_pwd)
-  set_color 666666
-  printf '%s' (__fish_git_prompt " @ %s ")
+  printf '%s' (__fish_git_prompt ' @ %s ')
   set_color 666666
   printf '> '
 end
