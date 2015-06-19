@@ -16,3 +16,5 @@
 [pack]
 	windowMemory = 10m
 	packSizeLimit = 20m
+[push]
+	default = simple
