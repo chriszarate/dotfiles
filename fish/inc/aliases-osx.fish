@@ -15,3 +15,6 @@ alias afk "/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Show/hide hidden and system files
 alias showhidden "defaults write com.apple.finder AppleShowAllFiles YES"
 alias hidehidden "defaults write com.apple.finder AppleShowAllFiles NO"
+
+# Open current directory in text editor du jour
+alias edit "brackets ."
