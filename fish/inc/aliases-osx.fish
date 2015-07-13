@@ -10,7 +10,7 @@ alias cleanup "find . -type f -name '*.DS_Store' -ls -delete"
 alias emptytrash "sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
 
 # Lock the screen (when going AFK)
-alias afk "/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias afk "/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Show/hide hidden and system files
 alias showhidden "defaults write com.apple.finder AppleShowAllFiles YES"
