@@ -30,18 +30,28 @@ do
   fi
 done
 
-# Add additional symlinks.
+# Symlink nested dotfiles.
 for config in \
-  /editor/editorconfig \
-  /input/inputrc \
-  /git/gitconfig \
-  /git/gitignore_global \
-  /jshint/jshintrc \
-  /jshint/jscsrc \
-  /tmux/tmux.conf \
-  /vim/vimrc
+  vim/colors
+do
+  mkdir -p ~/.$(dirname $config)
+  if [ ! -e ~/.$config ]; then
+    ln -s ~/$dotfiles/$config ~/.$config
+  fi
+done
+
+# Symlink dotfiles.
+for config in \
+  editor/editorconfig \
+  input/inputrc \
+  git/gitconfig \
+  git/gitignore_global \
+  jshint/jshintrc \
+  jshint/jscsrc \
+  tmux/tmux.conf \
+  vim/vimrc
 do
   if [ ! -e ~/.$(basename $config) ]; then
-    ln -s $dotfiles$config ~/.$(basename $config)
+    ln -s $dotfiles/$config ~/.$(basename $config)
   fi
 done

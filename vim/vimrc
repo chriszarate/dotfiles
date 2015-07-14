@@ -22,6 +22,8 @@ filetype plugin indent on
 " Syntax highlighting
 syntax enable
 
+" Colors
+colorscheme monokai-soda
+
 " Line numbers
 set number
-highlight LineNr ctermfg=darkgrey
