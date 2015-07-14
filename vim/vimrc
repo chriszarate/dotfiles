@@ -19,6 +19,8 @@ Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 filetype plugin indent on
 
+" Syntax highlighting
+syntax enable
 
 " Line numbers
 set number
