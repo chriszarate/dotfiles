@@ -13,6 +13,7 @@ set shell=/bin/bash
 " Plugins
 Plugin 'gmarik/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
+Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
 
 " All of your Plugins must be added before the following line
