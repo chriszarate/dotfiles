@@ -7,10 +7,14 @@ call vundle#begin()
 " Statusline
 set laststatus=2
 
+" Shell
+set shell=/bin/bash
+
 " Plugins
 Plugin 'gmarik/Vundle.vim'
 Plugin 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 Plugin 'itchyny/lightline.vim'
+Plugin 'airblade/vim-gitgutter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
