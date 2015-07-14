@@ -12,7 +12,6 @@ set shell=/bin/bash
 
 " Plugins
 Plugin 'gmarik/Vundle.vim'
-Plugin 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 Plugin 'itchyny/lightline.vim'
 Plugin 'airblade/vim-gitgutter'
 
@@ -20,8 +19,6 @@ Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 filetype plugin indent on
 
-" Theme
-colorscheme peacock
 
 " Line numbers
 set number
