@@ -22,3 +22,7 @@ filetype plugin indent on
 
 " Theme
 colorscheme peacock
+
+" Line numbers
+set number
+highlight LineNr ctermfg=darkgrey
