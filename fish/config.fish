@@ -2,12 +2,8 @@ set fish_greeting ""
 
 set fish_key_bindings fish_vi_key_bindings
 
-for file in aliases exports
-  source ~/.config/fish/inc/$file.fish
-end
-
-if [ (uname) = 'Darwin' ]
-  source ~/.config/fish/inc/aliases-osx.fish
+for file in ~/.config/fish/inc/*.fish ~/.*.fish
+  source $file
 end
 
 # Always open a tmux session.
