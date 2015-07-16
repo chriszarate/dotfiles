@@ -23,6 +23,7 @@ alias __git_branch "git rev-parse --abbrev-ref HEAD"
 
 # Git user aliases
 alias ]co "git checkout"
+alias ]f "git fetch"
 alias ]p  "git pull"
 alias ]pu "git push"
 alias ]s  "git status --short --branch"
