@@ -1,6 +1,6 @@
 set fish_greeting ""
-
 set fish_key_bindings fish_vi_key_bindings
+set PATH /usr/local/sbin $PATH
 
 for file in ~/.config/fish/inc/*.fish ~/.*.fish
   source $file
