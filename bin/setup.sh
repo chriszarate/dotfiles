@@ -55,3 +55,9 @@ do
     ln -s $dotfiles/$config ~/.$(basename $config)
   fi
 done
+
+# Install tmux plugin manager.
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+  mkdir -p ~/.tmux/plugins
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
