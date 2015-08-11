@@ -9,5 +9,6 @@ pv
 sshuttle
 thefuck
 tmux
+tree
 weechat
 wget
