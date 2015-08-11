@@ -28,3 +28,6 @@ colorscheme monokai-soda
 
 " Line numbers
 set number
+
+" Mouse mode
+set mouse=a
