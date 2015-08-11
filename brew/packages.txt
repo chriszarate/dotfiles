@@ -1,6 +1,5 @@
 ansible
 awscli
-dnsmasq
 fish
 git
 imagemagick
