@@ -7,6 +7,7 @@ keychain
 node
 pv
 sshuttle
+the_silver_searcher
 thefuck
 tmux
 tree
