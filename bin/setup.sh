@@ -5,8 +5,11 @@ dotfiles=".dotfiles"
 
 # Install brew packages
 if [ "$(uname)" = "Darwin" ]; then
+  cellar=`brew --cellar`
   while read pkg; do
-    command -v $pkg >/dev/null 2>&1 || brew install $pkg
+    if [ ! -d $cellar/$pkg ]; then
+      brew install $pkg
+    fi
   done <~/$dotfiles/brew/packages.txt
 fi
 
