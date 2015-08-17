@@ -64,3 +64,15 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
   mkdir -p ~/.tmux/plugins
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
+
+# Download and symlink PHP phars.
+pharchive=~/.phar
+mkdir -p $pharchive
+while read phar_url; do
+  phar_name=$(basename $phar_url)
+  if [ ! -f $pharchive/$phar_name ]; then
+    curl -o $pharchive/$phar_name $phar_url
+    chmod +x $pharchive/$phar_name
+    ln -s $pharchive/$phar_name /usr/local/bin/$(echo $phar_name | rev | cut -c 6- | rev)
+  fi
+done <~/$dotfiles/php/phars.txt

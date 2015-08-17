@@ -1,0 +1,3 @@
+https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+https://phar.phpunit.de/phpunit.phar
+https://getcomposer.org/composer.phar
