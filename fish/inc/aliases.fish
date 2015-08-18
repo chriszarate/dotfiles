@@ -18,7 +18,7 @@ alias sudo "sudo "
 
 # Git utilities
 alias __is_git "git rev-parse --is-inside-work-tree >/dev/null 2>&1"
-alias __git_origin "git remote -v | sed -E -e 's/^origin.*github.com[:\/]([^ ]+).git.*/\1/' -e '1!d'"
+alias __git_origin "git remote -v | sed -E -e 's/^origin.*github.com[:\/]([^ ]+).*/\1/' -e 's/\.git\$//' -e '1!d'"
 alias __git_branch "git rev-parse --abbrev-ref HEAD"
 
 # Git user aliases
