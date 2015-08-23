@@ -5,6 +5,7 @@ git
 imagemagick
 keychain
 node
+reattach-to-user-namespace
 pv
 sshuttle
 the_silver_searcher
