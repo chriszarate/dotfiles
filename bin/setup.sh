@@ -13,6 +13,16 @@ if [ "$(uname)" = "Darwin" ]; then
   done <~/$dotfiles/brew/packages.txt
 fi
 
+# Install global npm packages
+if [ -n "$(which npm)" ]; then
+  npm_prefix=`npm config get prefix`
+  while read pkg; do
+    if [ ! -d $npm_prefix/lib/node_modules/$pkg ]; then
+      npm -g install $pkg
+    fi
+  done <~/$dotfiles/npm/packages.txt
+fi
+
 # Change shell to fish.
 fish_path="$(which fish)"
 if ! grep -Fxq "$fish_path" /etc/shells; then

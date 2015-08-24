@@ -1,0 +1,9 @@
+babel-eslint
+bower
+eslint-config-airbnb
+eslint-plugin-react
+forever
+grunt-cli
+gulp
+npm-check-updates
+yo
