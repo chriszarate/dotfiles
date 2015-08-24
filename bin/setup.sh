@@ -49,8 +49,8 @@ for config in \
   input/inputrc \
   git/gitconfig \
   git/gitignore_global \
-  jshint/jshintrc \
-  jshint/jscsrc \
+  lint/jshintrc \
+  lint/jscsrc \
   tmux/tmux.conf \
   vim/vimrc
 do
