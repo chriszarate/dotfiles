@@ -59,6 +59,7 @@ for config in \
   input/inputrc \
   git/gitconfig \
   git/gitignore_global \
+  lint/eslintrc \
   lint/jshintrc \
   lint/jscsrc \
   tmux/tmux.conf \

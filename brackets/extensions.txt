@@ -1,12 +1,11 @@
 Code Folding
 Brackets Git
+brackets-eslint
 colorHints
 CSSLint
 EditorConfig
 JSCS for Brackets
-JSHint
 Monokai Dark Soda
-Open Terminal Here
 PHP Code Quality Tools
 QuickDocsJS
 QuickDocsPHP
