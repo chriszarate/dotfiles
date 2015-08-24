@@ -7,7 +7,7 @@ for file in ~/.config/fish/inc/*.fish ~/.*.fish
 end
 
 # Always open a tmux session.
-switch $TERM
+switch (echo $TERM)
   case 'screen*'
   case '*'
     tmux attach -t (whoami) >/dev/null 2>&1; or tmux new-session -s (whoami)
