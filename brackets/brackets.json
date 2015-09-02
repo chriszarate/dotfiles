@@ -1,16 +1,19 @@
 {
     "themes.theme": "rain.monokai-dark-soda",
+    "fonts.fontFamily": "'SourceCodePro-Medium', ＭＳ ゴシック, 'MS Gothic', monospace",
     "fonts.fontSize": "14px",
     "spaceUnits": 2,
     "useTabChar": false,
-    "wordWrap": false,
+    "wordWrap": true,
     "quickview.enabled": true,
+    "styleActiveLine": true,
+    "closeBrackets": true,
     "linting.enabled": true,
-    "linting.collapsed": false,
+    "linting.collapsed": true,
     "language": {
         "javascript": {
             "linting.prefer": [
-                "JSHint",
+                "ESLint",
                 "JSCS"
             ],
             "linting.usePreferredOnly": true
@@ -45,10 +48,32 @@
     "brackets-git.gotoPrevChangeShortcut": null,
     "brackets-git.gotoNextChangeShortcut": null,
     "brackets-git.gitTimeout": 30,
-    "brackets-git.terminalCommand": null,
-    "brackets-git.terminalCommandArgs": null,
     "brackets-git.debugMode": false,
-    "styleActiveLine": true,
-    "closeBrackets": true,
-    "denniskehrig.ShowWhitespace.checked": true
+    "brackets-git.refreshShortcut": null,
+    "denniskehrig.ShowWhitespace.checked": false,
+    "mikaeljorhult.bracketsPHPLintTools.php-available": true,
+    "mikaeljorhult.bracketsPHPLintTools.enabled-tools": [
+        "phpcs",
+        "phpcpd",
+        "phpl",
+        "phpmd"
+    ],
+    "mikaeljorhult.bracketsPHPLintTools.phpcs-standards": [
+        "WordPress-Core",
+        "WordPress-VIP"
+    ],
+    "mikaeljorhult.bracketsPHPLintTools.phpmd-rulesets": [
+        "codesize",
+        "naming",
+        "unusedcode"
+    ],
+    "jwolfe.file-tree-exclude.list": [
+        "node_modules",
+        "bower_components",
+        ".git",
+        "dist",
+        "vendor"
+    ],
+    "brackets-git.terminalCommand": "/Users/czarate/Library/Application Support/Brackets/extensions/user/zaggino.brackets-git/shell/terminal.osa",
+    "brackets-git.terminalCommandArgs": "$1"
 }
