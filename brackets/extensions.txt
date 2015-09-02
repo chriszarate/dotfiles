@@ -4,6 +4,7 @@ brackets-eslint
 colorHints
 CSSLint
 EditorConfig
+File Tree Exclude
 JSCS for Brackets
 Monokai Dark Soda
 PHP Code Quality Tools
