@@ -3,7 +3,7 @@
 # Relative to home directory.
 dotfiles=".dotfiles"
 
-# Install brew packages
+# Install brew packages and casks
 if [ "$(uname)" = "Darwin" ]; then
   cellar=`brew --cellar`
   while read pkg; do
@@ -11,6 +11,12 @@ if [ "$(uname)" = "Darwin" ]; then
       brew install $pkg
     fi
   done <~/$dotfiles/brew/packages.txt
+  caskroom="/opt/homebrew-cask/Caskroom/"
+  while read cask; do
+    if [ ! -d $caskroom/$cask ]; then
+      brew cask install $cask
+    fi
+  done <~/$dotfiles/brew/casks.txt
 fi
 
 # Install global npm packages

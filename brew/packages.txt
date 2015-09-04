@@ -1,5 +1,6 @@
 ansible
 awscli
+caskroom/cask/brew-cask
 fish
 git
 imagemagick
