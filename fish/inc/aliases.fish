@@ -1,3 +1,6 @@
+# Reload fish config.
+alias reload "source ~/.config/fish/config.fish"
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias .. "cd .."
 alias ... "cd ../.."
@@ -61,3 +64,6 @@ alias phpserver "php -S localhost:8000"
 
 # Redraw tmux window by detaching all other clients.
 alias redraw "tmux detach -a"
+
+# Rename current window to shell name.
+alias win "tmux rename-window (basename $SHELL)"
