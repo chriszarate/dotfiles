@@ -6,6 +6,7 @@ imagemagick
 keychain
 node
 reattach-to-user-namespace
+rename
 pv
 sshuttle
 the_silver_searcher
