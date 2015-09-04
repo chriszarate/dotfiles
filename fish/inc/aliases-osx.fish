@@ -15,8 +15,12 @@ if [ (uname) = 'Darwin' ]
   alias afk "/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession -suspend"
 
   # Show/hide hidden and system files
-  alias showhidden "defaults write com.apple.finder AppleShowAllFiles YES"
-  alias hidehidden "defaults write com.apple.finder AppleShowAllFiles NO"
+  alias showhidden "defaults write com.apple.finder AppleShowAllFiles YES; killall Finder"
+  alias hidehidden "defaults write com.apple.finder AppleShowAllFiles NO; killall Finder"
+
+  # Allow/disallow text selection in QuickLook 
+  alias qltexton "defaults write com.apple.finder QLEnableTextSelection -bool TRUE; killall Finder"
+  alias qltextoff "defaults write com.apple.finder QLEnableTextSelection -bool FALSE; killall Finder"
 
   # Open current directory in text editor du jour
   alias edit "brackets ."
