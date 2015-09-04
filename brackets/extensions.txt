@@ -1,4 +1,3 @@
-Code Folding
 Brackets Git
 brackets-eslint
 colorHints
