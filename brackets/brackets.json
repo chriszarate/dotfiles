@@ -9,7 +9,7 @@
     "styleActiveLine": true,
     "closeBrackets": true,
     "linting.enabled": true,
-    "linting.collapsed": true,
+    "linting.collapsed": false,
     "language": {
         "javascript": {
             "linting.prefer": [
@@ -67,13 +67,13 @@
         "naming",
         "unusedcode"
     ],
-    "jwolfe.file-tree-exclude.list": [
-        "node_modules",
-        "bower_components",
-        ".git",
-        "dist",
-        "vendor"
-    ],
     "brackets-git.terminalCommand": "/Users/czarate/Library/Application Support/Brackets/extensions/user/zaggino.brackets-git/shell/terminal.osa",
-    "brackets-git.terminalCommandArgs": "$1"
+    "brackets-git.terminalCommandArgs": "$1",
+    "brackets-file-tree-exclude.excludeList": [
+        "/.git/",
+        "/dist/",
+        "/bower_components/",
+        "/node_modules/",
+        "/vendor/"
+    ]
 }
