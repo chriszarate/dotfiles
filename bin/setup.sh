@@ -49,16 +49,6 @@ do
   fi
 done
 
-# Symlink nested dotfiles.
-for config in \
-  vim/colors
-do
-  mkdir -p ~/.$(dirname $config)
-  if [ ! -e ~/.$config ]; then
-    ln -s ~/$dotfiles/$config ~/.$config
-  fi
-done
-
 # Symlink dotfiles.
 for config in \
   editor/editorconfig \

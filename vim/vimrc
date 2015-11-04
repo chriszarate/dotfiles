@@ -13,12 +13,13 @@ Plugin 'tpope/vim-sensible'
 Plugin 'itchyny/lightline.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tomasr/molokai'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
 
 " Colors
-colorscheme monokai-soda
+colorscheme molokai
 
 " Line numbers
 set number
