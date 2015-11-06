@@ -15,6 +15,10 @@ function fish_title
     case ssh
       echo "$argv[1]" | awk '{ for(i=NF; i>0; i--) { if(match($i, /^[^\-]/)) {print $i; break} } }'
 
+    # Ignore some commands.
+    case cd
+    case ls
+
     # Otherwise just use the command name.
     case '*'
       echo "$_"
