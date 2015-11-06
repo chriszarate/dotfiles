@@ -8,7 +8,7 @@ function fish_title
       if [ "$PWD" = "$HOME" ]
         echo "~"
       else
-        echo (basename $PWD)
+        echo (basename $PWD)/
       end
 
     # If we're SSHing, attempt to extract the hostname.
