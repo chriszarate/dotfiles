@@ -2,6 +2,9 @@ set fish_greeting ""
 set fish_key_bindings fish_vi_key_bindings
 set EDITOR vi
 
+# Set initial window title.
+echo -n -e "\033]0;~\007"
+
 for file in ~/.config/fish/inc/*.fish ~/.*.fish
   source $file
 end
