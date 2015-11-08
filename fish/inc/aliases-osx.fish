@@ -1,8 +1,8 @@
 if [ (uname) = 'Darwin' ]
 
   # Git aliases
-  alias gh "open https://github.com/(__is_git; and __git_origin)/tree/(__git_branch)"
-  alias ghi "open https://github.com/(__is_git; and __git_origin)/issues"
+  alias gh "open https://github.com/(git-origin)/tree/(git-branch)"
+  alias ghi "open https://github.com/(git-origin)/issues"
 
   # Recursively delete `.DS_Store` files
   alias cleanup "find . -type f -name '*.DS_Store' -ls -delete"
