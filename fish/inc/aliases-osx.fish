@@ -18,7 +18,7 @@ if [ (uname) = 'Darwin' ]
   alias showhidden "defaults write com.apple.finder AppleShowAllFiles YES; killall Finder"
   alias hidehidden "defaults write com.apple.finder AppleShowAllFiles NO; killall Finder"
 
-  # Allow/disallow text selection in QuickLook 
+  # Allow/disallow text selection in QuickLook
   alias qltexton "defaults write com.apple.finder QLEnableTextSelection -bool TRUE; killall Finder"
   alias qltextoff "defaults write com.apple.finder QLEnableTextSelection -bool FALSE; killall Finder"
 

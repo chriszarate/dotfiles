@@ -1,23 +1,14 @@
-# Reload fish config.
-alias reload "source ~/.config/fish/config.fish"
-
-# Easier navigation: .., ..., ...., ....., ~ and -
+# Easier navigation: -, .., ..., ...., ..... (~ is built-in)
+alias - "cd -"
 alias .. "cd .."
 alias ... "cd ../.."
 alias .... "cd ../../.."
 alias ..... "cd ../../../.."
 
-# List all files colorized in long format
+# Easier listings
 alias l "ls -lF"
-
-# List all files colorized in long format, including dot files
 alias la "ls -laF"
-
-# List all files in long format, piped through `less`
 alias ll "ls -laF | less"
-
-# Enable aliases to be sudo’ed
-alias sudo "sudo "
 
 # Folder shortcuts
 alias d="cd ~/Documents"
@@ -35,7 +26,7 @@ alias ]b  "git branch"
 alias ]a  "git add"
 alias ]ap "git add --patch"
 alias ]c  "git commit"
-alias ]ca "git commit -a"
+alias ]ca "git commit --amend"
 alias ]d  "git diff"
 alias ]dc "git diff --cached"
 alias ]l  "git log --oneline"
@@ -53,8 +44,8 @@ alias server "python -m SimpleHTTPServer"
 # Generate a PHP server on port 8000
 alias phpserver "php -S localhost:8000"
 
+# Reload fish config.
+alias reload "source ~/.config/fish/config.fish"
+
 # Redraw tmux window by detaching all other clients.
 alias redraw "tmux detach -a"
-
-# Rename current window to shell name.
-alias win "tmux rename-window (basename $SHELL)"
