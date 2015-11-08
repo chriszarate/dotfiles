@@ -32,9 +32,6 @@ alias ]dc "git diff --cached"
 alias ]l  "git log --oneline"
 alias ]ll "git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
-# Stopwatch
-alias timer 'echo "Timer started. Stop with Ctrl-D."; date; time cat; date'
-
 # Show running EC2 instances in a nice table (uses aws-cli)
 alias ec2show "aws ec2 describe-instances --query 'Reservations[*].Instances[*].{Name:Tags[?Key==`Name`]|[0].Value, State:State.Name, ID:InstanceId, Type:InstanceType, Storage:RootDeviceType, Zone:Placement.AvailabilityZone, PublicIP:PublicIpAddress}' --output table"
 
