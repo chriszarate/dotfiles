@@ -3,6 +3,7 @@ awscli
 caskroom/cask/brew-cask
 fish
 git
+gnupg
 hub
 imagemagick
 keychain
