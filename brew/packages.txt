@@ -10,6 +10,7 @@ keychain
 node
 reattach-to-user-namespace
 rename
+rlwrap
 pv
 sshuttle
 the_silver_searcher

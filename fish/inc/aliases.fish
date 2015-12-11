@@ -30,3 +30,6 @@ alias reload "source ~/.config/fish/config.fish"
 
 # Redraw tmux window by detaching all other clients.
 alias redraw "tmux detach -a"
+
+# Wrap sqlplus in readline.
+alias sqlplus "rlwrap sqlplus"
