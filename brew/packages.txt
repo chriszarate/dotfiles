@@ -1,6 +1,5 @@
 ansible
 awscli
-caskroom/cask/brew-cask
 fish
 git
 gnupg
