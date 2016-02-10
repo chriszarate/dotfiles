@@ -33,3 +33,7 @@ alias redraw "tmux detach -a"
 
 # Wrap sqlplus in readline.
 alias sqlplus "rlwrap sqlplus"
+
+# Docker
+alias dm docker-machine
+alias dme "eval (docker-machine env default --shell fish)"
