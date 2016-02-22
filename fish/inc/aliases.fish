@@ -37,3 +37,4 @@ alias sqlplus "rlwrap sqlplus"
 # Docker
 alias dm docker-machine
 alias dme "eval (docker-machine env default --shell fish)"
+alias dco docker-compose

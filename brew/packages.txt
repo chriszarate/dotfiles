@@ -1,6 +1,7 @@
 ansible
 awscli
 docker
+docker-compose
 docker-machine
 fish
 git
