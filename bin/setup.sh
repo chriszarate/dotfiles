@@ -5,26 +5,26 @@ dotfiles=".dotfiles"
 
 # Install brew packages and casks
 if [ "$(uname)" = "Darwin" ]; then
-  cellar=`brew --cellar`
-  while read pkg; do
-    if [ ! -d $cellar/$(basename $pkg) ]; then
-      brew install $pkg
+  cellar="$(brew --cellar)"
+  while read -r pkg; do
+    if [ ! -d "$cellar/$(basename "$pkg")" ]; then
+      brew install "$pkg"
     fi
   done <~/$dotfiles/brew/packages.txt
   caskroom="/opt/homebrew-cask/Caskroom/"
-  while read cask; do
-    if [ ! -d $caskroom/$cask ]; then
-      brew cask install $cask
+  while read -r cask; do
+    if [ ! -d "$caskroom/$cask" ]; then
+      brew cask install "$cask"
     fi
   done <~/$dotfiles/brew/casks.txt
 fi
 
 # Install global npm packages
 if [ -n "$(which npm)" ]; then
-  npm_prefix=`npm config get prefix`
-  while read pkg; do
-    if [ ! -d $npm_prefix/lib/node_modules/$pkg ]; then
-      npm -g install $pkg
+  npm_prefix="$(npm config get prefix)"
+  while read -r pkg; do
+    if [ ! -d "$npm_prefix/lib/node_modules/$pkg" ]; then
+      npm -g install "$pkg"
     fi
   done <~/$dotfiles/npm/packages.txt
 fi
@@ -35,7 +35,7 @@ if ! grep -Fxq "$fish_path" /etc/shells; then
   echo "$fish_path" | sudo tee -a /etc/shells > /dev/null
 fi
 if [ "$SHELL" != "$fish_path" ]; then
-  chsh -s $fish_path
+  chsh -s "$fish_path"
 fi
 
 # Symlink fish config.
@@ -61,8 +61,8 @@ for config in \
   tmux/tmux.conf \
   vim/vimrc
 do
-  if [ ! -e ~/.$(basename $config) ]; then
-    ln -s $dotfiles/$config ~/.$(basename $config)
+  if [ ! -e "$HOME/.$(basename "$config")" ]; then
+    ln -s $dotfiles/$config "$HOME/.$(basename "$config")"
   fi
 done
 
@@ -75,11 +75,11 @@ fi
 # Download and symlink PHP phars.
 pharchive=~/.phar
 mkdir -p $pharchive
-while read phar_url; do
-  phar_name=$(basename $phar_url)
-  if [ ! -f $pharchive/$phar_name ]; then
-    curl -o $pharchive/$phar_name $phar_url
-    chmod +x $pharchive/$phar_name
-    ln -s $pharchive/$phar_name /usr/local/bin/$(echo $phar_name | rev | cut -c 6- | rev)
+while read -r phar_url; do
+  phar_name="$(basename "$phar_url")"
+  if [ ! -f "$pharchive/$phar_name" ]; then
+    curl -o "$pharchive/$phar_name" "$phar_url"
+    chmod +x "$pharchive/$phar_name"
+    ln -s "$pharchive/$phar_name" "/usr/local/bin/$(echo "$phar_name" | rev | cut -c 6- | rev)"
   fi
 done <~/$dotfiles/php/phars.txt

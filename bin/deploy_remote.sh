@@ -11,8 +11,8 @@ host1=$3
 if [[ -f $local_file && -n $remote_file && -n $host1 ]]; then
 
   # Loop through each host and upload the file
-  for host in ${@:3}; do
-    scp $local_file ${host}:${remote_file}
+  for host in "${@:3}"; do
+    scp "$local_file" "${host}:${remote_file}"
   done
 
 else
