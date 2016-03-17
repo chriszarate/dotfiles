@@ -10,10 +10,11 @@ hub
 imagemagick
 keychain
 node
+pv
 reattach-to-user-namespace
 rename
 rlwrap
-pv
+shellcheck
 sshuttle
 the_silver_searcher
 thefuck
