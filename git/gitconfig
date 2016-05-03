@@ -24,6 +24,8 @@
 	p  = pull
 	pu = push
 	s  = status --short --branch
+	sh = show
+	w  = !sh -c 'git log -S'$1' -p' -
 [color]
 	ui = true
 [pack]
