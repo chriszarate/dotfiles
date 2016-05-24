@@ -18,8 +18,3 @@ end
 
 # Connect to ssh-agent session (requires keychain).
 eval (keychain --eval --quiet --agents ssh --nogui)
-
-# Load docker machine environment.
-if [ (docker-machine status) = 'Running' ]
-  eval (docker-machine env default --shell fish)
-end

@@ -35,6 +35,6 @@ alias redraw "tmux detach -a"
 alias sqlplus "rlwrap sqlplus"
 
 # Docker
-alias dm docker-machine
-alias dme "eval (docker-machine env default --shell fish)"
 alias dco docker-compose
+alias dcrm "docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm"
+alias dirm "docker images | grep '<none>' | awk '{print $3}' | xargs docker rmi"
