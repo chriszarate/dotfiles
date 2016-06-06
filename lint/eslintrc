@@ -1,16 +1,4 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["react"],
-  "extends": "eslint-config-airbnb",
-  "rules": {
-    "quotes": [2, "single", "avoid-escape"],
-    "comma-dangle": [2, "never"],
-    "brace-style": [2, "stroustrup", {"allowSingleLine": true}],
-    "no-underscore-dangle": 0,
-    "space-in-brackets": 0,
-    "func-names": 0,
-    "no-else-return": 0,
-    "no-param-reassign": 0,
-    "no-reserved-keys": 0
-  }
+  "extends": "eslint-config-airbnb"
 }
