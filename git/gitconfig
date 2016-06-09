@@ -9,23 +9,26 @@
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [alias]
-	a  = add
-	ap = add --patch
-	b  = branch
-	c  = commit
-	ca = commit --amend
-	co = checkout
-	d  = diff
-	dc = diff --cached
-	f  = fetch
-	l  = log --oneline
-	la = log --stat --branches --not --remotes
-	ll = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-	p  = pull
-	pu = push
-	s  = status --short --branch
-	sh = show
-	w  = !sh -c 'git log -S'$1' -p' -
+	a   = add
+	ap  = add --patch
+	b   = branch
+	c   = commit
+	ca  = commit --amend
+	co  = checkout
+	cob = checkout -b
+        cp  = cherry-pick
+	d   = diff
+	dc  = diff --cached
+	f   = fetch
+	l   = log --oneline
+	la  = log --stat --branches --not --remotes
+	ll  = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	p   = pull
+	pu  = push
+	r   = rebase
+	s   = status --short --branch
+	sh  = show
+	w   = !sh -c 'git log -S'$1' -p' -
 [color]
 	ui = true
 [pack]
