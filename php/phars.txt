@@ -1,3 +1,4 @@
 https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 https://phar.phpunit.de/phpunit-old.phar
 https://getcomposer.org/composer.phar
+https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
