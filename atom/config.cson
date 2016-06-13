@@ -1,0 +1,33 @@
+"*":
+  core:
+    disabledPackages: [
+      "whitespace"
+    ]
+    projectHome: "/Users/czarate/Documents/Scratch"
+    themes: [
+      "one-dark-ui"
+      "monokai"
+    ]
+  editor:
+    fontFamily: "Inconsolata-dz for Powerline"
+    fontSize: 13
+    invisibles:
+      tab: "—"
+    lineHeight: 1.4
+    showInvisibles: true
+  "exception-reporting":
+    userId: "70c5597e-072a-a8ab-3d72-c1633b71a5c2"
+  linter:
+    errorPanelHeight: 250
+    showErrorTabFile: false
+    showErrorTabProject: false
+    statusIconPosition: "Right"
+  "linter-phpcs":
+    codeStandardOrConfigFile: "WordPress"
+  "php-debug":
+    PathMaps: [
+      "/var/www/html/wp-content/themes/vip/project;/Users/czarate/Documents/Scratch/dev/qz-api"
+    ]
+    ServerPort: 9000
+  welcome:
+    showOnStartup: false

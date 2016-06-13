@@ -22,7 +22,4 @@ if [ (uname) = 'Darwin' ]
   alias qltexton "defaults write com.apple.finder QLEnableTextSelection -bool TRUE; killall Finder"
   alias qltextoff "defaults write com.apple.finder QLEnableTextSelection -bool FALSE; killall Finder"
 
-  # Open current directory in text editor du jour
-  alias edit "brackets ."
-
 end

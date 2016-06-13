@@ -56,8 +56,6 @@ for config in \
   git/gitconfig \
   git/gitignore_global \
   lint/eslintrc \
-  lint/jshintrc \
-  lint/jscsrc \
   tmux/tmux.conf \
   vim/vimrc
 do
@@ -65,6 +63,25 @@ do
     ln -s $dotfiles/$config "$HOME/.$(basename "$config")"
   fi
 done
+
+# Symlink Atom config.
+for config in \
+  atom/config.cson
+do
+  if [ ! -e "$HOME/.$config" ]; then
+    ln -s $HOME/$dotfiles/$config "$HOME/.$config"
+  fi
+done
+
+# Install Atom packages.
+if [ -n "$(which apm)" ]; then
+  apm_prefix="$HOME/.atom/packages"
+  while read -r pkg; do
+    if [ ! -d "$apm_prefix/$pkg" ]; then
+      apm install "$pkg"
+    fi
+  done <~/$dotfiles/atom/packages.txt
+fi
 
 # Install tmux plugin manager.
 if [ ! -d ~/.tmux/plugins/tpm ]; then

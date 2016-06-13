@@ -1,0 +1,12 @@
+dash
+docs-snippets
+editorconfig
+linter
+linter-csslint
+linter-eslint
+linter-phpcs
+linter-scss-lint
+monokai
+monokai-shade
+monokai-slate
+php-debug
