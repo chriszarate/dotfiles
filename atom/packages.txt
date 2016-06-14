@@ -4,8 +4,11 @@ editorconfig
 linter
 linter-csslint
 linter-eslint
+linter-php
 linter-phpcs
+linter-phpmd
 linter-scss-lint
+linter-shellcheck
 monokai
 monokai-shade
 monokai-slate
