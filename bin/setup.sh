@@ -96,3 +96,12 @@ while read -r phar_url; do
     ln -s "$pharchive/$phar_name" "/usr/local/bin/$(echo "$phar_name" | rev | cut -c 6- | rev)"
   fi
 done <"$dotfiles/php/phars.txt"
+
+while read -r ruleset; do
+  ruleset_name="$(basename "$ruleset")"
+  if [ ! -d "$pharchive/$ruleset_name" ]; then
+    composer create-project "$ruleset:dev-master" --working-dir="$pharchive" --no-install --no-interaction
+    phpcs --config-set installed_paths "$pharchive/$ruleset_name"
+  fi
+done <"$dotfiles/php/rulesets.txt"
+
