@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Relative to home directory.
-dotfiles=".dotfiles"
+dotfiles="$HOME/.dotfiles"
 
 # Install brew packages and casks
 if [ "$(uname)" = "Darwin" ]; then
@@ -10,13 +10,13 @@ if [ "$(uname)" = "Darwin" ]; then
     if [ ! -d "$cellar/$(basename "$pkg")" ]; then
       brew install "$pkg"
     fi
-  done <~/$dotfiles/brew/packages.txt
+  done <"$dotfiles/brew/packages.txt"
   caskroom="/opt/homebrew-cask/Caskroom/"
   while read -r cask; do
     if [ ! -d "$caskroom/$cask" ]; then
       brew cask install "$cask"
     fi
-  done <~/$dotfiles/brew/casks.txt
+  done <"$dotfiles/brew/casks.txt"
 fi
 
 # Install global npm packages
@@ -26,7 +26,7 @@ if [ -n "$(which npm)" ]; then
     if [ ! -d "$npm_prefix/lib/node_modules/$pkg" ]; then
       npm -g install "$pkg"
     fi
-  done <~/$dotfiles/npm/packages.txt
+  done <"$dotfiles/npm/packages.txt"
 fi
 
 # Change shell to fish.
@@ -44,13 +44,13 @@ links=(
   '.config/fish::fish/functions'
   '.config/fish::fish/inc'
   '.atom::atom/config.cson'
-  '.test::brew/packages.txt'
 )
 for link in "${links[@]}"; do
+  source="${link##*::}"
   target="${link%%::*}"
-  if [ ! -e "$HOME/$target/$(basename "$config")" ]; then
+  if [ ! -e "$HOME/$target/$(basename "$source")" ]; then
     mkdir -p "$HOME/$target"
-    ln -s "$dotfiles/${link##*::}" "$HOME/$target/.$(basename "$config")"
+    ln -s "$dotfiles/$source" "$HOME/$target/$(basename "$source")"
   fi
 done
 
@@ -65,7 +65,7 @@ for config in \
   vim/vimrc
 do
   if [ ! -e "$HOME/.$(basename "$config")" ]; then
-    ln -s $dotfiles/$config "$HOME/.$(basename "$config")"
+    ln -s "$dotfiles/$config" "$HOME/.$(basename "$config")"
   fi
 done
 
@@ -76,7 +76,7 @@ if [ -n "$(which apm)" ]; then
     if [ ! -d "$apm_prefix/$pkg" ]; then
       apm install "$pkg"
     fi
-  done <~/$dotfiles/atom/packages.txt
+  done <"$dotfiles/atom/packages.txt"
 fi
 
 # Install tmux plugin manager.
@@ -95,4 +95,4 @@ while read -r phar_url; do
     chmod +x "$pharchive/$phar_name"
     ln -s "$pharchive/$phar_name" "/usr/local/bin/$(echo "$phar_name" | rev | cut -c 6- | rev)"
   fi
-done <~/$dotfiles/php/phars.txt
+done <"$dotfiles/php/phars.txt"
