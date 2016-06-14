@@ -60,7 +60,6 @@ for config in \
   input/inputrc \
   git/gitconfig \
   git/gitignore_global \
-  lint/eslintrc \
   tmux/tmux.conf \
   vim/vimrc
 do
