@@ -23,8 +23,11 @@
     showErrorTabFile: false
     showErrorTabProject: false
     statusIconPosition: "Right"
+    statusIconScope: "File"
   "linter-phpcs":
     codeStandardOrConfigFile: "WordPress"
+  "linter-phpmd":
+    rulesets: "cleancode,codesize,design,naming,unusedcode"
   "linter-shellcheck":
     enableNotice: true
   "php-debug":
