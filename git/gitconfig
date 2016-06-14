@@ -16,7 +16,7 @@
 	ca  = commit --amend
 	co  = checkout
 	cob = checkout -b
-        cp  = cherry-pick
+	cp  = cherry-pick
 	d   = diff
 	dc  = diff --cached
 	f   = fetch
