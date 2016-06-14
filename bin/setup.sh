@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Relative to home directory.
 dotfiles=".dotfiles"
@@ -38,14 +38,19 @@ if [ "$SHELL" != "$fish_path" ]; then
   chsh -s "$fish_path"
 fi
 
-# Symlink fish config.
-for config in \
-  /fish/config.fish \
-  /fish/functions \
-  /fish/inc
-do
-  if [ ! -e ~/.config$config ]; then
-    ln -s ~/$dotfiles$config ~/.config$config
+# Symlink dotfiles in subdirectories.
+links=(
+  '.config/fish::fish/config.fish'
+  '.config/fish::fish/functions'
+  '.config/fish::fish/inc'
+  '.atom::atom/config.cson'
+  '.test::brew/packages.txt'
+)
+for link in "${links[@]}"; do
+  target="${link%%::*}"
+  if [ ! -e "$HOME/$target/$(basename "$config")" ]; then
+    mkdir -p "$HOME/$target"
+    ln -s "$dotfiles/${link##*::}" "$HOME/$target/.$(basename "$config")"
   fi
 done
 
@@ -61,15 +66,6 @@ for config in \
 do
   if [ ! -e "$HOME/.$(basename "$config")" ]; then
     ln -s $dotfiles/$config "$HOME/.$(basename "$config")"
-  fi
-done
-
-# Symlink Atom config.
-for config in \
-  atom/config.cson
-do
-  if [ ! -e "$HOME/.$config" ]; then
-    ln -s $HOME/$dotfiles/$config "$HOME/.$config"
   fi
 done
 
