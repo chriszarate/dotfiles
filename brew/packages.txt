@@ -1,14 +1,13 @@
-ansible
+ack
 awscli
 fish
 git
 gnupg
-hub
 imagemagick
 keychain
 node
+pngquant
 pv
-reattach-to-user-namespace
 rename
 rlwrap
 shellcheck

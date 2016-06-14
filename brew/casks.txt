@@ -4,4 +4,3 @@ qlmarkdown
 qlstephen
 quicklook-json
 quicklook-csv
-vagrant
