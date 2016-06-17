@@ -1,0 +1,2 @@
+'atom-workspace':
+  'cmd-t': 'fuzzy-grep:toggle'

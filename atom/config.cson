@@ -3,6 +3,9 @@
     disabledPackages: [
       "whitespace"
     ]
+    packagesWithKeymapsDisabled: [
+      "php-debug"
+    ]
     projectHome: "/Users/czarate/Documents/Scratch"
     themes: [
       "one-dark-ui"
@@ -17,7 +20,6 @@
     showInvisibles: true
   "exception-reporting":
     userId: "70c5597e-072a-a8ab-3d72-c1633b71a5c2"
-  "git-diff": {}
   linter:
     errorPanelHeight: 250
     showErrorTabFile: false
