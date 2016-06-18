@@ -47,6 +47,7 @@ links=(
   '.config/fish::fish/inc'
   '.atom::atom/config.cson'
   '.atom::atom/keymap.cson'
+  '.atom::atom/styles.less'
 )
 for link in "${links[@]}"; do
   source="${link##*::}"

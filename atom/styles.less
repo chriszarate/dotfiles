@@ -1,0 +1,31 @@
+@editor-background-color: #202020;
+@ui-background-color: #242424;
+@ui-border-color: #1a1a1a;
+
+// Darker darks and whiter whites.
+atom-text-editor, &::shadow {
+  background-color: @editor-background-color;
+  color: #fff;
+
+  .gutter {
+    background-color: @ui-background-color;
+  }
+}
+
+// Match active tab background color to editor.
+.theme-one-dark-ui {
+  .tab.active[data-type="TextEditor"],
+  .tab.active[data-type="TextEditor"] .title,
+  .tab.active[data-type="MarkdownPreviewView"],
+  .tab.active[data-type="MarkdownPreviewView"] .title {
+    background-color: @editor-background-color;
+  }
+
+  .tab-bar {
+    box-shadow: inset 0 -1px 0 @ui-border-color;
+  }
+
+  .tab::after {
+    border-bottom: none;
+  }
+}
