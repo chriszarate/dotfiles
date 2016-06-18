@@ -1,7 +1,7 @@
 atom-fuzzy-grep
-autohide-tree-view
+color-picker
 dash
-docs-snippets
+docblockr
 editorconfig
 linter
 linter-csslint
@@ -12,7 +12,5 @@ linter-phpmd
 linter-scss-lint
 linter-shellcheck
 monokai
-monokai-shade
-monokai-slate
 php-debug
 split-diff

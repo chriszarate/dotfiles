@@ -3,6 +3,7 @@
     disabledPackages: [
       "whitespace"
     ]
+    openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [
       "php-debug"
     ]
@@ -15,7 +16,7 @@
     fontFamily: "Inconsolata-dz for Powerline"
     fontSize: 13
     invisibles:
-      tab: "—"
+      tab: "┈"
     lineHeight: 1.4
     showInvisibles: true
   "exception-reporting":
