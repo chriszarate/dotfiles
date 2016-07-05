@@ -6,6 +6,7 @@ editorconfig
 linter
 linter-csslint
 linter-eslint
+linter-js-standard
 linter-php
 linter-phpcs
 linter-phpmd

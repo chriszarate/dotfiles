@@ -27,6 +27,8 @@
     showErrorTabProject: false
     statusIconPosition: "Right"
     statusIconScope: "File"
+  "linter-js-standard":
+    style: "semi-standard"
   "linter-phpcs":
     codeStandardOrConfigFile: "WordPress"
   "linter-phpmd":
