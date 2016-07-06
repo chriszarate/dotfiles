@@ -8,10 +8,12 @@ keychain
 node
 pngquant
 pv
+ranger
 rename
 rlwrap
 shellcheck
 sshuttle
+task
 the_silver_searcher
 tmux
 trash
