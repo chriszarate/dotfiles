@@ -45,6 +45,7 @@ links=(
   '.config/fish::fish/config.fish'
   '.config/fish::fish/functions'
   '.config/fish::fish/inc'
+  '.config/ranger::ranger/rc.conf'
   '.atom::atom/config.cson'
   '.atom::atom/keymap.cson'
   '.atom::atom/styles.less'
