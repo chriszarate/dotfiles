@@ -13,7 +13,6 @@ rlwrap
 shellcheck
 sshuttle
 the_silver_searcher
-thefuck
 tmux
 trash
 tree
