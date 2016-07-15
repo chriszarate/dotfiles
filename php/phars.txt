@@ -1,5 +1,5 @@
 https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 https://phar.phpunit.de/phpunit-old.phar
 https://getcomposer.org/composer.phar
-ttps://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
 http://static.phpmd.org/php/latest/phpmd.phar
