@@ -40,5 +40,7 @@
       "/var/www/html/wp-content/themes/vip/project;/Users/czarate/Documents/Scratch/dev/qz-api"
     ]
     ServerPort: 9000
+  "tree-view":
+    hideVcsIgnoredFiles: true
   welcome:
     showOnStartup: false
