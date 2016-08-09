@@ -1,6 +1,5 @@
 ack
 awscli
-docker
 fish
 git
 gnupg
