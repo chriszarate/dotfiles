@@ -39,6 +39,6 @@ alias sqlplus "rlwrap sqlplus"
 
 # Docker
 alias dco docker-compose
-alias dcrm "docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm"
-alias dirm "docker images | grep '<none>' | awk '{print $3}' | xargs docker rmi"
+alias dcrm "docker ps -aqf status=exited | xargs docker rm"
+alias dirm "docker images -aqf dangling=true | xargs docker rmi"
 alias dvrm "docker volume ls -qf dangling=true | xargs docker volume rm"
