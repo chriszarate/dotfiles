@@ -28,6 +28,7 @@
     statusIconPosition: "Right"
     statusIconScope: "File"
   "linter-js-standard":
+    checkStyleDevDependencies: true
     style: "semi-standard"
   "linter-phpcs":
     codeStandardOrConfigFile: "WordPress"
