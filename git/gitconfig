@@ -5,6 +5,7 @@
 	excludesfile = ~/.gitignore_global
 	editor = vim +start
 	compression = 0
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
@@ -19,10 +20,12 @@
 	cp  = cherry-pick
 	d   = diff
 	dc  = diff --cached
+	dw  = diff -w
 	f   = fetch
 	l   = log --oneline
 	la  = log --stat --branches --not --remotes
 	ll  = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lp  = log -p
 	p   = pull
 	pu  = push
 	r   = rebase
@@ -31,8 +34,22 @@
 	w   = !sh -c 'git log -S'$1' -p' -
 [color]
 	ui = true
+[color "diff"]
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
 [pack]
 	windowMemory = 10m
 	packSizeLimit = 20m
 [push]
 	default = simple
+[diff]
+	algorithm = patience
