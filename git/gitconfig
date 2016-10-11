@@ -10,8 +10,8 @@
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [alias]
-	a   = add
-	ap  = add --patch
+	a   = add --patch
+	aa  = add
 	b   = branch
 	c   = commit
 	ca  = commit --amend
