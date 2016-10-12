@@ -2,5 +2,6 @@ bower
 forever
 grunt-cli
 gulp
+jilla
 npm-check-updates
 yo
