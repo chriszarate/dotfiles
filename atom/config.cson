@@ -14,7 +14,7 @@
     ]
   editor:
     fontFamily: "Inconsolata-dz for Powerline"
-    fontSize: 13
+    fontSize: 12
     invisibles:
       tab: "┈"
     lineHeight: 1.4
