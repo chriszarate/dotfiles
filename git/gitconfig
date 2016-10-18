@@ -9,6 +9,8 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[interactive]
+	diffFilter = diff-so-fancy --patch-mode | less
 [alias]
 	a   = add --patch
 	aa  = add
