@@ -8,6 +8,7 @@
       "php-debug"
     ]
     projectHome: "/Users/czarate/Documents/Scratch"
+    telemetryConsent: "no"
     themes: [
       "one-dark-ui"
       "monokai"
