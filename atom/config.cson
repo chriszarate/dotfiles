@@ -30,7 +30,6 @@
     statusIconScope: "File"
   "linter-js-standard":
     checkStyleDevDependencies: true
-    style: "semi-standard"
   "linter-phpcs":
     codeStandardOrConfigFile: "WordPress"
   "linter-phpmd":
@@ -42,6 +41,7 @@
       "/var/www/html/wp-content/themes/vip/project;/Users/czarate/Documents/Scratch/dev/qz-api"
     ]
     ServerPort: 9000
+    currentPanelMode: "bottom"
   "tree-view":
     hideVcsIgnoredFiles: true
   welcome:
