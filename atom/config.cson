@@ -1,4 +1,7 @@
 "*":
+  "atom-fuzzy-grep":
+    detectGitProjectAndUseGitGrep: false
+    grepCommandString: "/usr/local/bin/ag -i --nocolor --nogroup --column --ignore=build --ignore=build-directory --ignore=dist --ignore=vendor --ignore=*[-.]min[-.]* --ignore=bundle.js --ignore=*.json"
   core:
     disabledPackages: [
       "whitespace"
@@ -22,6 +25,11 @@
     showInvisibles: true
   "exception-reporting":
     userId: "70c5597e-072a-a8ab-3d72-c1633b71a5c2"
+  "fuzzy-finder":
+    ignoredNames: [
+      "build*"
+      "dist*"
+    ]
   linter:
     errorPanelHeight: 250
     showErrorTabFile: false
