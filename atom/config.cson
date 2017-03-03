@@ -17,6 +17,7 @@
       "one-dark-ui"
       "monokai"
     ]
+    useCustomTitleBar: true
   editor:
     fontFamily: "Inconsolata-dz for Powerline"
     fontSize: 12

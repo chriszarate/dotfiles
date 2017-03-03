@@ -1,18 +1,35 @@
-@editor-background-color: #202020;
-@ui-background-color: #242424;
+@editor-background-color: #1d1d1d;
 @ui-border-color: #1a1a1a;
 
+// Title bar.
+atom-panel.header {
+  border-bottom: 0;
+
+  .title-bar {
+    background-color: transparent;
+  }
+}
+
 // Darker darks and whiter whites.
-atom-text-editor, &::shadow {
+atom-text-editor {
   background-color: @editor-background-color;
   color: #fff;
 
   .gutter {
-    background-color: @ui-background-color;
+    background-color: @editor-background-color;
+  }
+
+  .gutter-container {
+    border-right: solid 1px @ui-border-color;
+    margin-right: 1px;
+  }
+
+  .invisible-character {
+    color: #333;
   }
 }
 
-// Match active tab background color to editor.
+// Match active tab background color to editor. Flatter flats
 .theme-one-dark-ui {
   .tab.active[data-type="TextEditor"],
   .tab.active[data-type="TextEditor"] .title,
@@ -26,6 +43,12 @@ atom-text-editor, &::shadow {
   }
 
   .tab::after {
-    border-bottom: none;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .wrap-guide {
+    background-color: @ui-border-color;
   }
 }
