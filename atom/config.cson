@@ -5,6 +5,7 @@
   core:
     disabledPackages: [
       "whitespace"
+      "status-bar"
     ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [
