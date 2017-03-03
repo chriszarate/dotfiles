@@ -1,3 +1,5 @@
 'atom-workspace':
   'cmd-t': 'fuzzy-grep:toggle'
   'cmd-;': 'linter:toggle'
+  'ctrl-i':     'cursor-history:next'
+  'ctrl-o':     'cursor-history:prev'

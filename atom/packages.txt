@@ -1,5 +1,6 @@
 atom-fuzzy-grep
 color-picker
+cursor-history
 dash
 docblockr
 editorconfig
