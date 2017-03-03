@@ -61,7 +61,6 @@ done
 
 # Symlink dotfiles.
 for config in \
-  editor/editorconfig \
   input/inputrc \
   git/gitconfig \
   git/gitignore_global \
