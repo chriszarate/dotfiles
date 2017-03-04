@@ -1,36 +1,54 @@
-@editor-background-color: #1d1d1d;
-@ui-border-color: #1a1a1a;
+@editor-background-color: #161616;
+@gutter-background-color: #191919;
+@ui-active-hightlight-color: #369;
+@ui-border-color-light: #1f1f1f;
 
-// Title bar.
-atom-panel.header {
-  border-bottom: 0;
-
-  .title-bar {
-    background-color: transparent;
-  }
-}
-
-// Darker darks and whiter whites.
-atom-text-editor {
-  background-color: @editor-background-color;
-  color: #fff;
-
-  .gutter {
-    background-color: @editor-background-color;
-  }
-
-  .gutter-container {
-    border-right: solid 1px @ui-border-color;
-    margin-right: 1px;
-  }
-
-  .invisible-character {
-    color: #333;
-  }
-}
-
-// Match active tab background color to editor. Flatter flats
+// Darker darks, whiter whites, flatter flats.
 .theme-one-dark-ui {
+  atom-panel {
+    border: 0;
+  }
+
+  atom-panel.header {
+    .title-bar {
+      background-color: transparent;
+    }
+  }
+
+  atom-text-editor {
+    background-color: @editor-background-color;
+    color: #fff;
+
+    .line-number.cursor-line-no-selection {
+      background-color: @ui-active-hightlight-color;
+    }
+
+    .gutter {
+      background-color: @gutter-background-color;
+      padding-top: 5px;
+    }
+
+    .invisible-character {
+      color: #333;
+    }
+
+    .scroll-view {
+      padding-top: 5px;
+    }
+
+    .selection .region {
+      background-color: #333;
+    }
+  }
+
+  atom-pane-container atom-pane {
+    border: 0;
+
+    .item-views {
+      border: 0;
+    }
+  }
+
   .tab.active[data-type="TextEditor"],
   .tab.active[data-type="TextEditor"] .title,
   .tab.active[data-type="MarkdownPreviewView"],
@@ -39,16 +57,28 @@ atom-text-editor {
   }
 
   .tab-bar {
-    box-shadow: inset 0 -1px 0 @ui-border-color;
-  }
-
-  .tab::after {
-    background-image: none;
-    border: none;
     box-shadow: none;
+
+    .tab::before {
+      background-color: @ui-active-hightlight-color;
+      border-radius: 3px 3px 0 0;
+      bottom: auto;
+      height: 2px;
+      left: 0;
+      right: 0;
+      top: 0;
+      transition: none;
+      width: auto;
+    }
+
+    .tab::after {
+      background-image: none;
+      border: none;
+      box-shadow: none;
+    }
   }
 
   .wrap-guide {
-    background-color: @ui-border-color;
+    background-color: @ui-border-color-light;
   }
 }
