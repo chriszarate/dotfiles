@@ -34,6 +34,7 @@
 	r   = rebase
 	s   = status --short --branch
 	sh  = show
+	su  = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 	w   = !sh -c 'git log -S'$1' -p' -
 [color]
 	ui = true
@@ -52,7 +53,5 @@
 [pack]
 	windowMemory = 10m
 	packSizeLimit = 20m
-[push]
-	default = simple
 [diff]
 	algorithm = patience
