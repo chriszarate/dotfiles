@@ -49,6 +49,7 @@ links=(
   '.atom::atom/config.cson'
   '.atom::atom/keymap.cson'
   '.atom::atom/styles.less'
+  '.composer::php/composer.json'
 )
 for link in "${links[@]}"; do
   source="${link##*::}"
@@ -100,11 +101,22 @@ while read -r phar_url; do
   fi
 done <"$dotfiles/php/phars.txt"
 
-while read -r ruleset; do
-  ruleset_name="$(basename "$ruleset")"
-  if [ ! -d "$pharchive/$ruleset_name" ]; then
-    composer create-project "$ruleset:dev-master" --working-dir="$pharchive" --no-install --no-interaction
-    phpcs --config-set installed_paths "$pharchive/$ruleset_name"
+# Install global Composer dependencies.
+composer global install --no-dev
+composer_path="$HOME/.composer/vendor"
+for pkg in $composer_path/bin/*; do
+  pkg_name="$(basename "$pkg")"
+  if [ ! -f "/usr/local/bin/$pkg_name" ]; then
+    ln -s "$composer_path/bin/$pkg_name" "/usr/local/bin/$pkg_name"
   fi
-done <"$dotfiles/php/rulesets.txt"
+done
+
+# Set install paths for PHPCS.
+for config in \
+  wp-coding-standards/wpcs
+do
+  if [ -d "$composer_path/$config" ]; then
+    phpcs --config-set installed_paths "$composer_path/$config"
+  fi
+done
 
