@@ -32,6 +32,10 @@
 	p   = pull
 	pu  = push
 	r   = rebase
+	ra  = rebase --abort
+	rc  = rebase --continue
+	ri  = rebase --interactive
+	rs  = rebase --skip
 	s   = status --short --branch
 	sh  = show
 	su  = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
