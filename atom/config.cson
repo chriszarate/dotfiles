@@ -31,12 +31,6 @@
       "build*"
       "dist*"
     ]
-  linter:
-    errorPanelHeight: 250
-    showErrorTabFile: false
-    showErrorTabProject: false
-    statusIconPosition: "Right"
-    statusIconScope: "File"
   "linter-js-standard":
     checkStyleDevDependencies: true
   "linter-phpcs":
@@ -45,6 +39,9 @@
     rulesets: "cleancode,codesize,design,naming,unusedcode"
   "linter-shellcheck":
     enableNotice: true
+  "linter-ui-default":
+    panelHeight: 250
+    showPanel: true
   "php-debug":
     PathMaps: [
       "/var/www/html/wp-content/themes/vip/project;/Users/czarate/Documents/Scratch/dev/qz-api"

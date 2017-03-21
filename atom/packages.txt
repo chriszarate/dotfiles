@@ -1,9 +1,11 @@
 atom-fuzzy-grep
+busy-signal
 color-picker
 cursor-history
 dash
 docblockr
 editorconfig
+intentions
 linter
 linter-csslint
 linter-eslint
@@ -13,6 +15,7 @@ linter-phpcs
 linter-phpmd
 linter-scss-lint
 linter-shellcheck
+linter-ui-default
 monokai
 php-debug
 react
