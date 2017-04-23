@@ -1,7 +1,9 @@
 bower
+claudia
 forever
 grunt-cli
 gulp
 jilla
+install-peerdeps
 npm-check-updates
 yo
