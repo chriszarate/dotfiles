@@ -19,6 +19,7 @@
 	ca  = commit --amend
 	co  = checkout
 	cob = checkout -b
+	cot = !git checkout -t origin/'$1'
 	cp  = cherry-pick
 	d   = diff
 	dc  = diff --cached
