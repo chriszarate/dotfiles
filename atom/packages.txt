@@ -6,7 +6,6 @@ docblockr
 editorconfig
 intentions
 linter
-linter-csslint
 linter-eslint
 linter-php
 linter-phpcs
