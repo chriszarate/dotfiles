@@ -15,6 +15,7 @@ linter-phpcs
 linter-phpmd
 linter-scss-lint
 linter-shellcheck
+linter-stylelint
 linter-ui-default
 monokai
 php-debug
