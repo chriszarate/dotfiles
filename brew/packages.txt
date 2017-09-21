@@ -5,6 +5,7 @@ fish
 git
 gnupg
 imagemagick
+jq
 keychain
 node
 pngquant
