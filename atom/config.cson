@@ -5,6 +5,7 @@
   core:
     disabledPackages: [
       "whitespace"
+      "php-debug"
     ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [
@@ -35,8 +36,7 @@
     checkStyleDevDependencies: true
   "linter-phpcs":
     codeStandardOrConfigFile: "WordPress"
-  "linter-phpmd":
-    rulesets: "cleancode,codesize,design,naming,unusedcode"
+  "linter-phpmd": {}
   "linter-shellcheck":
     enableNotice: true
   "linter-ui-default":

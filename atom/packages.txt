@@ -1,6 +1,5 @@
 atom-fuzzy-grep
 busy-signal
-color-picker
 cursor-history
 dash
 docblockr
@@ -9,7 +8,6 @@ intentions
 linter
 linter-csslint
 linter-eslint
-linter-js-standard
 linter-php
 linter-phpcs
 linter-phpmd
