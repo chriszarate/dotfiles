@@ -45,3 +45,6 @@ alias dvrm "docker volume ls -qf dangling=true | xargs docker volume rm"
 alias nbg "docker run -it --rm -v \"\$PWD\":/usr/src/app -w /usr/src/app digitallyseamless/nodejs-bower-grunt"
 alias phpunit "docker run -it --rm -v \"\$PWD\":/app -w /app phpunit/phpunit"
 alias wp "docker-compose exec --user www-data wordpress wp"
+
+# https://github.com/michaloo/drun
+alias drun='docker run -u (id -u):(id -g) -e HOME=/drun -v (pwd):/app --workdir /app -it --rm --network=host'
