@@ -32,11 +32,20 @@
       "build*"
       "dist*"
     ]
+  linter: {}
   "linter-js-standard":
     checkStyleDevDependencies: true
   "linter-phpcs":
     codeStandardOrConfigFile: "WordPress"
-  "linter-phpmd": {}
+  "linter-phpmd":
+    autoExecutableSearch: false
+    rulesOrConfigFile: [
+      "cleancode"
+      "codesize"
+      "design"
+      "naming"
+      "unusedcode"
+    ]
   "linter-shellcheck":
     enableNotice: true
   "linter-ui-default":
