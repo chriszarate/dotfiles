@@ -15,6 +15,7 @@
 	a   = add --patch
 	aa  = add
 	b   = branch
+	bd  = branch --sort=committerdate
 	c   = commit
 	ca  = commit --amend
 	co  = checkout
@@ -39,6 +40,9 @@
 	rs  = rebase --skip
 	s   = status --short --branch
 	sh  = show
+	st  = stash
+	stp = stash pop
+	stu = stash -u
 	su  = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 	w   = !sh -c 'git log -S'$1' -p' -
 [color]
