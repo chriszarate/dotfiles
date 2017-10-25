@@ -42,6 +42,7 @@ fi
 
 # Symlink dotfiles in subdirectories.
 links=(
+  '.config/fish::fish/completions'
   '.config/fish::fish/config.fish'
   '.config/fish::fish/functions'
   '.config/fish::fish/inc'
