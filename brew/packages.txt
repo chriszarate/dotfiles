@@ -4,6 +4,7 @@ diff-so-fancy
 fish
 git
 gnupg
+googler
 imagemagick
 jq
 keychain

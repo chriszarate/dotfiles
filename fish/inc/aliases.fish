@@ -34,9 +34,6 @@ alias reload "source ~/.config/fish/config.fish"
 # Redraw tmux window by detaching all other clients.
 alias redraw "tmux detach -a"
 
-# Wrap sqlplus in readline.
-alias sqlplus "rlwrap sqlplus"
-
 # Docker
 alias dco docker-compose
 alias dcrm "docker ps -qf status=exited | xargs docker rm"
@@ -48,3 +45,6 @@ alias wp "docker-compose exec --user www-data wordpress wp"
 
 # https://github.com/michaloo/drun
 alias drun='docker run -u (id -u):(id -g) -e HOME=/drun -v (pwd):/app --workdir /app -it --rm --network=host'
+
+# Google things
+alias gg='googler -n 6'
