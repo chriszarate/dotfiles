@@ -34,6 +34,11 @@ alias reload "source ~/.config/fish/config.fish"
 # Redraw tmux window by detaching all other clients.
 alias redraw "tmux detach -a"
 
+# Git
+alias gb "git symbolic-ref --short HEAD | tr -d '\n' | pbcopy"
+alias gc "git log --pretty=format:'%h' -n 1 | pbcopy"
+alias gcl "git rev-parse HEAD | tr -d '\n' | pbcopy"
+
 # Docker
 alias dco docker-compose
 alias dcrm "docker ps -qf status=exited | xargs docker rm"
