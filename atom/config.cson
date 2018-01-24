@@ -1,4 +1,10 @@
 "*":
+  Termrk:
+    defaultHeight: 200
+    hideOnExit: true
+    restartShell: false
+    transitionDuration: 150
+    transitionEasing: "ease-in-out"
   "atom-fuzzy-grep":
     detectGitProjectAndUseGitGrep: false
     grepCommandString: "/usr/local/bin/ag -i --nocolor --nogroup --column --ignore=build --ignore=build-directory --ignore=dist --ignore=vendor --ignore=*[-.]min[-.]* --ignore=bundle.js --ignore=*.json"
@@ -48,7 +54,6 @@
     enableNotice: true
   "linter-ui-default":
     panelHeight: 250
-    showPanel: true
   "php-debug":
     PathMaps: [
       "/var/www/html/wp-content/themes/vip/project;/Users/czarate/Documents/Scratch/dev/qz-api"

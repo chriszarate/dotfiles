@@ -43,22 +43,25 @@
   .tab.active[data-type="MarkdownPreviewView"],
   .tab.active[data-type="MarkdownPreviewView"] .title {
     background-color: @editor-background-color;
+    box-shadow: none;
+  }
+
+  .tab.active[data-type="TextEditor"]::before {
+    background-color: @ui-active-hightlight-color;
+    bottom: auto;
+    content: '';
+    display: block;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: none;
+    width: auto;
   }
 
   .tab-bar {
     box-shadow: none;
-
-    .tab::before {
-      background-color: @ui-active-hightlight-color;
-      border-radius: 3px 3px 0 0;
-      bottom: auto;
-      height: 2px;
-      left: 0;
-      right: 0;
-      top: 0;
-      transition: none;
-      width: auto;
-    }
 
     .tab::after {
       background-image: none;
@@ -70,4 +73,10 @@
   .wrap-guide {
     background-color: @ui-border-color-light;
   }
+}
+
+// Terminal styling
+.termrk .terminal {
+  background-color: @editor-background-color !important;
+  font-family: "Inconsolata-dz for Powerline", monospace !important;
 }

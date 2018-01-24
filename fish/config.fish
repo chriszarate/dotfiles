@@ -9,11 +9,11 @@ for file in ~/.config/fish/inc/*.fish ~/.*.fish
   source $file
 end
 
-# Always open a tmux session.
+# Always open a tmux session (unless we're nested in something).
 switch (echo $TERM)
   case 'screen*'
   case '*'
-    tmux attach -t (whoami) >/dev/null 2>&1; or tmux new-session -s (whoami)
+    test -z "$ATOM_HOME"; and tmux attach -t (whoami) >/dev/null 2>&1; or tmux new-session -s (whoami)
 end
 
 # Connect to ssh-agent session (requires keychain).
