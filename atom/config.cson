@@ -24,7 +24,7 @@
       "monokai"
     ]
   editor:
-    fontFamily: "Inconsolata-dz for Powerline"
+    fontFamily: "Fira Code"
     invisibles:
       tab: "┈"
     lineHeight: 1.4
