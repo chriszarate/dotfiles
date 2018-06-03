@@ -10,7 +10,7 @@
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [interactive]
-	diffFilter = diff-so-fancy --patch-mode | less --tabs=4 -RFX
+	#diffFilter = diff-so-fancy --patch-mode | less --tabs=4 -RFX
 [alias]
 	a   = add --patch
 	aa  = add
