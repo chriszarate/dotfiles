@@ -4,7 +4,9 @@ cursor-history
 dash
 docblockr
 editorconfig
+hyperclick
 intentions
+js-hyperclick
 linter
 linter-eslint
 linter-php

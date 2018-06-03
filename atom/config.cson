@@ -36,6 +36,13 @@
       "build*"
       "dist*"
     ]
+  "js-hyperclick":
+    extensions: [
+      ".js"
+      ".jsx"
+      ".json"
+      ".node"
+    ]
   linter: {}
   "linter-js-standard":
     checkStyleDevDependencies: true
