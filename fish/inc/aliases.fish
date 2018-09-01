@@ -17,7 +17,12 @@ alias L="cd ~/Library"
 alias S="cd ~/Documents/Scratch"
 
 # Search shortcuts
-alias a="ag --ignore={build,build-directory,dist,vendor} --ignore='*[-.]min[-.]*' --ignore=bundle.js --ignore='*.json' --pager='less -R' -W 400"
+alias a="ag --ignore={build,build-directory,dist,node_modules,vendor} --ignore='*[-.]min[-.]*' --ignore=bundle.js --ignore='*.json' --pager='less -R' -W 400"
+
+# Alternatives
+alias cat="bat"
+alias ping="prettyping --nolegend"
+alias top="sudo htop"
 
 # Show running EC2 instances in a nice table (uses aws-cli)
 alias ec2show "aws ec2 describe-instances --query 'Reservations[*].Instances[*].{Name:Tags[?Key==`Name`]|[0].Value, State:State.Name, ID:InstanceId, Type:InstanceType, Storage:RootDeviceType, Zone:Placement.AvailabilityZone, PublicIP:PublicIpAddress}' --output table"
