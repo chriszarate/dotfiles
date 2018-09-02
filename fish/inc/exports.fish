@@ -7,5 +7,5 @@ set -x "AWS_SECRET_ACCESS_KEY" (grep -i -m 1 'aws_secret_access_key' ~/.aws/cred
 
 # Export fzf overrides
 set -g "FZF_CTRL_T_COMMAND" "fd -t f"
-set -g "FZF_CTRL_T_OPTS" "--preview 'bat {}'"
+set -g "FZF_CTRL_T_OPTS" "--preview 'bat --color always --number {}'"
 set -g "FZF_TMUX" "1"
