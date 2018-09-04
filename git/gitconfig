@@ -14,6 +14,7 @@
 [alias]
 	a   = add --patch
 	aa  = add
+	af  = "!git ls-files -m -o --exclude-standard | fzf-tmux --preview 'git diff --color=always {}' --print0 -m | xargs -0 -t -o git add"
 	b   = branch
 	bd  = branch --sort=committerdate
 	c   = commit
