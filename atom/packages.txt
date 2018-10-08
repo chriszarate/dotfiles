@@ -19,5 +19,4 @@ linter-ui-default
 monokai
 php-debug
 react
-termrk
 split-diff
