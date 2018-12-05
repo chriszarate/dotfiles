@@ -15,4 +15,4 @@ switch (echo $TERM)
 end
 
 # Connect to ssh-agent session (requires keychain).
-eval (keychain --eval --quiet --agents ssh --nogui)
+which keychain >/dev/null; and eval (keychain --eval --quiet --agents ssh --nogui)

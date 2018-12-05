@@ -3,6 +3,22 @@
 # Relative to home directory.
 dotfiles="$HOME/.dotfiles"
 
+# Install apt and linuxbrew packages.
+if [ "$(uname)" = "Linux" ]; then
+  while read -r pkg; do
+    if ! dpkg-query -W -f='${Status}' $pkg | grep "ok installed" >/dev/null; then
+      sudo apt -y install "$pkg"
+    fi
+  done <"$dotfiles/apt/packages.txt"
+
+  cellar="$(/home/linuxbrew/.linuxbrew/bin/brew --cellar)"
+  while read -r pkg; do
+    if [ ! -d "$cellar/$(basename "$pkg")" ]; then
+      /home/linuxbrew/.linuxbrew/bin/brew install "$pkg"
+    fi
+  done <"$dotfiles/brew/packages-linux.txt"
+fi
+
 # Install brew packages and casks
 if [ "$(uname)" = "Darwin" ]; then
   cellar="$(brew --cellar)"
@@ -11,22 +27,13 @@ if [ "$(uname)" = "Darwin" ]; then
       brew install "$pkg"
     fi
   done <"$dotfiles/brew/packages.txt"
+
   caskroom="/opt/homebrew-cask/Caskroom/"
   while read -r cask; do
     if [ ! -d "$caskroom/$cask" ]; then
       brew cask install "$cask"
     fi
   done <"$dotfiles/brew/casks.txt"
-fi
-
-# Install global npm packages
-if [ -n "$(which npm)" ]; then
-  npm_prefix="$(npm config get prefix)"
-  while read -r pkg; do
-    if [ ! -d "$npm_prefix/lib/node_modules/$pkg" ]; then
-      npm -g install "$pkg"
-    fi
-  done <"$dotfiles/npm/packages.txt"
 fi
 
 # Change shell to fish.
@@ -50,7 +57,6 @@ links=(
   '.atom::atom/config.cson'
   '.atom::atom/keymap.cson'
   '.atom::atom/styles.less'
-  '.composer::php/composer.json'
 )
 for link in "${links[@]}"; do
   source="${link##*::}"
@@ -89,35 +95,4 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
   mkdir -p ~/.tmux/plugins
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
-
-# Download and symlink PHP phars.
-pharchive=~/.phar
-mkdir -p $pharchive
-while read -r phar_url; do
-  phar_name="$(basename "$phar_url")"
-  if [ ! -f "$pharchive/$phar_name" ]; then
-    curl -L -o "$pharchive/$phar_name" "$phar_url"
-    chmod +x "$pharchive/$phar_name"
-    ln -s "$pharchive/$phar_name" "/usr/local/bin/$(echo "$phar_name" | rev | cut -c 6- | rev)"
-  fi
-done <"$dotfiles/php/phars.txt"
-
-# Install global Composer dependencies.
-composer global install --no-dev
-composer_path="$HOME/.composer/vendor"
-for pkg in $composer_path/bin/*; do
-  pkg_name="$(basename "$pkg")"
-  if [ ! -f "/usr/local/bin/$pkg_name" ]; then
-    ln -s "$composer_path/bin/$pkg_name" "/usr/local/bin/$pkg_name"
-  fi
-done
-
-# Set install paths for PHPCS.
-for config in \
-  wp-coding-standards/wpcs
-do
-  if [ -d "$composer_path/$config" ]; then
-    phpcs --config-set installed_paths "$composer_path/$config"
-  fi
-done
 

@@ -1,3 +1,0 @@
-claudia
-install-peerdeps
-npm-check-updates
