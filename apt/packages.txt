@@ -1,5 +1,4 @@
 ack
-awscli
 fonts-firacode
 fish
 git
