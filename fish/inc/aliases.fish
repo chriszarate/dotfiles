@@ -54,7 +54,7 @@ alias phpunit "docker run -it --rm -v \"\$PWD\":/app -w /app phpunit/phpunit"
 alias wp "docker-compose exec --user www-data wordpress wp"
 
 # https://github.com/michaloo/drun
-alias drun='docker run -u (id -u):(id -g) -e HOME=/drun -v (pwd):/app --workdir /app -it --rm --network=host'
+alias drun='docker run -u (id -u):(id -g) -v (pwd):/app --workdir /app -it --rm --network=host'
 
 # Google things
 alias gg='googler -n 6'
