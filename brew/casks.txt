@@ -1,5 +1,3 @@
-docker
-flycut
 qlcolorcode
 qlimagesize
 qlmarkdown

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+DOCKER_RUN_OPTIONS="-u $(id -u):$(id -g) -v $(pwd):/app --workdir /app -i --rm $DOCKER_RUN_OPTIONS"
+
+# Only allocate tty if we detect one.
+if [ -t 0 ] && [ -t 1 ]; then
+  DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS -t"
+fi
+
+if [ $(uname) = "Linux" ]; then
+	DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS --network=host"
+fi
+
+docker run $DOCKER_RUN_OPTIONS $@
+exit $?

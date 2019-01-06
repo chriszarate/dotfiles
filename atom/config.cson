@@ -1,10 +1,4 @@
 "*":
-  Termrk:
-    defaultHeight: 200
-    hideOnExit: true
-    restartShell: false
-    transitionDuration: 150
-    transitionEasing: "ease-in-out"
   "atom-fuzzy-grep":
     detectGitProjectAndUseGitGrep: false
     grepCommandString: "/usr/local/bin/ag -i --nocolor --nogroup --column --ignore=build --ignore=build-directory --ignore=dist --ignore=vendor --ignore=*[-.]min[-.]* --ignore=bundle.js --ignore=*.json"
@@ -29,6 +23,7 @@
       tab: "┈"
     lineHeight: 1.4
     showInvisibles: true
+    tabType: "hard"
   "exception-reporting":
     userId: "70c5597e-072a-a8ab-3d72-c1633b71a5c2"
   "fuzzy-finder":
@@ -46,27 +41,18 @@
   linter: {}
   "linter-js-standard":
     checkStyleDevDependencies: true
-  "linter-phpcs":
-    codeStandardOrConfigFile: "WordPress"
-  "linter-phpmd":
-    autoExecutableSearch: false
-    rulesOrConfigFile: [
-      "cleancode"
-      "codesize"
-      "design"
-      "naming"
-      "unusedcode"
-    ]
+  "linter-php":
+    executablePath: "docker-php"
   "linter-shellcheck":
     enableNotice: true
   "linter-ui-default":
     panelHeight: 250
+    showPanel: true
   "php-debug":
-    PathMaps: [
-      "/var/www/html/wp-content/themes/vip/project;/Users/czarate/Documents/Scratch/dev/qz-api"
-    ]
+    PathMaps: []
     ServerPort: 9000
     currentPanelMode: "bottom"
+    showWelcome: false
   "tree-view":
     hideVcsIgnoredFiles: true
   welcome:

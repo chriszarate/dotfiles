@@ -7,6 +7,13 @@ DOTFILES=$DOTFILES $DOTFILES/bin/setup-apt.sh
 DOTFILES=$DOTFILES $DOTFILES/bin/setup-homebrew.sh
 DOTFILES=$DOTFILES $DOTFILES/bin/setup-links.sh
 
+# Add helpers to path.
+for helper in $DOTFILES/bin/helpers/*; do
+	if [ ! -e "/usr/local/bin/$(basename $helper)" ]; then
+    sudo ln -s "$helper" "/usr/local/bin/$(basename $helper)"
+  fi
+done
+
 # Change shell to fish.
 fish_path="$(which fish)"
 if [ -n "$fish_path" ]; then
