@@ -16,9 +16,12 @@
 	aa  = add
 	af  = "!git ls-files -m -o --exclude-standard | fzf-tmux --preview 'git diff --color=always {}' --print0 -m | xargs -0 -t -o git add"
 	b   = branch
+	bc  = "!git symbolic-ref --short HEAD | tr -d '\\n'"
 	bd  = "!git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)' | fzf-tmux --no-hscroll --no-multi --ansi --preview 'git --no-pager log -50 --pretty=format:\"%h  %an (%ar)  %s\" {}' --print0 | xargs -0 -t -o git checkout"
 	c   = commit
 	ca  = commit --amend
+	cc  = "!git log --pretty=format:'%h' -n 1"
+	ccl = "!git rev-parse HEAD | tr -d '\\n'"
 	co  = checkout
 	cob = checkout -b
 	cot = !sh -c 'git checkout -t origin/'$1'' -

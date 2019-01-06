@@ -16,3 +16,4 @@ tmux
 tree
 weechat
 wget
+xclip
