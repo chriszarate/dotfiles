@@ -11,7 +11,6 @@ htop
 imagemagick
 jq
 keychain
-node
 noti
 pngquant
 prettyping
@@ -29,4 +28,3 @@ trash
 tree
 weechat
 wget
-yarn
