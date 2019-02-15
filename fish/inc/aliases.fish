@@ -64,3 +64,7 @@ alias ruby      "docker-run ruby:2.6-alpine ruby"
 alias server    "docker run --rm -v (pwd):/usr/share/nginx/html:ro -p 8000:80 nginx:alpine"
 alias shell     "docker-run chriszarate/shell bash"
 alias wp        "docker-compose exec --user www-data wordpress wp"
+
+# GraphQL
+alias torelay   "node -e \"process.stdout.write(Buffer.from(process.argv[1]+':'+process.argv[2]).toString('base64'));\""
+alias fromrelay "node -e \"process.stdout.write(Buffer.from(process.argv[1], 'base64').toString().split(':')[1]);\""
