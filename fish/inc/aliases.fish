@@ -48,7 +48,9 @@ alias dirm "docker images -qf dangling=true | xargs docker rmi"
 alias dvrm "docker volume ls -qf dangling=true | xargs docker volume rm"
 
 # Don't install stuff.
+alias aws       "env DOCKER_RUN_OPTIONS='-v $HOME/.aws:/.aws' docker-run mesosphere/aws-cli"
 alias composer  "docker-run composer:1.8"
+alias go        "env DOCKER_RUN_OPTIONS='-v $HOME/.cache:/.cache' docker-run golang go"
 alias mysql     "docker-run mariadb:10 mysql"
 alias nbg       "docker-run digitallyseamless/nodejs-bower-grunt"
 alias php       "docker-run php:7.1-alpine php"

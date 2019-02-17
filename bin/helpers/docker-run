@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-DOCKER_RUN_OPTIONS="-u $(id -u):$(id -g) -v $(pwd):/app --workdir /app -i --rm $DOCKER_RUN_OPTIONS"
+DOCKER_WORKDIR="${DOCKER_WORKDIR:-/app}"
+DOCKER_RUN_OPTIONS="-u $(id -u):$(id -g) -v $(pwd):$DOCKER_WORKDIR --workdir $DOCKER_WORKDIR -i --rm $DOCKER_RUN_OPTIONS"
 
 # Only allocate tty if we detect one.
 if [ -t 0 ] && [ -t 1 ]; then
-  DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS -t"
+	DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS -t"
 fi
 
 if [ $(uname) = "Linux" ]; then

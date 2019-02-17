@@ -1,4 +1,3 @@
-awscli
 bat
 diff-so-fancy
 fd
