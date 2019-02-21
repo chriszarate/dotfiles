@@ -1,21 +1,19 @@
 "*":
   "atom-fuzzy-grep":
     detectGitProjectAndUseGitGrep: false
-    grepCommandString: "/usr/local/bin/ag -i --nocolor --nogroup --column --ignore=build --ignore=build-directory --ignore=dist --ignore=vendor --ignore=*[-.]min[-.]* --ignore=bundle.js --ignore=*.json"
+    grepCommandString: "ag -i --nocolor --nogroup --column --ignore=build --ignore=build-directory --ignore=dist --ignore=vendor --ignore=*[-.]min[-.]* --ignore=bundle.js --ignore=*.json"
   core:
+    audioBeep: false
+    destroyEmptyPanes: false
     disabledPackages: [
       "whitespace"
-      "php-debug"
     ]
     openEmptyEditorOnStart: false
-    packagesWithKeymapsDisabled: [
-      "php-debug"
-    ]
     projectHome: "/Users/czarate/Documents/Scratch"
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"
-      "monokai"
+      "atom-dark-syntax"
     ]
   editor:
     fontFamily: "Fira Code"
@@ -23,6 +21,7 @@
       tab: "┈"
     lineHeight: 1.4
     showInvisibles: true
+    softTabs: false
     tabType: "hard"
   "exception-reporting":
     userId: "70c5597e-072a-a8ab-3d72-c1633b71a5c2"
@@ -31,28 +30,13 @@
       "build*"
       "dist*"
     ]
-  "js-hyperclick":
-    extensions: [
-      ".js"
-      ".jsx"
-      ".json"
-      ".node"
-    ]
   linter: {}
-  "linter-js-standard":
-    checkStyleDevDependencies: true
+  "linter-eslint":
+    global: {}
   "linter-php":
     executablePath: "docker-php"
   "linter-shellcheck":
     enableNotice: true
-  "linter-ui-default":
-    panelHeight: 250
-    showPanel: true
-  "php-debug":
-    PathMaps: []
-    ServerPort: 9000
-    currentPanelMode: "bottom"
-    showWelcome: false
   "tree-view":
     hideVcsIgnoredFiles: true
   welcome:

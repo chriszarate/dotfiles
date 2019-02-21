@@ -15,6 +15,5 @@ silversearcher-ag
 sshuttle
 tmux
 tree
-weechat
 wget
 xclip

@@ -1,1 +1,0 @@
-wp-coding-standards/wpcs

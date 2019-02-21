@@ -1,5 +1,4 @@
 ack
-awscli
 bat
 diff-so-fancy
 fd
@@ -15,7 +14,6 @@ noti
 pngquant
 prettyping
 pv
-ranger
 repl
 rename
 rlwrap
@@ -26,5 +24,4 @@ the_silver_searcher
 tmux
 trash
 tree
-weechat
 wget
