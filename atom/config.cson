@@ -22,7 +22,7 @@
     lineHeight: 1.4
     showInvisibles: true
     softTabs: false
-    tabType: "hard"
+    tabType: "auto"
   "exception-reporting":
     userId: "70c5597e-072a-a8ab-3d72-c1633b71a5c2"
   "fuzzy-finder":

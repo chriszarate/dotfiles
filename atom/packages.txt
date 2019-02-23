@@ -1,4 +1,3 @@
-atom-debug-ui
 atom-fuzzy-grep
 busy-signal
 cursor-history
