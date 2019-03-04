@@ -1,24 +1,20 @@
-" Vundle
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Statusline
-set laststatus=2
+" Ensure POSIX shell
+set shell=bash
 
 " Plugins
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-sensible'
-Plugin 'itchyny/lightline.vim'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tomasr/molokai'
-
-" All of your Plugins must be added before the following line
-call vundle#end()
+call plug#begin()
+Plug 'editorconfig/editorconfig-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf'
+Plug 'mhinz/vim-signify'
+Plug 'scrooloose/nerdtree'
+Plug 'tomasr/molokai'
+Plug 'tpope/vim-sensible'
+Plug 'w0rp/ale'
+call plug#end()
 
 " Colors
+syntax enable
 colorscheme molokai
 
 " Line numbers
