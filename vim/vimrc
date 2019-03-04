@@ -13,12 +13,18 @@ Plug 'tpope/vim-sensible'
 Plug 'w0rp/ale'
 call plug#end()
 
+" Searching
+set grepprg=ag\ -i\ --nocolor\ --nogroup\ --column\ --ignore=build\ --ignore=build-directory\ --ignore=dist\ --ignore=vendor\ --ignore=*[-.]min[-.]*\ --ignore=bundle.js\ --ignore=*.json
+
 " Colors
 syntax enable
 colorscheme molokai
 
 " Line numbers
 set number
+
+" NERDtree
+let g:NERDTreeNodeDelimiter = "\u00a0"
 
 " Mouse mode
 set mouse=a
