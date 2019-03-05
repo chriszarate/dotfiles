@@ -1,30 +1,70 @@
-" Ensure POSIX shell
+" Environment
+scriptencoding utf-8
+set encoding=utf-8
+set fileencoding=utf-8
 set shell=bash
+set showcmd
+
+" Leader
+nnoremap <space> <Nop>
+let mapleader=" "
 
 " Plugins
+nnoremap <silent> <leader>c :Commands<cr>
 call plug#begin()
 Plug 'editorconfig/editorconfig-vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-signify'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
 Plug 'tomasr/molokai'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'w0rp/ale'
 call plug#end()
 
-" Searching
-set grepprg=ag\ -i\ --nocolor\ --nogroup\ --column\ --ignore=build\ --ignore=build-directory\ --ignore=dist\ --ignore=vendor\ --ignore=*[-.]min[-.]*\ --ignore=bundle.js\ --ignore=*.json
-
 " Colors
-syntax enable
 colorscheme molokai
+
+" FZF
+" Magic to only show internal matches and not filename matches.
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+nnoremap <silent> <leader>p :FZF<cr>
+nnoremap <silent> <leader>t :Ag<cr>
+nnoremap <silent> <leader>b :Buffers<cr>
+nnoremap <silent> <leader>c :Commands<cr>
+
+" Lightline
+let g:lightline = {
+	\ 'active': {
+	\   'left': [ [ 'mode', 'paste' ],
+	\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+	\ },
+	\ 'component_function': {
+	\   'gitbranch': 'fugitive#head'
+	\ },
+	\ }
 
 " Line numbers
 set number
 
 " NERDtree
+let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeNodeDelimiter = "\u00a0"
+nnoremap <silent> <leader>\ :NERDTreeToggle<cr>
 
 " Mouse mode
 set mouse=a
+
+" Tabs
+set shiftwidth=2
+set tabstop=2
+
+" Visual
+set listchars=tab:──,trail:·
+set list
