@@ -6,8 +6,6 @@ links=(
   '.config/fish::fish/config.fish'
   '.config/fish::fish/functions'
   '.config/fish::fish/inc'
-  '.atom::atom/config.cson'
-  '.atom::atom/keymap.cson'
 )
 for link in "${links[@]}"; do
   source="${link##*::}"

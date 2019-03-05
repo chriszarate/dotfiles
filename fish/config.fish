@@ -11,7 +11,7 @@ end
 switch (echo $TERM)
   case 'screen*'
   case '*'
-    status --is-interactive; and test -z "$ATOM_HOME"; and tmux attach -t (whoami) >/dev/null 2>&1; or tmux new-session -s (whoami)
+    status --is-interactive; and tmux attach -t (whoami) >/dev/null 2>&1; or tmux new-session -s (whoami)
 end
 
 # Connect to ssh-agent session (requires keychain).

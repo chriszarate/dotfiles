@@ -1,7 +1,0 @@
-'atom-workspace':
-  'cmd-g': 'find-and-replace:find-next'
-  'cmd-t': 'fuzzy-grep:toggle'
-  'cmd-;': 'linter:disable-linter'
-  'cmd-\'': 'linter:enable-linter'
-  'ctrl-i': 'cursor-history:next'
-  'ctrl-o': 'cursor-history:prev'

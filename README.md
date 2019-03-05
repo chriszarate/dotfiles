@@ -8,6 +8,5 @@
 - elegant tmux with backtick as prefix
 - system usage, docker container count, and task HUD via tmux plugins
 - sensible vim
-- atom + packages
 - generally sane defaults all around
 - snazzy setup script
