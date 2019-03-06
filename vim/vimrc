@@ -17,13 +17,15 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'mengelbrecht/lightline-bufferline'
 Plug 'mhinz/vim-signify'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'scrooloose/nerdtree'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-vinegar'
 Plug 'w0rp/ale'
 call plug#end()
 
@@ -31,35 +33,45 @@ call plug#end()
 colorscheme molokai
 
 " FZF
-" Magic to only show internal matches and not filename matches.
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-nnoremap <silent> <leader>p :FZF<cr>
-nnoremap <silent> <leader>t :Ag<cr>
+nnoremap <silent> <leader>p :GFiles<cr>
+nnoremap <silent> <leader>t :Ag<space>
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 
+" Gutentags
+let g:gutentags_cache_dir="~/.config/ctags"
+
 " Lightline
-let g:lightline = {
+let g:lightline={
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
 	\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
 	\ },
+	\ 'component_expand': {
+	\   'buffers': 'lightline#bufferline#buffers'
+	\ },
 	\ 'component_function': {
 	\   'gitbranch': 'fugitive#head'
 	\ },
+	\ 'component_type': {
+	\   'buffers': 'tabsel'
+	\ },
+	\ 'tabline': {
+	\   'left':  [ [ 'buffers' ] ],
+	\   'right': []
+	\ },
 	\ }
+set showtabline=2
 
 " Line numbers
 set number
 
-" NERDtree
-let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeNodeDelimiter = "\u00a0"
-nnoremap <silent> <leader>\ :NERDTreeToggle<cr>
-
 " Mouse mode
 set mouse=a
+
+" Netrw
+let g:netrw_banner=0
+let g:netrw_liststyle=3
 
 " Tabs
 set shiftwidth=2
