@@ -17,7 +17,6 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'mhinz/vim-signify'
 Plug 'mxw/vim-jsx'
@@ -37,9 +36,6 @@ nnoremap <silent> <leader>p :GFiles<cr>
 nnoremap <silent> <leader>t :Ag<space>
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
-
-" Gutentags
-let g:gutentags_cache_dir="~/.config/ctags"
 
 " Lightline
 let g:lightline={

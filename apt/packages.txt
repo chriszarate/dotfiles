@@ -1,5 +1,4 @@
 ack
-ctags
 fonts-firacode
 fish
 git
