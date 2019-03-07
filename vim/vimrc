@@ -10,7 +10,6 @@ set mouse=a
 set number
 set shiftwidth=2
 set showcmd
-set showtabline=2
 set tabstop=2
 
 " Leader
@@ -27,9 +26,10 @@ Plug 'mengelbrecht/lightline-bufferline'
 let g:lightline={
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+	\             [ 'buffers' ] ],
 	\   'right': [ [ 'lineinfo' ],
-	\              [ 'filetype' ] ]
+	\              [ 'filetype' ],
+	\              [ 'gitbranch' ] ]
 	\ },
 	\ 'component_expand': {
 	\   'buffers': 'lightline#bufferline#buffers'
@@ -39,10 +39,6 @@ let g:lightline={
 	\ },
 	\ 'component_type': {
 	\   'buffers': 'tabsel'
-	\ },
-	\ 'tabline': {
-	\   'left':  [ [ 'buffers' ] ],
-	\   'right': []
 	\ },
 	\ }
 
