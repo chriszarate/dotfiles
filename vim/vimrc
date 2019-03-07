@@ -8,7 +8,6 @@ set list
 set listchars=tab:──,trail:·
 set mouse=a
 set number
-set shell=bash
 set shiftwidth=2
 set showcmd
 set showtabline=2
