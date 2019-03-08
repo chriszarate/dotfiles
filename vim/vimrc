@@ -9,41 +9,30 @@ set listchars=tab:──,trail:·
 set number
 set shiftwidth=2
 set showcmd
-set showtabline=2
 set splitbelow
 set splitright
 set tabstop=2
 
 " Leader
-map <silent> <space> <leader>
+nmap <space> <leader>
 
 " Plugins
 call plug#begin()
 
+Plug 'ap/vim-buftabline'
+let g:buftabline_indicators=1
+let g:buftabline_show=1
+
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
 let g:lightline={
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'filename' ] ],
-	\   'right': [ [ 'lineinfo' ],
-	\              [ 'filetype' ],
-	\              [ 'gitbranch' ] ]
-	\ },
-	\ 'component_expand': {
-	\   'buffers': 'lightline#bufferline#buffers'
+	\             [ 'filename' ] ]
 	\ },
 	\ 'component_function': {
 	\   'gitbranch': 'fugitive#head'
-	\ },
-	\ 'component_type': {
-	\   'buffers': 'tabsel'
-	\ },
-	\ 'tabline': {
-	\   'left': [ [ 'buffers' ] ],
-	\   'right': []
 	\ },
 	\ }
 
@@ -52,11 +41,11 @@ Plug 'junegunn/fzf.vim'
 let $FZF_DEFAULT_COMMAND='ag -g ""'
 let $FZF_DEFAULT_OPTS="--exact"
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
-nnoremap <silent> <leader>b :Buffers<cr>
-nnoremap <silent> <leader>c :Commands<cr>
-nnoremap <silent> <leader>h :History<cr>
-nnoremap <silent> <leader>p :Files<cr>
-nnoremap <silent> <leader>t :Ag<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>c :Commands<cr>
+nnoremap <leader>h :History<cr>
+nnoremap <leader>p :Files<cr>
+nnoremap <leader>t :Ag<cr>
 
 Plug 'mhinz/vim-sayonara'
 nnoremap <silent> <leader>q :Sayonara<cr>
@@ -69,7 +58,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'tomasr/molokai'
 
 Plug 'tpope/vim-fugitive'
-nnoremap <silent> <leader>d :Gvdiff<cr>
+nnoremap <leader>d :Gvdiff<cr>
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-vinegar'
@@ -79,11 +68,18 @@ let b:ale_linters=['eslint', 'shellcheck']
 
 call plug#end()
 
+" Autoclosing pairs
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+
 " Buffers
-nnoremap <silent> <leader>a :bprev<cr>
-nnoremap <silent> <leader>s :bnext<cr>
-nnoremap <silent> <leader>z :u<cr>
-nnoremap <silent> S :w<cr>
+nnoremap <leader>a :bprev<cr>
+nnoremap <leader>s :bnext<cr>
+nnoremap <leader>z :u<cr>
+nnoremap S :w<cr>
 
 " Colorscheme
 if &t_Co >= 256
@@ -99,4 +95,4 @@ end
 nnoremap ; :
 
 " Windows
-map <silent> <space><space> <c-w>
+map <space><space> <c-w>
