@@ -6,15 +6,16 @@ set fileencoding=utf-8
 set hidden
 set list
 set listchars=tab:──,trail:·
-set mouse=a
 set number
 set shiftwidth=2
 set showcmd
+set showtabline=2
+set splitbelow
+set splitright
 set tabstop=2
 
 " Leader
-nnoremap <space> <Nop>
-let mapleader=" "
+map <silent> <space> <leader>
 
 " Plugins
 call plug#begin()
@@ -26,7 +27,7 @@ Plug 'mengelbrecht/lightline-bufferline'
 let g:lightline={
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'buffers' ] ],
+	\             [ 'filename' ] ],
 	\   'right': [ [ 'lineinfo' ],
 	\              [ 'filetype' ],
 	\              [ 'gitbranch' ] ]
@@ -40,6 +41,10 @@ let g:lightline={
 	\ 'component_type': {
 	\   'buffers': 'tabsel'
 	\ },
+	\ 'tabline': {
+	\   'left': [ [ 'buffers' ] ],
+	\   'right': []
+	\ },
 	\ }
 
 Plug 'junegunn/fzf'
@@ -52,6 +57,10 @@ nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>p :Files<cr>
 nnoremap <silent> <leader>t :Ag<cr>
+
+Plug 'mhinz/vim-sayonara'
+nnoremap <silent> <leader>q :Sayonara<cr>
+nnoremap <silent> <leader>x :Sayonara!<cr>
 
 Plug 'mhinz/vim-signify'
 Plug 'morhetz/gruvbox'
@@ -73,18 +82,21 @@ call plug#end()
 " Buffers
 nnoremap <silent> <leader>a :bprev<cr>
 nnoremap <silent> <leader>s :bnext<cr>
-nnoremap <silent> <leader>w :w<cr>
-nnoremap <silent> <leader>x :bd<cr>
-nnoremap <silent> <leader>z :e#<cr>
+nnoremap <silent> <leader>z :u<cr>
+nnoremap <silent> S :w<cr>
 
 " Colorscheme
 if &t_Co >= 256
 	colorscheme gruvbox
 endif
 
+" Mouse
+if has('mouse')
+  set mouse=a
+end
+
 " No shift
 nnoremap ; :
 
 " Windows
-nnoremap <silent> <leader><leader> <c-w>
-
+map <silent> <space><space> <c-w>
