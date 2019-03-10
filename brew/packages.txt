@@ -1,5 +1,6 @@
 ack
 bat
+ctags
 diff-so-fancy
 fd
 fish

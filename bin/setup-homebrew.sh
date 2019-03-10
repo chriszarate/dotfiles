@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Relative to home directory.
+DOTFILES="$HOME/.dotfiles"
+
 # Install linuxbrew packages.
 if [ "$(uname)" = "Linux" ]; then
   PACKAGES=`cat $DOTFILES/brew/packages-linux.txt`

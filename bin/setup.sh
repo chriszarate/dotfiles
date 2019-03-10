@@ -3,9 +3,9 @@
 # Relative to home directory.
 DOTFILES="$HOME/.dotfiles"
 
-DOTFILES=$DOTFILES $DOTFILES/bin/setup-apt.sh
-DOTFILES=$DOTFILES $DOTFILES/bin/setup-homebrew.sh
-DOTFILES=$DOTFILES $DOTFILES/bin/setup-links.sh
+$DOTFILES/bin/setup-apt.sh
+$DOTFILES/bin/setup-homebrew.sh
+$DOTFILES/bin/setup-links.sh
 
 # Add helpers to path.
 for helper in $DOTFILES/bin/helpers/*; do

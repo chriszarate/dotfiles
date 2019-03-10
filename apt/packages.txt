@@ -1,4 +1,5 @@
 ack
+exuberant-ctags
 fonts-firacode
 fish
 git

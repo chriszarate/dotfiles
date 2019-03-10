@@ -1,5 +1,20 @@
 #!/usr/bin/env bash
 
+# Relative to home directory.
+DOTFILES="$HOME/.dotfiles"
+
+# Symlink subdirectories.
+links=(
+  '.git_template::git/template'
+)
+for link in "${links[@]}"; do
+  source="${link##*::}"
+  target="${link%%::*}"
+  if [ ! -e "$HOME/$target/$source" ]; then
+    ln -s "$DOTFILES/$source" "$HOME/$target"
+  fi
+done
+
 # Symlink dotfiles in subdirectories.
 links=(
   '.config/fish::fish/completions'
@@ -18,6 +33,7 @@ done
 
 # Symlink dotfiles.
 for config in \
+  ctags/ctags \
   input/inputrc \
   git/gitconfig \
   git/gitignore_global \
