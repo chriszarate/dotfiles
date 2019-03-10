@@ -5,13 +5,14 @@ set encoding=utf-8
 set fileencoding=utf-8
 set hidden
 set list
-set listchars=tab:──,trail:·
+set listchars=tab:┄\ ,trail:·
 set number
 set shiftwidth=2
 set showcmd
 set splitbelow
 set splitright
 set tabstop=2
+set visualbell
 
 " Leader
 nmap <space> <leader>
@@ -29,12 +30,18 @@ Plug 'itchyny/lightline.vim'
 let g:lightline={
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'filename' ] ]
+	\             [ 'filename' ] ],
+	\   'right': [ [ 'lineinfo' ],
+	\              [],
+	\              [ 'filetype' ] ]
 	\ },
+	\ 'colorscheme': 'one',
 	\ 'component_function': {
 	\   'gitbranch': 'fugitive#head'
 	\ },
 	\ }
+
+Plug 'jparise/vim-graphql'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -47,12 +54,19 @@ nnoremap <leader>h :History<cr>
 nnoremap <leader>p :Files<cr>
 nnoremap <leader>t :Ag<cr>
 
+Plug 'justinmk/vim-dirvish'
+
 Plug 'mhinz/vim-sayonara'
 nnoremap <silent> <leader>q :Sayonara<cr>
 nnoremap <silent> <leader>x :Sayonara!<cr>
 
 Plug 'mhinz/vim-signify'
+let g:signify_vcs_list=['git']
+
 Plug 'morhetz/gruvbox'
+let g:gruvbox_contrast_dark="hard"
+let g:gruvbox_sign_column="bg0"
+
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'tomasr/molokai'
@@ -61,30 +75,24 @@ Plug 'tpope/vim-fugitive'
 nnoremap <leader>d :Gvdiff<cr>
 
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-vinegar'
 
 Plug 'w0rp/ale'
-let b:ale_linters=['eslint', 'shellcheck']
+let b:ale_linters=['eslint', 'graphql', 'shellcheck']
 
 call plug#end()
-
-" Autoclosing pairs
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
 
 " Buffers
 nnoremap <leader>a :bprev<cr>
 nnoremap <leader>s :bnext<cr>
 nnoremap <leader>z :u<cr>
+nnoremap <leader>Z :redo<cr>
 nnoremap S :w<cr>
 
 " Colorscheme
 if &t_Co >= 256
 	colorscheme gruvbox
-endif
+	hi BufTabLineCurrent ctermfg=234 ctermbg=66
+end
 
 " Mouse
 if has('mouse')
