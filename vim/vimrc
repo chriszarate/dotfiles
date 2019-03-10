@@ -39,7 +39,7 @@ let g:lightline={
 	\              [],
 	\              [ 'filetype' ] ]
 	\ },
-	\ 'colorscheme': 'one',
+	\ 'colorscheme': 'gruvbox',
 	\ 'component_function': {
 	\   'gitbranch': 'fugitive#head'
 	\ },
@@ -96,7 +96,6 @@ nnoremap S :w<cr>
 " Colorscheme
 if &t_Co >= 256
 	colorscheme gruvbox
-	hi BufTabLineCurrent ctermfg=234 ctermbg=66
 end
 
 " Mouse
