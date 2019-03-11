@@ -21,6 +21,8 @@ nmap <space> <leader>
 " Plugins
 call plug#begin()
 
+Plug 'ajh17/VimCompletesMe'
+
 Plug 'alvan/vim-closetag'
 let g:closetag_filenames='*.html,*.jsx,*.xml'
 let g:closetag_xhtml_filenames='*.jsx,*.xml'
@@ -79,11 +81,14 @@ let g:gruvbox_sign_column="bg0"
 
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'tomasr/molokai'
+
+Plug 'takac/vim-hardtime'
+let g:hardtime_default_on=1
 
 Plug 'tpope/vim-fugitive'
 nnoremap <leader>d :Gvdiff<cr>
 
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
 
 Plug 'w0rp/ale'
@@ -92,8 +97,9 @@ let b:ale_linters=['eslint', 'shellcheck']
 call plug#end()
 
 " Buffers
-nnoremap <leader>a :bprev<cr>
-nnoremap <leader>s :bnext<cr>
+nnoremap <leader><tab> :b#<cr>
+nnoremap <tab> :bnext<cr>
+nnoremap <s-tab> :bprev<cr>
 nnoremap <leader>z :u<cr>
 nnoremap <leader>Z :redo<cr>
 nnoremap S :w<cr>
