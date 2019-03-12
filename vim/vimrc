@@ -27,6 +27,8 @@ Plug 'alvan/vim-closetag'
 let g:closetag_filenames='*.html,*.jsx,*.xml'
 let g:closetag_xhtml_filenames='*.jsx,*.xml'
 
+Plug 'airblade/vim-rooter'
+
 Plug 'ap/vim-buftabline'
 let g:buftabline_indicators=1
 let g:buftabline_show=1
@@ -69,6 +71,9 @@ nnoremap <leader>? :Ag<cr>
 
 Plug 'justinmk/vim-dirvish'
 
+Plug 'mbbill/undotree'
+nnoremap <leader>u :UndotreeToggle<cr>:UndotreeFocus<cr>
+
 Plug 'mhinz/vim-sayonara'
 nnoremap <silent> <leader>q :Sayonara<cr>
 nnoremap <silent> <leader>x :Sayonara!<cr>
@@ -90,6 +95,9 @@ nnoremap <leader>d :Gvdiff<cr>
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession' " Must be loaded after vim-obsession
 Plug 'tpope/vim-sensible'
+
+Plug 'unblevable/quick-scope'
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 Plug 'w0rp/ale'
 let b:ale_linters=['eslint', 'shellcheck']
