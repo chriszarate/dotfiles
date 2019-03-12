@@ -4,12 +4,14 @@ set background=dark
 set encoding=utf-8
 set fileencoding=utf-8
 set hidden
+set ignorecase
 set list
 set listchars=tab:┄\ ,trail:·
 set number
 set pastetoggle=<leader>v
 set shiftwidth=2
 set showcmd
+set smartcase
 set splitbelow
 set splitright
 set tabstop=2
