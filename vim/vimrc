@@ -61,6 +61,7 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>c :Commands<cr>
 nnoremap <leader>h :History<cr>
 nnoremap <leader>p :Files<cr>
+nnoremap <leader>s :call fzf#run({'source': prosession#ListSessions(), 'sink': 'Prosession', 'down': '30%'})<cr>
 nnoremap <leader>t :call fzf#vim#tags(expand('<cword>'))<cr>
 nnoremap <leader>T :Tags<cr>
 nnoremap <leader>/ :call fzf#vim#ag(expand('<cword>'))<cr>
@@ -71,6 +72,7 @@ Plug 'justinmk/vim-dirvish'
 Plug 'mhinz/vim-sayonara'
 nnoremap <silent> <leader>q :Sayonara<cr>
 nnoremap <silent> <leader>x :Sayonara!<cr>
+let g:sayonara_confirm_quit=1
 
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list=['git']
@@ -86,6 +88,7 @@ Plug 'tpope/vim-fugitive'
 nnoremap <leader>d :Gvdiff<cr>
 
 Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession' " Must be loaded after vim-obsession
 Plug 'tpope/vim-sensible'
 
 Plug 'w0rp/ale'
@@ -110,9 +113,6 @@ end
 if has('mouse')
   set mouse=a
 end
-
-" No shift
-nnoremap ; :
 
 " Windows
 map <space><space> <c-w>
