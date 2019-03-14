@@ -99,10 +99,20 @@ Plug 'dhruvasagar/vim-prosession' " Must be loaded after vim-obsession
 Plug 'tpope/vim-sensible'
 
 Plug 'unblevable/quick-scope'
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
 
 Plug 'w0rp/ale'
-let b:ale_linters=['eslint', 'shellcheck']
+let g:ale_linters={
+	\   'css':        ['stylelint'],
+	\   'dockerfile': ['hadolint'],
+	\   'javascript': ['eslint'],
+	\   'php':        ['phpcs'],
+	\   'sh':         ['shellcheck'],
+	\ }
+let g:ale_php_phpcs_standard='WordPress'
+let g:ale_sign_column_always=1
+let g:ale_sign_error='✖'
+let g:ale_sign_warning='⚠'
 
 call plug#end()
 
@@ -123,6 +133,10 @@ end
 if has('mouse')
   set mouse=a
 end
+
+" Terminal
+nnoremap <leader>` :term<cr>
+tnoremap <c-]> <c-\><c-n>
 
 " Windows
 map <space><space> <c-w>
