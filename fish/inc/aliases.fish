@@ -63,6 +63,7 @@ alias python    "docker-run python:3-alpine python"
 alias ruby      "docker-run ruby:2.6-alpine ruby"
 alias server    "docker run --rm -v (pwd):/usr/share/nginx/html:ro -p 8000:80 nginx:alpine"
 alias shell     "docker-run chriszarate/shell bash"
+alias slack     "docker run --rm -it -v $HOME/.sclack:/root/.sclack matsuu/sclack"
 alias wp        "docker-compose exec --user www-data wordpress wp"
 
 # GraphQL
