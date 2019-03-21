@@ -1,6 +1,7 @@
 " Environment
 scriptencoding utf-8
 set background=dark
+set colorcolumn=81
 set encoding=utf-8
 set fileencoding=utf-8
 set hidden
@@ -9,6 +10,7 @@ set list
 set listchars=tab:┄\ ,trail:·
 set number
 set pastetoggle=<leader>v
+set relativenumber
 set shiftwidth=2
 set showcmd
 set smartcase
@@ -118,8 +120,8 @@ call plug#end()
 
 " Buffers
 nnoremap <leader><tab> :b#<cr>
-nnoremap <tab> :bnext<cr>
-nnoremap <s-tab> :bprev<cr>
+nnoremap <leader><right> :bnext<cr>
+nnoremap <leader><left> :bprev<cr>
 nnoremap <leader>z :u<cr>
 nnoremap <leader>Z :redo<cr>
 nnoremap S :w<cr>
@@ -129,10 +131,17 @@ if &t_Co >= 256
 	colorscheme gruvbox
 end
 
+" Jumps
+nnoremap <tab> <c-o>
+nnoremap <s-tab> <c-i>
+
 " Mouse
 if has('mouse')
   set mouse=a
 end
+
+" Navigation
+inoremap jj <esc>
 
 " Terminal
 nnoremap <leader>` :term<cr>
