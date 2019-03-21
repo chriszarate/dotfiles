@@ -40,6 +40,7 @@ alias redraw "tmux detach -a"
 alias gh "o https://github.com/(git-origin)/tree/(git-branch)"
 alias ghi "o https://github.com/(git-origin)/issues"
 alias ghp "o https://github.com/(git-origin)/pulls"
+alias ghpr "o https://github.com/(git-origin)/pull/new/(git-branch)"
 
 # Docker
 alias dco docker-compose
