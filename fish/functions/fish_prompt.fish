@@ -28,7 +28,7 @@ function fish_prompt
   set -l git_prompt (__fish_git_prompt '@ %s')
   if [ "$git_prompt" != '' ]
     echo ""
-    printf '%s%s %s' (set_color 666666) (git-origin) $git_prompt
+    printf '%s%s %s' (set_color 666666) (git_origin) $git_prompt
     set -l git_stash (git stash list 2>/dev/null | wc -l | awk '{print $1}')
     if [ "$git_stash" != '0' ]
       printf '%s' "$___fish_git_prompt_color_stashstate$__fish_git_prompt_char_stashstate$git_stash"

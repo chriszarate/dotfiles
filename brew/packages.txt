@@ -15,6 +15,7 @@ noti
 pngquant
 prettyping
 pv
+ranger
 repl
 rename
 rlwrap

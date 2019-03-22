@@ -73,6 +73,7 @@ nnoremap <leader>T :Tags<cr>
 nnoremap <leader>/ :call fzf#vim#ag(expand('<cword>'))<cr>
 nnoremap <leader>? :Ag<cr>
 
+Plug 'junegunn/vim-peekaboo'
 Plug 'justinmk/vim-dirvish'
 
 Plug 'mbbill/undotree'
@@ -92,6 +93,8 @@ let g:gruvbox_sign_column="bg0"
 
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
+
+Plug 'tpope/vim-commentary'
 
 Plug 'tpope/vim-fugitive'
 nnoremap <leader>d :Gvdiff<cr>
@@ -131,6 +134,12 @@ if &t_Co >= 256
 	colorscheme gruvbox
 end
 
+" Harder
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+
 " Jumps
 nnoremap <tab> <c-o>
 nnoremap <s-tab> <c-i>
@@ -142,10 +151,6 @@ end
 
 " Navigation
 inoremap jj <esc>
-
-" Terminal
-nnoremap <leader>` :term<cr>
-tnoremap <c-]> <c-\><c-n>
 
 " Windows
 map <space><space> <c-w>

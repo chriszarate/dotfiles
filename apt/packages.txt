@@ -11,6 +11,7 @@ net-tools
 nmap
 p7zip-full
 pngquant
+ranger
 rename
 shellcheck
 silversearcher-ag
