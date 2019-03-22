@@ -10,7 +10,7 @@ links=(
 for link in "${links[@]}"; do
   source="${link##*::}"
   target="${link%%::*}"
-  if [ ! -e "$HOME/$target/$source" ]; then
+  if [ ! -e "$HOME/$target" ]; then
     ln -s "$DOTFILES/$source" "$HOME/$target"
   fi
 done
