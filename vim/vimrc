@@ -5,6 +5,7 @@ set colorcolumn=81
 set encoding=utf-8
 set fileencoding=utf-8
 set hidden
+set hlsearch
 set ignorecase
 set list
 set listchars=tab:┄\ ,trail:·
