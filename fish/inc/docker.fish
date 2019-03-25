@@ -16,7 +16,7 @@ end
 
 
 function aws -d 'AWS CLI'
-	env DOCKER_RUN_OPTIONS='-v $HOME/.aws:/.aws' docker-run mesosphere/aws-cli $argv
+	env DOCKER_RUN_OPTIONS="-v $HOME/.aws:/.aws" docker-run mesosphere/aws-cli $argv
 end
 
 function composer -d 'PHP Composer 1.8'
@@ -24,7 +24,7 @@ function composer -d 'PHP Composer 1.8'
 end
 
 function go -d 'Golang'
-	env DOCKER_RUN_OPTIONS='-v $HOME/.cache:/.cache' docker-run golang go $argv
+	env DOCKER_RUN_OPTIONS="-v $HOME/.cache:/.cache" docker-run golang go $argv
 end
 
 function mysql -d 'MariaDB 10'
