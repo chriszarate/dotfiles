@@ -14,7 +14,6 @@ function dvrm -d 'Remove unused Docker volumes'
 	docker volume ls -qf dangling=true | xargs docker volume rm
 end
 
-
 function aws -d 'AWS CLI'
 	env DOCKER_RUN_OPTIONS="-v $HOME/.aws:/.aws" docker-run mesosphere/aws-cli $argv
 end
@@ -78,4 +77,3 @@ end
 function wp -d 'Execute WP-CLI in a Docker Compose environment'
 	docker-compose exec --user www-data wordpress wp $argv
 end
-

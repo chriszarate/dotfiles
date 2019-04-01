@@ -1,3 +1,7 @@
+function g -d 'Change to the root of the current Git repo'
+	cd (git rev-parse --show-toplevel)
+end
+
 function gh -d 'Open the current branch on GitHub'
 	o https://github.com/(git_origin)/tree/(git_branch)
 end

@@ -6,20 +6,12 @@ function cat -d 'Use bat instead of cat'
 	bat $argv
 end
 
-function d
-	cd ~/Documents
+function j -d 'Jump to a directory in the current tree'
+	fzf-cd-widget
 end
 
-function D
-	cd ~/Downloads
-end
-
-function S
-	cd ~/Documents/Scratch
-end
-
-function ll
-	ls -laF | less
+function l -d 'List files in detail'
+	ls -laF --color=always $argv
 end
 
 function ping -d 'Use prettyping instead of ping'
@@ -29,4 +21,3 @@ end
 function top -d 'Use htop instead of top'
 	sudo htop
 end
-
