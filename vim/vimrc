@@ -38,6 +38,7 @@ Plug 'ap/vim-buftabline'
 let g:buftabline_indicators=1
 let g:buftabline_show=1
 
+Plug 'cohama/lexima.vim'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'itchyny/lightline.vim'
@@ -55,9 +56,6 @@ let g:lightline={
 	\   'gitbranch': 'fugitive#head'
 	\ },
 	\ }
-
-Plug 'jiangmiao/auto-pairs'
-Plug 'jparise/vim-graphql'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -93,9 +91,8 @@ Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_sign_column="bg0"
 
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
 Plug 'romainl/vim-cool'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'svermeulen/vim-cutlass'
 nnoremap x d
@@ -109,7 +106,9 @@ nnoremap <leader>d :Gvdiff<cr>
 
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession' " Must be loaded after vim-obsession
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-unimpaired'
 
 Plug 'unblevable/quick-scope'
 let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
@@ -131,8 +130,7 @@ call plug#end()
 
 " Buffers
 nnoremap <leader><tab> :b#<cr>
-nnoremap <leader><right> :bnext<cr>
-nnoremap <leader><left> :bprev<cr>
+nnoremap <silent> <leader>X :%bd<cr>
 nnoremap <leader>z :u<cr>
 nnoremap <leader>Z :redo<cr>
 nnoremap S :w<cr>
