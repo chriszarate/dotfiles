@@ -130,10 +130,20 @@ call plug#end()
 
 " Buffers
 nnoremap <leader><tab> :b#<cr>
-nnoremap <silent> <leader>X :%bd<cr>
+nnoremap <leader>X :%bd<cr>
 nnoremap <leader>z :u<cr>
 nnoremap <leader>Z :redo<cr>
 nnoremap S :w<cr>
+
+" Clipboard
+function SystemYank()
+	if has('macunix')
+		:call system('pbcopy', @")
+	elseif has('unix')
+		:call system('xclip -sel clip', @")
+	endif
+endfunction
+nnoremap <leader>y :call SystemYank()<cr>
 
 " Colorscheme
 if &t_Co >= 256
