@@ -10,8 +10,6 @@ gnupg
 htop
 imagemagick
 jq
-keychain
-noti
 pngquant
 prettyping
 pv
