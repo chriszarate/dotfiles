@@ -17,6 +17,7 @@ done
 
 # Symlink dotfiles in subdirectories.
 links=(
+  '.config/alacritty::alacritty/alacritty.yml'
   '.config/fish::fish/completions'
   '.config/fish::fish/config.fish'
   '.config/fish::fish/functions'

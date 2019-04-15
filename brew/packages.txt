@@ -10,6 +10,8 @@ gnupg
 htop
 imagemagick
 jq
+nmap
+node
 pngquant
 prettyping
 pv
