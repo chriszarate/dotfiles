@@ -6,7 +6,8 @@ function cat -d 'Use bat instead of cat'
 	bat $argv
 end
 
-function j -d 'Jump to a directory in the current tree'
+function d -d 'Jump to a directory in the documents folder'
+	cd ~/Documents
 	fzf-cd-widget
 end
 
