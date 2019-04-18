@@ -28,6 +28,9 @@ brew "trash"
 brew "tree"
 brew "wget"
 
+tap "caskroom/fonts"
+
 cask "alacritty"
+cask "font-firacode-nerd-font"
 cask "quicklook-json"
 cask "quicklook-json"

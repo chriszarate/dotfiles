@@ -4,7 +4,6 @@ containerd.io
 docker-ce
 docker-ce-cli
 exuberant-ctags
-fonts-firacode
 fish
 git
 gnupg
@@ -15,6 +14,7 @@ net-tools
 nmap
 nodejs
 p7zip-full
+pop-theme
 pngquant
 ranger
 rename
