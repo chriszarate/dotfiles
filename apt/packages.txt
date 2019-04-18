@@ -1,4 +1,8 @@
 ack
+alacritty
+containerd.io
+docker-ce
+docker-ce-cli
 exuberant-ctags
 fonts-firacode
 fish
@@ -9,6 +13,7 @@ imagemagick
 jq
 net-tools
 nmap
+nodejs
 p7zip-full
 pngquant
 ranger
@@ -20,4 +25,3 @@ tmux
 tree
 wget
 xclip
-

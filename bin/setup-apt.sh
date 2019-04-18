@@ -4,5 +4,6 @@
 DOTFILES="$HOME/.dotfiles"
 
 if [ "$(uname)" = "Linux" ]; then
-  sudo apt -y install $(<"$DOTFILES/apt/packages.txt")
+	$DOTFILES/apt/install-repos.sh
+	sudo apt -y install $(<"$DOTFILES/apt/packages.txt")
 fi
