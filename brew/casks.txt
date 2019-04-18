@@ -1,7 +1,0 @@
-alacritty
-qlcolorcode
-qlimagesize
-qlmarkdown
-qlstephen
-quicklook-json
-quicklook-csv

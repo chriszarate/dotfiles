@@ -1,0 +1,5 @@
+brew "bat"
+brew "diff-so-fancy"
+brew "fd"
+brew "fzf"
+brew "prettyping"

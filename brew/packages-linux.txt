@@ -1,5 +1,0 @@
-bat
-diff-so-fancy
-fd
-fzf
-prettyping

@@ -5,15 +5,10 @@ DOTFILES="$HOME/.dotfiles"
 
 # Install linuxbrew packages.
 if [ "$(uname)" = "Linux" ]; then
-  PACKAGES=`cat $DOTFILES/brew/packages-linux.txt`
-  /home/linuxbrew/.linuxbrew/bin/brew install $PACKAGES
+  /home/linuxbrew/.linuxbrew/bin/brew bundle --file="$DOTFILES/brew/Brewfile-linux"
 fi
 
 # Install brew packages and casks
 if [ "$(uname)" = "Darwin" ]; then
-  PACKAGES=`cat $DOTFILES/brew/packages.txt`
-  CASKS=`cat $DOTFILES/brew/casks.txt`
-
-  brew install $PACKAGES
-  brew cask install $CASKS
+  brew bundle --file="$DOTFILES/brew/Brewfile"
 fi
