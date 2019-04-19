@@ -136,11 +136,14 @@ nnoremap <leader>Z :redo<cr>
 nnoremap S :w<cr>
 
 " Clipboard
+let s:uname = system('uname -s')
 function SystemYank()
-	if has('macunix')
-		:call system('pbcopy', @")
-	elseif has('unix')
-		:call system('xclip -sel clip', @")
+	if has('unix')
+		if s:uname == "Darwin\n"
+			:call system('pbcopy', @")
+		else
+			:call system('xclip -sel clip', @")
+		endif
 	endif
 endfunction
 nnoremap <leader>y :call SystemYank()<cr>
