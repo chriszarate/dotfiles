@@ -95,10 +95,6 @@ font:
     family: FuraCode Nerd Font
     style: Bold
 
-  italic:
-    family: FuraCode Nerd Font
-    style: Italic
-
   size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
