@@ -135,19 +135,6 @@ nnoremap <leader>z :u<cr>
 nnoremap <leader>Z :redo<cr>
 nnoremap S :w<cr>
 
-" Clipboard
-let s:uname = system('uname -s')
-function SystemYank()
-	if has('unix')
-		if s:uname == "Darwin\n"
-			:call system('pbcopy', @")
-		else
-			:call system('xclip -sel clip', @")
-		endif
-	endif
-endfunction
-nnoremap <leader>y :call SystemYank()<cr>
-
 " Colorscheme
 if &t_Co >= 256
 	colorscheme gruvbox

@@ -24,6 +24,6 @@ silversearcher-ag
 sshuttle
 tmux
 tree
-vim
+vim-gnome
 wget
 xclip
