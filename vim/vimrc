@@ -61,16 +61,15 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 let $FZF_DEFAULT_COMMAND='ag -g ""'
 let $FZF_DEFAULT_OPTS="--exact"
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>c :Commands<cr>
 nnoremap <leader>h :History<cr>
 nnoremap <leader>p :Files<cr>
 nnoremap <leader>s :call fzf#run({'source': prosession#ListSessions(), 'sink': 'Prosession', 'down': '30%'})<cr>
-nnoremap <leader>t :call fzf#vim#tags(expand('<cword>'))<cr>
+nnoremap <leader>t :call fzf#vim#tags('', {'options': '-q ' . shellescape(expand('<cword>'))})<cr>
 nnoremap <leader>T :Tags<cr>
-nnoremap <leader>/ :call fzf#vim#ag(expand('<cword>'))<cr>
-nnoremap <leader>? :Ag<cr>
+nnoremap <leader>/ :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>'))})<cr>
+nnoremap <leader>? :call fzf#vim#ag('')<cr>
 
 Plug 'junegunn/vim-peekaboo'
 Plug 'justinmk/vim-dirvish'
