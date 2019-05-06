@@ -101,6 +101,7 @@ nnoremap X dd
 Plug 'tpope/vim-commentary'
 
 Plug 'tpope/vim-fugitive'
+nnoremap <leader>g :Gstatus<cr>
 nnoremap <leader>d :Gvdiff<cr>
 
 Plug 'tpope/vim-obsession'
