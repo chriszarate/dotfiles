@@ -4,6 +4,7 @@ containerd.io
 docker-ce
 docker-ce-cli
 exuberant-ctags
+ffmpeg
 fish
 git
 gnome-tweak-tool
