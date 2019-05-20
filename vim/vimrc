@@ -160,5 +160,9 @@ end
 " Navigation
 inoremap jj <esc>
 
+" Pasting
+nnoremap <leader>p p`[v`]=
+nnoremap <leader>P P`[v`]=
+
 " Windows
 map <space><space> <c-w>
