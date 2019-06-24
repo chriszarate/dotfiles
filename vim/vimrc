@@ -10,7 +10,7 @@ set ignorecase
 set list
 set listchars=tab:┄\ ,trail:·
 set number
-set pastetoggle=<leader>v
+set pastetoggle=<leader>P
 set relativenumber
 set shiftwidth=2
 set showcmd
@@ -42,20 +42,32 @@ Plug 'cohama/lexima.vim'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 let g:lightline={
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
 	\             [ 'gitbranch' ],
 	\             [ 'filename' ] ],
 	\   'right': [ [ 'lineinfo' ],
-	\              [],
+	\              [ 'linter_warnings', 'linter_errors', 'linter_ok' ],
 	\              [ 'filetype' ] ]
 	\ },
 	\ 'colorscheme': 'gruvbox',
 	\ 'component_function': {
 	\   'gitbranch': 'fugitive#head'
 	\ },
+	\ 'component_expand': {
+	\   'linter_warnings': 'lightline#ale#warnings',
+	\   'linter_errors': 'lightline#ale#errors',
+	\   'linter_ok': 'lightline#ale#ok'
+	\ },
+	\ 'component_type': {
+	\   'linter_errors': 'error',
+	\   'linter_warnings': 'warning'
+	\ },
 	\ }
+let g:lightline#ale#indicator_errors='x'
+let g:lightline#ale#indicator_warnings='~'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -68,8 +80,8 @@ nnoremap <leader>p :Files<cr>
 nnoremap <leader>s :call fzf#run({'source': prosession#ListSessions(), 'sink': 'Prosession', 'down': '30%'})<cr>
 nnoremap <leader>t :call fzf#vim#tags('', {'options': '-q ' . shellescape(expand('<cword>'))})<cr>
 nnoremap <leader>T :Tags<cr>
-nnoremap <leader>/ :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>'))})<cr>
-nnoremap <leader>? :call fzf#vim#ag('')<cr>
+nnoremap <leader>/ :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>')) . ' --delimiter : --nth 4..'})<cr>
+nnoremap <leader>? :call fzf#vim#ag('', {'options': '--delimiter : --nth 4..'})<cr>
 
 Plug 'junegunn/vim-peekaboo'
 Plug 'justinmk/vim-dirvish'
@@ -161,8 +173,8 @@ end
 inoremap jj <esc>
 
 " Pasting
-nnoremap <leader>p p`[v`]=
-nnoremap <leader>P P`[v`]=
+nnoremap <leader>v p`[v`]=
+nnoremap <leader>V P`[v`]=
 
 " Windows
 map <space><space> <c-w>
