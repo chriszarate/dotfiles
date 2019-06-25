@@ -141,6 +141,7 @@ let g:ale_sign_warning='~'
 call plug#end()
 
 " Buffers
+autocmd BufWritePost * silent! !git_status_tmux
 nnoremap <leader><tab> :b#<cr>
 nnoremap <leader>X :%bd<cr>
 nnoremap <leader>z :u<cr>
@@ -166,7 +167,7 @@ nnoremap <s-tab> <c-i>
 
 " Mouse
 if has('mouse')
-  set mouse=a
+	set mouse=a
 end
 
 " Navigation
