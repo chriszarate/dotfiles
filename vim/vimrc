@@ -141,7 +141,6 @@ let g:ale_sign_warning='~'
 call plug#end()
 
 " Buffers
-autocmd BufWritePost * silent! !git_status_tmux
 nnoremap <leader><tab> :b#<cr>
 nnoremap <leader>X :%bd<cr>
 nnoremap <leader>z :u<cr>
@@ -176,6 +175,10 @@ inoremap jj <esc>
 " Pasting
 nnoremap <leader>v p`[v`]=
 nnoremap <leader>V P`[v`]=
+
+" Tmux
+autocmd VimEnter * silent! !tmux set-window-option pane-border-status off
+autocmd VimLeave * silent! !tmux set-window-option pane-border-status bottom
 
 " Windows
 map <space><space> <c-w>
