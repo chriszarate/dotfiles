@@ -176,9 +176,5 @@ inoremap jj <esc>
 nnoremap <leader>v p`[v`]=
 nnoremap <leader>V P`[v`]=
 
-" Tmux
-autocmd VimEnter * silent! !tmux set-window-option pane-border-status off
-autocmd VimLeave * silent! !tmux set-window-option pane-border-status bottom
-
 " Windows
 map <space><space> <c-w>
