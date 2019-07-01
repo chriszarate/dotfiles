@@ -53,6 +53,7 @@
 	su  = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 	w   = !sh -c 'git log -S'$1' -p' -
 [color]
+	status = auto
 	ui = true
 [color "diff"]
 	meta = yellow bold
@@ -66,6 +67,11 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+[color "status"]
+	added = green
+	changed = yellow
+	deleted = red
+	untracked = magenta
 [pack]
 	windowMemory = 10m
 	packSizeLimit = 20m
