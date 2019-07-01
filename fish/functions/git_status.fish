@@ -7,8 +7,9 @@ function git_status -d "Provide a simple but detailed git status in an environme
 			set -a -l output "$__fish_git_prompt_char_stashstate$stash"
 		end
 
-		# Remove colors (it would be a pain to translate these outside of fish).
-		echo $output | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"
+		# Remove colors (it would be a pain to translate these outside of fish) and
+		# trim newlines.
+		echo $output | sed -e "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d "\n"
 	else
 		echo ''
   end

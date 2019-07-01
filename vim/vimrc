@@ -46,16 +46,13 @@ Plug 'maximbaz/lightline-ale'
 let g:lightline={
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'gitbranch' ],
+	\             [],
 	\             [ 'filename' ] ],
 	\   'right': [ [ 'lineinfo' ],
 	\              [ 'linter_warnings', 'linter_errors', 'linter_ok' ],
 	\              [ 'filetype' ] ]
 	\ },
 	\ 'colorscheme': 'gruvbox',
-	\ 'component_function': {
-	\   'gitbranch': 'fugitive#head'
-	\ },
 	\ 'component_expand': {
 	\   'linter_warnings': 'lightline#ale#warnings',
 	\   'linter_errors': 'lightline#ale#errors',

@@ -32,6 +32,4 @@ function fish_title
 
   end
 
-  echo "%%%"(git_status)
-
 end

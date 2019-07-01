@@ -7,4 +7,4 @@ for file in ~/.config/fish/inc/*.fish
 end
 
 # Open a tmux session if one doesn't exist.
-tmux has-session; or tmux new-session -s (whoami)
+tmux has-session >/dev/null 2>&1; or tmux new-session -s (whoami)
