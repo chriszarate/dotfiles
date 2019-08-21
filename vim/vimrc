@@ -75,14 +75,16 @@ nnoremap <leader>c :Commands<cr>
 nnoremap <leader>h :History<cr>
 nnoremap <leader>p :Files<cr>
 nnoremap <leader>s :call fzf#run({'source': prosession#ListSessions(), 'sink': 'Prosession', 'down': '30%'})<cr>
-nnoremap <leader>t :call fzf#vim#tags('', {'options': '-q ' . shellescape(expand('<cword>'))})<cr>
-nnoremap <leader>T :Tags<cr>
 nnoremap <leader>/ :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>')) . ' --delimiter : --nth 4..'})<cr>
 nnoremap <leader>? :call fzf#vim#ag('', {'options': '--delimiter : --nth 4..'})<cr>
 
 Plug 'junegunn/vim-peekaboo'
 Plug 'justinmk/vim-dirvish'
 let g:netrw_fastbrowse='0'
+
+Plug 'liuchengxu/vista.vim'
+let g:vista_default_executive = 'coc'
+nnoremap <leader>r :Vista!!<cr>
 
 Plug 'machakann/vim-highlightedyank'
 
@@ -111,24 +113,16 @@ let g:coc_user_config={
 \ }
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
+nnoremap <leader>t :CocList symbols<cr>
 
-inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<c-h>"
 inoremap <silent><expr> <tab>
 \ pumvisible() ? "\<C-n>" :
 \ <sid>check_back_space() ? "\<tab>" :
 \ coc#refresh()
+inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<c-h>"
 function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-nnoremap <silent> K :call <sid>show_documentation()<cr>
-function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
 endfunction
 
 Plug 'romainl/vim-cool'
