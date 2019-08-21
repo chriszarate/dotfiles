@@ -3,7 +3,6 @@ alacritty
 containerd.io
 docker-ce
 docker-ce-cli
-exuberant-ctags
 ffmpeg
 fish
 git

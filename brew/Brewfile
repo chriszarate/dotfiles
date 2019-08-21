@@ -1,6 +1,5 @@
 brew "ack"
 brew "bat"
-brew "ctags"
 brew "diff-so-fancy"
 brew "fd"
 brew "fish"
