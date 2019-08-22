@@ -66,6 +66,8 @@ let g:lightline={
 let g:lightline#ale#indicator_errors='x'
 let g:lightline#ale#indicator_warnings='~'
 
+Plug 'janko/vim-test'
+
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 let $FZF_DEFAULT_COMMAND='ag -g ""'
@@ -104,12 +106,18 @@ let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_sign_column="bg0"
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Installed extensions (how do I automate this?):
-" - coc-phpls
-" - coc-tsserver
+let g:coc_global_extensions = [
+\ 'coc-emoji',
+\ 'coc-json',
+\ 'coc-pairs',
+\ 'coc-phpls',
+\ 'coc-tsserver',
+\ 'coc-yaml',
+\ ]
 let g:coc_user_config={
-\ 'suggest.echodocSupport': 'true',
-\ 'suggest.enablePreview': 'true'
+\ 'diagnostic.displayByAle': v:true,
+\ 'suggest.echodocSupport': v:true,
+\ 'suggest.enablePreview': v:true
 \ }
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
