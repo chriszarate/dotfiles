@@ -2,7 +2,7 @@ set __fish_git_prompt_describe_style 'branch'
 set __fish_git_prompt_show_informative_status true
 
 set __fish_git_prompt_color_bare a89984
-set __fish_git_prompt_color_branch 665c54
+set __fish_git_prompt_color_branch d79921
 set __fish_git_prompt_color_branch_detached cc241d
 set __fish_git_prompt_color_dirtystate d65d0e
 set __fish_git_prompt_color_invalidstate cc241d
