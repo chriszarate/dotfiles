@@ -34,11 +34,6 @@ let g:closetag_filenames='*.html,*.jsx,*.xml'
 let g:closetag_xhtml_filenames='*.jsx,*.xml'
 
 Plug 'airblade/vim-rooter'
-
-Plug 'ap/vim-buftabline'
-let g:buftabline_indicators=1
-let g:buftabline_show=1
-
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'itchyny/lightline.vim'
@@ -47,7 +42,7 @@ let g:lightline={
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
 	\             [],
-	\             [ 'filename' ] ],
+	\             [ 'filename', 'modified' ] ],
 	\   'right': [ [ 'lineinfo' ],
 	\              [ 'linter_warnings', 'linter_errors', 'linter_ok' ],
 	\              [ 'filetype' ] ]
@@ -85,7 +80,7 @@ Plug 'justinmk/vim-dirvish'
 let g:netrw_fastbrowse='0'
 
 Plug 'liuchengxu/vista.vim'
-let g:vista_default_executive = 'coc'
+let g:vista_default_executive='coc'
 nnoremap <leader>r :Vista!!<cr>
 
 Plug 'machakann/vim-highlightedyank'
@@ -94,8 +89,7 @@ Plug 'mbbill/undotree'
 nnoremap <leader>u :UndotreeToggle<cr>:UndotreeFocus<cr>
 
 Plug 'mhinz/vim-sayonara'
-nnoremap <silent> <leader>q :Sayonara<cr>
-nnoremap <silent> <leader>x :Sayonara!<cr>
+nnoremap <silent> <leader>q :Sayonara!<cr>
 let g:sayonara_confirm_quit=1
 
 Plug 'mhinz/vim-signify'
@@ -106,7 +100,7 @@ let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_sign_column="bg0"
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = [
+let g:coc_global_extensions=[
 \ 'coc-emoji',
 \ 'coc-json',
 \ 'coc-pairs',
@@ -122,7 +116,6 @@ let g:coc_user_config={
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <leader>t :CocList symbols<cr>
-
 inoremap <silent><expr> <tab>
 \ pumvisible() ? "\<C-n>" :
 \ <sid>check_back_space() ? "\<tab>" :
@@ -173,7 +166,7 @@ call plug#end()
 
 " Buffers
 nnoremap <leader><tab> :b#<cr>
-nnoremap <leader>X :%bd<cr>
+nnoremap <leader>X :%bd<bar>e#<cr>
 nnoremap <leader>z :u<cr>
 nnoremap <leader>Z :redo<cr>
 nnoremap S :w<cr>
