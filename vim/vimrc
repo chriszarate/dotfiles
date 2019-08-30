@@ -62,6 +62,7 @@ let g:lightline#ale#indicator_errors='x'
 let g:lightline#ale#indicator_warnings='~'
 
 Plug 'janko/vim-test'
+let g:test#strategy = "vimterminal"
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -76,8 +77,6 @@ nnoremap <leader>/ :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('
 nnoremap <leader>? :call fzf#vim#ag('', {'options': '--delimiter : --nth 4..'})<cr>
 
 Plug 'junegunn/vim-peekaboo'
-Plug 'justinmk/vim-dirvish'
-let g:netrw_fastbrowse='0'
 
 Plug 'liuchengxu/vista.vim'
 let g:vista_default_executive='coc'
@@ -145,6 +144,10 @@ Plug 'dhruvasagar/vim-prosession' " Must be loaded after vim-obsession
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
+
+Plug 'tpope/vim-vinegar'
+let g:netrw_altfile=1
+let g:netrw_fastbrowse=0
 
 Plug 'unblevable/quick-scope'
 let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
