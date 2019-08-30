@@ -15,6 +15,7 @@ set pastetoggle=<leader>P
 set relativenumber
 set shiftwidth=2
 set shortmess+=c
+set signcolumn=yes
 set showcmd
 set smartcase
 set splitbelow
@@ -42,7 +43,7 @@ let g:lightline={
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
 	\             [],
-	\             [ 'filename', 'modified' ] ],
+	\             [ 'relativepath', 'modified' ] ],
 	\   'right': [ [ 'lineinfo' ],
 	\              [ 'linter_warnings', 'linter_errors', 'linter_ok' ],
 	\              [ 'filetype' ] ]
