@@ -22,6 +22,7 @@ links=(
   '.config/fish::fish/config.fish'
   '.config/fish::fish/functions'
   '.config/fish::fish/inc'
+  '.config/wtf::wtf/config.yml'
 )
 for link in "${links[@]}"; do
   source="${link##*::}"
