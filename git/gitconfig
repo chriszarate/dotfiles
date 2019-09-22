@@ -30,6 +30,7 @@
 	cp  = cherry-pick
 	d   = diff
 	dc  = diff --cached
+	ds  = "!git diff --stat $(git merge-base HEAD master)"
 	dw  = diff -w
 	f   = fetch
 	fp  = pull --ff-only
