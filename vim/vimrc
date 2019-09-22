@@ -105,7 +105,7 @@ let g:lightline#ale#indicator_warnings='~'
 
 " run tests from vim
 Plug 'janko/vim-test'
-let g:test#strategy = "vimterminal"
+let g:test#strategy='vimterminal'
 
 " fuzzy finder
 Plug 'junegunn/fzf'
@@ -116,9 +116,8 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>c :Commands<cr>
 nnoremap <leader>h :History<cr>
 nnoremap <leader>p :Files<cr>
-nnoremap <leader>s :call fzf#run({'source': prosession#ListSessions(), 'sink': 'Prosession', 'down': '30%'})<cr>
-nnoremap <leader>/ :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>')) . ' --delimiter : --nth 4..'})<cr>
-nnoremap <leader>? :call fzf#vim#ag('', {'options': '--delimiter : --nth 4..'})<cr>
+nnoremap <leader>/ :call fzf#vim#ag('', {'options': '--delimiter : --nth 4..'})<cr>
+nnoremap <leader>? :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>')) . ' --delimiter : --nth 4..'})<cr>
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
@@ -127,9 +126,6 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'liuchengxu/vista.vim'
 let g:vista_default_executive='coc'
 nnoremap <leader>r :Vista!!<cr>
-
-" briefly highlight the yanked region
-Plug 'machakann/vim-highlightedyank'
 
 " sidebar to show undo history
 Plug 'mbbill/undotree'
