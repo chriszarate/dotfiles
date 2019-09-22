@@ -9,9 +9,11 @@ set background=dark
 set backspace=indent,eol,start
 set colorcolumn=81
 set complete-=i
+set directory=/tmp
 set display+=lastline
 set encoding=utf-8
 set fileencoding=utf-8
+set foldmethod=syntax
 set formatoptions+=j " Delete comment character when joining commented lines
 set hidden
 set history=1000
@@ -19,9 +21,14 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
+set lazyredraw
 set list
 set listchars=tab:┄\ ,trail:·
+set mouse=a
 set nobackup
+set nofoldenable
+set noswapfile
+set nowritebackup
 set nrformats-=octal
 set number
 set pastetoggle=<leader>P
@@ -35,6 +42,7 @@ set showcmd
 set sidescrolloff=5
 set signcolumn=yes
 set smartcase
+set smartindent
 set smarttab
 set splitbelow
 set splitright
@@ -42,17 +50,11 @@ set synmaxcol=500
 set tabstop=2
 set ttimeout
 set ttimeoutlen=100
+set ttyfast
 set updatetime=300
 set visualbell
+set wildignore+=node_modules,dist,vendor
 set wildmenu
-
-if has('autocmd')
-	filetype plugin indent on
-endif
-
-if has('mouse')
-	set mouse=a
-end
 
 
 " +===========+
