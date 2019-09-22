@@ -3,29 +3,52 @@
 " +===============+
 
 scriptencoding utf-8
+set autoindent
+set autoread
 set background=dark
+set backspace=indent,eol,start
 set colorcolumn=81
+set complete-=i
+set display+=lastline
 set encoding=utf-8
 set fileencoding=utf-8
+set formatoptions+=j " Delete comment character when joining commented lines
 set hidden
+set history=1000
 set hlsearch
 set ignorecase
+set incsearch
+set laststatus=2
 set list
 set listchars=tab:┄\ ,trail:·
 set nobackup
+set nrformats-=octal
 set number
 set pastetoggle=<leader>P
 set relativenumber
+set ruler
+set scrolloff=1
+set shell=/usr/bin/env\ bash " cuz we fish
 set shiftwidth=2
 set shortmess+=c
-set signcolumn=yes
 set showcmd
+set sidescrolloff=5
+set signcolumn=yes
 set smartcase
+set smarttab
 set splitbelow
 set splitright
+set synmaxcol=500
 set tabstop=2
+set ttimeout
+set ttimeoutlen=100
 set updatetime=300
 set visualbell
+set wildmenu
+
+if has('autocmd')
+	filetype plugin indent on
+endif
 
 if has('mouse')
 	set mouse=a
@@ -174,9 +197,6 @@ nnoremap <leader>d :Gvdiff<cr>
 
 " repeat more actions with .
 Plug 'tpope/vim-repeat'
-
-" do i need this?
-Plug 'tpope/vim-sensible'
 
 " more previous / next commands with []
 Plug 'tpope/vim-unimpaired'
