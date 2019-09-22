@@ -1,4 +1,7 @@
-" Environment
+" +===============+
+" |  Environment  |
+" +===============+
+
 scriptencoding utf-8
 set background=dark
 set colorcolumn=81
@@ -24,21 +27,31 @@ set tabstop=2
 set updatetime=300
 set visualbell
 
-" Leader
-nmap <space> <leader>
+if has('mouse')
+	set mouse=a
+end
 
-" Plugins
+
+" +===========+
+" |  Plugins  |
+" +===========+
+
 call plug#begin()
 
+" autoclose html and jsx
 Plug 'alvan/vim-closetag'
 let g:closetag_filenames='*.html,*.jsx,*.xml'
 let g:closetag_xhtml_filenames='*.jsx,*.xml'
 
+" set working directory to git project root
 Plug 'airblade/vim-rooter'
+
+" end whitespace wars
 Plug 'editorconfig/editorconfig-vim'
 
+" lightweight statusline
 Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
+Plug 'maximbaz/lightline-ale' " lint status
 let g:lightline={
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
@@ -65,9 +78,11 @@ let g:lightline={
 let g:lightline#ale#indicator_errors='x'
 let g:lightline#ale#indicator_warnings='~'
 
+" run tests from vim
 Plug 'janko/vim-test'
 let g:test#strategy = "vimterminal"
 
+" fuzzy finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 let $FZF_DEFAULT_COMMAND='ag -g ""'
@@ -80,28 +95,36 @@ nnoremap <leader>s :call fzf#run({'source': prosession#ListSessions(), 'sink': '
 nnoremap <leader>/ :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>')) . ' --delimiter : --nth 4..'})<cr>
 nnoremap <leader>? :call fzf#vim#ag('', {'options': '--delimiter : --nth 4..'})<cr>
 
+" sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
 
+" sidebar to show lsp symbols
 Plug 'liuchengxu/vista.vim'
 let g:vista_default_executive='coc'
 nnoremap <leader>r :Vista!!<cr>
 
+" briefly highlight the yanked region
 Plug 'machakann/vim-highlightedyank'
 
+" sidebar to show undo history
 Plug 'mbbill/undotree'
 nnoremap <leader>u :UndotreeToggle<cr>:UndotreeFocus<cr>
 
+" smart buffer closing with save prompt
 Plug 'mhinz/vim-sayonara'
 nnoremap <silent> <leader>q :Sayonara!<cr>
 let g:sayonara_confirm_quit=1
 
+" git gutter
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list=['git']
 
+" colorscheme
 Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_sign_column="bg0"
 
+" live that good vscode life
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions=[
 \ 'coc-emoji',
@@ -129,31 +152,45 @@ function! s:check_back_space() abort
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" better search highlighting
 Plug 'romainl/vim-cool'
+
+" meta-package for syntax highlighting
 Plug 'sheerun/vim-polyglot'
 
+" delete without yanking, map x to delete + yank
 Plug 'svermeulen/vim-cutlass'
 nnoremap x d
 xnoremap x d
 nnoremap X dd
 
+" comment / uncomment
 Plug 'tpope/vim-commentary'
 
+" git
 Plug 'tpope/vim-fugitive'
 nnoremap <leader>g :Gstatus<cr>
 nnoremap <leader>d :Gvdiff<cr>
 
+" repeat more actions with .
 Plug 'tpope/vim-repeat'
+
+" do i need this?
 Plug 'tpope/vim-sensible'
+
+" more previous / next commands with []
 Plug 'tpope/vim-unimpaired'
 
+" make peace with netrw
 Plug 'tpope/vim-vinegar'
 let g:netrw_altfile=1
 let g:netrw_fastbrowse=0
 
+" highlight hints on cursor jump
 Plug 'unblevable/quick-scope'
 let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
 
+" linting
 Plug 'w0rp/ale'
 let g:ale_linters={
 	\   'css':        ['stylelint'],
@@ -169,17 +206,26 @@ let g:ale_sign_warning='~'
 
 call plug#end()
 
+
+" +=========+
+" |  Theme  |
+" +=========+
+
+if &t_Co >= 256
+	colorscheme gruvbox
+end
+
+
+" +==========+
+" |  Remaps  |
+" +==========+
+
 " Buffers
 nnoremap <leader><tab> :b#<cr>
 nnoremap <leader>X :%bd<bar>e#<cr>
 nnoremap <leader>z :u<cr>
 nnoremap <leader>Z :redo<cr>
 nnoremap S :w<cr>
-
-" Colorscheme
-if &t_Co >= 256
-	colorscheme gruvbox
-end
 
 " Harder
 nnoremap <up> <nop>
@@ -189,21 +235,15 @@ nnoremap <right> <nop>
 vnoremap <up> <nop>
 vnoremap <down> <nop>
 
+" Leader
+nmap <space> <leader>
+
 " Jumps
 nnoremap <tab> <c-o>
 nnoremap <s-tab> <c-i>
 
-" Mouse
-if has('mouse')
-	set mouse=a
-end
-
 " Navigation
 inoremap jj <esc>
-
-" Pasting
-nnoremap <leader>v p`[v`]=
-nnoremap <leader>V P`[v`]=
 
 " Windows
 map <space><space> <c-w>
