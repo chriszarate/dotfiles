@@ -27,6 +27,7 @@ brew "tmux"
 brew "trash"
 brew "tree"
 brew "wget"
+brew "wtfutil"
 
 tap "caskroom/fonts"
 
