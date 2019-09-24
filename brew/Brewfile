@@ -32,6 +32,7 @@ brew "wtfutil"
 tap "caskroom/fonts"
 
 cask "alacritty"
+cask "docker"
 cask "font-firacode-nerd-font"
 cask "quicklook-json"
 cask "quicklook-json"
