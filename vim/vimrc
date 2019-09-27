@@ -259,6 +259,7 @@ nmap <space> <leader>
 " Jumps
 nnoremap <tab> <c-o>
 nnoremap <s-tab> <c-i>
+nnoremap _ <c-^>
 
 " Navigation
 inoremap jj <esc>
