@@ -25,7 +25,7 @@ wtf:
         title: "red"
         description: "lightblue"
         highlights:
-        - ['1on1|1\/11', 'green']
+        - ['1:1|<>', 'green']
         - ['apple|google|aws', 'blue']
         - ['interview|meet', 'magenta']
         - ['lunch', 'yellow']
@@ -37,7 +37,7 @@ wtf:
       email: "czarate@qz.com"
       enabled: true
       eventCount: 12
-      multiCalendar: true
+      multiCalendar: false
       position:
         top: 0
         left: 2
