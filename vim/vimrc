@@ -53,7 +53,7 @@ set ttimeoutlen=100
 set ttyfast
 set updatetime=300
 set visualbell
-set wildignore+=node_modules,dist,vendor
+set wildignore+=build,dist,node_modules,vendor
 set wildmenu
 
 
@@ -156,7 +156,7 @@ let g:coc_global_extensions=[
 \ 'coc-yaml',
 \ ]
 let g:coc_user_config={
-\ 'diagnostic.displayByAle': v:true,
+\ 'diagnostic.enable': v:false,
 \ 'suggest.echodocSupport': v:true,
 \ 'suggest.enablePreview': v:true
 \ }
@@ -164,14 +164,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <leader>t :CocList symbols<cr>
 inoremap <silent><expr> <tab>
-\ pumvisible() ? "\<C-n>" :
-\ <sid>check_back_space() ? "\<tab>" :
-\ coc#refresh()
-inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<c-h>"
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+\ pumvisible() ? "\<C-n>" : "\<tab>"
 
 " better search highlighting
 Plug 'romainl/vim-cool'
