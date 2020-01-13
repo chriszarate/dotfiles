@@ -1,5 +1,6 @@
 brew "ack"
 brew "bat"
+brew "broot"
 brew "diff-so-fancy"
 brew "fd"
 brew "fish"
