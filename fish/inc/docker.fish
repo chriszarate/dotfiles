@@ -22,6 +22,10 @@ function composer -d 'PHP Composer 1.8'
 	docker-run composer:1.8 $argv
 end
 
+function ffmpeg -d 'ffmpeg'
+	env DOCKER_WORKDIR="/tmp" docker-run jrottenberg/ffmpeg $argv
+end
+
 function go -d 'Golang'
 	env DOCKER_RUN_OPTIONS="-v $HOME/.cache:/.cache" docker-run golang go $argv
 end
