@@ -11,14 +11,18 @@ function d -d 'Jump to a directory in the documents folder'
 	fzf-cd-widget
 end
 
-function l -d 'List files in detail'
-	ls -laF --color=always $argv
+function l -d 'Show all files in a friendly way'
+	exa -halF $argv
+end
+
+function ls -d 'Use exa instead of ls'
+	exa $argv
 end
 
 function ping -d 'Use prettyping instead of ping'
-	prettyping --nolegend
+	prettyping --nolegend $argv
 end
 
 function top -d 'Use htop instead of top'
-	sudo htop
+	sudo htop $argv
 end
