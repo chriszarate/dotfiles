@@ -1,0 +1,42 @@
+snippet function "Function"
+const ${1:fn} = (${2:args}) = {
+	${0:${VISUAL}}
+};
+endsnippet
+
+snippet import "import"
+import ${1:var} from '$1';
+endsnippet
+
+snippet nested_import "import nested"
+import { ${1:var} } from '${2:module}';
+endsnippet
+
+snippet component "React component"
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from '$1.css';
+import classnames from 'classnames/bind';
+
+const cx = classnames.bind( styles );
+
+export const ${1:Component} = ( { ${2:props} } ) => {
+	${0:${VISUAL}}
+};
+
+$1.propTypes = {
+	$2
+};
+
+export default $1;
+endsnippet
+
+snippet useEffect
+useEffect( () => {
+	${0:${VISUAL}}
+}, [] );
+endsnippet
+
+snippet useState
+const [ ${1:state}, set${1/\w+\s*/\u$0/g} ] = useState( ${2:null} );
+endsnippet

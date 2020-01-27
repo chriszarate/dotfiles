@@ -154,17 +154,20 @@ let g:coc_global_extensions=[
 \ 'coc-phpls',
 \ 'coc-tsserver',
 \ 'coc-yaml',
+\ 'coc-yank',
 \ ]
 let g:coc_user_config={
 \ 'diagnostic.enable': v:false,
 \ 'suggest.echodocSupport': v:true,
-\ 'suggest.enablePreview': v:true
+\ 'suggest.enablePreview': v:true,
+\ 'suggest.noselect': v:false
 \ }
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nnoremap <leader>t :CocList symbols<cr>
-inoremap <silent><expr> <tab>
-\ pumvisible() ? "\<C-n>" : "\<tab>"
+nnoremap <silent> <leader>t :CocList symbols<cr>
+nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
+inoremap <silent><expr> <cr>
+\ pumvisible() ? coc#_select_confirm() : "\<C-g>u\<cr>\<c-r>=coc#on_enter()\<cr>"
 
 " better search highlighting
 Plug 'romainl/vim-cool'
@@ -172,11 +175,10 @@ Plug 'romainl/vim-cool'
 " meta-package for syntax highlighting
 Plug 'sheerun/vim-polyglot'
 
-" delete without yanking, map x to delete + yank
-Plug 'svermeulen/vim-cutlass'
-nnoremap x d
-xnoremap x d
-nnoremap X dd
+" snippets
+Plug 'SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger='<c-s>'
+let g:UltiSnipsListSnippets='<c-l>'
 
 " comment / uncomment
 Plug 'tpope/vim-commentary'

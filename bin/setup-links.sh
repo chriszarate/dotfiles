@@ -23,6 +23,7 @@ links=(
   '.config/fish::fish/functions'
   '.config/fish::fish/inc'
   '.config/wtf::wtf/config.yml'
+  '.vim::vim/UltiSnips'
 )
 for link in "${links[@]}"; do
   source="${link##*::}"
