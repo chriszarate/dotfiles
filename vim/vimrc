@@ -235,10 +235,10 @@ end
 
 " Buffers
 nnoremap <leader><tab> :b#<cr>
+nnoremap <leader>s :w<cr>
 nnoremap <leader>X :%bd<bar>e#<cr>
 nnoremap <leader>z :u<cr>
 nnoremap <leader>Z :redo<cr>
-nnoremap S :w<cr>
 
 " Harder
 nnoremap <up> <nop>
