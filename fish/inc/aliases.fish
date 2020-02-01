@@ -11,6 +11,10 @@ function d -d 'Jump to a directory in the documents folder'
 	fzf-cd-widget
 end
 
+function icat -d 'Display images in the terminal with kitty'
+	kitty +kitten icat $argv
+end
+
 function l -d 'Show all files in a friendly way'
 	exa -halF $argv
 end
