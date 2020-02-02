@@ -5,6 +5,7 @@ DOTFILES="$HOME/.dotfiles"
 
 # Symlink subdirectories.
 links=(
+  '.config/kitty::kitty'
   '.git_template::git/template'
 )
 for link in "${links[@]}"; do
@@ -21,7 +22,6 @@ links=(
   '.config/fish::fish/config.fish'
   '.config/fish::fish/functions'
   '.config/fish::fish/inc'
-  '.config/kitty::kitty/kitty.conf'
   '.config/wtf::wtf/config.yml'
   '.vim::vim/UltiSnips'
 )

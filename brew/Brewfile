@@ -37,7 +37,6 @@ tap "caskroom/fonts"
 
 cask "docker"
 cask "font-firacode-nerd-font"
-cask "kitty"
 cask "osxfuse"
 cask "postman"
 cask "quicklook-json"
