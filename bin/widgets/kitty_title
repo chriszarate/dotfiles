@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Update kitty title with periodically running widgets.
+
+main() {
+	local current_dir
+	local slack
+	local title
+	local update
+	local weather
+
+	current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+	while true; do
+		slack="$("$current_dir/slack/slack")"
+		weather="$("$current_dir/weather/weather")"
+
+		if [ -n "$slack" ]; then
+			slack="$slack  "
+		fi
+
+		update="$(echo "$slack $weather" | xargs)"
+
+		if [ -z "$update" ]; then
+			echo "Empty title. Skipping."
+		elif [ "$update" != "$title" ]; then
+			echo "Updating title: $update"
+			title="$update"
+			kitty @ set-tab-title "$title"
+		fi
+
+		sleep 15
+	done
+}
+
+main
