@@ -11,6 +11,10 @@ function d -d 'Jump to a directory in the documents folder'
 	fzf-cd-widget
 end
 
+function hud -d 'Show a HUD of useful info in a kitty tab title'
+	~/.dotfiles/bin/widgets/kitty_title
+end
+
 function icat -d 'Display images in the terminal with kitty'
 	kitty +kitten icat $argv
 end
