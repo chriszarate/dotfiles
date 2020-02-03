@@ -14,14 +14,18 @@ main() {
 	local cache_file
 	local cache_ttl
 	local current_dir
-	local now
 	local mod
+	local now
+	local weather
+	local weather_updated
 
 	current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 	cache_file="$current_dir/cache"
 	cache_ttl=900
 
 	if [[ -f "$cache_file" ]]; then
+		weather="$(cat "$cache_file")"
+
 		now=$(date +%s)
 		mod=$(date -r "$cache_file" +%s)
 		if [[ $(( now - mod )) -gt $cache_ttl ]]; then
@@ -31,10 +35,15 @@ main() {
 	fi
 
 	if [[ ! -f "$cache_file" ]]; then
-		get_weather > "$cache_file"
+		weather_updated="$(get_weather)"
+
+		if [ -n "$weather_updated" ]; then
+			weather="$weather_updated"
+			echo "$weather" > "$cache_file"
+		fi
 	fi
 
-	cat "$cache_file"
+	echo "$weather"
 }
 
 main
