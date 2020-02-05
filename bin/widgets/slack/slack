@@ -44,7 +44,7 @@ get_slack_status() {
 			err "auth error"
 			;;
 		*)
-			err "$status"
+			err "Unknown error: $status"
 			;;
 	esac
 
