@@ -53,7 +53,6 @@ set ttimeout
 set ttimeoutlen=100
 set ttyfast
 set updatetime=300
-set visualbell
 set wildignore+=build,dist,node_modules,vendor
 set wildmenu
 

@@ -13,6 +13,7 @@ function fish_title
 
     # Ignore some commands.
     case cd
+    case kitty
     case ls
     case sleep
 
