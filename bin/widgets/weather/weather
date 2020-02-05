@@ -30,7 +30,6 @@ main() {
 		mod=$(date -r "$cache_file" +%s)
 		if [[ $(( now - mod )) -gt $cache_ttl ]]; then
 			rm "$cache_file"
-			exit 0
 		fi
 	fi
 

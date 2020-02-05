@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
+current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cache_file="$current_dir/cache"
+error_file="$current_dir/error"
+token_file="$current_dir/token"
+
 err() {
-	local current_dir
-	local error_file
-
-	current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-	error_file="$current_dir/error"
-
-	echo "$1" > "$error_file"
+	echo "$1" | tee "$error_file"
 	exit 1
 }
 
@@ -22,11 +21,11 @@ get_slack_status() {
 	token="$1"
 
 	if ! jq --version >/dev/null 2>&1; then
-		err "NO_JQ"
+		err "jq not installed"
 	fi
 
 	if [[ -z $token ]]; then
-		err "TOK"
+		err "missing token"
 	fi
 
 	api="https://slack.com/api/users.counts"
@@ -36,13 +35,13 @@ get_slack_status() {
 		null)
 			;;
 		not_authed)
-			err 'AUTH'
+			err "auth error"
 			;;
 		invalid_auth)
-			err 'AUTH'
+			err "auth error"
 			;;
 		account_inactive)
-			err 'AUTH'
+			err "auth error"
 			;;
 		*)
 			err "$status"
@@ -59,26 +58,19 @@ get_slack_status() {
 }
 
 main() {
-	local cache_file
 	local cache_ttl
-	local current_dir
-	local error_file
 	local now
 	local mod
-	local token_file
 
-	current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-	cache_file="$current_dir/cache"
 	cache_ttl=60
-	token_file="$current_dir/token"
 
 	if [[ -f "$error_file" ]]; then
-		echo "ERR"
+		echo "check error file"
 		exit 1
 	fi
 
 	if [[ ! -f "$token_file" ]]; then
-		err "TOKEN"
+		err "missing token"
 	fi
 
 	if [[ -f "$cache_file" ]]; then
