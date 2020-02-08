@@ -5,32 +5,21 @@ DOTFILES="$HOME/.dotfiles"
 
 # Symlink subdirectories.
 links=(
+  '.config/bat::bat'
+  '.config/fish/completions::fish/completions'
+  '.config/fish/config.fish::fish/config.fish'
+  '.config/fish/functions::fish/functions'
+  '.config/fish/inc::fish/inc'
   '.config/kitty::kitty'
+  '.config/wtf::wtf'
   '.git_template::git/template'
+  '.vim/UltiSnips::vim/UltiSnips'
 )
 for link in "${links[@]}"; do
   source="${link##*::}"
   target="${link%%::*}"
   if [ ! -e "$HOME/$target" ]; then
     ln -s "$DOTFILES/$source" "$HOME/$target"
-  fi
-done
-
-# Symlink dotfiles in subdirectories.
-links=(
-  '.config/fish::fish/completions'
-  '.config/fish::fish/config.fish'
-  '.config/fish::fish/functions'
-  '.config/fish::fish/inc'
-  '.config/wtf::wtf/config.yml'
-  '.vim::vim/UltiSnips'
-)
-for link in "${links[@]}"; do
-  source="${link##*::}"
-  target="${link%%::*}"
-  if [ ! -e "$HOME/$target/$(basename "$source")" ]; then
-    mkdir -p "$HOME/$target"
-    ln -s "$DOTFILES/$source" "$HOME/$target/$(basename "$source")"
   fi
 done
 
