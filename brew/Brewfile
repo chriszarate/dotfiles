@@ -32,7 +32,6 @@ brew "trash"
 brew "tree"
 brew "urlview"
 brew "wget"
-brew "wtfutil"
 
 tap "caskroom/fonts"
 
