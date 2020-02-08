@@ -183,6 +183,9 @@ let g:UltiSnipsListSnippets='<c-l>'
 " comment / uncomment
 Plug 'tpope/vim-commentary'
 
+" shell helpers
+Plug 'tpope/vim-eunuch'
+
 " git
 Plug 'tpope/vim-fugitive'
 nnoremap <leader>g :Gstatus<cr>

@@ -44,7 +44,6 @@ get_slack_status() {
 			err "auth error"
 			;;
 		*)
-			err "Unknown error: $status"
 			;;
 	esac
 
@@ -53,7 +52,7 @@ get_slack_status() {
 	total=$((dms + mentions))
 
 	if [[ $total -gt 0 ]]; then
-		echo " $total"
+		echo " $total" | tee "$cache_file"
 	fi
 }
 
@@ -81,11 +80,11 @@ main() {
 		fi
 	fi
 
-	if [[ ! -f "$cache_file" ]]; then
-		get_slack_status "$(cat "$token_file")" > "$cache_file"
+	if [[ -f "$cache_file" ]]; then
+		cat "$cache_file"
+	else
+		get_slack_status "$(cat "$token_file")"
 	fi
-
-	cat "$cache_file"
 }
 
 main
