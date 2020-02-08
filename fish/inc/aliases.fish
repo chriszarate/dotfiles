@@ -31,6 +31,10 @@ function ping -d 'Use prettyping instead of ping'
 	prettyping --nolegend $argv
 end
 
+function today -d 'Show calendar events for later today'
+	icalBuddy -f -n eventsToday
+end
+
 function top -d 'Use htop instead of top'
 	sudo htop $argv
 end
