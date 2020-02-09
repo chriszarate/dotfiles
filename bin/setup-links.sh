@@ -11,8 +11,8 @@ links=(
   '.config/fish/functions::fish/functions'
   '.config/fish/inc::fish/inc'
   '.config/kitty::kitty'
-  '.config/wtf::wtf'
   '.git_template::git/template'
+  '.hammerspoon::hammerspoon'
   '.vim/UltiSnips::vim/UltiSnips'
 )
 for link in "${links[@]}"; do

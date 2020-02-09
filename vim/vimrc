@@ -212,6 +212,7 @@ let g:ale_linters={
 	\   'css':        ['stylelint'],
 	\   'dockerfile': ['hadolint'],
 	\   'javascript': ['eslint'],
+	\   'lua':        ['luacheck'],
 	\   'php':        ['phpcs'],
 	\   'sh':         ['shellcheck'],
 	\ }
