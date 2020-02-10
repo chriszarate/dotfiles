@@ -5,7 +5,7 @@ local module = {}
 
 local clickUrl = 'https://openweathermap.org'
 local fetchInterval = 600
-local fetchUrl = 'https://wttr.in/?format=%25C+%25t+%25m' -- url-encoded
+local fetchUrl = 'https://wttr.in/?format=%25C+%25t' -- url-encoded
 
 -- on click, open a useful url
 local function onClick()
