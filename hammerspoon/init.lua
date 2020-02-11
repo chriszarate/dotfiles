@@ -1,10 +1,18 @@
--- luacheck: globals hs hsmods
+-- luacheck: globals hs spoon
 
--- load config and expose on hs global
-hs.config = require 'config'
+-- load config
+local config = require 'config'
 
--- load mofules
-hsmods = {
-	slack = require 'modules/slack',
-	weather = require 'modules/weather'
+-- define spoons and config, which will be passed to :start
+local spoons = {
+	SlackNotifier = {
+		token = config.slackToken,
+	},
+	WttrWeather = {},
 }
+
+-- load spoons
+for spoonName, config in pairs(spoons) do
+	hs.loadSpoon(spoonName)
+	spoon[spoonName]:start(config)
+end
