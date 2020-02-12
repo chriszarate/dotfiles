@@ -1,4 +1,11 @@
--- menubar: slack dms / mentions count
+--- === SlackNotifier ===
+---
+--- Check Slack API periodically and provide a count of unread DMs and mentions
+--- in a menubar app. This spoon requires a Slack legacy app token to be
+--- provided to the :start method:
+---
+--- https://api.slack.com/legacy/custom-integrations/legacy-tokens
+
 -- luacheck: globals hs
 
 local obj = {}
@@ -88,7 +95,7 @@ end
 function obj:start(config)
 	local interval = config.interval or 60
 
-	-- see ../config.example.lua
+	-- https://api.slack.com/legacy/custom-integrations/legacy-tokens
 	self.fetchUrl = 'https://slack.com/api/users.counts?token=' .. config.token
 
 	-- create menubar (or restore it)

@@ -1,4 +1,7 @@
--- menubar: local weather from wttr.in
+--- === Wttr Weather ===
+---
+--- Load weather information from wttr.in and display in the menubar.
+
 -- luacheck: globals hs
 
 local obj = {}
@@ -22,7 +25,7 @@ local function onResponse(status, body)
 	end
 
 	-- be a little particular about formatting
-	local weather = body:gsub('[%s+]+', ' '):gsub('%s$', ''):gsub('°F', '°'):lower()
+	local weather = body:gsub('[%s+]+', ' '):gsub('%s$', ''):gsub('°[FC]', '°'):lower()
 
 	-- update the menu bar
 	obj.menu:setTitle(weather)
