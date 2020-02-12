@@ -5,6 +5,7 @@ local config = require 'config'
 
 -- define spoons and config, which will be passed to :start
 local spoons = {
+	HoldToQuit = {},
 	SlackNotifier = {
 		token = config.slackToken,
 	},
