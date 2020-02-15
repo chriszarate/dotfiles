@@ -58,10 +58,6 @@ function psql -d 'PostGreSQL 11'
 	docker-run postgres:11-alpine psql $argv
 end
 
-function python -d 'Python 3'
-	docker-run python:3-alpine python $argv
-end
-
 function ruby -d 'Ruby 2.6'
 	docker-run ruby:2.6-alpine ruby $argv
 end
