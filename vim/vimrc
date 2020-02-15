@@ -3,24 +3,14 @@
 " +===============+
 
 scriptencoding utf-8
-set autoindent
-set autoread
 set background=dark
-set backspace=indent,eol,start
 set colorcolumn=81
-set complete-=i
 set directory=/tmp
-set display+=lastline
-set encoding=utf-8
 set fileencoding=utf-8
 set foldmethod=syntax
-set formatoptions+=j " Delete comment character when joining commented lines
 set hidden
-set history=1000
 set hlsearch
 set ignorecase
-set incsearch
-set laststatus=2
 set lazyredraw
 set list
 set listchars=tab:┄\ ,trail:·
@@ -29,32 +19,51 @@ set nobackup
 set nofoldenable
 set noswapfile
 set nowritebackup
-set nrformats-=octal
 set number
 set pastetoggle=<leader>P
 set relativenumber
-set ruler
-set scrolloff=1
-set shell=/usr/bin/env\ bash " cuz we fish
 set shiftwidth=2
 set shortmess+=c
-set showcmd
-set sidescrolloff=5
 set signcolumn=yes
 set smartcase
 set smartindent
-set smarttab
 set splitbelow
 set splitright
 set synmaxcol=500
 set tabstop=2
 set termguicolors
-set ttimeout
-set ttimeoutlen=100
 set ttyfast
 set updatetime=300
-set wildignore+=build,dist,node_modules,vendor
+set wildignore+=.cache,build,dist,node_modules,vendor
+
+
+" +================================+
+" |  Select vim-sensible settings  |
+" +================================+
+
+set autoindent
+set autoread
+set backspace=indent,eol,start
+set complete-=i
+set display+=lastline
+set encoding=utf-8
+set formatoptions+=j " Delete comment character when joining commented lines
+set history=1000
+set incsearch
+set laststatus=2
+set nrformats-=octal
+set ruler
+set scrolloff=1
+set sessionoptions-=options
+set shell=/usr/bin/env\ bash " cuz we fish
+set sidescrolloff=5
+set smarttab
+set tabpagemax=50
+set ttimeout
+set ttimeoutlen=100
+set viminfo^=!
 set wildmenu
+set viewoptions-=options
 
 
 " +===========+
@@ -62,11 +71,6 @@ set wildmenu
 " +===========+
 
 call plug#begin()
-
-" autoclose html and jsx
-Plug 'alvan/vim-closetag'
-let g:closetag_filenames='*.html,*.jsx,*.xml'
-let g:closetag_xhtml_filenames='*.jsx,*.xml'
 
 " set working directory to git project root
 Plug 'airblade/vim-rooter'
@@ -130,11 +134,6 @@ nnoremap <leader>r :Vista!!<cr>
 " sidebar to show undo history
 Plug 'mbbill/undotree'
 nnoremap <leader>u :UndotreeToggle<cr>:UndotreeFocus<cr>
-
-" smart buffer closing with save prompt
-Plug 'mhinz/vim-sayonara'
-nnoremap <silent> <leader>q :Sayonara!<cr>
-let g:sayonara_confirm_quit=1
 
 " git gutter
 Plug 'mhinz/vim-signify'
@@ -245,9 +244,6 @@ endif
 " Buffers
 nnoremap <leader><tab> :b#<cr>
 nnoremap <leader>s :w<cr>
-nnoremap <leader>X :%bd<bar>e#<cr>
-nnoremap <leader>z :u<cr>
-nnoremap <leader>Z :redo<cr>
 
 " Harder
 nnoremap <up> <nop>
@@ -267,6 +263,10 @@ nnoremap _ <c-^>
 
 " Navigation
 inoremap jj <esc>
+
+" Undo
+nnoremap <leader>z :u<cr>
+nnoremap <leader>Z :redo<cr>
 
 " Windows
 map <space><space> <c-w>
