@@ -31,6 +31,10 @@ function today -d 'Show calendar events for later today'
 	icalBuddy -f -n eventsToday
 end
 
+function tomorrow -d 'Show calendar events for tomorrow'
+	icalBuddy -f eventsFrom:tomorrow to:tomorrow
+end
+
 function top -d 'Use htop instead of top'
 	sudo htop $argv
 end
