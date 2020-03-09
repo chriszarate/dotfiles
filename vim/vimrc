@@ -208,12 +208,15 @@ let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
 " linting
 Plug 'w0rp/ale'
 let g:ale_linters={
-	\   'css':        ['stylelint'],
-	\   'dockerfile': ['hadolint'],
-	\   'javascript': ['eslint'],
-	\   'lua':        ['luacheck'],
-	\   'php':        ['phpcs'],
-	\   'sh':         ['shellcheck'],
+	\   'css':             ['stylelint'],
+	\   'scss':            ['stylelint'],
+	\   'dockerfile':      ['hadolint'],
+	\   'javascript':      ['eslint'],
+	\   'typescript':      ['eslint'],
+	\   'typescriptreact': ['eslint'],
+	\   'lua':             ['luacheck'],
+	\   'php':             ['phpcs'],
+	\   'sh':              ['shellcheck'],
 	\ }
 let g:ale_php_phpcs_standard='WordPress'
 let g:ale_sign_column_always=1
