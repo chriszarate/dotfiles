@@ -174,11 +174,6 @@ Plug 'romainl/vim-cool'
 " meta-package for syntax highlighting
 Plug 'sheerun/vim-polyglot'
 
-" snippets
-Plug 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger='<c-s>'
-let g:UltiSnipsListSnippets='<c-l>'
-
 " comment / uncomment
 Plug 'tpope/vim-commentary'
 
