@@ -9,10 +9,6 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
-[init]
-	templatedir = ~/.git_template
-[interactive]
-	#diffFilter = diff-so-fancy --patch-mode | less --tabs=4 -RFX
 [alias]
 	a   = add --patch
 	aa  = add

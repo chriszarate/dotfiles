@@ -25,7 +25,6 @@ done
 
 # Symlink dotfiles.
 for config in \
-  ctags/ctags \
   input/inputrc \
   git/gitconfig \
   git/gitignore_global \
