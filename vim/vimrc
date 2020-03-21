@@ -126,11 +126,6 @@ nnoremap <leader>? :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
 
-" sidebar to show lsp symbols
-Plug 'liuchengxu/vista.vim'
-let g:vista_default_executive='coc'
-nnoremap <leader>r :Vista!!<cr>
-
 " sidebar to show undo history
 Plug 'mbbill/undotree'
 nnoremap <leader>u :UndotreeToggle<cr>:UndotreeFocus<cr>
