@@ -202,12 +202,14 @@ let g:ale_linters={
 	\   'scss':            ['stylelint'],
 	\   'dockerfile':      ['hadolint'],
 	\   'javascript':      ['eslint'],
+	\   'javascriptreact': ['eslint'],
 	\   'typescript':      ['eslint'],
 	\   'typescriptreact': ['eslint'],
 	\   'lua':             ['luacheck'],
 	\   'php':             ['phpcs'],
 	\   'sh':              ['shellcheck'],
 	\ }
+let g:ale_linters_explicit=1
 let g:ale_php_phpcs_standard='WordPress'
 let g:ale_sign_column_always=1
 let g:ale_sign_error='x'
