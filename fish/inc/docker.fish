@@ -14,10 +14,6 @@ function dvrm -d 'Remove unused Docker volumes'
 	docker volume ls -qf dangling=true | xargs docker volume rm
 end
 
-function aws -d 'AWS CLI'
-	env DOCKER_RUN_OPTIONS="-v $HOME/.aws:/.aws" docker-run mesosphere/aws-cli $argv
-end
-
 function composer -d 'PHP Composer 1.8'
 	docker-run composer:1.8 $argv
 end
