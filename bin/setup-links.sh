@@ -3,6 +3,9 @@
 # Relative to home directory.
 DOTFILES="$HOME/.dotfiles"
 
+# Create .config directory.
+mkdir -p "$HOME/.config/fish"
+
 # Symlink subdirectories.
 links=(
   '.config/bat::bat'
