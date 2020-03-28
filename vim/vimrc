@@ -121,14 +121,10 @@ nnoremap <leader>c :Commands<cr>
 nnoremap <leader>h :History<cr>
 nnoremap <leader>p :Files<cr>
 nnoremap <leader>/ :call fzf#vim#ag('', {'options': '--delimiter : --nth 4..'})<cr>
-nnoremap <leader>? :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>')) . ' --delimiter : --nth 4..'})<cr>
+nnoremap <leader># :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>')) . ' --delimiter : --nth 4..'})<cr>
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
-
-" sidebar to show undo history
-Plug 'mbbill/undotree'
-nnoremap <leader>u :UndotreeToggle<cr>:UndotreeFocus<cr>
 
 " git gutter
 Plug 'mhinz/vim-signify'
@@ -138,31 +134,6 @@ let g:signify_vcs_list=['git']
 Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_sign_column="bg0"
-
-" live that good vscode life
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions=[
-\ 'coc-emoji',
-\ 'coc-json',
-\ 'coc-pairs',
-\ 'coc-phpls',
-\ 'coc-tsserver',
-\ 'coc-yaml',
-\ 'coc-yank',
-\ ]
-let g:coc_start_at_startup=0
-let g:coc_user_config={
-\ 'diagnostic.enable': v:false,
-\ 'suggest.echodocSupport': v:true,
-\ 'suggest.enablePreview': v:true,
-\ 'suggest.noselect': v:false
-\ }
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-nnoremap <silent> <leader>t :CocList symbols<cr>
-nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
-inoremap <silent><expr> <cr>
-\ pumvisible() ? coc#_select_confirm() : "\<C-g>u\<cr>\<c-r>=coc#on_enter()\<cr>"
 
 " better search highlighting
 Plug 'romainl/vim-cool'
@@ -186,15 +157,6 @@ Plug 'tpope/vim-repeat'
 
 " more previous / next commands with []
 Plug 'tpope/vim-unimpaired'
-
-" make peace with netrw
-Plug 'tpope/vim-vinegar'
-let g:netrw_altfile=1
-let g:netrw_fastbrowse=0
-
-" highlight hints on cursor jump
-Plug 'unblevable/quick-scope'
-let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
 
 " linting
 Plug 'w0rp/ale'
@@ -238,24 +200,15 @@ endif
 " +==========+
 
 " Buffers
-nnoremap <leader><tab> :b#<cr>
 nnoremap <leader>s :w<cr>
-
-" Harder
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-vnoremap <up> <nop>
-vnoremap <down> <nop>
+nnoremap <leader>x :bd!<cr>
 
 " Leader
 nmap <space> <leader>
 
 " Jumps
-nnoremap <tab> <c-o>
-nnoremap <s-tab> <c-i>
-nnoremap _ <c-^>
+nnoremap <tab> :bnext<cr>
+nnoremap <s-tab> :bprev<cr>
 
 " Navigation
 inoremap jj <esc>
