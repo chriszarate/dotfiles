@@ -118,7 +118,7 @@ let g:test#strategy='vimterminal'
 " fuzzy finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-let $FZF_DEFAULT_COMMAND='ag -g ""'
+let $FZF_DEFAULT_COMMAND='ag -g "" --hidden --ignore .git'
 let $FZF_DEFAULT_OPTS="--exact --bind ctrl-a:select-all"
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>c :Commands<cr>

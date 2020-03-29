@@ -12,10 +12,10 @@
 [alias]
 	a   = add --patch
 	aa  = add
-	af  = "!git ls-files -m -o --exclude-standard | fzf-tmux --preview 'git diff --color=always {}' --print0 -m | xargs -0 -t -o git add"
+	af  = "!git ls-files -m -o --exclude-standard | fzf --preview 'git diff --color=always {}' --print0 -m | xargs -0 -t -o git add"
 	b   = branch
 	bc  = "!git symbolic-ref --short HEAD | tr -d '\\n'"
-	bd  = "!git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)' | fzf-tmux --no-hscroll --no-multi --ansi --preview 'git --no-pager log -50 --pretty=format:\"%h  %an (%ar)  %s\" {}' --print0 | xargs -0 -t -o git checkout"
+	bd  = "!git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)' | fzf --no-hscroll --no-multi --ansi --preview 'git --no-pager log -50 --pretty=format:\"%h  %an (%ar)  %s\" {}' --print0 | xargs -0 -t -o git checkout"
 	c   = commit
 	ca  = commit --amend
 	cc  = "!git log --pretty=format:'%h' -n 1"
@@ -45,7 +45,7 @@
 	s   = status --short --branch
 	sh  = show
 	st  = stash
-	stl = "!git stash list --pretty='%C(yellow)%gd %<(14)%Cgreen%cr %C(blue)%gs' | fzf-tmux --ansi --no-multi --preview 'git stash show --color=always -p {1}' | cut -f 1 -d ' ' | xargs -t -o git stash branch stash-$(date +%Y%m%d%H%M)"
+	stl = "!git stash list --pretty='%C(yellow)%gd %<(14)%Cgreen%cr %C(blue)%gs' | fzf --ansi --no-multi --preview 'git stash show --color=always -p {1}' | cut -f 1 -d ' ' | xargs -t -o git stash branch stash-$(date +%Y%m%d%H%M)"
 	stp = stash pop
 	stu = stash -u
 	su  = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`

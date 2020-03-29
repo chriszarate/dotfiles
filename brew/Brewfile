@@ -1,7 +1,6 @@
 brew "ack"
 brew "awscli"
 brew "bat"
-brew "broot"
 brew "diff-so-fancy"
 brew "exa"
 brew "fd"
