@@ -55,7 +55,6 @@ set nrformats-=octal
 set ruler
 set scrolloff=1
 set sessionoptions-=options
-set shell=/usr/bin/env\ bash " cuz we fish
 set sidescrolloff=5
 set smarttab
 set tabpagemax=50
@@ -77,6 +76,11 @@ Plug 'airblade/vim-rooter'
 
 " end whitespace wars
 Plug 'editorconfig/editorconfig-vim'
+
+" colorscheme
+Plug 'gruvbox-community/gruvbox'
+let g:gruvbox_contrast_dark="hard"
+let g:gruvbox_sign_column="bg0"
 
 " lightweight statusline
 Plug 'itchyny/lightline.vim'
@@ -126,14 +130,15 @@ nnoremap <leader># :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
 
+" sane file browsing
+Plug 'mcchrish/nnn.vim'
+let g:nnn#action = { '<c-v>': 'vsplit' }
+let g:nnn#set_default_mappings=0
+nnoremap <silent> - :NnnPicker '%:p:h'<cr>
+
 " git gutter
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list=['git']
-
-" colorscheme
-Plug 'morhetz/gruvbox'
-let g:gruvbox_contrast_dark="hard"
-let g:gruvbox_sign_column="bg0"
 
 " better search highlighting
 Plug 'romainl/vim-cool'
@@ -185,14 +190,7 @@ call plug#end()
 " |  Theme  |
 " +=========+
 
-if &t_Co >= 256
-	colorscheme gruvbox
-end
-
-if &term =~# '^screen'
-	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
+colorscheme gruvbox
 
 
 " +==========+
