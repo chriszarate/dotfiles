@@ -130,18 +130,16 @@ nnoremap <leader># :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
 
-" sane file browsing
+" sane file browsing, requires nnn
 Plug 'mcchrish/nnn.vim'
 let g:nnn#action = { '<c-v>': 'vsplit' }
 let g:nnn#set_default_mappings=0
 nnoremap <silent> - :NnnPicker '%:p:h'<cr>
+nnoremap <silent> _ :NnnPicker<cr>
 
 " git gutter
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list=['git']
-
-" better search highlighting
-Plug 'romainl/vim-cool'
 
 " meta-package for syntax highlighting
 Plug 'sheerun/vim-polyglot'
@@ -210,6 +208,9 @@ nnoremap <s-tab> :bprev<cr>
 
 " Navigation
 inoremap jj <esc>
+
+" Search (also disables <cr> for navigation)
+nnoremap <silent> <cr> :noh<cr>
 
 " Undo
 nnoremap <leader>z :u<cr>
