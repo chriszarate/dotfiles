@@ -209,8 +209,8 @@ nnoremap <s-tab> :bprev<cr>
 " Navigation
 inoremap jj <esc>
 
-" Search (also disables <cr> for navigation)
-nnoremap <silent> <cr> :noh<cr>
+" Search
+nnoremap <silent> <cr> :noh<cr><cr>
 
 " Undo
 nnoremap <leader>z :u<cr>
