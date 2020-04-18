@@ -8,6 +8,7 @@ set colorcolumn=81
 set complete=.,b,u
 set completeopt=menu,preview
 set directory=/tmp
+set fcs=vert:│
 set fileencoding=utf-8
 set foldmethod=syntax
 set hidden
@@ -191,6 +192,7 @@ call plug#end()
 " +=========+
 
 colorscheme gruvbox
+highlight ColorColumn guibg=gray15
 highlight SpecialKey guifg=gray30
 
 
