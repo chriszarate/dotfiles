@@ -5,6 +5,8 @@
 scriptencoding utf-8
 set background=dark
 set colorcolumn=81
+set complete=.,b,u
+set completeopt=menu,preview
 set directory=/tmp
 set fileencoding=utf-8
 set foldmethod=syntax
@@ -35,6 +37,7 @@ set termguicolors
 set ttyfast
 set updatetime=300
 set wildignore+=.cache,.git,build,dist,node_modules,vendor
+set wildmode=longest,list:longest
 
 
 " +================================+
@@ -44,7 +47,6 @@ set wildignore+=.cache,.git,build,dist,node_modules,vendor
 set autoindent
 set autoread
 set backspace=indent,eol,start
-set complete-=i
 set display+=lastline
 set encoding=utf-8
 set formatoptions+=j " Delete comment character when joining commented lines
@@ -132,9 +134,9 @@ Plug 'junegunn/vim-peekaboo'
 
 " sane file browsing, requires nnn
 Plug 'mcchrish/nnn.vim'
-let g:nnn#action = { '<c-v>': 'vsplit' }
+let g:nnn#action={ '<c-v>': 'vsplit' }
 let g:nnn#set_default_mappings=0
-nnoremap <silent> - :NnnPicker '%:p:h'<cr>
+nnoremap <silent> - :NnnPicker '%:p:h'<cr><cr>
 nnoremap <silent> _ :NnnPicker<cr>
 
 " git gutter
@@ -189,6 +191,7 @@ call plug#end()
 " +=========+
 
 colorscheme gruvbox
+highlight SpecialKey guifg=gray30
 
 
 " +==========+
@@ -197,24 +200,18 @@ colorscheme gruvbox
 
 " Buffers
 nnoremap <leader>s :w<cr>
-nnoremap <leader>x :bd!<cr>
+
+" Completion
+inoremap <tab> <c-p>
 
 " Leader
 nmap <space> <leader>
-
-" Jumps
-nnoremap <tab> :bnext<cr>
-nnoremap <s-tab> :bprev<cr>
 
 " Navigation
 inoremap jj <esc>
 
 " Search
 nnoremap <silent> <cr> :noh<cr><cr>
-
-" Undo
-nnoremap <leader>z :u<cr>
-nnoremap <leader>Z :redo<cr>
 
 " Windows
 map <space><space> <c-w>
