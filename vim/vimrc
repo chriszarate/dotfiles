@@ -203,9 +203,6 @@ highlight SpecialKey guifg=gray30
 " Buffers
 nnoremap <leader>s :w<cr>
 
-" Completion
-inoremap <tab> <c-p>
-
 " Leader
 nmap <space> <leader>
 
