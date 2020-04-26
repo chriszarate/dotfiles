@@ -1,72 +1,64 @@
-" +===============+
-" |  Environment  |
-" +===============+
+" +=======================+
+" |  Extend Vim defaults  |
+" +=======================+
 
-scriptencoding utf-8
-set background=dark
-set colorcolumn=81
+" https://github.com/vim/vim/blob/master/runtime/defaults.vim
+source $VIMRUNTIME/defaults.vim
+
+
+" +====================+
+" |  General settings  |
+" +====================+
+
+set autoread           " reload file if it changed outside vim
+set background=dark    " dark
+set colorcolumn=81     " column to show max line length
+set directory=/tmp     " put swap files in tmp
+set encoding=utf-8     " default encoding
+set fcs=vert:│         " unbroken line between vertical splits
+set foldmethod=syntax  " use syntax highlighting to inform folds
+set hidden             " keep buffers loaded
+set laststatus=2       " always show status line
+set lazyredraw         " don't redraw screen during macros and untyped commands
+set list               " with listchars, show invisibles
+set listchars=tab:┄\ ,trail:·
+set number             " line numbers
+set relativenumber     " line numbers relative to the current line
+set shell=/bin/bash    " most plugins expect bash
+set signcolumn=yes     " always show the sign column
+set synmaxcol=500      " don't bother syntax highlighting after a point
+set termguicolors      " use true colors from terminal
+
+
+" +==============+
+" |  Completion  |
+" +==============+
+
 set complete=.,b,u
 set completeopt=menu,preview
-set directory=/tmp
-set fcs=vert:│
-set fileencoding=utf-8
-set foldmethod=syntax
-set hidden
-set hlsearch
-set ignorecase
-set lazyredraw
-set list
-set listchars=tab:┄\ ,trail:·
-set mouse=a
-set nobackup
-set nofoldenable
-set noswapfile
-set nowritebackup
-set number
-set pastetoggle=<leader>P
-set relativenumber
-set shell=/bin/bash
-set shiftwidth=2
-set shortmess+=c
-set signcolumn=yes
-set smartcase
-set smartindent
-set splitbelow
-set splitright
-set synmaxcol=500
-set tabstop=2
-set termguicolors
-set ttyfast
-set updatetime=300
 set wildignore+=.cache,.git,build,dist,node_modules,vendor
 set wildmode=longest,list:longest
 
 
-" +================================+
-" |  Select vim-sensible settings  |
-" +================================+
+" +=============+
+" |  Indention  |
+" +=============+
 
+" A fairly inscrutable combination that seems to work.
 set autoindent
-set autoread
-set backspace=indent,eol,start
-set display+=lastline
-set encoding=utf-8
-set formatoptions+=j " Delete comment character when joining commented lines
-set history=1000
-set incsearch
-set laststatus=2
-set nrformats-=octal
-set ruler
-set scrolloff=1
-set sessionoptions-=options
-set sidescrolloff=5
+set shiftwidth=2
+set smartindent
 set smarttab
-set tabpagemax=50
-set ttimeout
-set ttimeoutlen=100
-set viminfo^=!
-set wildmenu
-set viewoptions-=options
+set tabstop=2
+
+
+" +=============+
+" |  Searching  |
+" +=============+
+
+set hlsearch    " highlight search matches
+set ignorecase  " ignore case (but see 'smartcase')
+set smartcase   " respect case when it includes uppercase letters
 
 
 " +===========+
@@ -199,11 +191,12 @@ highlight ColorColumn guibg=gray15
 highlight SpecialKey guifg=gray30
 
 
-" +==========+
-" |  Remaps  |
-" +==========+
+" +========+
+" |  Maps  |
+" +========+
 
 " Buffers
+nnoremap , <c-^>
 nnoremap <leader>s :w<cr>
 
 " Leader
