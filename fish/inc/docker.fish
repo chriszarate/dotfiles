@@ -15,11 +15,12 @@ function dvrm -d 'Remove unused Docker volumes'
 end
 
 function phpserver -d 'Start a PHP server in the current directory'
-	docker-run php:7.3-alpine php -S 127.0.0.1:8000
+	env DOCKER_RUN_OPTIONS="-p 8000:8000" docker-run php:7.3-alpine php -S 0.0.0.0:8000
 end
 
 function server -d 'Start an Nginx server in the current directory'
-	env DOCKER_RUN_OPTIONS="-p 8000:80" DOCKER_WORKDIR="/usr/share/nginx/html" docker-run nginx:alpine
+	# Not using docker-run because of nginx needs to run as root
+	docker run --rm -it -p 8000:80 -v (pwd):/usr/share/nginx/html:ro nginx:alpine
 end
 
 function shell -d 'Start my own customized shell in a docker container'
