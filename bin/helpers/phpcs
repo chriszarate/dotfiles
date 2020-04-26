@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-docker-run node:10-alpine $@
+docker-run wpengine/phpcs $@
 exit $?

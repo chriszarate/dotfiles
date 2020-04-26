@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+DOCKER_WORKDIR="/tmp"
+docker-run jrottenberg/ffmpeg $@
+exit $?

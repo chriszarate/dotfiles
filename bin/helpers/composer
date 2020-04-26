@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-docker-run php:7.1-alpine $@
+docker-run composer:1.8 $@
 exit $?

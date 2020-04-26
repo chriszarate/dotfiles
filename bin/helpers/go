@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+DOCKER_RUN_OPTIONS="-v $HOME/.cache:/.cache"
+docker-run golang go $@
+exit $?

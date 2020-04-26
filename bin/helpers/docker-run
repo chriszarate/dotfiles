@@ -8,7 +8,7 @@ if [ -t 0 ] && [ -t 1 ]; then
 	DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS -t"
 fi
 
-if [ $(uname) = "Linux" ]; then
+if [ "$(uname)" = "Linux" ]; then
 	DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS --network=host"
 fi
 
