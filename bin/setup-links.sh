@@ -39,7 +39,6 @@ done
 
 # Symlink helpers.
 for helper in "$DOTFILES/bin/helpers"/*; do
-	echo "$helper"
 	if [ ! -e "/usr/local/bin/$(basename "$helper")" ]; then
 		sudo ln -s "$helper" "/usr/local/bin/$(basename "$helper")"
 	fi
