@@ -25,6 +25,7 @@ set nowritebackup
 set number
 set pastetoggle=<leader>P
 set relativenumber
+set shell=/bin/bash
 set shiftwidth=2
 set shortmess+=c
 set signcolumn=yes
@@ -121,14 +122,15 @@ let g:test#strategy='vimterminal'
 " fuzzy finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+let g:fzf_layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_COMMAND='ag -g "" --hidden --ignore .git'
 let $FZF_DEFAULT_OPTS="--exact --bind ctrl-a:select-all"
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>c :Commands<cr>
-nnoremap <leader>h :History<cr>
-nnoremap <leader>p :Files<cr>
-nnoremap <leader>/ :call fzf#vim#ag('', {'options': '--delimiter : --nth 4..'})<cr>
-nnoremap <leader># :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>')) . ' --delimiter : --nth 4..'})<cr>
+nnoremap <silent> <leader>b :Buffers<cr>
+nnoremap <silent> <leader>c :Commands<cr>
+nnoremap <silent> <leader>h :History<cr>
+nnoremap <silent> <leader>p :Files<cr>
+nnoremap <silent> <leader>/ :call fzf#vim#ag('', {'options': '--delimiter : --nth 4..'})<cr>
+nnoremap <silent> <leader># :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>')) . ' --delimiter : --nth 4..'})<cr>
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
@@ -136,8 +138,9 @@ Plug 'junegunn/vim-peekaboo'
 " sane file browsing, requires nnn
 Plug 'mcchrish/nnn.vim'
 let g:nnn#action={ '<c-v>': 'vsplit' }
+let g:nnn#layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
 let g:nnn#set_default_mappings=0
-nnoremap <silent> - :NnnPicker '%:p:h'<cr><cr>
+nnoremap <silent> - :NnnPicker '%:p:h'<cr>
 nnoremap <silent> _ :NnnPicker<cr>
 
 " git gutter
