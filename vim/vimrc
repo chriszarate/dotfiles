@@ -22,6 +22,7 @@ set laststatus=2       " always show status line
 set lazyredraw         " don't redraw screen during macros and untyped commands
 set list               " with listchars, show invisibles
 set listchars=tab:┄\ ,trail:·
+set nofoldenable       " open all folds by default
 set number             " line numbers
 set relativenumber     " line numbers relative to the current line
 set shell=/bin/bash    " most plugins expect bash
@@ -122,7 +123,6 @@ nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>p :Files<cr>
 nnoremap <silent> <leader>/ :call fzf#vim#ag('', {'options': '--delimiter : --nth 4..'})<cr>
-nnoremap <silent> <leader># :call fzf#vim#ag('', {'options': '-q ' . shellescape(expand('<cword>')) . ' --delimiter : --nth 4..'})<cr>
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
@@ -138,6 +138,12 @@ nnoremap <silent> _ :NnnPicker<cr>
 " git gutter
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list=['git']
+
+" who needs a language server when you can search well
+Plug 'pechorin/any-jump.vim'
+let g:any_jump_disable_default_keybindings=1
+let g:any_jump_search_prefered_engine='ag'
+nnoremap <silent> <leader>j :AnyJump<cr>
 
 " meta-package for syntax highlighting
 Plug 'sheerun/vim-polyglot'
