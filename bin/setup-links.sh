@@ -27,8 +27,10 @@ done
 # Symlink dotfiles.
 for config in \
 	input/inputrc \
+	fd/fdignore \
 	git/gitconfig \
 	git/gitignore_global \
+	rg/rgignore \
 	tmux/tmux.conf \
 	vim/vimrc
 do

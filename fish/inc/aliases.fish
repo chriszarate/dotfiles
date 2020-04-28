@@ -1,7 +1,3 @@
-function a -d 'Ag with additional ignores and custom paging'
-	ag --ignore={build,build-directory,dist,node_modules,vendor} --ignore='*[-.]min[-.]*' --ignore=bundle.js --ignore='*.json' --pager='less -R' -W 400 $argv
-end
-
 function cat -d 'Use bat instead of cat'
 	bat $argv
 end
