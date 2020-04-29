@@ -142,8 +142,11 @@ let g:signify_vcs_list=['git']
 " who needs a language server when you can search well
 Plug 'pechorin/any-jump.vim'
 let g:any_jump_disable_default_keybindings=1
-let g:any_jump_search_prefered_engine='rg'
+let g:any_jump_grouping_enabled=1
+let g:any_jump_window_height_ratio=0.8
+let g:any_jump_window_width_ratio=0.8
 nnoremap <silent> <leader>j :AnyJump<cr>
+nnoremap <silent> <leader>k :AnyJumpLastResults<cr>
 
 " meta-package for syntax highlighting
 Plug 'sheerun/vim-polyglot'
