@@ -1,3 +1,16 @@
+#     ____      ____
+#    / __/___  / __/
+#   / /_/_  / / /_
+#  / __/ / /_/ __/
+# /_/   /___/_/ key-bindings.fish
+#
+# - $FZF_TMUX_OPTS
+# - $FZF_CTRL_T_COMMAND
+# - $FZF_CTRL_T_OPTS
+# - $FZF_CTRL_R_OPTS
+# - $FZF_ALT_C_COMMAND
+# - $FZF_ALT_C_OPTS
+
 # Key bindings
 # ------------
 function fzf_key_bindings
@@ -10,13 +23,13 @@ function fzf_key_bindings
 
     # "-path \$dir'*/\\.*'" matches hidden files/folders inside $dir but not
     # $dir itself, even if hidden.
-    set -q FZF_CTRL_T_COMMAND; or set -l FZF_CTRL_T_COMMAND "
+    test -n "$FZF_CTRL_T_COMMAND"; or set -l FZF_CTRL_T_COMMAND "
     command find -L \$dir -mindepth 1 \\( -path \$dir'*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' \\) -prune \
     -o -type f -print \
     -o -type d -print \
     -o -type l -print 2> /dev/null | sed 's@^\./@@'"
 
-    set -q FZF_TMUX_HEIGHT; or set FZF_TMUX_HEIGHT 40%
+    test -n "$FZF_TMUX_HEIGHT"; or set FZF_TMUX_HEIGHT 40%
     begin
       set -lx FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS"
       eval "$FZF_CTRL_T_COMMAND | "(__fzfcmd)' -m --query "'$fzf_query'"' | while read -l r; set result $result $r; end
@@ -36,7 +49,7 @@ function fzf_key_bindings
   end
 
   function fzf-history-widget -d "Show command history"
-    set -q FZF_TMUX_HEIGHT; or set FZF_TMUX_HEIGHT 40%
+    test -n "$FZF_TMUX_HEIGHT"; or set FZF_TMUX_HEIGHT 40%
     begin
       set -lx FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT $FZF_DEFAULT_OPTS --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS +m"
 
@@ -47,7 +60,7 @@ function fzf_key_bindings
       # history's -z flag was added in fish 2.4.0, so don't use it for versions
       # before 2.4.0.
       if [ "$FISH_MAJOR" -gt 2 -o \( "$FISH_MAJOR" -eq 2 -a "$FISH_MINOR" -ge 4 \) ];
-        history -z | eval (__fzfcmd) --read0 -q '(commandline)' | perl -pe 'chomp if eof' | read -lz result
+        history -z | eval (__fzfcmd) --read0 --print0 -q '(commandline)' | read -lz result
         and commandline -- $result
       else
         history | eval (__fzfcmd) -q '(commandline)' | read -l result
@@ -62,10 +75,10 @@ function fzf_key_bindings
     set -l dir $commandline[1]
     set -l fzf_query $commandline[2]
 
-    set -q FZF_ALT_C_COMMAND; or set -l FZF_ALT_C_COMMAND "
+    test -n "$FZF_ALT_C_COMMAND"; or set -l FZF_ALT_C_COMMAND "
     command find -L \$dir -mindepth 1 \\( -path \$dir'*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' \\) -prune \
     -o -type d -print 2> /dev/null | sed 's@^\./@@'"
-    set -q FZF_TMUX_HEIGHT; or set FZF_TMUX_HEIGHT 40%
+    test -n "$FZF_TMUX_HEIGHT"; or set FZF_TMUX_HEIGHT 40%
     begin
       set -lx FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS"
       eval "$FZF_ALT_C_COMMAND | "(__fzfcmd)' +m --query "'$fzf_query'"' | read -l result
@@ -82,10 +95,12 @@ function fzf_key_bindings
   end
 
   function __fzfcmd
-    set -q FZF_TMUX; or set FZF_TMUX 0
-    set -q FZF_TMUX_HEIGHT; or set FZF_TMUX_HEIGHT 40%
-    if [ $FZF_TMUX -eq 1 ]
-      echo "fzf-tmux -d$FZF_TMUX_HEIGHT"
+    test -n "$FZF_TMUX"; or set FZF_TMUX 0
+    test -n "$FZF_TMUX_HEIGHT"; or set FZF_TMUX_HEIGHT 40%
+    if [ -n "$FZF_TMUX_OPTS" ]
+      echo "fzf-tmux $FZF_TMUX_OPTS -- "
+    else if [ $FZF_TMUX -eq 1 ]
+      echo "fzf-tmux -d$FZF_TMUX_HEIGHT -- "
     else
       echo "fzf"
     end
@@ -93,12 +108,12 @@ function fzf_key_bindings
 
   bind \ct fzf-file-widget
   bind \cr fzf-history-widget
-  bind \cd fzf-cd-widget
+  bind \ec fzf-cd-widget
 
   if bind -M insert > /dev/null 2>&1
     bind -M insert \ct fzf-file-widget
     bind -M insert \cr fzf-history-widget
-    bind -M insert \cd fzf-cd-widget
+    bind -M insert \ec fzf-cd-widget
   end
 
   function __fzf_parse_commandline -d 'Parse the current command line token and return split of existing filepath and rest of token'
