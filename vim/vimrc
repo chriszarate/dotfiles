@@ -115,14 +115,13 @@ let g:test#strategy='vimterminal'
 " fuzzy finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-let g:fzf_layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_COMMAND='fd --type f --hidden'
 let $FZF_DEFAULT_OPTS='--bind ctrl-a:select-all --exact'
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>p :Files<cr>
-nnoremap <silent> <leader>/ :call fzf#vim#ag('', {'options': '--delimiter : --nth 4..'})<cr>
+nnoremap <silent> <leader>/ :call fzf#vim#ag('', fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}))<cr>
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
