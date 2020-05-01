@@ -3,15 +3,6 @@
 # Relative to home directory.
 DOTFILES="$HOME/.dotfiles"
 
-# Install linuxbrew packages.
-if [ "$(uname)" = "Linux" ]; then
-  if ! command -v brew >/dev/null; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-  fi
-
-  /home/linuxbrew/.linuxbrew/bin/brew bundle --file="$DOTFILES/brew/Brewfile-linux"
-fi
-
 # Install brew packages and casks
 if [ "$(uname)" = "Darwin" ]; then
   if ! command -v brew >/dev/null; then

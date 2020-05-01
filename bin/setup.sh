@@ -3,7 +3,6 @@
 # Relative to home directory.
 DOTFILES="$HOME/.dotfiles"
 
-$DOTFILES/bin/setup-apt.sh
 $DOTFILES/bin/setup-homebrew.sh
 $DOTFILES/bin/setup-links.sh
 
@@ -16,11 +15,6 @@ if [ -n "$fish_path" ]; then
 	if [ "$SHELL" != "$fish_path" ]; then
 		chsh -s "$fish_path"
 	fi
-fi
-
-# Load dconf.
-if [ "$(uname)" = "Linux" ]; then
-	dconf load / < "$DOTFILES/dconf/user.conf"
 fi
 
 # Install tmux plugin manager.
