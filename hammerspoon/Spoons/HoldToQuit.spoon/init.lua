@@ -2,6 +2,8 @@
 ---
 --- Instead of pressing ⌘Q, hold ⌘Q to close applications.
 
+-- luacheck: globals hs
+
 local obj = {}
 obj.__index = obj
 
@@ -102,7 +104,7 @@ function obj:bindHotkeys(mapping)
     if (self.hotkeyQbj) then
         self.hotkeyQbj:delete()
     end
-    
+
     local mod = mapping["quit"][1]
     local key = mapping["quit"][2]
     self.hotkeyQbj = hs.hotkey.bind(mod, key, function() obj:onKeyDown() end, function() obj:onKeyUp() end)

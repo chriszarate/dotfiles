@@ -5,6 +5,9 @@ local config = require 'config'
 
 -- define spoons and config, which will be passed to :start
 local spoons = {
+	CapsLockMap = {
+		timeout = 0.2,
+	},
 	HoldToQuit = {},
 	SlackNotifier = {
 		token = config.slackToken,
@@ -13,7 +16,7 @@ local spoons = {
 }
 
 -- load spoons
-for spoonName, config in pairs(spoons) do
+for spoonName, spoonConfig in pairs(spoons) do
 	hs.loadSpoon(spoonName)
-	spoon[spoonName]:start(config)
+	spoon[spoonName]:start(spoonConfig)
 end

@@ -204,11 +204,11 @@ highlight SpecialKey guifg=gray30
 " +========+
 
 " Buffers
-nnoremap , <c-^>
-nnoremap <leader>s :w<cr>
+nnoremap <silent> , <c-^>
+nnoremap <silent> <esc><esc> :up<cr>
 
 " Leader
-nmap <space> <leader>
+nmap <silent> <space> <leader>
 
 " Navigation
 inoremap jj <esc>
