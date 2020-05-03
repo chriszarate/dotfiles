@@ -6,6 +6,10 @@ DOTFILES="$HOME/.dotfiles"
 # Create .config directory.
 mkdir -p "$HOME/.config/fish"
 
+# Install / update submodules
+cd "$DOTFILES" || return
+git submodule update
+
 # Symlink subdirectories.
 links=(
 	'.config/bat::bat'

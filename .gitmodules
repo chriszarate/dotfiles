@@ -1,0 +1,9 @@
+[submodule "hammerspoon/Spoons/WttrWeather.spoon"]
+	path = hammerspoon/Spoons/WttrWeather.spoon
+	url = https://github.com/chriszarate/WttrWeather.spoon.git
+[submodule "hammerspoon/Spoons/ControlEscMap.spoon"]
+	path = hammerspoon/Spoons/ControlEscMap.spoon
+	url = https://github.com/chriszarate/ControlEscMap.spoon
+[submodule "hammerspoon/Spoons/SlackNotifier.spoon"]
+	path = hammerspoon/Spoons/SlackNotifier.spoon
+	url = https://github.com/chriszarate/SlackNotifier.spoon

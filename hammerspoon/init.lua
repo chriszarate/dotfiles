@@ -5,7 +5,7 @@ local config = require 'config'
 
 -- define spoons and config, which will be passed to :start
 local spoons = {
-	CapsLockMap = {
+	ControlEscMap = {
 		timeout = 0.2,
 	},
 	HoldToQuit = {},
