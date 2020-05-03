@@ -35,7 +35,6 @@ for config in \
 	git/gitconfig \
 	git/gitignore_global \
 	rg/rgignore \
-	tmux/tmux.conf \
 	vim/vimrc
 do
 	if [ ! -e "$HOME/.$(basename "$config")" ]; then

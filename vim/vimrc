@@ -13,6 +13,7 @@ source $VIMRUNTIME/defaults.vim
 set autoread           " reload file if it changed outside vim
 set background=dark    " dark
 set colorcolumn=81     " column to show max line length
+set clipboard=unnamed
 set directory=/tmp     " put swap files in tmp
 set encoding=utf-8     " default encoding
 set fcs=vert:│         " unbroken line between vertical splits
@@ -209,9 +210,6 @@ nnoremap <silent> <esc><esc> :up<cr>
 
 " Leader
 nmap <silent> <space> <leader>
-
-" Navigation
-inoremap jj <esc>
 
 " Search
 nnoremap <silent> <cr> :noh<cr><cr>
