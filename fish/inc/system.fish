@@ -1,28 +1,3 @@
-function copy -d 'Copy piped text to clipboard'
-  if [ (uname) = 'Darwin' ]
-    pbcopy $argv
-  end
-
-  if [ (uname) = 'Linux' ]
-    xclip -sel clip $argv
-  end
-end
-
-function o -d 'Open a file or URL'
-  if [ (uname) = 'Darwin' ]
-    open $argv
-  end
-
-  if [ (uname) = 'Linux' ]
-    switch $argv
-      case "http*"
-        xdg-open $argv
-      case "*"
-        open $argv
-    end
-  end
-end
-
 function timer -d 'A stopwatch using `time`.'
   echo "Timer started. Stop with Ctrl-D."
   date
@@ -63,11 +38,3 @@ function hidehidden -d 'Hide hidden and system files'
 		killall Finder
 	end
 end
-
-if [ (uname) = 'Darwin' ]
-	function qltexton -d 'Allow text selection in QuickLook'
-		defaults write com.apple.finder QLEnableTextSelection -bool TRUE
-		killall Finder
-	end
-end
-

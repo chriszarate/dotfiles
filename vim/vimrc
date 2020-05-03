@@ -13,7 +13,6 @@ source $VIMRUNTIME/defaults.vim
 set autoread           " reload file if it changed outside vim
 set background=dark    " dark
 set colorcolumn=81     " column to show max line length
-set clipboard=unnamed
 set directory=/tmp     " put swap files in tmp
 set encoding=utf-8     " default encoding
 set fcs=vert:│         " unbroken line between vertical splits
@@ -109,10 +108,6 @@ let g:lightline={
 let g:lightline#ale#indicator_errors='x'
 let g:lightline#ale#indicator_warnings='~'
 
-" run tests from vim
-Plug 'janko/vim-test'
-let g:test#strategy='vimterminal'
-
 " fuzzy finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -153,9 +148,6 @@ Plug 'sheerun/vim-polyglot'
 
 " comment / uncomment
 Plug 'tpope/vim-commentary'
-
-" shell helpers
-Plug 'tpope/vim-eunuch'
 
 " git
 Plug 'tpope/vim-fugitive'
