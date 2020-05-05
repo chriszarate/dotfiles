@@ -2,17 +2,17 @@ function cat -d 'Use bat instead of cat'
 	bat $argv
 end
 
-function d -d 'Jump to a directory in the documents folder'
+function d -d 'Jump to a directory in the current folder'
+	fzf-cd-widget
+end
+
+function ddd -d 'Jump to a directory in the documents folder'
 	cd ~/Documents
 	fzf-cd-widget
 end
 
 function icat -d 'Display images in the terminal with kitty'
 	kitty +kitten icat $argv
-end
-
-function l -d 'Show all files in a friendly way'
-	exa -halF $argv
 end
 
 function ls -d 'Use exa instead of ls'
