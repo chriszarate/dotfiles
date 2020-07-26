@@ -117,7 +117,9 @@ nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>p :Files<cr>
-nnoremap <silent> <leader>/ :call fzf#vim#ag('', fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}))<cr>
+nnoremap <silent> <leader>/ :Rg<cr>
+" prevent Rg matches in filenames
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --color=always --column --line-number --no-heading --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
@@ -125,7 +127,6 @@ Plug 'junegunn/vim-peekaboo'
 " sane file browsing, requires nnn
 Plug 'mcchrish/nnn.vim'
 let g:nnn#action={ '<c-v>': 'vsplit' }
-let g:nnn#layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
 let g:nnn#set_default_mappings=0
 nnoremap <silent> - :NnnPicker '%:p:h'<cr>
 nnoremap <silent> _ :NnnPicker<cr>
@@ -138,8 +139,6 @@ let g:signify_vcs_list=['git']
 Plug 'pechorin/any-jump.vim'
 let g:any_jump_disable_default_keybindings=1
 let g:any_jump_grouping_enabled=1
-let g:any_jump_window_height_ratio=0.8
-let g:any_jump_window_width_ratio=0.8
 nnoremap <silent> <leader>j :AnyJump<cr>
 nnoremap <silent> <leader>k :AnyJumpLastResults<cr>
 
