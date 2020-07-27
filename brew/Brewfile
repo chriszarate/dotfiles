@@ -34,7 +34,6 @@ brew "wget"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 
-cask "bbedit"
 cask "docker"
 cask "dozer"
 cask "font-3270-nerd-font"
