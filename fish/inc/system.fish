@@ -13,6 +13,14 @@ function emptytrash -d 'Empty trash on all mounted volumes and clear system logs
 	end
 end
 
+function fkill -d 'Use fzf to find and kill a process'
+	set -l pid (ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+	if test "$pid" != ""
+		echo $pid | xargs kill $argv
+	end
+end
+
 function afk -d 'Lock the screen'
 	if [ (uname) = 'Darwin' ]
 		/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend

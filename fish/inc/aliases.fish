@@ -6,11 +6,6 @@ function d -d 'Jump to a directory in the current folder'
 	fzf-cd-widget
 end
 
-function ddd -d 'Jump to a directory in the documents folder'
-	cd ~/Documents
-	fzf-cd-widget
-end
-
 function icat -d 'Display images in the terminal with kitty'
 	kitty +kitten icat $argv
 end
