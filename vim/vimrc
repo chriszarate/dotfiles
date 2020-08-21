@@ -202,7 +202,7 @@ highlight SpecialKey guifg=gray30
 
 " Buffers
 nnoremap <silent> , <c-^>
-nnoremap <silent> <esc><esc> :up<cr>
+nnoremap <silent> S :up<cr>
 
 " Leader
 nmap <silent> <space> <leader>
