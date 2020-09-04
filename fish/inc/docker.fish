@@ -23,10 +23,6 @@ function server -d 'Start an Nginx server in the current directory'
 	docker run --rm -it -p 8000:80 -v (pwd):/usr/share/nginx/html:ro nginx:alpine
 end
 
-function slack -d 'Sclack'
-	docker run --rm -it -v $HOME/.sclack:/root/.sclack matsuu/sclack $argv
-end
-
 function wp -d 'Execute WP-CLI in a Docker Compose environment'
 	docker-compose run --rm wp-cli wp $argv
 end
