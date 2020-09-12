@@ -39,6 +39,7 @@
 	lp  = log -p
 	p   = pull
 	pu  = push
+	puf = push --force
 	r   = rebase
 	ra  = rebase --abort
 	rc  = rebase --continue
