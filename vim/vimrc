@@ -39,8 +39,9 @@ endif
 " |  Completion  |
 " +==============+
 
-set complete=.,b,u
-set completeopt=menu,preview
+set belloff+=ctrlg
+set completeopt=menu,menuone,noinsert,preview
+set shortmess+=c " Shut off completion messages
 set wildignore+=.cache,.git,build,dist,node_modules,vendor
 set wildmode=longest,list:longest
 
@@ -74,6 +75,13 @@ call plug#begin()
 
 " set working directory to git project root
 Plug 'airblade/vim-rooter'
+
+" split and join lines
+Plug 'AndrewRadev/splitjoin.vim'
+let g:splitjoin_join_mapping=0
+let g:splitjoin_split_mapping=0
+nnoremap <silent> <leader>s :SplitjoinSplit<cr>
+nnoremap <silent> <leader>S :SplitjoinJoin<cr>
 
 " end whitespace wars
 Plug 'editorconfig/editorconfig-vim'
@@ -117,6 +125,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 let $FZF_DEFAULT_COMMAND='fd --type f --hidden'
 let $FZF_DEFAULT_OPTS='--bind ctrl-a:select-all --exact'
+let g:fzf_layout={'down': '50%'}
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>
@@ -128,6 +137,10 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --color=always --column --line-
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
+
+" light autocomplete
+Plug 'lifepillar/vim-mucomplete'
+let g:mucomplete#enable_auto_at_startup = 1
 
 " sane file browsing, requires nnn
 Plug 'mcchrish/nnn.vim'
@@ -172,8 +185,8 @@ let g:ale_linters={
 	\   'dockerfile':      ['hadolint'],
 	\   'javascript':      ['eslint'],
 	\   'javascriptreact': ['eslint'],
-	\   'typescript':      ['eslint'],
-	\   'typescriptreact': ['eslint'],
+	\   'typescript':      ['eslint', 'tsserver'],
+	\   'typescriptreact': ['eslint', 'tsserver'],
 	\   'lua':             ['luacheck'],
 	\   'php':             ['phpcs'],
 	\   'sh':              ['shellcheck'],
@@ -183,6 +196,11 @@ let g:ale_php_phpcs_standard='WordPress'
 let g:ale_sign_column_always=1
 let g:ale_sign_error='x'
 let g:ale_sign_warning='~'
+
+" text minmap
+Plug 'wfxr/minimap.vim'
+let g:minimap_auto_start=1
+let g:minimap_highlight='Search'
 
 call plug#end()
 

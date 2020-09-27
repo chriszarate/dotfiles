@@ -24,7 +24,7 @@
 	ccl = "!git rev-parse HEAD | tr -d '\\n'"
 	co  = checkout
 	cob = checkout -b
-	cop = checkout -p
+	cop = checkout --patch
 	cot = !sh -c 'git checkout -t origin/'$1'' -
 	cp  = cherry-pick
 	d   = diff
