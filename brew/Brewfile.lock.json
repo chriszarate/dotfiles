@@ -836,6 +836,12 @@
         "options": {
           "full_name": "slack"
         }
+      },
+      "vscodium": {
+        "version": "1.49.2",
+        "options": {
+          "full_name": "vscodium"
+        }
       }
     }
   },
