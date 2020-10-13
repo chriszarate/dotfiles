@@ -40,10 +40,8 @@ endif
 " +==============+
 
 set belloff+=ctrlg
-set completeopt=menu,menuone,noinsert,preview
-set shortmess+=c " Shut off completion messages
-set wildignore+=.cache,.git,build,dist,node_modules,vendor
-set wildmode=longest,list:longest
+set shortmess+=c   " Shut off completion messages
+set updatetime=300 " Shorter updatetime
 
 
 " +=============+
@@ -138,20 +136,39 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --color=always --column --line-
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
 
-" light autocomplete
-Plug 'lifepillar/vim-mucomplete'
-let g:mucomplete#enable_auto_at_startup = 1
-
 " sane file browsing, requires nnn
 Plug 'mcchrish/nnn.vim'
 let g:nnn#action={ '<c-v>': 'vsplit' }
 let g:nnn#set_default_mappings=0
-nnoremap <silent> - :NnnPicker '%:p:h'<cr>
+nnoremap <silent> - :NnnPicker %:p:h<cr>
 nnoremap <silent> _ :NnnPicker<cr>
 
 " git gutter
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list=['git']
+
+" who needs to choose when you can turn on on demand
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+inoremap <silent><expr> <tab>
+	\ pumvisible() ? '<c-n>' :
+	\ <sid>check_back_space() ? '<tab>' :
+	\ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? '<c-p>' : '<c-h>'
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gn <Plug>(coc-rename)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gk :call <sid>show_documentation()<cr>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocActionAsync('doHover')
+  endif
+endfunction
 
 " who needs a language server when you can search well
 Plug 'pechorin/any-jump.vim'
@@ -185,8 +202,8 @@ let g:ale_linters={
 	\   'dockerfile':      ['hadolint'],
 	\   'javascript':      ['eslint'],
 	\   'javascriptreact': ['eslint'],
-	\   'typescript':      ['eslint', 'tsserver'],
-	\   'typescriptreact': ['eslint', 'tsserver'],
+	\   'typescript':      ['eslint'],
+	\   'typescriptreact': ['eslint'],
 	\   'lua':             ['luacheck'],
 	\   'php':             ['phpcs'],
 	\   'sh':              ['shellcheck'],
@@ -196,11 +213,6 @@ let g:ale_php_phpcs_standard='WordPress'
 let g:ale_sign_column_always=1
 let g:ale_sign_error='x'
 let g:ale_sign_warning='~'
-
-" text minmap
-Plug 'wfxr/minimap.vim'
-let g:minimap_auto_start=1
-let g:minimap_highlight='Search'
 
 call plug#end()
 
