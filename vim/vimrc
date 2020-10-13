@@ -153,7 +153,7 @@ inoremap <silent><expr> <tab>
 	\ pumvisible() ? '<c-n>' :
 	\ <sid>check_back_space() ? '<tab>' :
 	\ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? '<c-p>' : '<c-h>'
+inoremap <expr><s-tab> pumvisible() ? '<c-p>' : '<c-h>'
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -162,12 +162,17 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nnoremap <silent> gk :call <sid>show_documentation()<cr>
 
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocActionAsync('doHover')
+	endif
 endfunction
 
 " who needs a language server when you can search well
