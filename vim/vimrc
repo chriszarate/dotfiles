@@ -128,6 +128,7 @@ nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>p :Files<cr>
+nnoremap <silent> <leader>s :GFiles?<cr>
 nnoremap <silent> <leader>/ :Rg<cr>
 nnoremap <silent> <leader>? :Rg --glob='!*.test.*'<cr>
 " prevent Rg matches in filenames
@@ -214,7 +215,7 @@ let g:ale_linters={
 	\   'sh':              ['shellcheck'],
 	\ }
 let g:ale_linters_explicit=1
-let g:ale_php_phpcs_standard='WordPress'
+let g:ale_php_phpcs_executable='./vendor/bin/phpcs'
 let g:ale_sign_column_always=1
 let g:ale_sign_error='x'
 let g:ale_sign_warning='~'
