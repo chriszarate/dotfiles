@@ -132,7 +132,7 @@ nnoremap <silent> <leader>s :GFiles?<cr>
 nnoremap <silent> <leader>/ :Rg<cr>
 nnoremap <silent> <leader>? :Rg --glob='!*.test.*'<cr>
 " prevent Rg matches in filenames
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --color=always --column --line-number --no-heading --smart-case ".<q-args>." ''", 1, {'options': '--delimiter : --nth 4.. --preview "bat --color always --highlight-line {2..2} --style numbers {1..1}"'}, <bang>0)
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --color=always --column --line-number --no-heading --smart-case ".<q-args>." ''", 1, {'options': '--delimiter : --nth 4.. --preview "bat --color always --highlight-line {2..2} --style numbers {1..1}" --bind "ctrl-/:toggle-preview"'}, <bang>0)
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
