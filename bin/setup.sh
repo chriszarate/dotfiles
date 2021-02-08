@@ -17,12 +17,6 @@ if [ -n "$fish_path" ]; then
 	fi
 fi
 
-# Install tmux plugin manager.
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-	mkdir -p ~/.tmux/plugins
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
 # Setup vim plugin manager.
 if [ ! -f ~/.vim/autoload/plug.vim ]; then
 	mkdir -p ~/.vim/autoload

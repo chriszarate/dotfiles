@@ -43,6 +43,7 @@ do
 done
 
 # Symlink helpers.
+sudo mkdir -p /usr/local/bin
 for helper in "$DOTFILES/bin/helpers"/*; do
 	if [ ! -e "/usr/local/bin/$(basename "$helper")" ]; then
 		sudo ln -s "$helper" "/usr/local/bin/$(basename "$helper")"
