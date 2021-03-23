@@ -8,16 +8,16 @@
         "revision": "3fbca9f51db8e7255f4b2f48daba1e04a2d99ad6"
       },
       "homebrew/cask": {
-        "revision": "87c1ebb55d5c7a574fa3195204bcbf7e2f6b1c69"
+        "revision": "7fa8ee1de5165141f5e67e6408821fef7238257a"
       },
       "homebrew/cask-fonts": {
-        "revision": "2c2dff67ec06db0816d71597c0867556bf838f61"
+        "revision": "a04e40d614e5804292b456abb84a6083fdd73e90"
       },
       "homebrew/core": {
-        "revision": "474ab21a2e8b5df6b2f4e59a6abfcd7ca936061a"
+        "revision": "69fe26dd72d74bd12b6eda582123c0b120842c53"
       },
       "ms-jpq/sad": {
-        "revision": "bbdf04d64616d205a40b2a02370f9842610561a8"
+        "revision": "eb9dfd9c4f4eee7108d15bf7f3dd70aa637c04da"
       }
     },
     "brew": {
@@ -242,7 +242,7 @@
         }
       },
       "git": {
-        "version": "2.30.2",
+        "version": "2.31.0",
         "bottle": {
           "rebuild": 0,
           "cellar": "/opt/homebrew/Cellar",
@@ -250,20 +250,20 @@
           "root_url": "https://homebrew.bintray.com/bottles",
           "files": {
             "arm64_big_sur": {
-              "url": "https://homebrew.bintray.com/bottles/git-2.30.2.arm64_big_sur.bottle.tar.gz",
-              "sha256": "b480fcf0ecae4ded1f62e3aae6b8363f156a454eea58a833e7ce469eba7d761a"
+              "url": "https://homebrew.bintray.com/bottles/git-2.31.0.arm64_big_sur.bottle.tar.gz",
+              "sha256": "6d9c5ec4655d1f44ee8f415f4cab796379b18c1dbf1ec2ef03e1ff9945e0b20a"
             },
             "big_sur": {
-              "url": "https://homebrew.bintray.com/bottles/git-2.30.2.big_sur.bottle.tar.gz",
-              "sha256": "080017fabfad8c0047cbb2149b09a81e8a66f15253c58cd0f931f5dca7c4cb69"
+              "url": "https://homebrew.bintray.com/bottles/git-2.31.0.big_sur.bottle.tar.gz",
+              "sha256": "074d8a4e3355018281e0ffd3eaff484d4b26bd39e0771f740eede3042872b46e"
             },
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/git-2.30.2.catalina.bottle.tar.gz",
-              "sha256": "4a1ab36624163ad62af82e8175e51019bfcea1b4657353b4d73493c5ca773b6f"
+              "url": "https://homebrew.bintray.com/bottles/git-2.31.0.catalina.bottle.tar.gz",
+              "sha256": "4070268c3d4b22a48a35b40c6d55c5d31bc29a41f19794189b7f4edf147dd9f2"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/git-2.30.2.mojave.bottle.tar.gz",
-              "sha256": "24547de9d51b08f78f128961d3c728853c3a828d1354234e1dcae5b26333338b"
+              "url": "https://homebrew.bintray.com/bottles/git-2.31.0.mojave.bottle.tar.gz",
+              "sha256": "a1aab277df069962a738aa5ff354043d84bdcef3472e65d9e9e59b932b06b19f"
             }
           }
         }
@@ -835,6 +835,33 @@
       "ms-jpq/sad/sad": {
         "version": "0.4.7",
         "bottle": false
+      },
+      "weechat": {
+        "version": "3.1",
+        "bottle": {
+          "rebuild": 0,
+          "cellar": "/opt/homebrew/Cellar",
+          "prefix": "/opt/homebrew",
+          "root_url": "https://homebrew.bintray.com/bottles",
+          "files": {
+            "arm64_big_sur": {
+              "url": "https://homebrew.bintray.com/bottles/weechat-3.1.arm64_big_sur.bottle.tar.gz",
+              "sha256": "13358880145e64b9abb5aa1b3edd45cbe99fad9513269e71e40015561e274dac"
+            },
+            "big_sur": {
+              "url": "https://homebrew.bintray.com/bottles/weechat-3.1.big_sur.bottle.tar.gz",
+              "sha256": "2dc092a658d47fa3792106517dbc0c8d067f2a43e47444f9e11a8f6dd4d5841b"
+            },
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/weechat-3.1.catalina.bottle.tar.gz",
+              "sha256": "bbe506b6fe5fc7ef054299d35114508e5bef467c9083880a237b76d4d4a078af"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/weechat-3.1.mojave.bottle.tar.gz",
+              "sha256": "b956b1d6111acfbdeafbeffb42eb715ce39a3fb064238f089f2373d31325c93a"
+            }
+          }
+        }
       }
     },
     "cask": {
@@ -863,7 +890,7 @@
         }
       },
       "hammerspoon": {
-        "version": "0.9.85",
+        "version": "0.9.86",
         "options": {
           "full_name": "hammerspoon"
         }
@@ -917,7 +944,7 @@
       "big_sur": {
         "HOMEBREW_VERSION": "3.0.5",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "474ab21a2e8b5df6b2f4e59a6abfcd7ca936061a",
+        "Homebrew/homebrew-core": "69fe26dd72d74bd12b6eda582123c0b120842c53",
         "CLT": "12.4.0.0.1.1610135815",
         "Xcode": "12.0",
         "macOS": "11.2.1"
