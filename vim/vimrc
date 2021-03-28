@@ -81,6 +81,9 @@ let g:splitjoin_split_mapping=0
 nnoremap <silent> <leader>s :SplitjoinSplit<cr>
 nnoremap <silent> <leader>S :SplitjoinJoin<cr>
 
+" project-wide find-and-replace
+Plug 'brooth/far.vim'
+
 " end whitespace wars
 Plug 'editorconfig/editorconfig-vim'
 
