@@ -34,6 +34,7 @@ for config in \
 	fd/fdignore \
 	git/gitconfig \
 	git/gitignore_global \
+	node/node-version \
 	rg/rgignore \
 	vim/vimrc
 do

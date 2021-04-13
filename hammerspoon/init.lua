@@ -9,10 +9,6 @@ local spoons = {
 		timeout = 0.2,
 	},
 	HoldToQuit = {},
-	SlackNotifier = {
-		token = config.slackToken,
-	},
-	WttrWeather = {},
 }
 
 -- load spoons

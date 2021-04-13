@@ -5,7 +5,7 @@ DOTFILES="$HOME/.dotfiles"
 
 # Install brew packages and casks
 if [ "$(uname)" = "Darwin" ]; then
-  if ! command -v brew >/dev/null; then
+  if [ ! -f /opt/homebrew/bin/brew ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 

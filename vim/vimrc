@@ -186,6 +186,9 @@ let g:any_jump_grouping_enabled=1
 nnoremap <silent> <leader>j :AnyJump<cr>
 nnoremap <silent> <leader>k :AnyJumpLastResults<cr>
 
+" dash.app
+Plug 'rizzatti/dash.vim'
+
 " meta-package for syntax highlighting
 Plug 'sheerun/vim-polyglot'
 

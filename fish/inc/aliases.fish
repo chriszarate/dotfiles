@@ -1,5 +1,13 @@
+function brundle -d "Install Homebrew packages using Brewfile"
+	brew bundle --file="~/.dotfiles/brew/Brewfile"
+end
+
 function cat -d 'Use bat instead of cat'
 	bat $argv
+end
+
+function code -d 'Alias VSCodium to VSCode shell command'
+	codium $argv
 end
 
 function d -d 'Jump to a directory in the current folder'
