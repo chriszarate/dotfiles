@@ -24,6 +24,7 @@ brew "lua"
 brew "luarocks"
 brew "nmap"
 brew "nnn"
+brew "php@7.4", link: true
 brew "pngquant"
 brew "rename"
 brew "ripgrep"
