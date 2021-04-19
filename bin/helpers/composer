@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-docker-run composer:1.8 $@
+docker-run composer:2 $@
 exit $?
