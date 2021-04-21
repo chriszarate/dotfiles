@@ -22,10 +22,6 @@ function ls -d 'Use exa instead of ls'
 	exa $argv
 end
 
-function ping -d 'Use prettyping instead of ping'
-	prettyping --nolegend $argv
-end
-
 function top -d 'Use htop instead of top'
 	htop $argv
 end
