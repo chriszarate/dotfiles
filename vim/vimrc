@@ -34,6 +34,11 @@ if &term =~ 'kitty'
 	set termguicolors
 endif
 
+" assume 256 colors in screen/tmux
+if &term == "screen"
+	set t_Co=256
+endif
+
 
 " +==============+
 " |  Completion  |
