@@ -8,16 +8,16 @@
         "revision": "ff52a209bfade1a663848684d354a6b623aaa4ca"
       },
       "homebrew/cask": {
-        "revision": "dc6c399a37eb01bfb0454d549fa18ed6d302bca7"
+        "revision": "14c88bef7a10bafee8904ea7eec297e70a18a496"
       },
       "homebrew/cask-fonts": {
-        "revision": "84535dd6d8ce8bedd2922c8688e608bb4c9d7b5c"
+        "revision": "189d0f4a2c5e3732d35eb33ca9f9a32ab9e6286a"
       },
       "homebrew/core": {
-        "revision": "61548debfe2c4dabd0dacae57caeb16110c0eb76"
+        "revision": "8f48f42d4dbe363597a29d6c77998e5239ab898c"
       },
       "ms-jpq/sad": {
-        "revision": "8d385723f0369e63062e0504cb657bd7723cc71c"
+        "revision": "fe42fb424fafa2e5f372e3a4f4368bf5b33cb582"
       }
     },
     "brew": {
