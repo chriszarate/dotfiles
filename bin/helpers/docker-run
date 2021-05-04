@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
 DOCKER_WORKDIR="${DOCKER_WORKDIR:-/app}"
-DOCKER_RUN_OPTIONS="-u $(id -u):$(id -g) -v $(pwd):$DOCKER_WORKDIR --workdir $DOCKER_WORKDIR -i --rm $DOCKER_RUN_OPTIONS"
+DOCKER_RUN_OPTIONS="-v $(pwd):$DOCKER_WORKDIR --workdir $DOCKER_WORKDIR -i --rm $DOCKER_RUN_OPTIONS"
 
 # Only allocate tty if we detect one.
 if [ -t 0 ] && [ -t 1 ]; then
 	DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS -t"
+fi
+
+# Allow easy escape-hatch to root.
+if [ -z "$DOCKER_RUN_AS_ROOT" ]; then
+	DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS -u $(id -u):$(id -g)"
 fi
 
 if [ "$(uname)" = "Linux" ]; then
