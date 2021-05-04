@@ -1,5 +1,5 @@
 function dco -d 'Docker Compose'
-	docker-compose $argv
+	docker compose $argv
 end
 
 function dcrm -d 'Remove exited Docker containers'
@@ -15,7 +15,7 @@ function dvrm -d 'Remove unused Docker volumes'
 end
 
 function phpserver -d 'Start a PHP server in the current directory'
-	env DOCKER_RUN_OPTIONS="-p 8000:8000" docker-run php:7.3-alpine php -S 0.0.0.0:8000
+	env DOCKER_RUN_OPTIONS="-p 8000:8000" docker-run php:7.4-alpine php -S 0.0.0.0:8000
 end
 
 function server -d 'Start an Nginx server in the current directory'
