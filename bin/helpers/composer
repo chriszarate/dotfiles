@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-docker-run composer:2 $@
-exit $?

@@ -1,5 +1,5 @@
 function dco -d 'Docker Compose'
-	docker compose $argv
+	docker-compose $argv
 end
 
 function dcrm -d 'Remove exited Docker containers'
