@@ -1,6 +1,7 @@
 [user]
 	name = chriszarate
-	email = chris@zarate.org
+	email = chris.zarate@automattic.com
+	signingkey = AF7D9D6F1994A742D6D12E2C839E1F045D04B581
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = vim +start
@@ -68,3 +69,7 @@
 	packSizeLimit = 20m
 [diff]
 	algorithm = patience
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
