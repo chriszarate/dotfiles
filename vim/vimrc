@@ -126,11 +126,10 @@ let g:lightline={
 let g:lightline#ale#indicator_errors='x'
 let g:lightline#ale#indicator_warnings='~'
 
-" fuzzy finder
+" fuzzy find
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 let $FZF_DEFAULT_COMMAND='fd --type f --hidden'
-let $FZF_DEFAULT_OPTS='--bind ctrl-a:select-all --exact'
 let g:fzf_layout={'down': '50%'}
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>

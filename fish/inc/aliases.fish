@@ -23,7 +23,7 @@ function ls -d 'Use exa instead of ls'
 end
 
 function ssh -d 'Use kitten to copy terminfo files to remove server'
-	kitty +kitten $argv
+	kitty +kitten ssh $argv
 end
 
 function top -d 'Use htop instead of top'
