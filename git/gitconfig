@@ -74,5 +74,5 @@
 	email = chris.zarate@automattic.com
 	signingkey = AF7D9D6F1994A742D6D12E2C839E1F045D04B581
 
-[includeIf "gitdir:**/zzz/**/.git"]
-  path = ~/.dotfiles/git/gitconfig.personal
+[includeIf "gitdir:/Users/zzz/**/.git"]
+	path = ~/.dotfiles/git/gitconfig.personal
