@@ -130,7 +130,7 @@ let g:lightline#ale#indicator_warnings='~'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 let $FZF_DEFAULT_COMMAND='fd --type f --hidden'
-let g:fzf_layout={'down': '50%'}
+let g:fzf_layout={'tmux': '50%'} " no idea how this works
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>

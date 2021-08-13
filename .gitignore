@@ -1,2 +1,3 @@
 config.lua
+Brewfile.lock.json
 local_exports.fish
