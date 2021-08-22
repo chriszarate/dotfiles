@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-docker-run phpunit/phpunit:7.4.0 $@
-exit $?
