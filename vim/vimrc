@@ -130,7 +130,7 @@ let g:lightline#ale#indicator_warnings='~'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 let $FZF_DEFAULT_COMMAND='fd --type f --hidden'
-let g:fzf_layout={'tmux': '50%'} " no idea how this works
+let g:fzf_layout = {'window': 'enew'}
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>
@@ -146,7 +146,8 @@ Plug 'junegunn/vim-peekaboo'
 
 " sane file browsing, requires nnn
 Plug 'mcchrish/nnn.vim'
-let g:nnn#action={ '<c-v>': 'vsplit' }
+let g:nnn#action={'<c-v>': 'vsplit'}
+let g:nnn#layout='enew'
 let g:nnn#set_default_mappings=0
 nnoremap <silent> - :NnnPicker %:p:h<cr>
 nnoremap <silent> _ :NnnPicker<cr>
