@@ -26,7 +26,6 @@ brew "imagemagick"
 brew "jq"
 brew "lua"
 brew "luarocks"
-brew "minikube"
 brew "nmap"
 brew "nnn"
 brew "php@7.4", link: true

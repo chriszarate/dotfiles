@@ -69,6 +69,8 @@
 [pack]
 	windowMemory = 10m
 	packSizeLimit = 20m
+[url "git@github.com:"]
+	insteadOf = https://github.com/
 [user]
 	name = chriszarate
 	email = chris.zarate@automattic.com
