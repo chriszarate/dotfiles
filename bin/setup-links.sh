@@ -30,10 +30,11 @@ done
 
 # Symlink dotfiles.
 for config in \
-	input/inputrc \
+	editor/editorconfig \
 	fd/fdignore \
 	git/gitconfig \
 	git/gitignore_global \
+	input/inputrc \
 	node/node-version \
 	rg/rgignore \
 	vim/vimrc
