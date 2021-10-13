@@ -1,9 +1,9 @@
-fish_add_path /opt/homebrew/bin /usr/local/bin $HOME/.go/bin
-
 set fish_greeting ""
 set -x EDITOR (which vim)
 set -x SHELL (which fish)
 set -x GOPATH "$HOME/.go"
+
+fish_add_path /opt/homebrew/bin /usr/local/bin $GOPATH/bin
 
 # Prefer ARM64 if available.
 if string match -q "*ARM64*" (uname -a)
