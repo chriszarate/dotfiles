@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euxo pipefail
+
 # Change shell to fish.
 fish_path="$(which fish)"
 if [ -n "$fish_path" ]; then

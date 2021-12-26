@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euxo pipefail
+
 # Setup vim plugin manager.
 if [ ! -f ~/.vim/autoload/plug.vim ]; then
 	mkdir -p ~/.vim/autoload

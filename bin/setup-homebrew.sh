@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
+set -euxo pipefail
+
 # Relative to home directory.
 DOTFILES="$HOME/.dotfiles"
 
 # Install brew packages and casks
 if [ "$(uname)" = "Darwin" ]; then
-  if [ ! -f /opt/homebrew/bin/brew ]; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  fi
+	if [ ! -f /opt/homebrew/bin/brew ]; then
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	fi
 
-  brew bundle --file="$DOTFILES/brew/Brewfile"
+	HOMEBREW_BUNDLE_FILE="$HOME/.Brewfile" brew bundle install
 fi

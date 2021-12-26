@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
+set -euxo pipefail
+
 # Relative to home directory.
 DOTFILES="$HOME/.dotfiles"
+cd "$DOTFILES" || return
 
 # Create .config directory.
 mkdir -p "$HOME/.config/fish"
 
-# Install / update submodules
-cd "$DOTFILES" || return
-git submodule update
+# Create .bin directory for local scripts.
+mkdir -p "$HOME/.bin"
 
 # Symlink subdirectories.
 links=(
@@ -30,6 +32,7 @@ done
 
 # Symlink dotfiles.
 for config in \
+	brew/Brewfile \
 	editor/editorconfig \
 	fd/fdignore \
 	git/gitconfig \
@@ -45,9 +48,8 @@ do
 done
 
 # Symlink helpers.
-sudo mkdir -p /usr/local/bin
 for helper in "$DOTFILES/bin/helpers"/*; do
-	if [ ! -e "/usr/local/bin/$(basename "$helper")" ]; then
-		sudo ln -s "$helper" "/usr/local/bin/$(basename "$helper")"
+	if [ ! -e "$HOME/.bin/$(basename "$helper")" ]; then
+		ln -s "$helper" "$HOME/.bin/$(basename "$helper")"
 	fi
 done

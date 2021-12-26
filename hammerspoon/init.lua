@@ -1,8 +1,5 @@
 -- luacheck: globals hs spoon
 
--- load config
-local config = require 'config'
-
 -- define spoons and config, which will be passed to :start
 local spoons = {
 	ControlEscMap = {
