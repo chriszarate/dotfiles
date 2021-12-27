@@ -7,7 +7,7 @@ DOTFILES="$HOME/.dotfiles"
 cd "$DOTFILES" || return
 
 # Create .config directory.
-mkdir -p "$HOME/.config/fish"
+mkdir -p "$HOME/.config"
 
 # Create .bin directory for local scripts.
 mkdir -p "$HOME/.bin"
@@ -15,10 +15,7 @@ mkdir -p "$HOME/.bin"
 # Symlink subdirectories.
 links=(
 	'.config/bat::bat'
-	'.config/fish/completions::fish/completions'
-	'.config/fish/config.fish::fish/config.fish'
-	'.config/fish/functions::fish/functions'
-	'.config/fish/inc::fish/inc'
+	'.config/fish::fish'
 	'.config/kitty::kitty'
 	'.hammerspoon::hammerspoon'
 )

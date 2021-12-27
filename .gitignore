@@ -1,1 +1,2 @@
-/fish/inc/local
+fish_variables
+*.local.fish
