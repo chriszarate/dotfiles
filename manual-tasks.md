@@ -11,7 +11,3 @@
 ## Vim
 
 - `:PlugInstall`
-
-## Bat
-
-- `bat cache --build`

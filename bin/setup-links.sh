@@ -14,7 +14,6 @@ mkdir -p "$HOME/.bin"
 
 # Symlink subdirectories.
 links=(
-	'.config/bat::bat'
 	'.config/fish::fish'
 	'.config/kitty::kitty'
 	'.hammerspoon::hammerspoon'

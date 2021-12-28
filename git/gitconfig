@@ -16,7 +16,7 @@
 	cp  = cherry-pick
 	d   = diff
 	dc  = diff --cached
-	ds  = "!git diff --stat $(git merge-base HEAD master)"
+	ds  = "!DELTA_FEATURES=+side-by-side git diff"
 	dw  = diff -w
 	f   = fetch
 	fp  = pull --ff-only
@@ -54,9 +54,12 @@
 	excludesfile = ~/.gitignore_global
 	editor = vim +start
 	compression = 0
-	pager = delta --theme=gruvbox
+	pager = delta
+[delta]
+	plus-style = "syntax #004000"
 [diff]
 	algorithm = patience
+	colorMoved = default
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
@@ -65,7 +68,7 @@
 [init]
 	defaultBranch = main
 [interactive]
-	diffFilter = delta --color-only --theme=gruvbox
+	diffFilter = delta --color-only
 [pack]
 	windowMemory = 10m
 	packSizeLimit = 20m

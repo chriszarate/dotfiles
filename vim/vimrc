@@ -21,7 +21,7 @@ set hidden             " keep buffers loaded
 set laststatus=2       " always show status line
 set lazyredraw         " don't redraw screen during macros and untyped commands
 set list               " with listchars, show invisibles
-set listchars=tab:┄\ ,trail:·
+set listchars=tab:⎯\ ,trail:⬥
 set nofoldenable       " open all folds by default
 set number             " line numbers
 set relativenumber     " line numbers relative to the current line
@@ -240,7 +240,7 @@ call plug#end()
 
 colorscheme gruvbox
 highlight ColorColumn guibg=gray15
-highlight SpecialKey guifg=gray30
+highlight SpecialKey guifg=gray20
 
 
 " +========+
