@@ -12,8 +12,9 @@ mkdir -p "$HOME/.config"
 # Create .bin directory for local scripts.
 mkdir -p "$HOME/.bin"
 
-# Symlink subdirectories.
+# Symlink custom-location dotfiles.
 links=(
+	'.config/coc/coc-settings.json::coc/coc-settings.json'
 	'.config/fish::fish'
 	'.config/kitty::kitty'
 	'.hammerspoon::hammerspoon'

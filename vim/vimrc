@@ -18,10 +18,9 @@ set encoding=utf-8     " default encoding
 set fcs=vert:│         " unbroken line between vertical splits
 set foldmethod=syntax  " use syntax highlighting to inform folds
 set hidden             " keep buffers loaded
-set laststatus=2       " always show status line
 set lazyredraw         " don't redraw screen during macros and untyped commands
 set list               " with listchars, show invisibles
-set listchars=tab:⎯\ ,trail:⬥
+set listchars=tab:⎯\ ,trail:•
 set nofoldenable       " open all folds by default
 set number             " line numbers
 set relativenumber     " line numbers relative to the current line
@@ -76,19 +75,6 @@ set smartcase   " respect case when it includes uppercase letters
 
 call plug#begin()
 
-" set working directory to git project root
-Plug 'airblade/vim-rooter'
-
-" split and join lines
-Plug 'AndrewRadev/splitjoin.vim'
-let g:splitjoin_join_mapping=0
-let g:splitjoin_split_mapping=0
-nnoremap <silent> <leader>s :SplitjoinSplit<cr>
-nnoremap <silent> <leader>S :SplitjoinJoin<cr>
-
-" project-wide find-and-replace
-Plug 'brooth/far.vim'
-
 " end whitespace wars
 Plug 'editorconfig/editorconfig-vim'
 
@@ -96,51 +82,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'gruvbox-community/gruvbox'
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_sign_column="bg0"
-
-" lightweight statusline
-Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale' " lint status
-let g:lightline={
-	\ 'active': {
-	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'gitbranch' ],
-	\             [ 'relativepath', 'gitdiff' ] ],
-	\   'right': [ [ 'lineinfo' ],
-	\              [ 'linter_warnings', 'linter_errors', 'linter_ok' ],
-	\              [ 'filetype' ] ]
-	\ },
-	\ 'colorscheme': 'gruvbox',
-	\ 'component_expand': {
-	\   'linter_warnings': 'lightline#ale#warnings',
-	\   'linter_errors': 'lightline#ale#errors',
-	\   'linter_ok': 'lightline#ale#ok'
-	\ },
-	\ 'component_function': {
-	\   'gitbranch': 'fugitive#head',
-	\   'gitdiff': 'SignifyLightline'
-	\ },
-	\ 'component_type': {
-	\   'linter_errors': 'error',
-	\   'linter_warnings': 'warning'
-	\ },
-	\ }
-let g:lightline#ale#indicator_errors='x'
-let g:lightline#ale#indicator_warnings='!'
-let g:signify_sign_change='~'
-function! SignifyLightline()
-	let [added, modified, removed] = sy#repo#get_stats()
-	let symbols = ['+', '-', '~']
-	let stats = [added, removed, modified]  " reorder
-	let statline = ''
-
-	for i in range(3)
-		if stats[i] > 0
-			let statline .= printf('%s%s ', symbols[i], stats[i])
-		endif
-	endfor
-
-	return statline
-endfunction
 
 " fuzzy find
 Plug 'junegunn/fzf'
@@ -151,7 +92,7 @@ nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>p :Files<cr>
-nnoremap <silent> <leader>s :GFiles?<cr>
+nnoremap <silent> <leader>f :GFiles?<cr>
 nnoremap <silent> <leader>/ :Rg<cr>
 nnoremap <silent> <leader>? :Rg --glob='!*.test.*'<cr>
 " prevent Rg matches in filenames
@@ -160,32 +101,58 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --hidden --color=always --colum
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
 
-" sane file browsing, requires nnn
-Plug 'mcchrish/nnn.vim'
-let g:nnn#action={'<c-v>': 'vsplit'}
-let g:nnn#layout='enew'
-let g:nnn#set_default_mappings=0
-nnoremap <silent> - :NnnPicker %:p:h<cr>
-nnoremap <silent> _ :NnnPicker<cr>
-
-" git gutter
-Plug 'mhinz/vim-signify'
-let g:signify_vcs_list=['git']
-
-" who needs to choose when you can turn on on demand
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" javascript in vim what could go wrong
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+let g:coc_global_extensions=[
+	\ 'coc-css',
+	\ 'coc-diagnostic',
+	\ 'coc-docker',
+	\ 'coc-eslint',
+	\ 'coc-git',
+	\ 'coc-go',
+	\ 'coc-html',
+	\ '@yaegassy/coc-intelephense',
+	\ 'coc-json',
+	\ 'coc-lua',
+	\ 'coc-sh',
+	\ 'coc-sql',
+	\ 'coc-stylelint',
+	\ 'coc-tsserver',
+	\ 'coc-yaml'
+	\ ]
 inoremap <silent><expr> <tab>
 	\ pumvisible() ? '<c-n>' :
 	\ <sid>check_back_space() ? '<tab>' :
 	\ coc#refresh()
 inoremap <expr><s-tab> pumvisible() ? '<c-p>' : '<c-h>'
-
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gs <Plug>(coc-git-chunkinfo)
 nmap <silent> gy <Plug>(coc-type-definition)
 nnoremap <silent> gk :call <sid>show_documentation()<cr>
+
+" comment / uncomment
+Plug 'tpope/vim-commentary'
+
+" git
+Plug 'tpope/vim-fugitive'
+nnoremap <leader>d :Gvdiff<cr>
+autocmd VimEnter * :silent! Gcd " set working directory to git root
+
+" repeat more actions with .
+Plug 'tpope/vim-repeat'
+
+" more previous / next commands with []
+Plug 'tpope/vim-unimpaired'
+
+call plug#end()
+
+
+" +=============+
+" |  Functions  |
+" +=============+
 
 function! s:check_back_space() abort
 	let col = col('.') - 1
@@ -200,54 +167,12 @@ function! s:show_documentation()
 	endif
 endfunction
 
-" who needs a language server when you can search well
-Plug 'pechorin/any-jump.vim'
-let g:any_jump_disable_default_keybindings=1
-let g:any_jump_grouping_enabled=1
-nnoremap <silent> <leader>j :AnyJump<cr>
-nnoremap <silent> <leader>k :AnyJumpLastResults<cr>
 
-" dash.app
-Plug 'rizzatti/dash.vim'
+" +==============+
+" |  Statusline  |
+" +==============+
 
-" meta-package for syntax highlighting
-Plug 'sheerun/vim-polyglot'
-
-" comment / uncomment
-Plug 'tpope/vim-commentary'
-
-" git
-Plug 'tpope/vim-fugitive'
-nnoremap <leader>g :Gstatus<cr>
-nnoremap <leader>d :Gvdiff<cr>
-
-" repeat more actions with .
-Plug 'tpope/vim-repeat'
-
-" more previous / next commands with []
-Plug 'tpope/vim-unimpaired'
-
-" linting
-Plug 'w0rp/ale'
-let g:ale_linters={
-	\   'css':             ['stylelint'],
-	\   'scss':            ['stylelint'],
-	\   'dockerfile':      ['hadolint'],
-	\   'javascript':      ['eslint'],
-	\   'javascriptreact': ['eslint'],
-	\   'typescript':      ['eslint'],
-	\   'typescriptreact': ['eslint'],
-	\   'lua':             ['luacheck'],
-	\   'php':             ['phpcs'],
-	\   'sh':              ['shellcheck'],
-	\ }
-let g:ale_linters_explicit=1
-let g:ale_php_phpcs_executable='./vendor/bin/phpcs'
-let g:ale_sign_column_always=1
-let g:ale_sign_error='x'
-let g:ale_sign_warning='~'
-
-call plug#end()
+set laststatus=2 " always show status line
 
 
 " +=========+

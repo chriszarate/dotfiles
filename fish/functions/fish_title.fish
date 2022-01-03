@@ -33,4 +33,15 @@ function fish_title
 
   end
 
+	switch $fish_bind_mode
+		case default
+			printf ' [N]'
+
+		case replace_one
+			printf ' [R]'
+
+		case visual
+			printf ' [V]'
+	end
+
 end

@@ -1,0 +1,8 @@
+{
+	"diagnostic-languageserver.filetypes": {
+		"php": ["phpcs"],
+		"sh": ["shellcheck"],
+		"yaml": ["yamllint"]
+	},
+	"diagnostic-languageserver.formatFiletypes": {}
+}
