@@ -104,7 +104,7 @@ let g:lightline={
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
 	\             [ 'gitbranch' ],
-	\             [ 'relativepath', 'modified' ] ],
+	\             [ 'relativepath', 'gitdiff' ] ],
 	\   'right': [ [ 'lineinfo' ],
 	\              [ 'linter_warnings', 'linter_errors', 'linter_ok' ],
 	\              [ 'filetype' ] ]
@@ -116,7 +116,8 @@ let g:lightline={
 	\   'linter_ok': 'lightline#ale#ok'
 	\ },
 	\ 'component_function': {
-	\   'gitbranch': 'fugitive#head'
+	\   'gitbranch': 'fugitive#head',
+	\   'gitdiff': 'SignifyLightline'
 	\ },
 	\ 'component_type': {
 	\   'linter_errors': 'error',
@@ -124,7 +125,22 @@ let g:lightline={
 	\ },
 	\ }
 let g:lightline#ale#indicator_errors='x'
-let g:lightline#ale#indicator_warnings='~'
+let g:lightline#ale#indicator_warnings='!'
+let g:signify_sign_change='~'
+function! SignifyLightline()
+	let [added, modified, removed] = sy#repo#get_stats()
+	let symbols = ['+', '-', '~']
+	let stats = [added, removed, modified]  " reorder
+	let statline = ''
+
+	for i in range(3)
+		if stats[i] > 0
+			let statline .= printf('%s%s ', symbols[i], stats[i])
+		endif
+	endfor
+
+	return statline
+endfunction
 
 " fuzzy find
 Plug 'junegunn/fzf'
