@@ -4,5 +4,8 @@
 		"sh": ["shellcheck"],
 		"yaml": ["yamllint"]
 	},
-	"diagnostic-languageserver.formatFiletypes": {}
+	"diagnostic-languageserver.formatFiletypes": {},
+	"git.addGBlameToBufferVar": true,
+	"git.branchCharacter": "",
+	"git.urlMode": "permalink"
 }

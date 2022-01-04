@@ -40,6 +40,8 @@
 	stu = stash -u
 	su  = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 	w   = !sh -c 'git log -S'$1' -p' -
+[bash]
+	showInformativeStatus = true
 [color]
 	status = auto
 	ui = true

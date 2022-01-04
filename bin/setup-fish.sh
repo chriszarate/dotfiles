@@ -11,4 +11,6 @@ if [ -n "$fish_path" ]; then
 	if [ "$SHELL" != "$fish_path" ]; then
 		chsh -s "$fish_path"
 	fi
+
+	fish_add_path /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin $HOME/.bin
 fi

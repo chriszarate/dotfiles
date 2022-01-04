@@ -20,8 +20,9 @@ set foldmethod=syntax  " use syntax highlighting to inform folds
 set hidden             " keep buffers loaded
 set lazyredraw         " don't redraw screen during macros and untyped commands
 set list               " with listchars, show invisibles
-set listchars=tab:⎯\ ,trail:•
+set listchars=tab:│\ ,trail:#
 set nofoldenable       " open all folds by default
+set noshowmode         " hide default mode indicator
 set number             " line numbers
 set relativenumber     " line numbers relative to the current line
 set shell=/bin/bash    " most plugins expect bash
@@ -87,7 +88,7 @@ let g:gruvbox_sign_column="bg0"
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 let $FZF_DEFAULT_COMMAND='fd --type f --hidden'
-let g:fzf_layout = {'window': 'enew'}
+let g:fzf_layout={ 'window': 'enew' }
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>
@@ -100,6 +101,13 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --hidden --color=always --colum
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
+
+Plug 'mcchrish/nnn.vim'
+let g:nnn#action={ '<c-v>': 'vsplit' }
+let g:nnn#layout='enew'
+let g:nnn#set_default_mappings=0
+nnoremap <silent> - :NnnPicker %:p:h<cr>
+nnoremap <silent> _ :NnnPicker<cr>
 
 " javascript in vim what could go wrong
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -125,20 +133,29 @@ inoremap <silent><expr> <tab>
 	\ <sid>check_back_space() ? '<tab>' :
 	\ coc#refresh()
 inoremap <expr><s-tab> pumvisible() ? '<c-p>' : '<c-h>'
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gn <Plug>(coc-rename)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gs <Plug>(coc-git-chunkinfo)
-nmap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gk :call <sid>show_documentation()<cr>
+nnoremap <silent> ca :CocList actions<cr>
+nnoremap <silent> cc :CocList commands<cr>
+nnoremap <silent> cd <plug>(coc-definition)
+nnoremap <silent> cg :CocList diagnostics<cr>
+nnoremap <silent> ci <plug>(coc-implementation)
+nnoremap <silent> ck :call <sid>show_documentation()<cr>
+nnoremap <silent> cl :CocList<cr>
+nnoremap <silent> cn <plug>(coc-rename)
+nnoremap <silent> cr <plug>(coc-references)
+nnoremap <silent> cs <plug>(coc-git-chunkinfo)
+nnoremap <silent> cy <plug>(coc-type-definition)
+
+" language support
+Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled=[ 'sensible' ]
 
 " comment / uncomment
 Plug 'tpope/vim-commentary'
 
 " git
 Plug 'tpope/vim-fugitive'
-nnoremap <leader>d :Gvdiff<cr>
+nnoremap <silent> gd :Gvdiff<cr>
+nnoremap <silent> gs :vert Git<cr>
 autocmd VimEnter * :silent! Gcd " set working directory to git root
 
 " repeat more actions with .
@@ -160,11 +177,82 @@ function! s:check_back_space() abort
 endfunction
 
 function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
+	if (index([ 'vim', 'help' ], &filetype) >= 0)
 		execute 'h '.expand('<cword>')
 	else
 		call CocActionAsync('doHover')
 	endif
+endfunction
+
+function! CocSimpleStatus() abort
+	let info = get(b:, 'coc_diagnostic_info', {})
+	if empty(info)
+		return ''
+	endif
+
+	let msgs = []
+	if get(info, 'error', 0)
+		call add(msgs, 'x' . info['error'])
+	endif
+	if get(info, 'warning', 0)
+		call add(msgs, '*' . info['warning'])
+	endif
+
+	return ' ' . join(msgs, ' ') . ' '
+endfunction
+
+function! ModeIndicator() abort
+	let modename={
+		\ 'n'      : 'Normal',
+		\ 'no'     : 'Pending',
+		\ 'v'      : 'V',
+		\ 'V'      : 'VL',
+		\ "\<C-V>" : 'VB',
+		\ 's'      : 'S',
+		\ 'S'      : 'SL',
+		\ '^S'     : 'SB',
+		\ 'i'      : 'I',
+		\ 'R'      : 'R',
+		\ 'Rv'     : 'VR',
+		\ 'c'      : 'Command',
+		\ 'cv'     : 'Vim Ex',
+		\ 'ce'     : 'Ex',
+		\ 'r'      : 'Prompt',
+		\ 'rm'     : 'More',
+		\ 'r?'     : 'Confirm',
+		\ '!'      : 'Shell',
+		\ 't'      : 'Terminal'
+		\}
+
+	let modecolor={
+		\ 'n'      : '',
+		\ 'no'     : '',
+		\ 'v'      : 'VisualMode',
+		\ 'V'      : 'VisualMode',
+		\ "\<C-V>" : 'VisualMode',
+		\ 's'      : 'VisualMode',
+		\ 'S'      : 'VisualMode',
+		\ '^S'     : 'VisualMode',
+		\ 'i'      : 'InsertMode',
+		\ 'R'      : 'ReplaceMode',
+		\ 'Rv'     : 'ReplaceMode',
+		\ 'c'      : '',
+		\ 'cv'     : '',
+		\ 'ce'     : '',
+		\ 'r'      : '',
+		\ 'rm'     : '',
+		\ 'r?'     : '',
+		\ '!'      : '',
+		\ 't'      : ''
+		\}
+
+	let mode=mode()
+	let color=modecolor[mode]
+	if empty(color)
+		return ''
+	endif
+
+	return '%#' . color . '# ' . modename[mode] . ' '
 endfunction
 
 
@@ -174,6 +262,22 @@ endfunction
 
 set laststatus=2 " always show status line
 
+set statusline=
+set statusline+=\                    " space
+set statusline+=%f                   " current file relative to working directory
+set statusline+=\                    " space
+set statusline+=%h                   " help marker
+set statusline+=%=                   " align right
+set statusline+=%#Search#            " change color
+set statusline+=%{CocSimpleStatus()} " show indicator if errors are present
+set statusline+=%#StatusLineNC#      " change color
+set statusline+=\                    " space
+set statusline+=%p%%                 " percentage scrolled
+set statusline+=\                    " space
+set statusline+=%l:%c                " line and column position
+set statusline+=\                    " space
+set statusline+=%{%ModeIndicator()%} " mode indicator
+
 
 " +=========+
 " |  Theme  |
@@ -182,6 +286,9 @@ set laststatus=2 " always show status line
 colorscheme gruvbox
 highlight ColorColumn guibg=gray15
 highlight SpecialKey guifg=gray20
+highlight InsertMode guibg=#458588 guifg=#282828 ctermbg=9 ctermfg=0
+highlight ReplaceMode guibg=#689d6a guifg=#282828 ctermbg=10 ctermfg=0
+highlight VisualMode guibg=#b16286 guifg=#282828 ctermbg=13 ctermfg=0
 
 
 " +========+
