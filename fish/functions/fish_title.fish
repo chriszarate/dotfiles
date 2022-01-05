@@ -10,21 +10,12 @@ function fish_title
 		case ssh
 			printf 'ssh %s' (echo "$argv[1]" | awk '{ for(i=NF; i>0; i--) { if(match($i, /^[^\-]/)) {print $i; break} } }')
 
-		# Ignore some commands.
-		case cd
-		case kitty
-		case ls
-		case sleep
-
 		# Prepend the command name to the directory basename for some commands.
-		case git
-		case nano
-		case npm
-		case pico
-		case tmux
-		case vi
-		case vim
+		case git nano npm pico tmux vi vim
 			printf '%s %s' "$_" (git_prompt_pwd)
+
+		# Ignore some commands.
+		case cd kitty ls sleep
 
 		# Otherwise just output the command name.
 		case '*'

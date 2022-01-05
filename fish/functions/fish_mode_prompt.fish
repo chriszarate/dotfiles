@@ -1,2 +1,2 @@
-function fish_mode_prompt -d 'Leading prompt to indicate mode (normal, insert, visual, replace_one)'
+function fish_mode_prompt -d 'Disable the default vi mode indicator'
 end
