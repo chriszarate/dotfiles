@@ -202,28 +202,6 @@ function! CocSimpleStatus() abort
 endfunction
 
 function! ModeIndicator() abort
-	let modename={
-		\ 'n'      : 'Normal',
-		\ 'no'     : 'Pending',
-		\ 'v'      : 'V',
-		\ 'V'      : 'VL',
-		\ "\<C-V>" : 'VB',
-		\ 's'      : 'S',
-		\ 'S'      : 'SL',
-		\ '^S'     : 'SB',
-		\ 'i'      : 'I',
-		\ 'R'      : 'R',
-		\ 'Rv'     : 'VR',
-		\ 'c'      : 'Command',
-		\ 'cv'     : 'Vim Ex',
-		\ 'ce'     : 'Ex',
-		\ 'r'      : 'Prompt',
-		\ 'rm'     : 'More',
-		\ 'r?'     : 'Confirm',
-		\ '!'      : 'Shell',
-		\ 't'      : 'Terminal'
-		\}
-
 	let modecolor={
 		\ 'n'      : '',
 		\ 'no'     : '',
@@ -249,10 +227,10 @@ function! ModeIndicator() abort
 	let mode=mode()
 	let color=modecolor[mode]
 	if empty(color)
-		return ''
+		return '%#StatusLineNC#'
 	endif
 
-	return '%#' . color . '# ' . modename[mode] . ' '
+	return '%#' . color . '#'
 endfunction
 
 
@@ -267,16 +245,16 @@ set statusline+=\                    " space
 set statusline+=%f                   " current file relative to working directory
 set statusline+=\                    " space
 set statusline+=%h                   " help marker
+set statusline+=%m                   " modified marker
 set statusline+=%=                   " align right
 set statusline+=%#Search#            " change color
 set statusline+=%{CocSimpleStatus()} " show indicator if errors are present
-set statusline+=%#StatusLineNC#      " change color
+set statusline+=%{%ModeIndicator()%} " mode indicator
 set statusline+=\                    " space
 set statusline+=%p%%                 " percentage scrolled
 set statusline+=\                    " space
 set statusline+=%l:%c                " line and column position
 set statusline+=\                    " space
-set statusline+=%{%ModeIndicator()%} " mode indicator
 
 
 " +=========+
