@@ -32,6 +32,7 @@
 	rc  = rebase --continue
 	ri  = rebase --interactive
 	rs  = rebase --skip
+	rso = remote set-head origin -a
 	s   = status --short --branch
 	sh  = show
 	st  = stash

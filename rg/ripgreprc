@@ -1,0 +1,9 @@
+--color=always
+--column
+--follow
+--hidden
+--line-number
+--max-columns=150
+--max-columns-preview
+--no-heading
+--smart-case

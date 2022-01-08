@@ -1,0 +1,6 @@
+export BASH_SILENCE_DEPRECATION_WARNING="1"
+export EDITOR="vim"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.bin"
+export PS1="\w > "
+
+eval "$(fnm env)"

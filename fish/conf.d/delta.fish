@@ -1,1 +1,1 @@
-set -x "DELTA_FEATURES" "+line-numbers"
+set -x DELTA_FEATURES "+line-numbers"

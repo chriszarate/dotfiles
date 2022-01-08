@@ -87,17 +87,17 @@ let g:gruvbox_sign_column="bg0"
 " fuzzy find
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-let $FZF_DEFAULT_COMMAND='fd --type f --hidden'
+let $BAT_STYLE="changes,header,numbers"
 let g:fzf_layout={ 'window': 'enew' }
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>p :Files<cr>
 nnoremap <silent> <leader>f :GFiles?<cr>
-nnoremap <silent> <leader>/ :Rg<cr>
-nnoremap <silent> <leader>? :Rg --glob='!*.test.*'<cr>
-" prevent Rg matches in filenames
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --hidden --color=always --column --line-number --no-heading --smart-case ".<q-args>." ''", 1, {'options': '--delimiter : --nth 4.. --preview "bat --color always --highlight-line {2..2} --style numbers {1..1}" --bind "ctrl-/:toggle-preview"'}, <bang>0)
+nnoremap <silent> <leader>/ :RG<cr>
+nnoremap <silent> <leader># :RG <c-r><c-w><cr>
+nnoremap <silent> <leader>? :RG --glob='!*.test.*'<cr>
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
@@ -231,6 +231,14 @@ function! ModeIndicator() abort
 	endif
 
 	return '%#' . color . '#'
+endfunction
+
+function! RipgrepFzf(query, fullscreen)
+	let command_fmt = 'rg -- %s || true'
+	let initial_command = printf(command_fmt, shellescape(a:query))
+	let reload_command = printf(command_fmt, '{q}')
+	let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+	call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
 

@@ -14,6 +14,7 @@ mkdir -p "$HOME/.bin"
 
 # Symlink custom-location dotfiles.
 links=(
+	'.config/bat::bat'
 	'.config/coc/coc-settings.json::coc/coc-settings.json'
 	'.config/fish::fish'
 	'.config/kitty::kitty'
@@ -29,6 +30,7 @@ done
 
 # Symlink dotfiles.
 for config in \
+	bash/bashrc \
 	brew/Brewfile \
 	editor/editorconfig \
 	fd/fdignore \
@@ -37,7 +39,9 @@ for config in \
 	input/inputrc \
 	node/node-version \
 	rg/rgignore \
-	vim/vimrc
+	rg/ripgreprc \
+	vim/vimrc \
+	zsh/zshrc
 do
 	if [ ! -e "$HOME/.$(basename "$config")" ]; then
 		ln -s "$DOTFILES/$config" "$HOME/.$(basename "$config")"

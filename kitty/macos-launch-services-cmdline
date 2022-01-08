@@ -1,1 +1,1 @@
---listen-on unix:/tmp/kitty-socket
+--listen-on unix:/tmp/kitty-socket --start-as maximized
