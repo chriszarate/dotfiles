@@ -14,6 +14,9 @@ defaults write com.apple.dock autohide -bool true
 # Allow text selection in QuickLook.
 defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 
+# Disable font-smoothing
+defaults -currentHost write -g AppleFontSmoothing -int 0
+
 echo "Enter your password to restart applications."
 sudo killall Dock
 sudo killall Finder

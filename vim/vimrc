@@ -102,6 +102,7 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
 
+" use nnn instead of netrw
 Plug 'mcchrish/nnn.vim'
 let g:nnn#action={ '<c-v>': 'vsplit' }
 let g:nnn#layout='enew'
