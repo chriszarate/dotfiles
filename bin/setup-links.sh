@@ -15,10 +15,10 @@ mkdir -p "$HOME/.bin"
 # Symlink custom-location dotfiles.
 links=(
 	'.config/bat::bat'
-	'.config/coc/coc-settings.json::coc/coc-settings.json'
 	'.config/fish::fish'
 	'.config/kitty::kitty'
 	'.hammerspoon::hammerspoon'
+	'.vim/coc-settings.json::vim/coc-settings.json'
 )
 for link in "${links[@]}"; do
 	source="${link##*::}"

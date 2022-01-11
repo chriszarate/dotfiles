@@ -195,8 +195,14 @@ function! CocSimpleStatus() abort
 	if get(info, 'error', 0)
 		call add(msgs, 'x' . info['error'])
 	endif
+	if get(info, 'information', 0)
+		call add(msgs, '*' . info['information'])
+	endif
+	if get(info, 'lint', 0)
+		call add(msgs, '+' . info['lint'])
+	endif
 	if get(info, 'warning', 0)
-		call add(msgs, '*' . info['warning'])
+		call add(msgs, '!' . info['warning'])
 	endif
 
 	return ' ' . join(msgs, ' ') . ' '
