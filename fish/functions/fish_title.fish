@@ -4,7 +4,7 @@ function fish_title
 
     # If we're sitting a prompt, use the git origin or the working directory.
     case fish
-      git_prompt_pwd
+      printf 'fish %s' (git_prompt_pwd)
 
     # If we're SSHing, attempt to extract the hostname.
 		case ssh

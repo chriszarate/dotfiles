@@ -21,14 +21,15 @@ def handle_result(args: List[str], answer: str, target_window_id: int, boss: Bos
    tab_list = ()
 
    # Add an option to open a new tab
-   tab_list = tab_list + ((0, '[Open a new tab]'),)
+   tab_list = tab_list + ((0, '[New tab]'),)
 
    for t in boss.all_tabs:
       title = t.title
 
       # Indicate if there is more than 1 window
-      if len(t.windows) > 1:
-         title = title + ' [{count} windows]'.format(count=len(t.windows))
+      count = len(t.windows)
+      if count > 1:
+         title = title + ' [{count} windows]'.format(count=count)
 
       # Mark the current tab with an indicator
       if t.id == boss.active_tab.id:
