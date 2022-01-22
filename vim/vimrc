@@ -136,16 +136,17 @@ inoremap <silent><expr> <tab>
 	\ coc#refresh()
 inoremap <expr><s-tab> pumvisible() ? '<c-p>' : '<c-h>'
 nmap <silent> ,a :CocList actions<cr>
-nmap <silent> ,c :CocList commands<cr>
+nmap <silent> ,c <plug>(coc-git-chunkinfo)
 nmap <silent> ,d <plug>(coc-definition)
-nmap <silent> ,g <plug>(coc-git-chunkinfo)
+nmap <silent> ,g :CocList diagnostics<cr>
 nmap <silent> ,i <plug>(coc-implementation)
 nmap <silent> ,k :call <sid>show_documentation()<cr>
 nmap <silent> ,l :CocList<cr>
 nmap <silent> ,n <plug>(coc-rename)
 nmap <silent> ,r <plug>(coc-references)
-nmap <silent> ,s :CocList diagnostics<cr>
 nmap <silent> ,y <plug>(coc-type-definition)
+nmap <silent> [g <plug>(coc-diagnostic-prev)
+nmap <silent> ]g <plug>(coc-diagnostic-next)
 
 " language support
 Plug 'sheerun/vim-polyglot'
