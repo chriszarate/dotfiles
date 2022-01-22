@@ -135,17 +135,17 @@ inoremap <silent><expr> <tab>
 	\ <sid>check_back_space() ? '<tab>' :
 	\ coc#refresh()
 inoremap <expr><s-tab> pumvisible() ? '<c-p>' : '<c-h>'
-nnoremap <silent> ca :CocList actions<cr>
-nnoremap <silent> cc :CocList commands<cr>
-nnoremap <silent> cd <plug>(coc-definition)
-nnoremap <silent> cg :CocList diagnostics<cr>
-nnoremap <silent> ci <plug>(coc-implementation)
-nnoremap <silent> ck :call <sid>show_documentation()<cr>
-nnoremap <silent> cl :CocList<cr>
-nnoremap <silent> cn <plug>(coc-rename)
-nnoremap <silent> cr <plug>(coc-references)
-nnoremap <silent> cs <plug>(coc-git-chunkinfo)
-nnoremap <silent> cy <plug>(coc-type-definition)
+nmap <silent> ,a :CocList actions<cr>
+nmap <silent> ,c :CocList commands<cr>
+nmap <silent> ,d <plug>(coc-definition)
+nmap <silent> ,g <plug>(coc-git-chunkinfo)
+nmap <silent> ,i <plug>(coc-implementation)
+nmap <silent> ,k :call <sid>show_documentation()<cr>
+nmap <silent> ,l :CocList<cr>
+nmap <silent> ,n <plug>(coc-rename)
+nmap <silent> ,r <plug>(coc-references)
+nmap <silent> ,s :CocList diagnostics<cr>
+nmap <silent> ,y <plug>(coc-type-definition)
 
 " language support
 Plug 'sheerun/vim-polyglot'
@@ -156,8 +156,8 @@ Plug 'tpope/vim-commentary'
 
 " git
 Plug 'tpope/vim-fugitive'
-nnoremap <silent> gd :Gvdiff<cr>
-nnoremap <silent> gs :vert Git<cr>
+nnoremap <silent> <leader>d :Gvdiff<cr>
+nnoremap <silent> <leader>s :vert Git<cr>
 autocmd VimEnter * :silent! Gcd " set working directory to git root
 
 " repeat more actions with .
@@ -206,7 +206,11 @@ function! CocSimpleStatus() abort
 		call add(msgs, '!' . info['warning'])
 	endif
 
-	return ' ' . join(msgs, ' ') . ' '
+	if empty(msgs)
+		return ''
+	endif
+
+	return '  ' . join(msgs, ' ') . ' '
 endfunction
 
 function! ModeIndicator() abort
@@ -290,7 +294,7 @@ highlight VisualMode guibg=#b16286 guifg=#282828 ctermbg=13 ctermfg=0
 " +========+
 
 " Buffers
-nnoremap <silent> , <c-^>
+nmap <silent> ,, <c-^>
 nnoremap <leader>w :up<cr>
 nnoremap <leader>x :bdelete<cr>
 
