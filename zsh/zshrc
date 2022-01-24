@@ -4,3 +4,5 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin
 export PROMPT='%~ > '
 
 eval "$(fnm env)"
+
+source /Users/zzz/.config/broot/launcher/bash/br

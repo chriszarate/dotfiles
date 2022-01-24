@@ -102,13 +102,13 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
 
-" use nnn instead of netrw
-Plug 'mcchrish/nnn.vim'
-let g:nnn#action={ '<c-v>': 'vsplit' }
-let g:nnn#layout='enew'
-let g:nnn#set_default_mappings=0
-nnoremap <silent> - :NnnPicker %:p:h<cr>
-nnoremap <silent> _ :NnnPicker<cr>
+" use broot instead of netrw
+Plug 'https://gitlab.com/lstwn/broot.vim'
+let g:broot_command='broot'
+let g:broot_replace_netrw='1'
+let g:loaded_netrwPlugin='1'
+nnoremap <silent> _ :BrootCurrentDir<cr>
+nnoremap <silent> - :Explore<cr>
 
 " javascript in vim what could go wrong
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }

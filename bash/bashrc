@@ -5,3 +5,5 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin
 export PS1="\w > "
 
 eval "$(fnm env)"
+
+source /Users/zzz/.config/broot/launcher/bash/br

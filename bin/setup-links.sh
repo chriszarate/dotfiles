@@ -15,6 +15,7 @@ mkdir -p "$HOME/.bin"
 # Symlink custom-location dotfiles.
 links=(
 	'.config/bat::bat'
+	'.config/broot::broot'
 	'.config/fish::fish'
 	'.config/kitty::kitty'
 	'.hammerspoon::hammerspoon'
