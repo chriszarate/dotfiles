@@ -1,4 +1,4 @@
-function fish_title
+function fish_title -d 'Set the title for the current terminal window'
 
 	set -l command "$_"
 
@@ -12,16 +12,12 @@ function fish_title
 
   switch "$command"
 
-    # If we're sitting a prompt, use the git origin or the working directory.
-    case fish
-      printf 'fish %s' (git_prompt_pwd)
-
     # If we're SSHing, attempt to extract the hostname.
 		case ssh
 			printf 'ssh %s' (echo "$argv[1]" | awk '{ for(i=NF; i>0; i--) { if(match($i, /^[^\-]/)) {print $i; break} } }')
 
 		# Prepend the command name to the directory basename for some commands.
-		case broot git nano npm pico tmux vi vim
+		case bash broot fish git nano npm pico sh tmux vi vim zsh
 			printf '%s %s' "$command" (git_prompt_pwd)
 
 		# Ignore some commands.

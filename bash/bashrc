@@ -6,4 +6,4 @@ export PS1="\w > "
 
 eval "$(fnm env)"
 
-source /Users/zzz/.config/broot/launcher/bash/br
+source "$HOME/Library/Application Support/org.dystroy.broot/launcher/bash/1"

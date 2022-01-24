@@ -9,6 +9,12 @@ name = "edit"
 shortcut = "e"
 
 [[verbs]]
+execution = "touch {directory}/{new_file}"
+invocation = "touch {new_file}"
+leave_broot = false
+name = "touch"
+
+[[verbs]]
 key = "ctrl-f"
 internal = ":toggle_files"
 
