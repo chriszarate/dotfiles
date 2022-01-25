@@ -103,7 +103,7 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 Plug 'junegunn/vim-peekaboo'
 
 " use broot instead of netrw
-Plug 'chriszarate/broot.vim', { 'branch': 'fix/alternate-buffer-ignore-noname' }
+Plug 'lstwn/broot.vim'
 let g:broot_command='broot'
 let g:broot_replace_netrw='1'
 let g:loaded_netrwPlugin='1'
