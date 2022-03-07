@@ -4,6 +4,17 @@ export PAGER="less"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.bin"
 export PS1="\w > "
 
+# completions
+if type brew &>/dev/null; then
+	HOMEBREW_PREFIX="$(brew --prefix)"
+	for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+	do
+		[[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+	done
+fi
+
+# fnm (node.js version manager)
 eval "$(fnm env)"
 
+# broot
 source "$HOME/Library/Application Support/org.dystroy.broot/launcher/bash/1"

@@ -116,7 +116,6 @@ let g:coc_global_extensions=[
 	\ 'coc-css',
 	\ 'coc-diagnostic',
 	\ 'coc-docker',
-	\ 'coc-eslint',
 	\ 'coc-git',
 	\ 'coc-go',
 	\ 'coc-html',
@@ -126,7 +125,6 @@ let g:coc_global_extensions=[
 	\ 'coc-pyright',
 	\ 'coc-sh',
 	\ 'coc-sql',
-	\ 'coc-stylelint',
 	\ 'coc-tsserver',
 	\ 'coc-yaml'
 	\ ]

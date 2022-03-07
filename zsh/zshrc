@@ -3,6 +3,16 @@ export PAGER="less"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.bin"
 export PROMPT='%~ > '
 
+# completions
+if type brew &>/dev/null; then
+	FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+	autoload -Uz compinit
+	compinit
+fi
+
+# fnm (node.js version manager)
 eval "$(fnm env)"
 
+# broot
 source "$HOME/Library/Application Support/org.dystroy.broot/launcher/bash/1"
