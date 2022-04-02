@@ -22,7 +22,6 @@ set lazyredraw         " don't redraw screen during macros and untyped commands
 set list               " with listchars, show invisibles
 set listchars=tab:│\ ,trail:#
 set nofoldenable       " open all folds by default
-set noshowmode         " hide default mode indicator
 set number             " line numbers
 set relativenumber     " line numbers relative to the current line
 set shell=/bin/bash    " most plugins expect bash
@@ -209,39 +208,7 @@ function! CocSimpleStatus() abort
 		return ''
 	endif
 
-	return '  ' . join(msgs, ' ') . ' '
-endfunction
-
-function! ModeIndicator() abort
-	let modecolor={
-		\ 'n'      : '',
-		\ 'no'     : '',
-		\ 'v'      : 'VisualMode',
-		\ 'V'      : 'VisualMode',
-		\ "\<C-V>" : 'VisualMode',
-		\ 's'      : 'VisualMode',
-		\ 'S'      : 'VisualMode',
-		\ '^S'     : 'VisualMode',
-		\ 'i'      : 'InsertMode',
-		\ 'R'      : 'ReplaceMode',
-		\ 'Rv'     : 'ReplaceMode',
-		\ 'c'      : '',
-		\ 'cv'     : '',
-		\ 'ce'     : '',
-		\ 'r'      : '',
-		\ 'rm'     : '',
-		\ 'r?'     : '',
-		\ '!'      : '',
-		\ 't'      : ''
-		\}
-
-	let mode=mode()
-	let color=modecolor[mode]
-	if empty(color)
-		return '%#StatusLineNC#'
-	endif
-
-	return '%#' . color . '#'
+	return ' ' . join(msgs, ' ') . ' '
 endfunction
 
 function! RipgrepFzf(query, fullscreen)
@@ -268,7 +235,7 @@ set statusline+=%m                   " modified marker
 set statusline+=%=                   " align right
 set statusline+=%#Search#            " change color
 set statusline+=%{CocSimpleStatus()} " show indicator if errors are present
-set statusline+=%{%ModeIndicator()%} " mode indicator
+set statusline+=%#StatusLineNC#      " change color
 set statusline+=\                    " space
 set statusline+=%p%%                 " percentage scrolled
 set statusline+=\                    " space
@@ -283,9 +250,6 @@ set statusline+=\                    " space
 colorscheme gruvbox
 highlight ColorColumn guibg=gray15
 highlight SpecialKey guifg=gray20
-highlight InsertMode guibg=#458588 guifg=#282828 ctermbg=9 ctermfg=0
-highlight ReplaceMode guibg=#689d6a guifg=#282828 ctermbg=10 ctermfg=0
-highlight VisualMode guibg=#b16286 guifg=#282828 ctermbg=13 ctermfg=0
 
 
 " +========+
