@@ -1,0 +1,10 @@
+__fixtures__/
+__mocks__/
+__tests__/
+fixture/
+mock/
+test/
+*Test*
+*test.*
+*Mock*
+*mock.*
