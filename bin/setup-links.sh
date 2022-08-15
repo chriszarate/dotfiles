@@ -40,6 +40,7 @@ for config in \
 	input/inputrc \
 	node/node-version \
 	rg/rgignore \
+	rg/rgignore-tests \
 	rg/ripgreprc \
 	vim/vimrc \
 	zsh/zshrc

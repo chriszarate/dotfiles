@@ -95,8 +95,9 @@ nnoremap <silent> <leader>p :Files<cr>
 nnoremap <silent> <leader>f :GFiles?<cr>
 nnoremap <silent> <leader>/ :RG<cr>
 nnoremap <silent> <leader># :RG <c-r><c-w><cr>
-nnoremap <silent> <leader>? :RG --glob='!*.test.*'<cr>
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+nnoremap <silent> <leader>? :RGIT<cr>
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, '', <bang>0)
+command! -nargs=* -bang RGIT call RipgrepFzf(<q-args>, '--ignore-file ~/.rgignore-tests', <bang>0)
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
@@ -127,10 +128,10 @@ let g:coc_global_extensions=[
 	\ 'coc-yaml'
 	\ ]
 inoremap <silent><expr> <tab>
-	\ pumvisible() ? '<c-n>' :
-	\ <sid>check_back_space() ? '<tab>' :
+	\ coc#pum#visible() ? coc#pum#next(1):
+	\ <sid>check_back_space() ? "\<tab>" :
 	\ coc#refresh()
-inoremap <expr><s-tab> pumvisible() ? '<c-p>' : '<c-h>'
+inoremap <expr><s-tab> coc#pum#visible() ? coc#pum#prev(1) : "\<c-h>"
 nmap <silent> ,a :CocList actions<cr>
 nmap <silent> ,c <plug>(coc-git-chunkinfo)
 nmap <silent> ,d <plug>(coc-definition)
@@ -172,7 +173,7 @@ call plug#end()
 
 function! s:check_back_space() abort
 	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
+	return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
 function! s:show_documentation()
@@ -210,8 +211,8 @@ function! CocSimpleStatus() abort
 	return ' ' . join(msgs, ' ') . ' '
 endfunction
 
-function! RipgrepFzf(query, fullscreen)
-	let command_fmt = 'rg -- %s || true'
+function! RipgrepFzf(query, rg_args, fullscreen)
+	let command_fmt = 'rg ' . a:rg_args . ' -- %s || true'
 	let initial_command = printf(command_fmt, shellescape(a:query))
 	let reload_command = printf(command_fmt, '{q}')
 	let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}

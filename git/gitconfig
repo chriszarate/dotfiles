@@ -1,3 +1,5 @@
+[add.interactive]
+	useBuiltin = false  # https://github.com/dandavison/delta/issues/1114
 [alias]
 	a   = add --patch
 	aa  = add
@@ -75,6 +77,8 @@
 [pack]
 	windowMemory = 10m
 	packSizeLimit = 20m
+[push]
+	autoRemoteSetup = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [user]
@@ -82,5 +86,5 @@
 	email = chris.zarate@automattic.com
 	signingkey = AF7D9D6F1994A742D6D12E2C839E1F045D04B581
 
-[includeIf "gitdir:/Users/zzz/**/.git"]
-	path = ~/.dotfiles/git/gitconfig.personal
+[includeIf "gitdir:~/Documents/Code/personal/**/.git"]
+	path = ~/.dotfiles/git/gitconfig_personal

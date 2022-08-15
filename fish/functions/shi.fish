@@ -1,4 +1,4 @@
-function uu -d 'Fuzzy-search Safari history'
+function shi -d 'Fuzzy-search Safari history'
 	set -l columns (math "round $COLUMNS / 3")
 	set -l separator "{::}"
 	sqlite3 -separator $separator $HOME/Library/Safari/History.db \
