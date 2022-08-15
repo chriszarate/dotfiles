@@ -132,6 +132,7 @@ inoremap <silent><expr> <tab>
 	\ <sid>check_back_space() ? "\<tab>" :
 	\ coc#refresh()
 inoremap <expr><s-tab> coc#pum#visible() ? coc#pum#prev(1) : "\<c-h>"
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<c-g>u\<cr>\<c-r>=coc#on_enter()\<cr>"
 nmap <silent> ,a :CocList actions<cr>
 nmap <silent> ,c <plug>(coc-git-chunkinfo)
 nmap <silent> ,d <plug>(coc-definition)
