@@ -18,6 +18,7 @@ links=(
 	'.config/broot::broot'
 	'.config/fish::fish'
 	'.config/kitty::kitty'
+	'.config/nvim::nvim'
 	'.hammerspoon::hammerspoon'
 	'.vim/coc-settings.json::vim/coc-settings.json'
 )
