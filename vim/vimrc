@@ -147,6 +147,10 @@ nmap <silent> ,y <plug>(coc-type-definition)
 nmap <silent> [g <plug>(coc-diagnostic-prev)
 nmap <silent> ]g <plug>(coc-diagnostic-next)
 
+" documentation
+Plug 'rizzatti/dash.vim'
+nmap <silent> K :Dash<cr>
+
 " language support
 Plug 'sheerun/vim-polyglot'
 let g:polyglot_disabled=[ 'sensible' ]
