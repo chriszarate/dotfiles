@@ -12,7 +12,7 @@ function fish_prompt -d 'Decorate the prompt'
 
 	# Is this a git repo?
 	if git rev-parse --is-inside-work-tree >/dev/null 2>&1
-		set -l git_status (git status --porcelain 2>/dev/null)
+		set -l git_status (git status -s --ignore-submodules=dirty 2>/dev/null)
 		set prompt_color "$clean_prompt_color"
 
 		# Is the state dirty in any way?
