@@ -1,31 +1,28 @@
 [add.interactive]
 	useBuiltin = false  # https://github.com/dandavison/delta/issues/1114
 [alias]
-	a   = add --patch
+	a   = !git ls-files -m -o --exclude-standard | fzf --preview 'git diff --color=always {}' --print0 -m | xargs -0 -t -o git add --patch
 	aa  = add
-	af  = "!git ls-files -m -o --exclude-standard | fzf --preview 'git diff --color=always {}' --print0 -m | xargs -0 -t -o git add"
-	b   = branch
-	bc  = "!git symbolic-ref --short HEAD | tr -d '\\n'"
-	bd  = "!git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)' | fzf --no-hscroll --no-multi --ansi --preview 'git --no-pager log -50 --pretty=format:\"%h  %an (%ar)  %s\" {}' --print0 | xargs -0 -t -o git checkout"
+	ap  = add --patch
+	b   = !git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)' | fzf --no-hscroll --no-multi --ansi --preview 'git --no-pager log -50 --pretty=format:\"%h  %an (%ar)  %s\" {}' --print0 | xargs -0 -t -o git checkout
+	bc  = !git symbolic-ref --short HEAD | tr -d '\\n'
 	c   = commit
 	ca  = commit --amend
-	cc  = "!git log --pretty=format:'%h' -n 1"
-	ccl = "!git rev-parse HEAD | tr -d '\\n'"
+	cc  = !git log --pretty=format:'%h' -n 1 | tr -d '\\n'
+	ccl = !git rev-parse HEAD | tr -d '\\n'
 	co  = checkout
 	cob = checkout -b
 	cop = checkout --patch
 	cot = !sh -c 'git checkout -t origin/'$1'' -
 	cp  = cherry-pick
 	d   = diff
-	dc  = diff --cached
-	ds  = "!DELTA_FEATURES=+side-by-side git diff"
-	dw  = diff -w
+	ds  = !DELTA_FEATURES=+side-by-side git diff
 	f   = fetch
 	fp  = pull --ff-only
-	l   = log --oneline --graph
-	la  = log --stat --branches --not --remotes
+	l   = log --graph --stat
 	ll  = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 	lp  = log -p
+	ls  = diff-tree --stat -r HEAD~0
 	p   = pull
 	pu  = push
 	puf = push --force
@@ -36,13 +33,9 @@
 	rs  = rebase --skip
 	rso = remote set-head origin -a
 	s   = status --short --branch
-	sh  = show
 	st  = stash
-	stl = "!git stash list --pretty='%C(yellow)%gd %<(14)%Cgreen%cr %C(blue)%gs' | fzf --ansi --no-multi --preview 'git stash show --color=always -p {1}' | cut -f 1 -d ' ' | xargs -t -o git stash branch stash-$(date +%Y%m%d%H%M)"
-	stp = stash pop
-	stu = stash -u
+	sl  = "!git stash list --pretty='%C(yellow)%gd %<(14)%Cgreen%cr %C(blue)%gs' | fzf --ansi --no-multi --preview 'git stash show --color=always -p {1}' | cut -f 1 -d ' ' | xargs -t -o git stash branch stash-$(date +%Y%m%d%H%M)"
 	su  = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
-	w   = !sh -c 'git log -S'$1' -p' -
 [bash]
 	showInformativeStatus = true
 [color]

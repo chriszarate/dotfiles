@@ -79,7 +79,7 @@ call plug#begin()
 Plug 'editorconfig/editorconfig-vim'
 
 " colorscheme
-Plug 'gruvbox-community/gruvbox'
+Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_sign_column="bg0"
 
@@ -114,6 +114,7 @@ nnoremap <silent> - :NnnPicker<cr>
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 let g:coc_global_extensions=[
 	\ 'coc-css',
+	\ 'coc-deno',
 	\ 'coc-diagnostic',
 	\ 'coc-docker',
 	\ 'coc-git',
@@ -134,14 +135,17 @@ inoremap <silent><expr> <tab>
 	\ coc#refresh()
 inoremap <expr><s-tab> coc#pum#visible() ? coc#pum#prev(1) : "\<c-h>"
 inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<c-g>u\<cr>\<c-r>=coc#on_enter()\<cr>"
-nmap <silent> ,a :CocList actions<cr>
+nmap <silent> ,a <plug>(coc-codeaction-cursor)
+nmap <silent> ,b <plug>(coc-codeaction-source)
 nmap <silent> ,c <plug>(coc-git-chunkinfo)
 nmap <silent> ,d <plug>(coc-definition)
+nmap <silent> ,f <plug>(coc-fix-current)
 nmap <silent> ,g :CocList diagnostics<cr>
 nmap <silent> ,i <plug>(coc-implementation)
 nmap <silent> ,k :call <sid>show_documentation()<cr>
 nmap <silent> ,l :CocList<cr>
 nmap <silent> ,n <plug>(coc-rename)
+nmap <silent> ,p :CocCommand git.copyPermalink<cr>
 nmap <silent> ,r <plug>(coc-references)
 nmap <silent> ,y <plug>(coc-type-definition)
 nmap <silent> [g <plug>(coc-diagnostic-prev)
