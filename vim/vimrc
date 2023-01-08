@@ -91,6 +91,7 @@ let g:fzf_layout={ 'window': 'enew' }
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 nnoremap <silent> <leader>h :History<cr>
+nnoremap <silent> <leader>m :Marks<cr>
 nnoremap <silent> <leader>p :Files<cr>
 nnoremap <silent> <leader>f :GFiles?<cr>
 nnoremap <silent> <leader>/ :RG<cr>
@@ -229,6 +230,14 @@ function! RipgrepFzf(query, rg_args, fullscreen)
 	call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
+function! ToggleQuickFix()
+	if empty(filter(getwininfo(), 'v:val.quickfix'))
+		copen
+	else
+		cclose
+	endif
+endfunction
+
 
 " +==============+
 " |  Statusline  |
@@ -268,6 +277,7 @@ highlight SpecialKey guifg=gray20
 
 " Buffers
 nmap <silent> ,, <c-^>
+nnoremap <leader>q :call ToggleQuickFix()<cr>
 nnoremap <leader>w :up<cr>
 nnoremap <leader>x :bdelete<cr>
 
