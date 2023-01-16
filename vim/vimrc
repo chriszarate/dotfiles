@@ -103,13 +103,13 @@ command! -nargs=* -bang RGIT call RipgrepFzf(<q-args>, '--ignore-file ~/.rgignor
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
 
-" use nnn instead of netrw
-Plug 'mcchrish/nnn.vim'
-let g:nnn#layout='enew'
-let g:nnn#replace_netrw='1'
+" use broot instead of netrw
+Plug 'lstwn/broot.vim'
+let g:broot_default_conf_path='/Users/czarate/.config/broot/conf.hjson'
+let g:broot_replace_netrw='1'
 let g:loaded_netrwPlugin='1'
-nnoremap <silent> _ :NnnPicker %:p:h<cr>
-nnoremap <silent> - :NnnPicker<cr>
+nnoremap <silent> _ :BrootCurrentDir<cr>
+nnoremap <silent> - :BrootWorkingDir<cr>
 
 " javascript in vim what could go wrong
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
