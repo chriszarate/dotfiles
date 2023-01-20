@@ -138,19 +138,27 @@ inoremap <expr><s-tab> coc#pum#visible() ? coc#pum#prev(1) : "\<c-h>"
 inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<c-g>u\<cr>\<c-r>=coc#on_enter()\<cr>"
 nmap <silent> ,a <plug>(coc-codeaction-cursor)
 nmap <silent> ,b <plug>(coc-codeaction-source)
-nmap <silent> ,c <plug>(coc-git-chunkinfo)
+nmap <silent> ,c :CocList commands<cr>
 nmap <silent> ,d <plug>(coc-definition)
 nmap <silent> ,f <plug>(coc-fix-current)
-nmap <silent> ,g :CocList diagnostics<cr>
 nmap <silent> ,i <plug>(coc-implementation)
 nmap <silent> ,k :call <sid>show_documentation()<cr>
 nmap <silent> ,l :CocList<cr>
 nmap <silent> ,n <plug>(coc-rename)
-nmap <silent> ,p :CocCommand git.copyPermalink<cr>
 nmap <silent> ,r <plug>(coc-references)
+nmap <silent> ,x :CocList diagnostics<cr>
 nmap <silent> ,y <plug>(coc-type-definition)
-nmap <silent> [g <plug>(coc-diagnostic-prev)
-nmap <silent> ]g <plug>(coc-diagnostic-next)
+nmap <silent> [x <plug>(coc-diagnostic-prev)
+nmap <silent> ]x <plug>(coc-diagnostic-next)
+
+nmap <silent> ;b :CocCommand git.showBlameDoc<cr>
+nmap <silent> ;c :CocCommand git.showCommit<cr>
+nmap <silent> ;g <plug>(coc-git-chunkinfo)
+nmap <silent> ;o :CocCommand git.openBrowser<cr>
+nmap <silent> ;p :CocCommand git.copyPermalink<cr>
+nmap <silent> ;u :CocCommand git.chunkUndo<cr>
+nmap <silent> [g <plug>(coc-git-prevchunk)
+nmap <silent> ]g <plug>(coc-git-nextchunk)
 
 " documentation
 Plug 'rizzatti/dash.vim'

@@ -37,6 +37,7 @@
 			}
 		}
 	},
+	"git.enableGutters": true,
 	"git.urlMode": "permalink",
 	"intelephense.stubs": [
 		"apache",
