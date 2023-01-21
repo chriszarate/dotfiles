@@ -1,7 +1,7 @@
 [add.interactive]
 	useBuiltin = false  # https://github.com/dandavison/delta/issues/1114
 [alias]
-	a   = !git ls-files -m -o --exclude-standard | fzf --preview 'git diff --color=always {}' --print0 -m | xargs -0 -t -o git add --patch
+	a   = !git ls-files -m --exclude-standard | fzf --preview 'git diff --color=always {}' --print0 -m | xargs -0 -t -o git add --patch
 	aa  = add
 	ap  = add --patch
 	b   = !git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)' | fzf --no-hscroll --no-multi --ansi --preview 'git --no-pager log -50 --pretty=format:\"%h  %an (%ar)  %s\" {}' --print0 | xargs -0 -t -o git checkout
