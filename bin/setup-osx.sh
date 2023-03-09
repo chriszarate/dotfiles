@@ -5,11 +5,15 @@ set -euxo pipefail
 # Only show open applications in the dock.
 defaults write com.apple.dock static-only -bool true
 
-# Put the dock on the right.
-defaults write com.apple.dock orientation -string right
-
 # Auto-hide the dock.
 defaults write com.apple.dock autohide -bool true
+
+# Set the auto-hide delay to a high number to effectively hide it forever.
+# Show it manually with Command+Option+D.
+defaults write com.apple.dock autohide-delay -float 1000
+
+# Show the application switcher on all displays.
+defaults write com.apple.dock appswitcher-all-displays -bool true
 
 # Allow text selection in QuickLook.
 defaults write com.apple.finder QLEnableTextSelection -bool TRUE

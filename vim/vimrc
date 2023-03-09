@@ -124,6 +124,7 @@ let g:coc_global_extensions=[
 	\ '@yaegassy/coc-intelephense',
 	\ 'coc-json',
 	\ 'coc-lua',
+	\ 'coc-prettier',
 	\ 'coc-pyright',
 	\ 'coc-sh',
 	\ 'coc-sql',
