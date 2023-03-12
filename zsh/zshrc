@@ -15,4 +15,4 @@ fi
 eval "$(fnm env)"
 
 # broot
-source "$HOME/Library/Application Support/org.dystroy.broot/launcher/bash/1"
+source /Users/czarate/.config/broot/launcher/bash/br
