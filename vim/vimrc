@@ -114,10 +114,12 @@ nnoremap <silent> - :BrootWorkingDir<cr>
 " javascript in vim what could go wrong
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 let g:coc_global_extensions=[
+	\ '@yaegassy/coc-astro',
 	\ 'coc-css',
 	\ 'coc-deno',
 	\ 'coc-diagnostic',
 	\ 'coc-docker',
+	\ 'coc-eslint',
 	\ 'coc-git',
 	\ 'coc-go',
 	\ 'coc-html',
@@ -128,9 +130,11 @@ let g:coc_global_extensions=[
 	\ 'coc-pyright',
 	\ 'coc-sh',
 	\ 'coc-sql',
+	\ 'coc-tsdetect',
 	\ 'coc-tsserver',
 	\ 'coc-yaml'
 	\ ]
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 inoremap <silent><expr> <tab>
 	\ coc#pum#visible() ? coc#pum#next(1):
 	\ <sid>check_back_space() ? "\<tab>" :
