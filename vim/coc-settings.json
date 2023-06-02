@@ -1,6 +1,15 @@
 {
   "coc.preferences.formatOnSave": true,
-  "coc.preferences.formatOnSaveFileTypes": ["graphql", "json", "markdown"],
+  "coc.preferences.formatOnSaveFileTypes": [
+    "css",
+    "graphql",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "markdown",
+    "typescript",
+    "typescriptreact"
+  ],
   "diagnostic-languageserver.filetypes": {
     "css": ["stylelint"],
     "less": ["stylelint"],
@@ -35,7 +44,6 @@
       }
     }
   },
-  "eslint.autoFixOnSave": true,
   "git.enableGutters": true,
   "git.urlMode": "permalink",
   "intelephense.stubs": [

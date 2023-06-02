@@ -75,6 +75,11 @@ set smartcase   " respect case when it includes uppercase letters
 
 call plug#begin()
 
+" ai aka really fast copy / paste
+Plug 'github/copilot.vim'
+inoremap <silent> <c-[> <plug>(copilot-previous)
+inoremap <silent> <c-]> <plug>(copilot-next)
+
 " end whitespace wars
 Plug 'editorconfig/editorconfig-vim'
 
@@ -87,16 +92,15 @@ let g:gruvbox_sign_column="bg0"
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 let $BAT_STYLE="changes,header,numbers"
-let g:fzf_layout={ 'window': 'enew' }
-nnoremap <silent> <leader>b :Buffers<cr>
-nnoremap <silent> <leader>c :Commands<cr>
-nnoremap <silent> <leader>h :History<cr>
-nnoremap <silent> <leader>m :Marks<cr>
-nnoremap <silent> <leader>p :Files<cr>
-nnoremap <silent> <leader>f :GFiles?<cr>
-nnoremap <silent> <leader>/ :RG<cr>
-nnoremap <silent> <leader># :RG <c-r><c-w><cr>
-nnoremap <silent> <leader>? :RGIT<cr>
+nnoremap <silent> <leader>b :Buffers!<cr>
+nnoremap <silent> <leader>c :Commands!<cr>
+nnoremap <silent> <leader>h :History!<cr>
+nnoremap <silent> <leader>m :Marks!<cr>
+nnoremap <silent> <leader>p :Files!<cr>
+nnoremap <silent> <leader>f :GFiles!?<cr>
+nnoremap <silent> <leader>/ :RG!<cr>
+nnoremap <silent> <leader># :RG! <c-r><c-w><cr>
+nnoremap <silent> <leader>? :RGIT!<cr>
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, '', <bang>0)
 command! -nargs=* -bang RGIT call RipgrepFzf(<q-args>, '--ignore-file ~/.rgignore-tests', <bang>0)
 
