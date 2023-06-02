@@ -236,7 +236,7 @@ function! CocSimpleStatus() abort
 		return ''
 	endif
 
-	return ' ' . join(msgs, ' ') . ' '
+	return ' '. join(msgs, ' ') . ' '
 endfunction
 
 function! RipgrepFzf(query, rg_args, fullscreen)
