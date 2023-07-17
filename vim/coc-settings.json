@@ -8,7 +8,8 @@
     "json",
     "markdown",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "yaml"
   ],
   "diagnostic-languageserver.filetypes": {
     "css": ["stylelint"],
@@ -119,5 +120,6 @@
     "Zend OPcache",
     "zip",
     "zlib"
-  ]
+  ],
+  "json.format.enable": false
 }

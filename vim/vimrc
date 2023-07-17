@@ -83,6 +83,12 @@ inoremap <silent> <c-]> <plug>(copilot-next)
 " end whitespace wars
 Plug 'editorconfig/editorconfig-vim'
 
+" ranger
+Plug 'francoiscabrol/ranger.vim'
+let g:ranger_replace_netrw=1
+nnoremap <silent> _ :RangerCurrentDirectory<cr>
+nnoremap <silent> - :RangerWorkingDirectory<cr>
+
 " colorscheme
 Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark="hard"
@@ -106,14 +112,6 @@ command! -nargs=* -bang RGIT call RipgrepFzf(<q-args>, '--ignore-file ~/.rgignor
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
-
-" use broot instead of netrw
-Plug 'lstwn/broot.vim'
-let g:broot_default_conf_path='/Users/czarate/.config/broot/conf.hjson'
-let g:broot_replace_netrw='1'
-let g:loaded_netrwPlugin='1'
-nnoremap <silent> _ :BrootCurrentDir<cr>
-nnoremap <silent> - :BrootWorkingDir<cr>
 
 " javascript in vim what could go wrong
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
