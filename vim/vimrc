@@ -294,6 +294,7 @@ highlight SpecialKey guifg=gray20
 nmap <silent> ,, <c-^>
 nnoremap <leader>q :call ToggleQuickFix()<cr>
 nnoremap <leader>w :up<cr>
+nnoremap <leader>W :noa w<cr>
 nnoremap <leader>x :bdelete<cr>
 
 " Leader
