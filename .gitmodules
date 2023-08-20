@@ -1,0 +1,6 @@
+[submodule "hammerspoon/Spoons/ControlEscMap.spoon"]
+	path = hammerspoon/Spoons/ControlEscMap.spoon
+	url = git@github.com:chriszarate/ControlEscMap.spoon.git
+[submodule "hammerspoon/Spoons/SlackNotifier.spoon"]
+	path = hammerspoon/Spoons/SlackNotifier.spoon
+	url = git@github.com:chriszarate/SlackNotifier.spoon.git
