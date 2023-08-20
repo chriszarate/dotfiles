@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-FILENAME="$(basename "${1%%.*}")"
-open -u "$(printf "http://localhost:1111/%s" "$FILENAME")"

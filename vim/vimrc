@@ -104,11 +104,8 @@ nnoremap <silent> <leader>h :History!<cr>
 nnoremap <silent> <leader>m :Marks!<cr>
 nnoremap <silent> <leader>p :Files!<cr>
 nnoremap <silent> <leader>f :GFiles!?<cr>
-nnoremap <silent> <leader>/ :RG!<cr>
-nnoremap <silent> <leader># :RG! <c-r><c-w><cr>
-nnoremap <silent> <leader>? :RGIT!<cr>
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, '', <bang>0)
-command! -nargs=* -bang RGIT call RipgrepFzf(<q-args>, '--ignore-file ~/.rgignore-tests', <bang>0)
+nnoremap <silent> <leader>/ :Rg!<cr>
+nnoremap <silent> <leader># :Rg! <c-r><c-w><cr>
 
 " sidebar to preview register contents
 Plug 'junegunn/vim-peekaboo'
@@ -235,14 +232,6 @@ function! CocSimpleStatus() abort
 	endif
 
 	return ' '. join(msgs, ' ') . ' '
-endfunction
-
-function! RipgrepFzf(query, rg_args, fullscreen)
-	let command_fmt = 'rg ' . a:rg_args . ' -- %s || true'
-	let initial_command = printf(command_fmt, shellescape(a:query))
-	let reload_command = printf(command_fmt, '{q}')
-	let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-	call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
 function! ToggleQuickFix()

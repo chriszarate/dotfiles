@@ -2,9 +2,6 @@
 
 set -euxo pipefail
 
-# Relative to home directory.
-DOTFILES="$HOME/.dotfiles"
-
 # Install brew packages and casks
 if [ "$(uname)" = "Darwin" ]; then
 	if [ ! -f /opt/homebrew/bin/brew ]; then

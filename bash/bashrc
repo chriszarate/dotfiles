@@ -14,7 +14,4 @@ if type brew &>/dev/null; then
 fi
 
 # fnm (node.js version manager)
-eval "$(fnm env)"
-
-# broot
-source /Users/czarate/.config/broot/launcher/bash/br
+eval "$(fnm env --use-on-cd)"
