@@ -46,7 +46,7 @@
     }
   },
   "git.enableGutters": true,
-  "git.urlMode": "permalink",
+  "git.enableGlobalStatus": false,
   "intelephense.stubs": [
     "apache",
     "bcmath",
@@ -121,5 +121,6 @@
     "zip",
     "zlib"
   ],
-  "json.format.enable": false
+  "json.format.enable": false,
+  "prettier.requireConfig": true
 }

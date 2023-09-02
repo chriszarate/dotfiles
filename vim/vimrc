@@ -12,13 +12,13 @@ source $VIMRUNTIME/defaults.vim
 
 set autoread           " reload file if it changed outside vim
 set background=dark    " dark
+set backupdir=/tmp    " put backup files in /tmp
 set colorcolumn=81     " column to show max line length
 set directory=/tmp     " put swap files in tmp
 set encoding=utf-8     " default encoding
 set fcs=vert:│         " unbroken line between vertical splits
 set foldmethod=syntax  " use syntax highlighting to inform folds
 set hidden             " keep buffers loaded
-set lazyredraw         " don't redraw screen during macros and untyped commands
 set list               " with listchars, show invisibles
 set listchars=tab:│\ ,trail:#
 set nofoldenable       " open all folds by default
@@ -85,6 +85,7 @@ Plug 'editorconfig/editorconfig-vim'
 
 " ranger
 Plug 'francoiscabrol/ranger.vim'
+let g:ranger_map_keys=0
 let g:ranger_replace_netrw=1
 nnoremap <silent> _ :RangerCurrentDirectory<cr>
 nnoremap <silent> - :RangerWorkingDirectory<cr>
@@ -104,7 +105,7 @@ nnoremap <silent> <leader>h :History!<cr>
 nnoremap <silent> <leader>m :Marks!<cr>
 nnoremap <silent> <leader>p :Files!<cr>
 nnoremap <silent> <leader>f :GFiles!?<cr>
-nnoremap <silent> <leader>/ :Rg!<cr>
+nnoremap <silent> <leader>/ :RG!<cr>
 nnoremap <silent> <leader># :Rg! <c-r><c-w><cr>
 
 " sidebar to preview register contents
@@ -149,6 +150,8 @@ nmap <silent> ,i <plug>(coc-implementation)
 nmap <silent> ,k :call <sid>show_documentation()<cr>
 nmap <silent> ,l :CocList<cr>
 nmap <silent> ,n <plug>(coc-rename)
+nmap <silent> ,p <plug>(coc-format-selected)
+vmap <silent> ,p <plug>(coc-format-selected)
 nmap <silent> ,r <plug>(coc-references)
 nmap <silent> ,x :CocList diagnostics<cr>
 nmap <silent> ,y <plug>(coc-type-definition)
@@ -186,6 +189,8 @@ Plug 'tpope/vim-repeat'
 
 " more previous / next commands with []
 Plug 'tpope/vim-unimpaired'
+nnoremap [j <c-o>
+nnoremap ]j <c-i>
 
 call plug#end()
 
@@ -256,7 +261,7 @@ set statusline+=\                    " space
 set statusline+=%h                   " help marker
 set statusline+=%m                   " modified marker
 set statusline+=%=                   " align right
-set statusline+=%#Search#            " change color
+set statusline+=%#IncSearch#            " change color
 set statusline+=%{CocSimpleStatus()} " show indicator if errors are present
 set statusline+=%#StatusLineNC#      " change color
 set statusline+=\                    " space

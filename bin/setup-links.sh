@@ -17,6 +17,7 @@ links=(
 	'.config/bat::bat'
 	'.config/fish::fish'
 	'.config/kitty::kitty'
+	'.config/ranger::ranger'
 	'.hammerspoon::hammerspoon'
 	'.vim/coc-settings.json::vim/coc-settings.json'
 )
