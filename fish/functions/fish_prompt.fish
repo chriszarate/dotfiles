@@ -13,6 +13,13 @@ function fish_prompt -d 'Decorate the prompt'
 	if git rev-parse --is-inside-work-tree >/dev/null 2>&1
 		set -l git_status (git status -s --ignore-submodules=dirty 2>/dev/null)
 
+		# Is the current branch different from the default branch at origin?
+		set -l default_branch (git_default_branch)
+		set -l current_branch (git_branch)
+		if test "$default_branch" != "origin/$current_branch"
+			set pwd_color "$branch_prompt_color"
+		end
+
 		# Is the state dirty in any way?
 		if test -n "$git_status"
 			set -l git_status_has_conflicts (echo "$git_status" | sed -nE '/^[ADU]{2}/p')
@@ -26,13 +33,6 @@ function fish_prompt -d 'Decorate the prompt'
 				set prompt_color "$dirty_prompt_color"
 			else
 				set prompt_color "$untracked_prompt_color"
-			end
-		else
-			# Is the current branch different from the default branch at origin?
-			set -l default_branch (git_default_branch)
-			set -l current_branch (git_branch)
-			if test "$default_branch" != "origin/$current_branch"
-				set prompt_color "$branch_prompt_color"
 			end
 		end
 	end
