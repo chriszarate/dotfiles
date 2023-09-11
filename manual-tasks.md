@@ -10,3 +10,15 @@
 ```sh
 vim -c 'PlugUpgrade | PlugUpdate | CocUpdate'
 ```
+
+## Allow TouchID for sudo
+
+```sh
+sudo vim /etc/pam.d/sudo
+```
+
+Add this entry to the top of the file. Write and test before closing.
+
+```
+auth       sufficient     pam_tid.so
+```

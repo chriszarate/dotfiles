@@ -38,7 +38,6 @@ for config in \
 	git/gitconfig \
 	git/gitignore_global \
 	input/inputrc \
-	node/node-version \
 	rg/rgignore \
 	rg/rgignore-tests \
 	rg/ripgreprc \
