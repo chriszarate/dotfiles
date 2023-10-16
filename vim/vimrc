@@ -14,6 +14,7 @@ set autoread           " reload file if it changed outside vim
 set background=dark    " dark
 set backupdir=/tmp    " put backup files in /tmp
 set colorcolumn=81     " column to show max line length
+set cursorline         " highlight current line
 set directory=/tmp     " put swap files in tmp
 set encoding=utf-8     " default encoding
 set fcs=vert:│         " unbroken line between vertical splits
@@ -153,8 +154,8 @@ nmap <silent> ,n <plug>(coc-rename)
 nmap <silent> ,p <plug>(coc-format-selected)
 vmap <silent> ,p <plug>(coc-format-selected)
 nmap <silent> ,r <plug>(coc-references)
+nmap <silent> ,t <plug>(coc-type-definition)
 nmap <silent> ,x :CocList diagnostics<cr>
-nmap <silent> ,y <plug>(coc-type-definition)
 nmap <silent> [x <plug>(coc-diagnostic-prev)
 nmap <silent> ]x <plug>(coc-diagnostic-next)
 
@@ -278,6 +279,8 @@ set statusline+=\                    " space
 colorscheme gruvbox
 highlight ColorColumn guibg=gray15
 highlight SpecialKey guifg=gray20
+highlight clear CursorLine   " only highlight the line number
+highlight clear CursorLineNR " no background color
 
 
 " +========+

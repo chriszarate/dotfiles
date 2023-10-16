@@ -1,4 +1,10 @@
 {
-    "editor.fontFamily": "Ubuntu Mono, Hack, monospace",
-    "window.zoomLevel": 1
+	"editor.fontFamily": "Ubuntu Mono, Hack, monospace",
+	"window.zoomLevel": 1,
+	"editor.formatOnSave": true,
+	"prettier.requireConfig": true,
+	"prettier.prettierPath": "./node_modules/prettier",
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }
