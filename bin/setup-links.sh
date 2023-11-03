@@ -12,6 +12,9 @@ mkdir -p "$HOME/.config"
 # Create .bin directory for local scripts.
 mkdir -p "$HOME/.bin"
 
+# Hush login message
+touch "$HOME/.hushlogin"
+
 # Symlink custom-location dotfiles.
 links=(
 	'.config/bat::bat'

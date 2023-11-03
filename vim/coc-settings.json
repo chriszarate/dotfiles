@@ -45,6 +45,10 @@
       }
     }
   },
+  "diagnostic.enableMessage": "jump",
+  "diagnostic.enableSign": false,
+  "diagnostic.messageTarget": "float",
+  "diagnostic.virtualText": true,
   "git.enableGutters": true,
   "git.enableGlobalStatus": false,
   "intelephense.stubs": [

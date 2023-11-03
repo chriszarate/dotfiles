@@ -1,5 +1,3 @@
-[add.interactive]
-	useBuiltin = false  # https://github.com/dandavison/delta/issues/1114
 [alias]
 	a   = !git ls-files -m --exclude-standard | fzf --preview 'git diff --color=always {}' --print0 -m | xargs -0 -t -o git add --patch
 	aa  = add

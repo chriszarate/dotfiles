@@ -32,6 +32,9 @@ set synmaxcol=500      " don't bother syntax highlighting after a point
 " use true colors in kitty
 if &term =~ 'kitty'
 	set termguicolors
+	" daddies are fighting
+	let &t_Cs = "\e[4:3m"
+	let &t_Ce = "\e[4:0m"
 endif
 
 " assume 256 colors in screen/tmux
@@ -156,6 +159,7 @@ vmap <silent> ,p <plug>(coc-format-selected)
 nmap <silent> ,r <plug>(coc-references)
 nmap <silent> ,t <plug>(coc-type-definition)
 nmap <silent> ,x :CocList diagnostics<cr>
+nmap <silent> ,y :call CocAction('diagnosticInfo')<cr>
 nmap <silent> [x <plug>(coc-diagnostic-prev)
 nmap <silent> ]x <plug>(coc-diagnostic-next)
 
