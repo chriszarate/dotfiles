@@ -6,14 +6,18 @@ set -euxo pipefail
 DOTFILES="$HOME/.dotfiles"
 cd "$DOTFILES" || return
 
-# Create .config directory.
-mkdir -p "$HOME/.config"
-
-# Create .bin directory for local scripts.
-mkdir -p "$HOME/.bin"
-
 # Hush login message
 touch "$HOME/.hushlogin"
+
+# Create some placeholder directories.
+for config_dir in \
+	bin \
+	config \
+	config/fzf \
+	vim
+do
+	mkdir -p "$HOME/.$config_dir"
+done
 
 # Symlink custom-location dotfiles.
 links=(

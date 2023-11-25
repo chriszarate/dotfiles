@@ -63,7 +63,9 @@
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [gpg]
-	program = gpg2
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/git_allowed_signers
 [init]
 	defaultBranch = main
 [interactive]
@@ -78,7 +80,4 @@
 [user]
 	name = chriszarate
 	email = chris.zarate@automattic.com
-	signingkey = AF7D9D6F1994A742D6D12E2C839E1F045D04B581
-
-[includeIf "gitdir:~/Documents/Code/personal/**/.git"]
-	path = ~/.dotfiles/git/gitconfig_personal
+	signingkey = ~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/7c5483cf03f704e9d0d00c339d743a65.pub

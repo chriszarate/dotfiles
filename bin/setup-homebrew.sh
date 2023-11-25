@@ -4,9 +4,11 @@ set -euxo pipefail
 
 # Install brew packages and casks
 if [ "$(uname)" = "Darwin" ]; then
-	if [ ! -f /opt/homebrew/bin/brew ]; then
+	BREW_BIN="/opt/homebrew/bin/brew"
+
+	if [ ! -f "$BREW_BIN" ]; then
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
 
-	HOMEBREW_BUNDLE_FILE="$HOME/.Brewfile" brew bundle install
+	HOMEBREW_BUNDLE_FILE="$HOME/.dotfiles/brew/Brewfile" "$BREW_BIN" bundle install
 fi

@@ -9,4 +9,4 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
 fi
 
 # Install and update plugins
-vim +'PlugInstall --sync' +'PlugUpdate --sync' +qa
+vim +'PlugInstall --sync' +qa
