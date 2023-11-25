@@ -1,3 +1,4 @@
+Brewfile.lock.json
 config.lua
 fish_variables
 *.local.fish
