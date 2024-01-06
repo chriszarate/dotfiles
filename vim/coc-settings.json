@@ -49,8 +49,12 @@
   "diagnostic.enableSign": false,
   "diagnostic.messageTarget": "float",
   "diagnostic.virtualText": true,
+  "git.branchCharacter": "",
+  "git.conflictedDecorator": "!!"
   "git.enableGutters": true,
-  "git.enableGlobalStatus": false,
+  "git.enableGlobalStatus": true,
+  "git.stagedDecorator": "",
+  "git.untrackedDecorator": "",
   "intelephense.stubs": [
     "apache",
     "bcmath",

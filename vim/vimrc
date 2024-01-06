@@ -217,7 +217,16 @@ function! s:show_documentation()
 	endif
 endfunction
 
-function! CocSimpleStatus() abort
+function! CocGitStatus() abort
+	let status = get(g:, 'coc_git_status', '')
+	if status == ''
+		return ''
+	endif
+
+	return ' '. status . ' '
+endfunction
+
+function! CocErrorStatus() abort
 	let info = get(b:, 'coc_diagnostic_info', {})
 	if empty(info)
 		return ''
@@ -266,9 +275,11 @@ set statusline+=\                    " space
 set statusline+=%h                   " help marker
 set statusline+=%m                   " modified marker
 set statusline+=%=                   " align right
-set statusline+=%#IncSearch#            " change color
-set statusline+=%{CocSimpleStatus()} " show indicator if errors are present
-set statusline+=%#StatusLineNC#      " change color
+set statusline+=%#IncSearch#         " change color
+set statusline+=%{CocErrorStatus()}  " show indicator if errors are present
+set statusline+=%#GitStatus#         " change color
+set statusline+=%{CocGitStatus()}    " show git info if in a git repo
+set statusline+=%#Position#      " change color
 set statusline+=\                    " space
 set statusline+=%p%%                 " percentage scrolled
 set statusline+=\                    " space
@@ -285,6 +296,8 @@ highlight ColorColumn guibg=gray15
 highlight SpecialKey guifg=gray20
 highlight clear CursorLine   " only highlight the line number
 highlight clear CursorLineNR " no background color
+highlight GitStatus guifg=#928374 guibg=#3c3836
+highlight Position guifg=#928374 guibg=#282828
 
 
 " +========+
