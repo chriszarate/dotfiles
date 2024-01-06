@@ -45,6 +45,7 @@ local spoons = {
 		cookieToken = config.slackCookieToken,
 		workspaceToken = config.slackWorkspaceToken,
 	},
+	TextClipboardHistory = {},
 }
 
 -- load spoons
