@@ -12,7 +12,7 @@ source $VIMRUNTIME/defaults.vim
 
 set autoread           " reload file if it changed outside vim
 set background=dark    " dark
-set backupdir=/tmp    " put backup files in /tmp
+set backupdir=/tmp     " put backup files in /tmp
 set colorcolumn=81     " column to show max line length
 set cursorline         " highlight current line
 set directory=/tmp     " put swap files in tmp
