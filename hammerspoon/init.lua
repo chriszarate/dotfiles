@@ -10,10 +10,10 @@ local spoons = {
 			{
 				app = 'Kitty.app',
 				key = 'f3',
-				modifier = nil,
+				modifier = 'shift',
 			},
 			{
-				app = 'Raycast.app',
+				app = 'Spotlight.app',
 				key = 'f4',
 				modifier = nil,
 			},
@@ -23,6 +23,7 @@ local spoons = {
 				key = 'f3',
 				map = {
 					a = 'Arc.app',
+					b = 'Bitwarden.app',
 					d = 'Dash.app',
 					f = 'Finder.app',
 					h = 'Hammerspoon.app',
@@ -31,7 +32,7 @@ local spoons = {
 					p = 'Autoproxxy.app',
 					t = 'Kitty.app',
 				},
-				modifier = 'shift',
+				modifier = nil,
 				name = 'Launcher',
 				timeout = 3,
 			},
@@ -41,6 +42,22 @@ local spoons = {
 		timeout = 0.2,
 	},
 	HoldToQuit = {},
+	MiroWindowsManager = {
+		animationDuration = 0,
+		mappings = {
+			hyper = {
+				key = { 'ctrl', 'alt', 'cmd' },
+				map = {
+					up = 'up',
+					right = 'right',
+					down = 'down',
+					left = 'left',
+					fullscreen = 'return',
+					nextscreen = 'n',
+				},
+			},
+		},
+	},
 	SlackNotifier = {
 		cookieToken = config.slackCookieToken,
 		workspaceToken = config.slackWorkspaceToken,
