@@ -50,15 +50,14 @@
 	excludesfile = ~/.gitignore_global
 	editor = vim +start
 	compression = 0
-	pager = delta
-[delta]
-	line-numbers = false
-	navigate = true
-	syntax-theme = gruvbox-dark
-	plus-style = "syntax #004000"
 [diff]
 	algorithm = patience
 	colorMoved = default
+	tool = difftastic
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difftastic "$LOCAL" "$REMOTE"
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
@@ -73,6 +72,8 @@
 [pack]
 	windowMemory = 10m
 	packSizeLimit = 20m
+[pager]
+	difftool = true
 [push]
 	autoRemoteSetup = true
 [user]
