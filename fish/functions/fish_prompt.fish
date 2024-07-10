@@ -2,7 +2,7 @@ function fish_prompt -d 'Decorate the prompt'
 	# Defaults
 	set -l prompt_character '>'
 	set -l prompt_color '#a89984'
-	set -l pwd_color '#928374'
+	set -l subshell_indicator ''
 
 	set -l branch_prompt_color '#98971a'
 	set -l conflict_prompt_color '#d65d0e'
@@ -17,7 +17,7 @@ function fish_prompt -d 'Decorate the prompt'
 		set -l default_branch (git_default_branch)
 		set -l current_branch (git_branch)
 		if test "$default_branch" != "origin/$current_branch"
-			set pwd_color "$branch_prompt_color"
+			set prompt_color "$branch_prompt_color"
 		end
 
 		# Is the state dirty in any way?
@@ -37,5 +37,10 @@ function fish_prompt -d 'Decorate the prompt'
 		end
 	end
 
-	printf '%s%s %s%s%s ' (set_color $pwd_color) (prompt_pwd) (set_color --bold $prompt_color) $prompt_character (set_color normal)
+	# Running a subshell inside another program?
+	if test -n "$YAZI_LEVEL"
+		set subshell_indicator "<"
+	end
+
+	printf '%s%s%s%s ' (set_color --bold $prompt_color) $subshell_indicator $prompt_character (set_color normal)
 end

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+kitty icat --clear --transfer-mode memory < /dev/null > /dev/tty

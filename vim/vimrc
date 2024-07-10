@@ -79,6 +79,12 @@ set smartcase   " respect case when it includes uppercase letters
 
 call plug#begin()
 
+" yazi
+Plug 'chriszarate/yazi.vim'
+nnoremap <silent> - :YaziCurrentFile<cr>
+nnoremap <silent> _ :YaziWorkingDirectory<cr>
+nnoremap <silent> <C-v> :vsplit \| :YaziCurrentFile<cr>
+
 " ai aka really fast copy / paste
 Plug 'github/copilot.vim'
 inoremap <silent> <c-[> <plug>(copilot-previous)
@@ -86,13 +92,6 @@ inoremap <silent> <c-]> <plug>(copilot-next)
 
 " end whitespace wars
 Plug 'editorconfig/editorconfig-vim'
-
-" ranger
-Plug 'francoiscabrol/ranger.vim'
-let g:ranger_map_keys=0
-let g:ranger_replace_netrw=1
-nnoremap <silent> _ :RangerCurrentDirectory<cr>
-nnoremap <silent> - :RangerWorkingDirectory<cr>
 
 " colorscheme
 Plug 'morhetz/gruvbox'
@@ -117,6 +116,7 @@ Plug 'junegunn/vim-peekaboo'
 
 " javascript in vim what could go wrong
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+let g:coc_config_home='~/.config/coc'
 let g:coc_global_extensions=[
 	\ '@yaegassy/coc-astro',
 	\ 'coc-css',
@@ -134,6 +134,7 @@ let g:coc_global_extensions=[
 	\ 'coc-pyright',
 	\ 'coc-sh',
 	\ 'coc-sql',
+	\ 'coc-snippets',
 	\ 'coc-tsdetect',
 	\ 'coc-tsserver',
 	\ 'coc-yaml'
@@ -145,6 +146,8 @@ inoremap <silent><expr> <tab>
 	\ coc#refresh()
 inoremap <expr><s-tab> coc#pum#visible() ? coc#pum#prev(1) : "\<c-h>"
 inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<c-g>u\<cr>\<c-r>=coc#on_enter()\<cr>"
+inoremap <c-l> <Plug>(coc-snippets-expand)
+
 nmap <silent> ,a <plug>(coc-codeaction-cursor)
 nmap <silent> ,b <plug>(coc-codeaction-source)
 nmap <silent> ,c :CocList commands<cr>
@@ -162,6 +165,8 @@ nmap <silent> ,x :CocList diagnostics<cr>
 nmap <silent> ,y :call CocAction('diagnosticInfo')<cr>
 nmap <silent> [x <plug>(coc-diagnostic-prev)
 nmap <silent> ]x <plug>(coc-diagnostic-next)
+nmap <silent> [X <plug>(coc-diagnostic-prev-error)
+nmap <silent> ]X <plug>(coc-diagnostic-next-error)
 
 nmap <silent> ;b :CocCommand git.showBlameDoc<cr>
 nmap <silent> ;c :CocCommand git.showCommit<cr>
@@ -169,8 +174,13 @@ nmap <silent> ;g <plug>(coc-git-chunkinfo)
 nmap <silent> ;o :CocCommand git.openBrowser<cr>
 nmap <silent> ;p :CocCommand git.copyPermalink<cr>
 nmap <silent> ;u :CocCommand git.chunkUndo<cr>
+nmap <silent> [c <plug>(coc-git-prevconflict)
+nmap <silent> ]c <plug>(coc-git-nextconflict)
 nmap <silent> [g <plug>(coc-git-prevchunk)
 nmap <silent> ]g <plug>(coc-git-nextchunk)
+
+" ai
+Plug 'madox2/vim-ai'
 
 " documentation
 Plug 'rizzatti/dash.vim'

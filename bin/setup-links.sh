@@ -14,7 +14,7 @@ for config_dir in \
 	bin \
 	config \
 	config/fzf \
-	vim
+	config/vim
 do
 	mkdir -p "$HOME/.$config_dir"
 done
@@ -24,9 +24,12 @@ links=(
 	'.config/bat::bat'
 	'.config/fish::fish'
 	'.config/kitty::kitty'
+	'.config/lf::lf'
 	'.config/ranger::ranger'
+	'.config/coc/coc-settings.json::vim/coc-settings.json'
+	'.config/vim/vimrc::vim/vimrc'
+	'.config/yazi::yazi'
 	'.hammerspoon::hammerspoon'
-	'.vim/coc-settings.json::vim/coc-settings.json'
 )
 for link in "${links[@]}"; do
 	source="${link##*::}"
@@ -48,7 +51,6 @@ for config in \
 	rg/rgignore \
 	rg/rgignore-tests \
 	rg/ripgreprc \
-	vim/vimrc \
 	zsh/zshrc
 do
 	if [ ! -e "$HOME/.$(basename "$config")" ]; then

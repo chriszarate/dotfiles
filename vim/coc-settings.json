@@ -55,6 +55,7 @@
   "git.enableGlobalStatus": true,
   "git.stagedDecorator": "",
   "git.untrackedDecorator": "",
+  "intelephense.format.enable": false,
   "intelephense.stubs": [
     "apache",
     "bcmath",
@@ -130,5 +131,8 @@
     "zlib"
   ],
   "json.format.enable": false,
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
+  "snippets.textmateSnippetsRoots": [
+    "~/.config/coc/snippets"
+  ]
 }
