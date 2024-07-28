@@ -1,3 +1,3 @@
-function ls --wraps=exa -d 'Use exa instead of ls'
-	exa $argv
+function ls --wraps=eza -d 'Use eza instead of ls'
+	eza $argv
 end

@@ -1,3 +1,3 @@
-function la --wraps=exa -d 'Use exa instead of ls'
-	exa --all --header --long $argv
+function la --wraps=eza -d 'Use eza instead of ls'
+	eza --all --header --long $argv
 end
