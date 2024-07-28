@@ -132,6 +132,7 @@ let g:coc_global_extensions=[
 	\ 'coc-lua',
 	\ 'coc-prettier',
 	\ 'coc-pyright',
+	\ 'coc-rust-analyzer',
 	\ 'coc-sh',
 	\ 'coc-sql',
 	\ 'coc-snippets',

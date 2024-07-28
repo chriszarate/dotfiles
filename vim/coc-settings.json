@@ -134,5 +134,10 @@
   "prettier.requireConfig": true,
   "snippets.textmateSnippetsRoots": [
     "~/.config/coc/snippets"
-  ]
+  ],
+  "workspace.ignoredFolders": [
+    "$HOME",
+    "$HOME/.cargo/**",
+    "$HOME/.rustup/**"
+  ],
 }
