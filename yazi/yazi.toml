@@ -1,4 +1,4 @@
 [manager]
 linemode="none"
 show_hidden=true
-update_title=false
+title_format=""

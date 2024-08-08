@@ -272,6 +272,28 @@ function! ToggleQuickFix()
 	endif
 endfunction
 
+function! UpdateTerminalTitle()
+	const l:file = expand('%:t')
+	let l:command = 'fish_title vim'
+
+	if !empty(l:file)
+		let l:command = l:command . ' ' . l:file
+	endif
+
+	let &titlestring = system('fish -c "' . l:command . '"')
+	set title
+endfunction
+
+
+" +================+
+" |  Autocommands  |
+" +================+
+
+augroup TerminalTitle
+	autocmd!
+	autocmd BufEnter * call UpdateTerminalTitle()
+augroup END
+
 
 " +==============+
 " |  Statusline  |

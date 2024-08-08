@@ -1,5 +1,8 @@
 [icon]
-rules = []
+conds = []
+exts = []
+files = []
+dirs = []
 
 [manager]
 preview_hovered = {}
