@@ -34,6 +34,11 @@ links=(
 for link in "${links[@]}"; do
 	source="${link##*::}"
 	target="${link%%::*}"
+
+	if [ -f "$DOTFILES/$source" ]; then
+		mkdir -p "$(dirname "$HOME/$target")"
+	fi
+
 	if [ ! -e "$HOME/$target" ]; then
 		ln -s "$DOTFILES/$source" "$HOME/$target"
 	fi
