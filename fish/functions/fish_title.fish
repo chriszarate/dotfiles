@@ -14,7 +14,12 @@ function fish_title -d 'Set the title for the current terminal window'
 
 		# Shell prompts additionally get the git branch name
 		case bash fish nushell sh zsh
-			printf '%s %s %s' "$command" (git_prompt_pwd) (git_branch)
+			printf '%s %s' "$command" (git_prompt_pwd)
+
+			set -l git_branch (git_branch)
+			if test -n "$git_branch"
+				printf ' … %s' "$git_branch"
+			end
 
 		# Ignore some commands.
 		case cd kitty ls pwd sleep
