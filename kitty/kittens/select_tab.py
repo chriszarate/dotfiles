@@ -1,14 +1,13 @@
 from kitty.boss import Boss
 from kitty.tabs import Tab
+from kittens.tui.handler import result_handler
 from kitty.window import Window
 from typing import List, Union
 
 def main(args: List[str]):
    pass
 
-from kittens.tui.handler import result_handler
 @result_handler(no_ui=True)
-
 def handle_result(args: List[str], answer: str, target_window_id: int, boss: Boss) -> None:
    current_tab: Tab = boss.active_tab
    current_layout: str = current_tab.current_layout.name
