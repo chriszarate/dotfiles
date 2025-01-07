@@ -164,6 +164,11 @@ nmap <silent> ,r <plug>(coc-references)
 nmap <silent> ,t <plug>(coc-type-definition)
 nmap <silent> ,x :CocList diagnostics<cr>
 nmap <silent> ,y :call CocAction('diagnosticInfo')<cr>
+
+nmap <silent> [c <plug>(coc-git-prevconflict)
+nmap <silent> ]c <plug>(coc-git-nextconflict)
+nmap <silent> [g <plug>(coc-git-prevchunk)
+nmap <silent> ]g <plug>(coc-git-nextchunk)
 nmap <silent> [x <plug>(coc-diagnostic-prev)
 nmap <silent> ]x <plug>(coc-diagnostic-next)
 nmap <silent> [X <plug>(coc-diagnostic-prev-error)
@@ -175,13 +180,16 @@ nmap <silent> ;g <plug>(coc-git-chunkinfo)
 nmap <silent> ;o :CocCommand git.openBrowser<cr>
 nmap <silent> ;p :CocCommand git.copyPermalink<cr>
 nmap <silent> ;u :CocCommand git.chunkUndo<cr>
-nmap <silent> [c <plug>(coc-git-prevconflict)
-nmap <silent> ]c <plug>(coc-git-nextconflict)
-nmap <silent> [g <plug>(coc-git-prevchunk)
-nmap <silent> ]g <plug>(coc-git-nextchunk)
 
 " ai
 Plug 'madox2/vim-ai'
+
+" more ai
+Plug 'pasky/claude.vim'
+let g:claude_api_key=$ANTHROPIC_API_KEY
+let g:claude_map_implement = "<leader>ii"
+let g:claude_map_open_chat = "<leader>ic"
+let g:claude_map_cancel_response = "<leader>ix"
 
 " documentation
 Plug 'rizzatti/dash.vim'
