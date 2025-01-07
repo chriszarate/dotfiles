@@ -14,7 +14,7 @@
   "diagnostic-languageserver.filetypes": {
     "css": ["stylelint"],
     "less": ["stylelint"],
-    "php": ["phpcs"],
+    "php": ["phpcs", "psalm"],
     "scss": ["stylelint"],
     "sh": ["shellcheck"],
     "yaml": ["yamllint"]
@@ -22,29 +22,15 @@
   "diagnostic-languageserver.formatFiletypes": {},
   "diagnostic-languageserver.linters": {
     "phpcs": {
-      "command": "./vendor/bin/phpcs",
-      "debounce": 100,
-      "rootPatterns": ["composer.json", "composer.lock", "vendor", ".git"],
       "args": ["--report=emacs", "-s", "-"],
-      "offsetLine": 0,
-      "offsetColumn": 0,
-      "sourceName": "phpcs",
-      "formatLines": 1,
-      "formatPattern": [
-        "^.*:(\\d+):(\\d+):\\s+(.*)\\s+-\\s+(.*)(\\r|\\n)*$",
-        {
-          "line": 1,
-          "column": 2,
-          "message": 4,
-          "security": 3
-        }
-      ],
-      "securities": {
-        "error": "error",
-        "warning": "warning"
-      }
+      "debounce": 100
+    },
+    "psalm": {
+      "command": "./vendor/bin/psalm.phar",
+      "debounce": 100
     }
   },
+  "diagnostic-languageserver.mergeConfig": true,
   "diagnostic.enableMessage": "jump",
   "diagnostic.enableSign": false,
   "diagnostic.messageTarget": "float",
