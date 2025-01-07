@@ -79,4 +79,4 @@
 [user]
 	name = chriszarate
 	email = chris.zarate@automattic.com
-	signingkey = ~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/7c5483cf03f704e9d0d00c339d743a65.pub
+	signingkey = ~/.ssh/autoproxxy.pub
