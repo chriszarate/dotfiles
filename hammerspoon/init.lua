@@ -12,27 +12,22 @@ local spoons = {
 				key = 'f3',
 				modifier = 'shift',
 			},
-			{
-				app = 'Spotlight.app',
-				key = 'f4',
-				modifier = nil,
-			},
 		},
 		modalMappings = {
 			{
 				key = 'f3',
 				map = {
-					a = 'Arc.app',
+					a = 'Autoproxxy.app',
 					b = 'Boop.app',
 					d = 'Dash.app',
-					e = 'Bitwarden.app',
 					f = 'Finder.app',
 					h = 'Hammerspoon.app',
-					i = 'Insomnia.app',
-					k = 'Kitty.app',
+					k = 'Slack.app',
 					m = 'Messages.app',
 					n = 'Numi.app',
-					p = 'Autoproxxy.app',
+					o = 'Obsidian.app',
+					p = 'Passwords.app',
+					s = 'Safari.app',
 					t = 'Kitty.app',
 				},
 				modifier = nil,
@@ -60,10 +55,6 @@ local spoons = {
 				},
 			},
 		},
-	},
-	SlackNotifier = {
-		cookieToken = config.slackCookieToken,
-		workspaceToken = config.slackWorkspaceToken,
 	},
 	TextClipboardHistory = {},
 }

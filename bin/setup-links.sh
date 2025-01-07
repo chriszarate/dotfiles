@@ -24,7 +24,6 @@ links=(
 	'.config/bat::bat'
 	'.config/fish::fish'
 	'.config/kitty::kitty'
-	'.config/ranger::ranger'
 	'.config/coc/coc-settings.json::vim/coc-settings.json'
 	'.config/nvim/init.lua::nvim/init.lua'
 	'.config/vim/vimrc::vim/vimrc'

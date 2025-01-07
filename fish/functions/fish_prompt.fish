@@ -40,6 +40,8 @@ function fish_prompt -d 'Decorate the prompt'
 	# Running a subshell inside another program?
 	if test -n "$YAZI_LEVEL"
 		set subshell_indicator "<"
+	else if test -n "$STY"
+		set subshell_indicator "<"
 	end
 
 	printf '%s%s%s%s ' (set_color --bold $prompt_color) $subshell_indicator $prompt_character (set_color normal)

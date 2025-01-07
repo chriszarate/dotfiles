@@ -9,7 +9,7 @@ function fish_title -d 'Set the title for the current terminal window'
   switch "$command"
 
 		# Prepend the command name to the directory basename for some commands.
-		case dco docker docker-compose git npm ranger tmux vi vim yazi
+		case docker git npm npx vi vim yazi yy
 			printf '%s %s' "$command" (git_prompt_pwd)
 
 		# Shell prompts additionally get the git branch name
@@ -18,7 +18,7 @@ function fish_title -d 'Set the title for the current terminal window'
 
 			set -l git_branch (git_branch)
 			if test -n "$git_branch"
-				printf ' … %s' "$git_branch"
+				printf '#%s' "$git_branch"
 			end
 
 		# Ignore some commands.
