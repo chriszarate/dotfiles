@@ -67,5 +67,5 @@ cask "obsidian"
 cask "orbstack"
 cask "raycast"
 cask "slack"
-cask "vscodium"
+cask "visual-studio-code"
 mas "Anybox", id: 1593408455

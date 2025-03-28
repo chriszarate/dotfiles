@@ -29,6 +29,9 @@ links=(
 	'.config/vim/vimrc::vim/vimrc'
 	'.config/yazi::yazi'
 	'.hammerspoon::hammerspoon'
+	'Library/Application Support/Code/User/keybindings.json::vscode/user/keybindings.json'
+	'Library/Application Support/Code/User/settings.json::vscode/user/settings.json'
+	'Library/Application Support/Code/User/snippets::vscode/user/snippets'
 )
 for link in "${links[@]}"; do
 	source="${link##*::}"
@@ -55,6 +58,7 @@ for config in \
 	rg/rgignore \
 	rg/rgignore-tests \
 	rg/ripgreprc \
+	vscode/vscodevimrc \
 	zsh/zshrc
 do
 	if [ ! -e "$HOME/.$(basename "$config")" ]; then

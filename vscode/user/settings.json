@@ -1,0 +1,157 @@
+{
+	"editor.fontFamily": "Ubuntu Mono, Hack, monospace",
+	"editor.fontSize": 13,
+	"editor.formatOnSave": true,
+	"workbench.colorCustomizations": {
+		"[Gruvbox Dark Hard]": {
+			"activityBar.background": "#0d1011",
+			"activityBarBadge.background": "#0d1011",
+			"editor.background": "#0d1011",
+			"editorGroupHeader.tabsBackground": "#0d1011",
+			"sideBar.background": "#0d1011",
+			"statusBar.background": "#0d1011",
+			"tab.activeBackground": "#1d2021",
+			"tab.inactiveBackground": "#0d1011",
+			"terminal.background": "#0d1011",
+			"titleBar.activeBackground": "#0d1011",
+		}
+	},
+	"github.copilot.enable": {
+		"markdown": true
+	},
+	"github.copilot.chat.languageContext.typescript.enabled": true,
+	"prettier.requireConfig": true,
+	"prettier.prettierPath": "./node_modules/prettier",
+	"telemetry.telemetryLevel": "off",
+	"vim.normalModeKeyBindingsNonRecursive": [
+		{
+			"before": [
+				"<leader>",
+				"b"
+			],
+			"commands": [
+				"workbench.action.showAllEditors"
+			]
+		},
+		{
+			"before": [
+				"<leader>",
+				"p"
+			],
+			"commands": [
+				"workbench.action.quickOpen"
+			]
+		},
+		{
+			"before": [
+				"<leader>",
+				"/"
+			],
+			"commands": [
+				"workbench.action.replaceInFiles"
+			]
+		},
+		{
+			"before": [
+				"<leader>",
+				"#"
+			],
+			"commands": [
+				"editor.action.addSelectionToNextFindMatch",
+				"workbench.action.findInFiles"
+			]
+		},
+		{
+			"before": [
+				",",
+				","
+			],
+			"commands": [
+				"workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+			]
+		},
+		{
+			"before": [
+				",",
+				"a"
+			],
+			"commands": [
+				"editor.action.quickFix"
+			]
+		},
+		{
+			"before": [
+				",",
+				"d"
+			],
+			"commands": [
+				"editor.action.revealDefinition"
+			]
+		},
+		{
+			"before": [
+				",",
+				"t"
+			],
+			"commands": [
+				"editor.action.peekTypeDefinition"
+			]
+		},
+		{
+			"before": [
+				"]",
+				"e"
+			],
+			"commands": [
+				"editor.action.moveLinesDownAction"
+			]
+		},
+		{
+			"before": [
+				"[",
+				"e"
+			],
+			"commands": [
+				"editor.action.moveLinesUpAction"
+			]
+		}
+	],
+	"vim.visualModeKeyBindingsNonRecursive": [
+		{
+			"before": [
+				"]",
+				"e"
+			],
+			"commands": [
+				"editor.action.moveLinesDownAction"
+			]
+		},
+		{
+			"before": [
+				"[",
+				"e"
+			],
+			"commands": [
+				"editor.action.moveLinesUpAction"
+			]
+		}
+	],
+	"vim.vimrc.enable": true,
+	"terminal.integrated.sendKeybindingsToShell": true,
+	"workbench.colorTheme": "Gruvbox Dark Hard",
+	"terminal.external.osxExec": "Kitty.app",
+	"workbench.iconTheme": null,
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"php-intellisense.trace.server": "messages",
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[php]": {
+		"editor.defaultFormatter": "valeryanm.vscode-phpsab"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
+}

@@ -29,6 +29,7 @@ local spoons = {
 					p = 'Passwords.app',
 					s = 'Safari.app',
 					t = 'Kitty.app',
+					v = 'Visual Studio Code.app',
 				},
 				modifier = nil,
 				name = 'Launcher',

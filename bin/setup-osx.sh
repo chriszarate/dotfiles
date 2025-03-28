@@ -18,6 +18,9 @@ defaults write com.apple.dock appswitcher-all-displays -bool true
 # Allow text selection in QuickLook.
 defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 
+# Allow key repeats.
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
 # Disable font-smoothing
 defaults -currentHost write -g AppleFontSmoothing -int 0
 

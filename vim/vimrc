@@ -87,7 +87,7 @@ nnoremap <silent> <C-v> :vsplit \| :YaziCurrentFile<cr>
 
 " ai aka really fast copy / paste
 Plug 'github/copilot.vim'
-inoremap <silent> <c-[> <plug>(copilot-previous)
+inoremap <silent> <c-s-]> <plug>(copilot-previous)
 inoremap <silent> <c-]> <plug>(copilot-next)
 
 " end whitespace wars
@@ -180,20 +180,6 @@ nmap <silent> ;g <plug>(coc-git-chunkinfo)
 nmap <silent> ;o :CocCommand git.openBrowser<cr>
 nmap <silent> ;p :CocCommand git.copyPermalink<cr>
 nmap <silent> ;u :CocCommand git.chunkUndo<cr>
-
-" ai
-Plug 'madox2/vim-ai'
-
-" more ai
-Plug 'pasky/claude.vim'
-let g:claude_api_key=$ANTHROPIC_API_KEY
-let g:claude_map_implement = "<leader>ii"
-let g:claude_map_open_chat = "<leader>ic"
-let g:claude_map_cancel_response = "<leader>ix"
-
-" documentation
-Plug 'rizzatti/dash.vim'
-nmap <silent> K :Dash<cr>
 
 " language support
 Plug 'sheerun/vim-polyglot'

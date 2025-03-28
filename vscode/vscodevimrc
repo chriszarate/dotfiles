@@ -1,0 +1,14 @@
+" +========+
+" |  Maps  |
+" +========+
+
+" Buffers
+nnoremap <leader>w :up<cr>
+nnoremap <leader>W :noa w<cr>
+nnoremap <leader>x :bdelete<cr>
+
+" Leader
+nmap <silent> <space> <leader>
+
+" Windows
+map <space><space> <c-w>
