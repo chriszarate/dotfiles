@@ -28,10 +28,9 @@ set relativenumber     " line numbers relative to the current line
 set shell=/bin/bash    " most plugins expect bash
 set signcolumn=yes     " always show the sign column
 set synmaxcol=500      " don't bother syntax highlighting after a point
+set termguicolors
 
-" use true colors in kitty
 if &term =~ 'kitty'
-	set termguicolors
 	" daddies are fighting
 	let &t_Cs = "\e[4:3m"
 	let &t_Ce = "\e[4:0m"
