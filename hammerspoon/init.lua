@@ -56,7 +56,6 @@ local spoons = {
 			},
 		},
 	},
-	TextClipboardHistory = {},
 }
 
 -- load spoons
