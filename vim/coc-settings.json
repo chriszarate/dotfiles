@@ -117,6 +117,13 @@
     "zlib"
   ],
   "json.format.enable": false,
+  "languageserver": {
+    "harper": {
+      "command": "harper-ls",
+      "args": ["--stdio"],
+      "filetypes": ["markdown"]
+    }
+  },
   "prettier.requireConfig": true,
   "snippets.textmateSnippetsRoots": [
     "~/.config/coc/snippets"
@@ -126,4 +133,5 @@
     "$HOME/.cargo/**",
     "$HOME/.rustup/**"
   ],
+  "yaml.validate": true
 }

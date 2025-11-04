@@ -1,7 +1,11 @@
 function fish_prompt -d 'Decorate the prompt'
+	# Capture early.
+	set -l last_status $status
+
 	# Defaults
 	set -l prompt_character '>'
 	set -l prompt_color '#a89984'
+	set -l problem_indicator ''
 	set -l subshell_indicator ''
 
 	set -l branch_prompt_color '#98971a'
@@ -37,6 +41,15 @@ function fish_prompt -d 'Decorate the prompt'
 		end
 	end
 
+	# Last command returned a non-zero exit code?
+	if test $last_status -ne 0
+		if test $last_status -gt 1
+			set problem_indicator (string join '' (set_color --bold '#fb4934') '*' $last_status (set_color --bold $prompt_color) ' ')
+		else
+			set problem_indicator (string join '' (set_color --bold '#fb4934') '*' (set_color --bold $prompt_color))
+		end
+	end
+
 	# Running a subshell inside another program?
 	if test -n "$YAZI_LEVEL"
 		set subshell_indicator "<"
@@ -44,5 +57,5 @@ function fish_prompt -d 'Decorate the prompt'
 		set subshell_indicator "<"
 	end
 
-	printf '%s%s%s%s ' (set_color --bold $prompt_color) $subshell_indicator $prompt_character (set_color normal)
+	string join '' (set_color --bold $prompt_color) $subshell_indicator $problem_indicator $prompt_character (set_color normal) ' '
 end

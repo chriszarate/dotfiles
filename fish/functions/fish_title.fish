@@ -6,6 +6,9 @@ function fish_title -d 'Set the title for the current terminal window'
 		set command "$argv[1]"
 	end
 
+	# Extract the first token from the command.
+	set -l command (string split ' ' -- $command)[1]
+
   switch "$command"
 
 		# Prepend the command name to the directory basename for some commands.

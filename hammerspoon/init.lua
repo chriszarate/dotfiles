@@ -19,17 +19,16 @@ local spoons = {
 				map = {
 					a = 'Autoproxxy.app',
 					b = 'Boop.app',
-					d = 'Dash.app',
 					f = 'Finder.app',
 					h = 'Hammerspoon.app',
+					i = 'iA Writer.app',
 					k = 'Slack.app',
 					m = 'Messages.app',
 					n = 'Numi.app',
-					o = 'Obsidian.app',
+					o = 'Orion.app',
 					p = 'Passwords.app',
 					s = 'Safari.app',
 					t = 'Kitty.app',
-					v = 'Visual Studio Code.app',
 				},
 				modifier = nil,
 				name = 'Launcher',
@@ -57,6 +56,11 @@ local spoons = {
 			},
 		},
 	},
+	SlackNotifier = {
+		cookieToken = config.slackCookieToken,
+		workspaceToken = config.slackWorkspaceToken,
+	},
+	TextClipboardHistory = {},
 }
 
 -- load spoons

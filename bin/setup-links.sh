@@ -13,8 +13,12 @@ touch "$HOME/.hushlogin"
 for config_dir in \
 	bin \
 	config \
+	config/coc \
 	config/fzf \
-	config/vim
+	config/gh \
+	config/nvim \
+	config/vim \
+	config/zed
 do
 	mkdir -p "$HOME/.$config_dir"
 done
@@ -23,11 +27,14 @@ done
 links=(
 	'.config/bat::bat'
 	'.config/fish::fish'
+	'.config/gh/config.yml::gh/config.yml'
 	'.config/kitty::kitty'
 	'.config/coc/coc-settings.json::vim/coc-settings.json'
 	'.config/nvim/init.lua::nvim/init.lua'
 	'.config/vim/vimrc::vim/vimrc'
 	'.config/yazi::yazi'
+	'.config/zed/keymap.json::zed/keymap.json'
+	'.config/zed/settings.json::zed/settings.json'
 	'.hammerspoon::hammerspoon'
 	'Library/Application Support/Code/User/keybindings.json::vscode/user/keybindings.json'
 	'Library/Application Support/Code/User/settings.json::vscode/user/settings.json'

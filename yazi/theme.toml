@@ -4,5 +4,5 @@ exts = []
 files = []
 dirs = []
 
-[manager]
+[mgr]
 preview_hovered = {}

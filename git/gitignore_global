@@ -3,5 +3,6 @@
 .DS_Store
 .AppleDouble
 .idea/*
+.trees/*
 .vim/*
 .vscode/*
