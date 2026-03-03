@@ -1,5 +1,6 @@
 *~
 *.swp
+**/.claude/*.local.json
 .DS_Store
 .AppleDouble
 .idea/*

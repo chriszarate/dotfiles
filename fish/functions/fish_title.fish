@@ -11,13 +11,14 @@ function fish_title -d 'Set the title for the current terminal window'
 
   switch "$command"
 
-		# Prepend the command name to the directory basename for some commands.
-		case docker git npm npx vi vim yazi yy
+		# Some commands get detailed git information.
+		case bash claude fish docker git npm npx nushell sh vi vim yazi yy zsh
 			printf '%s %s' "$command" (git_prompt_pwd)
 
-		# Shell prompts additionally get the git branch name
-		case bash fish nushell sh zsh
-			printf '%s %s' "$command" (git_prompt_pwd)
+			set -l git_worktree (git_worktree)
+			if test -n "$git_worktree"
+				printf '/%s' "$git_worktree"
+			end
 
 			set -l git_branch (git_branch)
 			if test -n "$git_branch"

@@ -6,7 +6,6 @@
 	ca  = commit --amend
 	cp  = cherry-pick
 	d   = diff
-	ds  = !DELTA_FEATURES=+side-by-side git diff
 	f   = fetch
 	fp  = pull --ff-only
 	l   = log --graph --stat
@@ -43,7 +42,6 @@
 	pager = delta
 [diff]
 	algorithm = patience
-	colorMoved = default
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f

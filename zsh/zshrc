@@ -1,6 +1,6 @@
 export EDITOR="vim"
 export PAGER="less"
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.bin"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.bin:$HOME/.orbstack/bin"
 export PROMPT='%~ > '
 export SSH_AUTH_SOCK="$HOME/.ssh/autoproxxy-ssh-agent.socket"
 
@@ -13,4 +13,4 @@ if type brew &>/dev/null; then
 fi
 
 # fnm (node.js version manager)
-eval "$(fnm env)"
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
