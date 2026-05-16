@@ -340,6 +340,9 @@ nnoremap <leader>w :up<cr>
 nnoremap <leader>W :noa w<cr>
 nnoremap <leader>x :bdelete<cr>
 
+" Files
+nnoremap <silent> cp :let @+ = expand("%")<cr>
+
 " Leader
 nmap <silent> <space> <leader>
 

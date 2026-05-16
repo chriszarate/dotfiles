@@ -4,5 +4,6 @@ exts = []
 files = []
 dirs = []
 
-[mgr]
-preview_hovered = {}
+[indicator]
+padding = { open = "▐", close = "▌" }
+preview = { hidden = true }
