@@ -25,7 +25,7 @@ obj.duration = 1
 --- Variable
 --- Default hotkey mapping
 obj.defaultHotkey = {
-    quit = { {"cmd"}, "Q" }
+	quit = { { "cmd" }, "Q" }
 }
 
 --- HoldToQuit.hotkeyQbj
@@ -42,55 +42,55 @@ obj.timer = nil
 --- Method
 --- Kill the frontmost application
 function obj:killCurrentApp()
-    local app = hs.application.frontmostApplication()
-    app:kill()
+	local app = hs.application.frontmostApplication()
+	app:kill()
 end
 
 --- HoldToQuit:init()
 --- Method
 --- Initialize spoon
 function obj:init()
-    self.timer = hs.timer.delayed.new(self.duration, self.killCurrentApp)
+	self.timer = hs.timer.delayed.new(self.duration, self.killCurrentApp)
 end
 
 --- HoldToQuit:onKeyDown()
 --- Method
 --- Start timer on keyDown
 function obj:onKeyDown()
-    self.timer:start()
+	self.timer:start()
 end
 
 --- HoldToQuit:onKeyUp()
 --- Method
 --- Stop Timer & show alert message
 function obj:onKeyUp()
-    if self.timer:running() then
-        self.timer:stop()
-        local app = hs.application.frontmostApplication()
-        hs.alert.show("Hold ⌘Q to quit " .. app:name())
-    end
+	if self.timer:running() then
+		self.timer:stop()
+		local app = hs.application.frontmostApplication()
+		hs.alert.show("Hold ⌘Q to quit " .. app:name())
+	end
 end
 
 --- HoldToQuit:start()
 --- Method
 --- Start HoldToQuit with default hotkey
 function obj:start()
-    if (self.hotkeyQbj) then
-        self.hotkeyQbj:enable()
-    else
-        local mod = self.defaultHotkey["quit"][1]
-        local key = self.defaultHotkey["quit"][2]
-        self.hotkeyQbj = hs.hotkey.bind(mod, key, function() obj:onKeyDown() end, function() obj:onKeyUp() end)
-    end
+	if (self.hotkeyQbj) then
+		self.hotkeyQbj:enable()
+	else
+		local mod = self.defaultHotkey["quit"][1]
+		local key = self.defaultHotkey["quit"][2]
+		self.hotkeyQbj = hs.hotkey.bind(mod, key, function() obj:onKeyDown() end, function() obj:onKeyUp() end)
+	end
 end
 
 --- HoldToQuit:stop()
 --- Method
 --- Disable HoldToQuit hotkey
 function obj:stop()
-    if (self.hotkeyQbj) then
-        self.hotkeyQbj:disable()
-    end
+	if (self.hotkeyQbj) then
+		self.hotkeyQbj:disable()
+	end
 end
 
 --- HoldToQuit:bindHotkeys(mapping)
@@ -101,15 +101,15 @@ end
 ---  * mapping - A table containing hotkey modifier/key details for the following items:
 ---   * show - This will define the quit hotkey
 function obj:bindHotkeys(mapping)
-    if (self.hotkeyQbj) then
-        self.hotkeyQbj:delete()
-    end
+	if (self.hotkeyQbj) then
+		self.hotkeyQbj:delete()
+	end
 
-    local mod = mapping["quit"][1]
-    local key = mapping["quit"][2]
-    self.hotkeyQbj = hs.hotkey.bind(mod, key, function() obj:onKeyDown() end, function() obj:onKeyUp() end)
+	local mod = mapping["quit"][1]
+	local key = mapping["quit"][2]
+	self.hotkeyQbj = hs.hotkey.bind(mod, key, function() obj:onKeyDown() end, function() obj:onKeyUp() end)
 
-    return self
+	return self
 end
 
 return obj

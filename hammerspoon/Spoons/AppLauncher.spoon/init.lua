@@ -38,7 +38,7 @@ function obj:launch(name)
 					if (count of windows) is 0 then
 							make new document
 					end if
-					
+
 					-- Open a new tab in the frontmost window
 					tell window 1
 							set newTab to make new tab with properties {URL:"%s"}
