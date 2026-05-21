@@ -37,7 +37,7 @@
 	gpgsign = true
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = vim +start
+	editor = nvim +start
 	compression = 0
 	pager = delta
 [diff]

@@ -13,13 +13,9 @@ touch "$HOME/.hushlogin"
 for config_dir in \
 	bin \
 	config \
-	config/coc \
 	config/fzf \
 	config/gh \
-	config/nvim \
-	config/vim \
-	config/zed
-do
+	config/nvim; do
 	mkdir -p "$HOME/.$config_dir"
 done
 
@@ -29,16 +25,10 @@ links=(
 	'.config/fish::fish'
 	'.config/gh/config.yml::gh/config.yml'
 	'.config/kitty::kitty'
-	'.config/coc/coc-settings.json::vim/coc-settings.json'
 	'.config/nvim/init.lua::nvim/init.lua'
-	'.config/vim/vimrc::vim/vimrc'
+	'.config/nvim/lua::nvim/lua'
 	'.config/yazi::yazi'
-	'.config/zed/keymap.json::zed/keymap.json'
-	'.config/zed/settings.json::zed/settings.json'
 	'.hammerspoon::hammerspoon'
-	'Library/Application Support/Code/User/keybindings.json::vscode/user/keybindings.json'
-	'Library/Application Support/Code/User/settings.json::vscode/user/settings.json'
-	'Library/Application Support/Code/User/snippets::vscode/user/snippets'
 )
 for link in "${links[@]}"; do
 	source="${link##*::}"
@@ -65,9 +55,7 @@ for config in \
 	rg/rgignore \
 	rg/rgignore-tests \
 	rg/ripgreprc \
-	vscode/vscodevimrc \
-	zsh/zshrc
-do
+	zsh/zshrc; do
 	if [ ! -e "$HOME/.$(basename "$config")" ]; then
 		ln -s "$DOTFILES/$config" "$HOME/.$(basename "$config")"
 	fi

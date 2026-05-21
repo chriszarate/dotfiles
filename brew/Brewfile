@@ -25,11 +25,12 @@ brew "luarocks"
 brew "mas"
 brew "mole"
 brew "noahgorstein/tap/jqp"
+brew "nvim"
 brew "php@8.4", link: true
 brew "ripgrep"
 brew "ruby" # required by vim
+brew "rustup"
 brew "shellcheck"
-brew "vim"
 brew "websocat"
 brew "wget"
 brew "yamllint"
