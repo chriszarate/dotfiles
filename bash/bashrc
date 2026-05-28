@@ -8,12 +8,11 @@ export SSH_AUTH_SOCK="$HOME/.ssh/autoproxxy-ssh-agent.socket"
 # completions
 if type brew &>/dev/null; then
 	HOMEBREW_PREFIX="$(brew --prefix)"
-	for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
-	do
+	for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
 		[[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
 	done
 fi
 
 # fnm (node.js version manager)
-eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --use-on-cd --log-level=quiet)"
 . "$HOME/.cargo/env"

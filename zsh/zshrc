@@ -13,4 +13,4 @@ if type brew &>/dev/null; then
 fi
 
 # fnm (node.js version manager)
-eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
+eval "$(fnm env --use-on-cd --log-level=quiet --version-file-strategy=recursive)"
