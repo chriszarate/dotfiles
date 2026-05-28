@@ -2,6 +2,22 @@
 
 local map = vim.keymap.set
 
+local function CompletionAccept()
+	if vim.fn.pumvisible() == 1 then
+		if vim.fn.complete_info({ 'selected' }).selected ~= -1 then
+			return '<c-y>'  -- Confirm selection
+		else
+			return '<c-e><cr>' -- Dismiss menu and insert carriage return
+		end
+	else
+		return '<cr>' -- Normal Enter behavior when menu is closed
+	end
+end
+
+local function CompletionCycleBackwards()
+	return vim.fn.pumvisible() == 1 and '<c-p>' or '<s-tab>'
+end
+
 local function ToggleQuickFix()
 	local qf_exists = false
 	for _, win in ipairs(vim.fn.getwininfo()) do
@@ -9,6 +25,10 @@ local function ToggleQuickFix()
 	end
 	if qf_exists then vim.cmd("cclose") else vim.cmd("copen") end
 end
+
+-- Completion
+map('i', '<cr>', CompletionAccept, { expr = true, noremap = true })
+map('i', '<s-tab>', CompletionCycleBackwards, { expr = true, noremap = true })
 
 -- Movement
 map("n", ",,", "<c-^>", { silent = true })

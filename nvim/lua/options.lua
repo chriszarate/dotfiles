@@ -1,4 +1,5 @@
 vim.opt.background = "dark"
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'fuzzy' }
 vim.opt.cursorline = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "│ ", trail = "#" }
