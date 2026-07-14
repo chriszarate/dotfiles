@@ -25,6 +25,7 @@ local spoons = {
 					i = 'iA Writer.app',
 					m = 'Messages.app',
 					n = 'Numi.app',
+					o = 'Orca.app',
 					p = 'Passwords.app',
 					s = 'Safari.app',
 					t = 'Kitty.app',
@@ -56,8 +57,7 @@ local spoons = {
 		},
 	},
 	SlackNotifier = {
-		cookieToken = config.slackCookieToken,
-		workspaceToken = config.slackWorkspaceToken,
+		workspaces = config.slackWorkspaces,
 	},
 	TextClipboardHistory = {},
 }

@@ -21,6 +21,7 @@ done
 
 # Symlink custom-location dotfiles.
 links=(
+	'.claude/CLAUDE.md::agents/AGENTS.md'
 	'.config/bat::bat'
 	'.config/fish::fish'
 	'.config/gh/config.yml::gh/config.yml'

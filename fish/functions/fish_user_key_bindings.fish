@@ -5,4 +5,7 @@ function fish_user_key_bindings -d 'Set key bindings for users at the shell'
 
 	fish_vi_key_bindings
 	fzf_key_bindings
+	bind -M insert \ce llm_cmd
+	bind -M default \ce llm_cmd
+	bind -M visual \ce llm_cmd
 end
