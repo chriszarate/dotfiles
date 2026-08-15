@@ -64,6 +64,6 @@
 [user]
 	name = chriszarate
 	email = chris.zarate@automattic.com
-	signingkey = ~/.ssh/autoproxxy.pub
+	signingkey = ~/.ssh/keys/commit_signing
 [help]
 	autocorrect = prompt
