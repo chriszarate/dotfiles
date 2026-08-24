@@ -12,7 +12,7 @@ fi
 # Install cargo tools
 rustup_path="$(which rustup)"
 if [ -n "$rustup_path" ]; then
-	mkdir ~/.cargo
+	mkdir -p ~/.cargo
 	rustup install
 	rustup toolchain install stable
 fi
