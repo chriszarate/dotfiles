@@ -21,7 +21,11 @@ require('mason-tool-installer').setup({
 	},
 })
 
-require('mason-lspconfig').setup()
+require('mason-lspconfig').setup({
+	-- stylua ships an LSP mode, but conform.nvim already runs it as a
+	-- formatter. Enabling both would attach a redundant client.
+	automatic_enable = { exclude = { 'stylua' } },
+})
 
 vim.lsp.config('lua_ls', {
 	settings = {
@@ -76,7 +80,6 @@ vim.diagnostic.config({
 		source = 'if_many',
 	},
 	underline = true,
-	virtual_text = nil,
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = '',

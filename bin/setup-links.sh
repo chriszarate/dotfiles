@@ -27,6 +27,7 @@ links=(
 	'.config/gh/config.yml::gh/config.yml'
 	'.config/kitty::kitty'
 	'.config/nvim/init.lua::nvim/init.lua'
+	'.config/nvim/lazy-lock.json::nvim/lazy-lock.json'
 	'.config/nvim/lua::nvim/lua'
 	'.config/yazi::yazi'
 	'.hammerspoon::hammerspoon'

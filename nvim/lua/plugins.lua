@@ -4,7 +4,7 @@ local map = vim.keymap.set
 
 -- Boostrap lazy.nvim automatically if it's not installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -149,6 +149,32 @@ require("lazy").setup({
 				mode = { "n" },
 				function() require("gitlinker").get_buf_range_url("n") end,
 				desc = "Copy the GitHub URL of the current line",
+			},
+		},
+	},
+	{
+		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = {
+				bash = { "shfmt" },
+				css = { "prettier" },
+				html = { "prettier" },
+				javascript = { "prettier" },
+				javascriptreact = { "prettier" },
+				json = { "prettier" },
+				jsonc = { "prettier" },
+				lua = { "stylua" },
+				markdown = { "prettier" },
+				sh = { "shfmt" },
+				typescript = { "prettier" },
+				typescriptreact = { "prettier" },
+				yaml = { "prettier" },
+			},
+			-- Filetypes above use the tool; everything else falls back to
+			-- whatever its language server offers (gopls, intelephense, ...).
+			format_on_save = {
+				lsp_format = "fallback",
+				timeout_ms = 1000,
 			},
 		},
 	},

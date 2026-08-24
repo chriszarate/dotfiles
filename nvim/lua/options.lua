@@ -9,3 +9,5 @@ vim.opt.shell = "/bin/bash"
 vim.opt.showtabline = 0
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
+vim.opt.undodir = "/tmp/nvim-undo"
+vim.opt.undofile = true
