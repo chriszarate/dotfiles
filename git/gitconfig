@@ -40,6 +40,9 @@
 	editor = nvim +start
 	compression = 0
 	pager = delta
+[delta]
+	# Skip the OSC 10/11 terminal background query, which leaks into the pager input.
+	dark = true
 [diff]
 	algorithm = patience
 [filter "media"]

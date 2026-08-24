@@ -1,5 +1,5 @@
-tap "homebrew/bundle"
 tap "darrylmorley/whatcable", trusted: true
+tap "noahgorstein/tap", trusted: true
 tap "stablyai/orca", trusted: true
 brew "bash"
 brew "bat"
@@ -18,11 +18,11 @@ brew "harper"
 brew "htop"
 brew "hugo"
 brew "jq"
+brew "jqp"
 brew "llama.cpp"
 brew "lua"
 brew "luarocks"
 brew "mole"
-brew "noahgorstein/tap/jqp"
 brew "nvim"
 brew "php@8.4", link: true
 brew "ripgrep"
