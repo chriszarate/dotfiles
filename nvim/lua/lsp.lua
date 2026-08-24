@@ -23,56 +23,49 @@ require('mason-tool-installer').setup({
 
 require('mason-lspconfig').setup()
 
-local configs = {
-	lua_ls = {
-		settings = {
-			Lua = {
-				runtime = { version = 'LuaJIT' },
-				diagnostics = { globals = { 'vim' } },
-				workspace = {
-					checkThirdParty = false,
-					library = {
-						vim.env.VIMRUNTIME,
-					},
-				},
-				telemetry = { enable = false },
-			},
-		},
-	},
-	gopls = {
-		settings = {
-			gopls = {
-				staticcheck = true,
-				gofumpt = true,
-				usePlaceholders = true,
-			},
-		},
-	},
-	tsserver = {
-		settings = {
-			typescript = {
-				inlayHints = {
-					includeInlayParameterNameHints = 'all',
-					includeInlayFunctionParameterTypeHints = true,
-					includeInlayVariableTypeHints = true,
+vim.lsp.config('lua_ls', {
+	settings = {
+		Lua = {
+			runtime = { version = 'LuaJIT' },
+			diagnostics = { globals = { 'vim' } },
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME,
 				},
 			},
-			javascript = {
-				inlayHints = {
-					includeInlayParameterNameHints = 'all',
-					includeInlayFunctionParameterTypeHints = true,
-					includeInlayVariableTypeHints = true,
-				},
-			},
+			telemetry = { enable = false },
 		},
 	},
-}
+})
 
-require('mason-lspconfig').setup_handlers({
-	function(server_name)
-		local config = configs[server_name] or {}
-		require('lspconfig')[server_name].setup(config)
-	end,
+vim.lsp.config('gopls', {
+	settings = {
+		gopls = {
+			staticcheck = true,
+			gofumpt = true,
+			usePlaceholders = true,
+		},
+	},
+})
+
+vim.lsp.config('ts_ls', {
+	settings = {
+		typescript = {
+			inlayHints = {
+				includeInlayParameterNameHints = 'all',
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+			},
+		},
+		javascript = {
+			inlayHints = {
+				includeInlayParameterNameHints = 'all',
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+			},
+		},
+	},
 })
 
 vim.diagnostic.config({

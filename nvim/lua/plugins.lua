@@ -164,8 +164,8 @@ require("lazy").setup({
 	"tpope/vim-unimpaired",
 
 	-- LSP plugins, order here matters:
-	"williamboman/mason.nvim",
+	"mason-org/mason.nvim",
 	"neovim/nvim-lspconfig",
-	"williamboman/mason-lspconfig.nvim",
+	"mason-org/mason-lspconfig.nvim",
 	"WhoIsSethDaniel/mason-tool-installer",
 })
