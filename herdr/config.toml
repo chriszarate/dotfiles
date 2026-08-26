@@ -10,6 +10,7 @@ accent = "#458588"
 
 [ui]
 prompt_new_tab_name = false
+show_agent_labels_on_pane_borders = false
 status_indicators = "dots"
 window_title = "herdr: {workspace}"
 
@@ -18,6 +19,13 @@ window_title = "herdr: {workspace}"
 tab_bar_right = [
 	{ type = "command", command = "$HOME/.bin/claude-quota", interval_seconds = 60, timeout_seconds = 5 },
 ]
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "herdr"
+>>>>>>> 18e3120 (herdr)
 
 [worktrees]
 directory = "~/Code/worktrees"
