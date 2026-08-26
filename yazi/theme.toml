@@ -6,4 +6,4 @@ dirs = []
 
 [indicator]
 padding = { open = "▐", close = "▌" }
-preview = { hidden = true }
+preview = {}
