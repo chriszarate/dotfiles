@@ -1,6 +1,5 @@
 tap "darrylmorley/whatcable", trusted: true
 tap "noahgorstein/tap", trusted: true
-tap "stablyai/orca", trusted: true
 brew "bash"
 brew "bat"
 brew "composer", ignoreDependencies: true
@@ -15,6 +14,7 @@ brew "git-delta"
 brew "glow"
 brew "go@1.23", link: true
 brew "harper"
+brew "herdr"
 brew "htop"
 brew "hugo"
 brew "jq"
@@ -30,6 +30,7 @@ brew "rustup"
 brew "shellcheck"
 brew "websocat"
 brew "wget"
+brew "worktrunk"
 brew "yamllint"
 brew "yazi"
 brew "zoxide"
@@ -41,7 +42,6 @@ cask "hammerspoon"
 cask "kitty"
 cask "numi"
 cask "orbstack"
-cask "stablyai/orca/orca"
 cask "thebrowsercompany-dia"
 cask "vlc"
 cask "whatcable"

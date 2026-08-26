@@ -25,10 +25,12 @@ links=(
 	'.config/bat::bat'
 	'.config/fish::fish'
 	'.config/gh/config.yml::gh/config.yml'
+	'.config/herdr/config.toml::herdr/config.toml'
 	'.config/kitty::kitty'
 	'.config/nvim/init.lua::nvim/init.lua'
 	'.config/nvim/lazy-lock.json::nvim/lazy-lock.json'
 	'.config/nvim/lua::nvim/lua'
+	'.config/worktrunk::worktrunk'
 	'.config/yazi::yazi'
 	'.hammerspoon::hammerspoon'
 )
