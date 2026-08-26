@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+#
+# Keep herdr workspaces in step with worktrunk worktrees.
+#
+# Called by the worktrunk hooks in worktrunk/config.toml. Outside of herdr it
+# does nothing, so those hooks are harmless in a plain terminal.
+#
+#   herdr-worktree open <repo-path> <worktree-path>  Open, or focus, a workspace
+#   herdr-worktree close <worktree-path>             Close the workspace
+
+set -uo pipefail
+
+subcommand="${1:-}"
+shift 2> /dev/null
+
+# How long to wait for a removed worktree to disappear, in fifths of a second.
+close_timeout="${HERDR_WORKTREE_CLOSE_TIMEOUT:-300}"
+
+# Only herdr sets HERDR_ENV, so this is how we know there's a session to talk to.
+if [ -z "${HERDR_ENV:-}" ] || ! command -v herdr > /dev/null; then
+	exit 0
+fi
+
+case "$subcommand" in
+
+	open)
+		repo_path="${1:-}"
+		worktree_path="${2:-}"
+
+		if [ -z "$repo_path" ] || [ -z "$worktree_path" ]; then
+			echo "herdr-worktree: open needs a repo path and a worktree path" >&2
+			exit 1
+		fi
+
+		# herdr focuses the existing workspace when the worktree is already
+		# open, and it treats the repository root as the source workspace, so
+		# this one call covers creating, switching, and switching back to main.
+		herdr worktree open \
+			--cwd "$repo_path" \
+			--path "${worktree_path%/}" \
+			--focus > /dev/null
+		;;
+
+	close)
+		worktree_path="${1:-}"
+
+		if [ -z "$worktree_path" ]; then
+			echo "herdr-worktree: close needs a worktree path" >&2
+			exit 1
+		fi
+
+		# Find the workspace holding this checkout. Only linked worktrees count,
+		# so a stray call can never close the main repository's workspace.
+		workspace_id=$(
+			herdr workspace list | jq -r --arg path "${worktree_path%/}" '
+				.result.workspaces[]
+				| select(.worktree.checkout_path == $path)
+				| select(.worktree.is_linked_worktree)
+				| .workspace_id
+			'
+		)
+
+		if [ -z "$workspace_id" ]; then
+			exit 0
+		fi
+
+		# wt is still finishing up, and it is running in the pane that closing
+		# this workspace kills. Deleting the checkout directory is its last
+		# step, so wait for that to happen — closing early cuts the removal
+		# short and leaves an empty directory behind. If the checkout is still
+		# there when we give up, the removal is in trouble and the workspace is
+		# more useful open than closed.
+		waited=0
+		while [ -e "$worktree_path" ] && [ "$waited" -lt "$close_timeout" ]; do
+			sleep 0.2
+			waited=$((waited + 1))
+		done
+
+		if [ ! -e "$worktree_path" ]; then
+			herdr workspace close "$workspace_id" > /dev/null
+		fi
+		;;
+
+	*)
+		echo "usage: herdr-worktree open <repo-path> <worktree-path>" >&2
+		echo "       herdr-worktree close <worktree-path>" >&2
+		exit 1
+		;;
+
+esac

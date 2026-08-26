@@ -1,30 +1,5 @@
 onboarding = false
 
-# Override herdr's built-in worktree functionality to use worktrunk
-[[keys.command]]
-key = "prefix+shift+g"
-type = "plugin_action"
-command = "worktrunk.open"
-description = "Worktree: switch / create from default branch"
-
-[[keys.command]]
-key = "prefix+shift+c"
-type = "plugin_action"
-command = "worktrunk.open-current"
-description = "Worktree: switch / create from current branch"
-
-[[keys.command]]
-key = "prefix+shift+r"
-type = "plugin_action"
-command = "worktrunk.open-with-remotes"
-description = "Worktree: switch / create from local or remote branches"
-
-[[keys.command]]
-key = "prefix+shift+d"
-type = "plugin_action"
-command = "worktrunk.remove"
-description = "Worktree: remove"
-
 [theme]
 name = "gruvbox"
 auto_switch = false
@@ -33,3 +8,6 @@ auto_switch = false
 prompt_new_tab_name = false
 status_indicators = "dots"
 window_title = "herdr: {workspace}"
+
+[worktrees]
+directory = "~/Code/worktrees"

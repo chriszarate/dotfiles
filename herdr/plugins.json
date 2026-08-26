@@ -1,0 +1,114 @@
+[
+  {
+    "plugin_id": "herdr-wakeup",
+    "name": "Herdr Wakeup",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.0",
+    "description": "Keep macOS/Linux awake while Herdr agents are working, using the standalone wakeup binary.",
+    "manifest_path": "/Users/zzz/.config/herdr/plugins/github/herdr-wakeup-59e46657936c/plugin/herdr-plugin.toml",
+    "plugin_root": "/Users/zzz/.config/herdr/plugins/github/herdr-wakeup-59e46657936c/plugin",
+    "enabled": true,
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "build": [
+      {
+        "command": [
+          "bash",
+          "bin/build"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "arm",
+        "title": "Wakeup: arm",
+        "contexts": [
+          "global",
+          "workspace",
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "bin/arm"
+        ]
+      },
+      {
+        "id": "disarm",
+        "title": "Wakeup: disarm",
+        "contexts": [
+          "global",
+          "workspace",
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "bin/disarm"
+        ]
+      },
+      {
+        "id": "doctor",
+        "title": "Wakeup: doctor",
+        "contexts": [
+          "global",
+          "workspace",
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "bin/doctor"
+        ]
+      },
+      {
+        "id": "start",
+        "title": "Wakeup: start",
+        "contexts": [
+          "global",
+          "workspace",
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "bin/start"
+        ]
+      },
+      {
+        "id": "status",
+        "title": "Wakeup: status",
+        "contexts": [
+          "global",
+          "workspace",
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "bin/status"
+        ]
+      },
+      {
+        "id": "stop",
+        "title": "Wakeup: stop",
+        "contexts": [
+          "global",
+          "workspace",
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "bin/stop"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "usrivastava92",
+      "repo": "herdr-wakeup",
+      "subdir": "plugin",
+      "requested_ref": "v0.1.0",
+      "resolved_commit": "aa4bcdc626249eddb6bd620029f3916e07375ca0",
+      "managed_path": "/Users/zzz/.config/herdr/plugins/github/herdr-wakeup-59e46657936c",
+      "installed_unix_ms": 1787709405527
+    }
+  }
+]

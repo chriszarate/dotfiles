@@ -26,6 +26,7 @@ brew "mole"
 brew "nvim"
 brew "php@8.4", link: true
 brew "ripgrep"
+brew "rust"
 brew "rustup"
 brew "shellcheck"
 brew "websocat"

@@ -425,6 +425,12 @@ json-schema = 2
 [commit.generation]
 command = "claude -p --no-session-persistence --model=haiku --tools='' --safe-mode --setting-sources='user' --system-prompt=''"
 
+[post-remove]
+herdr = "herdr-worktree close {{ worktree_path }}"
+
+[post-switch]
+herdr = "herdr-worktree open {{ repo_path }} {{ worktree_path }}"
+
 # Gutenberg and plugins built around it (WordPress/gutenberg,
 # Automattic/gutenberg-sync-engines). All use wp-env on a per-branch port.
 [projects."github.com/*/gutenberg*".aliases]

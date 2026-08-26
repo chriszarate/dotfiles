@@ -26,6 +26,7 @@ links=(
 	'.config/fish::fish'
 	'.config/gh/config.yml::gh/config.yml'
 	'.config/herdr/config.toml::herdr/config.toml'
+	'.config/herdr/plugins.json::herdr/plugins.json'
 	'.config/kitty::kitty'
 	'.config/nvim/init.lua::nvim/init.lua'
 	'.config/nvim/lazy-lock.json::nvim/lazy-lock.json'
