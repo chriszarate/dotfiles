@@ -5,6 +5,6 @@ function flushdns -d "Flush DNS cache"
 		sudo dscacheutil -flushcache
 		sudo killall -HUP mDNSResponder
 	else
-		echo "Unsupported operating system: (uname)"
+		echo "Unsupported operating system"
 	end
 end
