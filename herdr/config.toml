@@ -25,7 +25,6 @@ enabled = false
 
 [ui.toast]
 delivery = "herdr"
->>>>>>> 18e3120 (herdr)
 
 [worktrees]
 directory = "~/Code/worktrees"
