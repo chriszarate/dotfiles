@@ -4,6 +4,10 @@ onboarding = false
 name = "gruvbox"
 auto_switch = false
 
+[theme.custom]
+# Active tab background, among other highlights. Gruvbox blue.
+accent = "#458588"
+
 [ui]
 prompt_new_tab_name = false
 status_indicators = "dots"
