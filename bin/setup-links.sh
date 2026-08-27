@@ -72,3 +72,20 @@ for helper in "$DOTFILES/bin/helpers"/*; do
 		ln -s "$helper" "$HOME/.bin/$(basename "$helper")"
 	fi
 done
+
+# Symlink system files that require sudo.
+links=(
+	'/etc/ssh/sshd_config.d/10-key-only.conf::ssh/10-key-only.conf'
+)
+for link in "${links[@]}"; do
+	source="${link##*::}"
+	target="${link%%::*}"
+
+	if [ -f "$DOTFILES/$source" ] && [ ! -d "$(dirname "$target")" ]; then
+		sudo mkdir -p "$(dirname "$target")"
+	fi
+
+	if [ ! -e "$target" ]; then
+		sudo ln -s "$DOTFILES/$source" "$target"
+	fi
+done
