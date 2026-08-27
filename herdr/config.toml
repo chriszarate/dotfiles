@@ -9,5 +9,11 @@ prompt_new_tab_name = false
 status_indicators = "dots"
 window_title = "herdr: {workspace}"
 
+# Claude subscription usage, refreshed on the herdr server. See
+# bin/helpers/claude-quota.
+tab_bar_right = [
+	{ type = "command", command = "$HOME/.bin/claude-quota", interval_seconds = 60, timeout_seconds = 5 },
+]
+
 [worktrees]
 directory = "~/Code/worktrees"
