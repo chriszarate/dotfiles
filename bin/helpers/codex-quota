@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+#
+# Print Codex subscription usage for the herdr tab bar, e.g.
+#
+#   Codex 12% 5d │ Session 3% 2h
+#
+# Each entry is a limit's percent used and how long until it resets. "Codex"
+# is the weekly limit; "Session" is the five-hour limit. Mirrors the layout of
+# claude-quota so the two can swap in and out of the same tab bar slot.
+#
+# Usage comes from `codex app-server`, the versioned JSON-RPC interface the
+# Codex CLI itself uses, via its account/rateLimits/read method. Auth is
+# whatever `codex login` stored; nothing is printed. Responses are cached
+# briefly so the tab bar and any manual runs share one request.
+
+set -uo pipefail
+
+cache="${TMPDIR:-/tmp}/codex-quota.json"
+max_age="${CODEX_QUOTA_MAX_AGE:-60}"
+
+# Seconds since the file was last written, or a large number if it's missing.
+age() {
+	if [ -f "$1" ]; then
+		echo $(($(date +%s) - $(stat -f %m "$1")))
+	else
+		echo 999999
+	fi
+}
+
+if [ "$(age "$cache")" -gt "$max_age" ]; then
+	# Write to a temporary file and only promote it once it parses, so a failed
+	# or truncated request leaves the last good response in place.
+	if python3 - > "$cache.tmp" 2> /dev/null <<'EOF' \
+		&& jq -e '.rateLimits' "$cache.tmp" > /dev/null 2>&1; then
+import json, signal, subprocess, sys
+
+signal.signal(signal.SIGALRM, lambda *_: sys.exit(1))
+signal.alarm(4)
+
+server = subprocess.Popen(
+    ["codex", "app-server"],
+    stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+    stderr=subprocess.DEVNULL, text=True,
+)
+
+def send(message):
+    server.stdin.write(json.dumps(message) + "\n")
+    server.stdin.flush()
+
+send({"jsonrpc": "2.0", "id": 1, "method": "initialize",
+      "params": {"clientInfo": {"name": "codex-quota", "title": "codex-quota", "version": "1.0.0"}}})
+try:
+    for line in server.stdout:
+        try:
+            message = json.loads(line)
+        except ValueError:
+            continue
+        if message.get("id") == 1:
+            send({"jsonrpc": "2.0", "method": "initialized"})
+            send({"jsonrpc": "2.0", "id": 2, "method": "account/rateLimits/read", "params": {}})
+        elif message.get("id") == 2:
+            json.dump(message.get("result", {}), sys.stdout)
+            sys.exit(0)
+finally:
+    server.kill()
+sys.exit(1)
+EOF
+		mv "$cache.tmp" "$cache"
+	fi
+	rm -f "$cache.tmp"
+fi
+
+# Anything unreadable degrades to a placeholder. Letting jq fail here would put
+# its parse error in the tab bar.
+if ! jq -e '.rateLimits' "$cache" > /dev/null 2>&1; then
+	echo 'quota ?'
+	exit 0
+fi
+
+jq -r '
+	def until($t):
+		if $t == null then ""
+		else
+			($t - now) as $s
+			| if $s <= 0 then "now"
+				elif $s < 3600 then "\(($s / 60) | floor)m"
+				elif $s < 86400 then "\(($s / 3600) | floor)h"
+				else "\(($s / 86400) | floor)d"
+				end
+		end;
+
+	# A window missing from the response is dropped rather than shown as zero.
+	def cell($label; $window):
+		if $window == null then empty
+		else "\($label) \($window.usedPercent)% \(until($window.resetsAt))"
+		end;
+
+	# primary is the five-hour window, secondary the weekly one. Weekly leads
+	# to match claude-quota, where the model limit is also the weekly one.
+	[
+		cell("Codex"; .rateLimits.secondary),
+		cell("Session"; .rateLimits.primary)
+	]
+	| join(" │ ")
+	# Pad the right edge. herdr trims trailing whitespace from the command
+	# output, so the space is anchored with a word joiner: it is not
+	# whitespace, so the trim stops there, and it renders as zero width.
+	| . + " \u2060"
+' "$cache"

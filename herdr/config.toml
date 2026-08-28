@@ -14,10 +14,12 @@ show_agent_labels_on_pane_borders = false
 status_indicators = "dots"
 window_title = "herdr: {workspace}"
 
-# Claude subscription usage, refreshed on the herdr server. See
-# bin/helpers/claude-quota.
+# Subscription usage for the agent in the active workspace: Codex when the
+# workspace runs Codex, Claude otherwise. See bin/helpers/agent-quota. The
+# short interval only re-picks which agent to show; the quota scripts cache
+# their API responses for a minute.
 tab_bar_right = [
-	{ type = "command", command = "$HOME/.bin/claude-quota", interval_seconds = 60, timeout_seconds = 5 },
+	{ type = "command", command = "$HOME/.bin/agent-quota", interval_seconds = 5, timeout_seconds = 5 },
 ]
 
 [ui.sound]

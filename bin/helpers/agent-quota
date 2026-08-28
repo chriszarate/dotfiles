@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#
+# Print the subscription usage that matches the agent in herdr's active
+# workspace: codex-quota when the workspace runs Codex, claude-quota otherwise.
+#
+# Wired up as a tab_bar_right command entry in herdr/config.toml. herdr gives
+# tab bar commands the same context as custom command keybindings, which is
+# where HERDR_ACTIVE_WORKSPACE_ID and HERDR_BIN_PATH come from. Run outside
+# herdr, this falls through to claude-quota.
+
+set -uo pipefail
+
+workspace="${HERDR_ACTIVE_WORKSPACE_ID:-}"
+herdr="${HERDR_BIN_PATH:-herdr}"
+
+agent=""
+if [ -n "$workspace" ]; then
+	# Prefer the focused agent, then any agent in the workspace.
+	agent="$(
+		"$herdr" agent list 2> /dev/null | jq -r --arg ws "$workspace" '
+			[.result.agents[] | select(.workspace_id == $ws)]
+			| (map(select(.focused)) + .)
+			| first.agent // empty
+		' 2> /dev/null
+	)"
+fi
+
+case "$agent" in
+	codex) exec "$HOME/.bin/codex-quota" ;;
+	*) exec "$HOME/.bin/claude-quota" ;;
+esac
