@@ -1,5 +1,6 @@
 function llm_cmd -d 'Query the local LLM for a command based on the current command line input'
 	set -l server_port 4040
+	set -l model_name cmd
 
 	# 1. Get the text currently typed into the command line buffer
 	set -l user_prompt (commandline -b)
@@ -26,13 +27,33 @@ function llm_cmd -d 'Query the local LLM for a command based on the current comm
 	printf '\0337\033[2m # Fetching command...\033[0m\0338' >/dev/tty
 
 	# 3. Payload for the llama.cpp server (OpenAI-compatible endpoint)
-	set -l json_payload (jq -n --arg prompt "$user_prompt" '{
-		model: "gemma",
+	#
+	# The system prompt names the platform and shell on purpose. Without it the
+	# model reaches for GNU coreutils flags it learned from Linux examples
+	# (`sed -i` with no argument, `find -printf`) which fail on macOS, and it
+	# writes bash `export FOO=bar` instead of fish `set -x FOO bar`.
+	#
+	# `enable_thinking: false` matters for speed: Qwen3.5 reasons out loud by
+	# default, which spends 10-30 seconds on visible scratch work before the
+	# answer. Turning it off makes a one-line command come back in 1-2 seconds.
+	#
+	# `max_tokens` is a backstop so a confused model can't hang the keybinding
+	# writing an essay.
+	set -l system_prompt "You are a command-line assistant. The user is on macOS (BSD userland, not GNU) and uses the fish shell. Output ONLY the raw executable command. No markdown, no backticks, no explanation, no preamble.
+macOS notes: sed in-place needs an empty argument, sed -i ''; find has no -printf; set fish variables with 'set -x NAME value'."
+
+	set -l json_payload (jq -n \
+		--arg model "$model_name" \
+		--arg system "$system_prompt" \
+		--arg prompt "$user_prompt" '{
+		model: $model,
 		messages: [
-		{role: "system", content: "You are a CLI assistant. Output ONLY the raw, executable shell command requested by the user. Absolutely no markdown, no triple backticks, no explanations, and no preamble."},
+		{role: "system", content: $system},
 		{role: "user", content: $prompt}
 		],
-		temperature: 0.1
+		temperature: 0.1,
+		max_tokens: 256,
+		chat_template_kwargs: {enable_thinking: false}
 	}')
 
 	# 4. Call the local model
@@ -45,15 +66,24 @@ function llm_cmd -d 'Query the local LLM for a command based on the current comm
 	printf '\033[J' >/dev/tty
 
 	# Extract and clean the output
-	set -l generated_cmd (echo "$response" | jq -r '.choices[0].message.content' | string trim)
+	set -l generated_cmd (echo "$response" | jq -r '.choices[0].message.content // empty' | string trim | string collect)
 
-	# Sanity check: Strip markdown code blocks if the LLM hallucinated them anyway
+	# Sanity check: strip markdown if the model wrapped the command anyway,
+	# both fenced blocks and a single pair of inline backticks.
 	set generated_cmd (string replace -r '^```[a-zA-Z]*\s*' '' -- "$generated_cmd")
 	set generated_cmd (string replace -r '\s*```$' '' -- "$generated_cmd")
+	set generated_cmd (string replace -r '^`(.*)`$' '$1' -- "$generated_cmd")
+	set generated_cmd (string trim -- "$generated_cmd")
 
-	# 6. Safety fallback if the API fails or returns null
-	if test -z "$generated_cmd" -o "$generated_cmd" = "null"
-		commandline -r "$user_prompt # (Error: Local model failed to respond)"
+	# 6. Safety fallback if the API fails or returns nothing. Show the server's
+	# own error when there is one — "model not found" and "out of memory" need
+	# different fixes, and a generic message hides which one happened.
+	if test -z "$generated_cmd"
+		set -l err (echo "$response" | jq -r '.error.message // empty' 2>/dev/null | string trim | string collect)
+		if test -z "$err"
+			set err "no response from server"
+		end
+		commandline -r "$user_prompt # (Error: $err)"
 		commandline -f repaint
 		return
 	end

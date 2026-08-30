@@ -9,6 +9,7 @@ DOTFILES="$HOME/.dotfiles"
 "$DOTFILES/bin/setup-links.sh"
 "$DOTFILES/bin/setup-fish.sh"
 "$DOTFILES/bin/setup-tools.sh"
+"$DOTFILES/bin/setup-llm.sh"
 
 if [ "$(uname)" = "Darwin" ]; then
 	"$DOTFILES/bin/setup-osx.sh"
