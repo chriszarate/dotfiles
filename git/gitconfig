@@ -1,5 +1,6 @@
 [alias]
-	a   = !git ls-files -m --exclude-standard | fzf --preview 'git diff --color=always {}' --print0 -m | xargs -0 -t -o git add --patch
+	a   = !git ls-files -m -o --exclude-standard | fzf --preview 'git diff --color=always {}' --print0 -m | xargs -0 -t -o git add --patch
+	ab  = absorb --and-rebase
 	ap  = add --patch
 	b   = !git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)' | fzf --no-hscroll --no-multi --ansi --preview 'git --no-pager log -50 --pretty=format:\"%h  %an (%ar)  %s\" {}' --print0 | xargs -0 -t -o git switch
 	c   = commit
@@ -68,8 +69,9 @@
 	conflictStyle = zdiff3
 [pager]
 	difftool = true
+[pull]
+	rebase = true
 [push]
-	autoRemoteSetup = true
 	autoSetupRemote = true
 [rebase]
 	autoStash = true
