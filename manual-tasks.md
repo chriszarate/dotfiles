@@ -4,6 +4,7 @@
 
 - **Keyboard > Keyboard Shortcuts > Modifier Keys:** Map Caps Lock to Control for each keyboard.
 - **Privacy & Security > Privacy > Screen Recording:** Add web browsers to allow screen sharing (must first be requested by the browser).
+- **Privacy & Security > Privacy > Full Disk Access:** Add Kitty, so the `shi` function can read Safari's history database.
 
 ## Keep Vim updated
 
@@ -11,14 +12,17 @@
 vim -c 'PlugUpgrade | PlugUpdate | CocUpdate'
 ```
 
-## Allow TouchID for sudo
+## Speed up large repositories
+
+Run this once per clone of a large repository. It schedules background prefetch
+and repacking, so `git f` is usually instant and the repo stays packed.
 
 ```sh
-sudo vim /etc/pam.d/sudo
+git maintenance start
 ```
 
-Add this entry to the top of the file. Write and test before closing. You will probably need to repeat this change after system updates.
+## Sign in to the App Store
 
-```
-auth       sufficient     pam_tid.so
-```
+`mas` can install and upgrade App Store apps listed in the Brewfile, but it
+cannot sign in for you. Sign in to the App Store once, then `brew bundle
+install` picks up the rest.
