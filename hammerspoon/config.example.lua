@@ -1,5 +1,7 @@
--- copy this file to config.lua and edit
+-- Copy this file to config.lua to enable private settings.
 
-local config = {}
+local config = {
+	slackWorkspaces = {},
+}
 
 return config

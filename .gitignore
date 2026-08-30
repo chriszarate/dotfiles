@@ -1,6 +1,7 @@
 Brewfile.lock.json
 config.lua
 fish_variables
+herdr/plugins.json
 *.fish.bak
 *.local.fish
 kitty/current-theme.conf

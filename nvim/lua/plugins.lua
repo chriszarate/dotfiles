@@ -46,7 +46,7 @@ require("lazy").setup({
 	{
 		"github/copilot.vim",
 		init = function()
-			local node_cmd = vim.fn.trim(vim.fn.system("fnm exec --using 22 which node"))
+				local node_cmd = vim.fn.trim(vim.fn.system("fnm exec --using 24 which node"))
 			vim.g.copilot_node_command = vim.fn.fnameescape(node_cmd)
 
 			map("i", "<c-s-]>", "<plug>(copilot-previous)", { silent = true })

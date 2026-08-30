@@ -1,7 +1,11 @@
 -- luacheck: globals hs spoon
 
--- load config
-local config = require 'config'
+-- Private settings are optional. Keep errors visible when the file exists, but
+-- let a fresh checkout start without it.
+local config = {}
+if hs.fs.attributes(hs.configdir .. '/config.lua') then
+	config = require 'config'
+end
 
 -- define spoons and config, which will be passed to :start
 local spoons = {
@@ -56,11 +60,14 @@ local spoons = {
 			},
 		},
 	},
-	SlackNotifier = {
-		workspaces = config.slackWorkspaces,
-	},
 	TextClipboardHistory = {},
 }
+
+if config.slackWorkspaces and #config.slackWorkspaces > 0 then
+	spoons.SlackNotifier = {
+		workspaces = config.slackWorkspaces,
+	}
+end
 
 -- load spoons
 for spoonName, spoonConfig in pairs(spoons) do

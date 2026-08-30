@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
+set -euo pipefail
 
 # Install brew packages and casks
 if [ "$(uname)" = "Darwin" ]; then

@@ -82,5 +82,17 @@
 	gpgSign = true
 [user]
 	name = chriszarate
-	email = chris.zarate@automattic.com
+	email = chris@zarate.org
 	signingkey = ~/.ssh/keys/commit_signing
+[includeIf "hasconfig:remote.*.url:https://github.com/Automattic/**"]
+	path = ~/.dotfiles/git/gitconfig-a8c
+[includeIf "hasconfig:remote.*.url:git@github.com:Automattic/**"]
+	path = ~/.dotfiles/git/gitconfig-a8c
+[includeIf "hasconfig:remote.*.url:ssh://git@github.com/Automattic/**"]
+	path = ~/.dotfiles/git/gitconfig-a8c
+[includeIf "hasconfig:remote.*.url:https://github.com/WordPress/**"]
+	path = ~/.dotfiles/git/gitconfig-a8c
+[includeIf "hasconfig:remote.*.url:git@github.com:WordPress/**"]
+	path = ~/.dotfiles/git/gitconfig-a8c
+[includeIf "hasconfig:remote.*.url:ssh://git@github.com/WordPress/**"]
+	path = ~/.dotfiles/git/gitconfig-a8c

@@ -1,14 +1,19 @@
+# shellcheck shell=bash
+
 export BASH_SILENCE_DEPRECATION_WARNING="1"
 export EDITOR="vim"
 export PAGER="less"
 export PATH="/opt/homebrew/opt/rustup/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.bin"
 export PS1="\w > "
-export SSH_AUTH_SOCK="$HOME/.ssh/autoproxxy-ssh-agent.socket"
+if [ -S "$HOME/.ssh/autoproxxy-ssh-agent.socket" ]; then
+	export SSH_AUTH_SOCK="$HOME/.ssh/autoproxxy-ssh-agent.socket"
+fi
 
 # completions
 if type brew &>/dev/null; then
 	HOMEBREW_PREFIX="$(brew --prefix)"
 	for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+		# shellcheck disable=SC1090
 		[[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
 	done
 fi

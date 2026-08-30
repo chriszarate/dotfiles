@@ -1,7 +1,10 @@
 function env_run -d 'Source a file of environment variables and run a program with those variables exposed'
-	for i in (cat $argv[1])
-		set arr (echo $i | tr = \n)
-		set -x "$arr[1]" "$arr[2]"
+	if test (count $argv) -lt 2
+		echo "usage: env_run <environment-file> <command> [arguments...]" >&2
+		return 2
 	end
-	$argv[2]
+
+	# Run in a subprocess so sourced values do not leak into the current shell.
+	# Bash handles quotes, spaces, and additional equals signs in assignments.
+	command bash -c 'set -a; source "$1"; shift; exec "$@"' env_run $argv
 end

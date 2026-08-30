@@ -8,6 +8,7 @@ set -euo pipefail
 # Relative to home directory.
 DOTFILES="$HOME/.dotfiles"
 MODELS_PRESET="$DOTFILES/agents/models.conf"
+MODELS_DIR="${LLM_MODELS_DIR:-$HOME/Code/models}"
 
 # Models to fetch, as "huggingface-repo|filename". The filename must match a
 # `model =` line in models.conf, which is what actually points llama-server at
@@ -26,14 +27,6 @@ for tool in llama-server jq curl; do
 	command -v "$tool" >/dev/null 2>&1 ||
 		die "$tool not found. Run bin/setup-homebrew.sh first."
 done
-
-MODELS_DIR="$(
-	grep -E '^[[:space:]]*model[[:space:]]*=' "$MODELS_PRESET" |
-		head -n 1 |
-		sed -E 's/^[[:space:]]*model[[:space:]]*=[[:space:]]*//' |
-		xargs dirname
-)"
-[ -n "$MODELS_DIR" ] || die "No 'model =' line found in $MODELS_PRESET"
 
 say "Models directory: $MODELS_DIR"
 mkdir -p "$MODELS_DIR"
@@ -100,8 +93,13 @@ done
 # models.conf by hand without a matching entry in MODELS above.
 missing=0
 while IFS= read -r path; do
-	if [ ! -f "$path" ]; then
-		say "❌ Referenced by models.conf but missing: $path"
+	case "$path" in
+		/*) model_path="$path" ;;
+		*) model_path="$MODELS_DIR/$path" ;;
+	esac
+
+	if [ ! -f "$model_path" ]; then
+		say "❌ Referenced by models.conf but missing: $model_path"
 		missing=1
 	fi
 done < <(

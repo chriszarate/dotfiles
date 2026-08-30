@@ -489,6 +489,6 @@ copy = "wt step copy-ignored"
 [[projects."github.com/chriszarate/blog".post-start]]
 install = "npm install"
 
-# Notes has no remote, so it's keyed by path.
-[projects."/Users/zzz/Documents/Notes".aliases]
+# Notes has no remote, so match its path under any home directory.
+[projects."*/Documents/Notes".aliases]
 digest = "claude -p --model=opus --permission-mode=auto '/context-a8c:digest'"

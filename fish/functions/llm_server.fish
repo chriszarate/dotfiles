@@ -4,6 +4,10 @@ function llm_server -d 'Start the local llama.cpp server if it is not already ru
 
 	set -l server_port 4040
 	set -l models_preset "$HOME/.dotfiles/agents/models.conf"
+	set -l models_dir "$HOME/Code/models"
+	if set -q LLM_MODELS_DIR
+		set models_dir "$LLM_MODELS_DIR"
+	end
 	# The model llm_cmd asks for. We wait on *this* model being loaded, not
 	# just on the router answering, because the router reports itself healthy
 	# even when the model behind it failed to load (bad path, out of memory).
@@ -44,6 +48,10 @@ function llm_server -d 'Start the local llama.cpp server if it is not already ru
 		echo "❌ Models preset not found: $models_preset" >&2
 		return 1
 	end
+	if not test -d "$models_dir"
+		echo "❌ Models directory not found: $models_dir" >&2
+		return 1
+	end
 
 	# Start the router only if nothing is listening yet. It may already be up
 	# with the model merely unloaded, in which case we just wait below.
@@ -51,10 +59,13 @@ function llm_server -d 'Start the local llama.cpp server if it is not already ru
 		__llm_server_say "🚀 Launching llama-server (router mode) in the background..."
 		# Detach fully so the server outlives this shell; discard its chatter.
 		# Model-specific flags live in the preset; requests select a model by name.
+		pushd "$models_dir" >/dev/null
 		llama-server \
 			--models-preset "$models_preset" \
 			--port $server_port >/dev/null 2>&1 &
-		disown
+		set -l server_pid $last_pid
+		popd >/dev/null
+		disown $server_pid
 	end
 
 	# Poll until the model itself reports loaded. A cold start has to read a

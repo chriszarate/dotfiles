@@ -26,3 +26,30 @@ git maintenance start
 `mas` can install and upgrade App Store apps listed in the Brewfile, but it
 cannot sign in for you. Sign in to the App Store once, then `brew bundle
 install` picks up the rest.
+
+## Start the Herdr keep-awake watcher
+
+Run this once after every reboot. The watcher keeps running across terminal and
+Herdr restarts:
+
+```sh
+herdr plugin action invoke start --plugin herdr-wakeup
+```
+
+Check or stop it with:
+
+```sh
+herdr plugin action invoke status --plugin herdr-wakeup
+herdr plugin action invoke stop --plugin herdr-wakeup
+```
+
+## Require an SSH key for remote login
+
+First confirm that public-key login works in a second terminal. Then run:
+
+```sh
+~/.dotfiles/bin/setup-sshd.sh
+```
+
+This is kept out of the normal setup because disabling password login before a
+key works can lock you out of the Mac.

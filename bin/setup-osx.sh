@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
+set -euo pipefail
 
 # Only show open applications in the dock.
 defaults write com.apple.dock static-only -bool true

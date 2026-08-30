@@ -14,7 +14,7 @@ brew "git-absorb"
 brew "git-delta"
 brew "gitleaks"
 brew "glow"
-brew "go@1.23", link: true
+brew "go"
 brew "harper"
 brew "herdr"
 brew "htop"

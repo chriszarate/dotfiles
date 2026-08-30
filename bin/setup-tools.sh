@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
+set -euo pipefail
 
 # Guards use `command -v` rather than `which`, because `set -e` aborts the
 # script on the failing assignment before an `if [ -n "$var" ]` check below it
@@ -8,7 +8,7 @@ set -euxo pipefail
 # tool — including Linux, where setup-homebrew.sh installs nothing.
 
 # Install default node
-if command -v fnm > /dev/null; then
+if command -v fnm >/dev/null; then
 	fnm install 24
 	fnm default 24
 fi
