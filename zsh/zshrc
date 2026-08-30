@@ -1,6 +1,6 @@
 export EDITOR="vim"
 export PAGER="less"
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.bin:$HOME/.orbstack/bin"
+export PATH="/opt/homebrew/opt/rustup/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.bin:$HOME/.orbstack/bin"
 export PROMPT='%~ > '
 export SSH_AUTH_SOCK="$HOME/.ssh/autoproxxy-ssh-agent.socket"
 
