@@ -1,0 +1,8 @@
+# Public keys trusted to sign git commits and tags, for `git verify-commit` and
+# `git log --show-signature`. Referenced by gpg.ssh.allowedSignersFile in
+# gitconfig, symlinked to ~/.ssh/git_allowed_signers by bin/setup-links.sh.
+#
+# The principal must match the committer email in gitconfig, and the namespace
+# limits the key to git so it cannot verify other kinds of ssh signatures.
+chris@zarate.org namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJS+Vjq6VbEQXOwN0sjQ+84fD2zdK38QvAVh0ajkhtRB
+chris.zarate@automattic.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJS+Vjq6VbEQXOwN0sjQ+84fD2zdK38QvAVh0ajkhtRB
