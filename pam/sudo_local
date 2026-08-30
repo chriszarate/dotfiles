@@ -1,0 +1,7 @@
+# Enable TouchID for sudo.
+#
+# macOS includes this file from /etc/pam.d/sudo and, unlike /etc/pam.d/sudo
+# itself, leaves it alone across system updates.
+#
+# Symlinked to /etc/pam.d/sudo_local by bin/setup-links.sh.
+auth       sufficient     pam_tid.so

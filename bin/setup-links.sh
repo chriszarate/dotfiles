@@ -19,9 +19,41 @@ for config_dir in \
 	mkdir -p "$HOME/.$config_dir"
 done
 
+# Create one symlink, unless something is already in the way.
+#
+# Skipping quietly was hiding real problems: on a machine that already had a
+# ~/.gitconfig, setup finished "successfully" having linked nothing. Say so
+# instead, but keep going, so one stale file cannot stop the whole run.
+link() {
+	local source="$1"
+	local target="$2"
+	local sudo_cmd="${3:-}"
+
+	if [ -L "$target" ]; then
+		if [ "$(readlink "$target")" = "$source" ]; then
+			return 0
+		fi
+		echo "⚠️  $target is a symlink to somewhere else; leaving it alone." >&2
+		echo "   Wanted: $source" >&2
+		echo "   Found:  $(readlink "$target")" >&2
+		return 0
+	fi
+
+	if [ -e "$target" ]; then
+		echo "⚠️  $target already exists and is not a symlink; leaving it alone." >&2
+		echo "   Move it aside and re-run to link $source." >&2
+		return 0
+	fi
+
+	$sudo_cmd mkdir -p "$(dirname "$target")"
+	$sudo_cmd ln -s "$source" "$target"
+}
+
 # Symlink custom-location dotfiles.
 links=(
 	'.claude/CLAUDE.md::agents/AGENTS.md'
+	'.claude/settings.json::agents/claude/settings.json'
+	'.codex/AGENTS.md::agents/AGENTS.md'
 	'.config/bat::bat'
 	'.config/fish::fish'
 	'.config/gh/config.yml::gh/config.yml'
@@ -34,18 +66,10 @@ links=(
 	'.config/worktrunk::worktrunk'
 	'.config/yazi::yazi'
 	'.hammerspoon::hammerspoon'
+	'.ssh/git_allowed_signers::git/allowed_signers'
 )
-for link in "${links[@]}"; do
-	source="${link##*::}"
-	target="${link%%::*}"
-
-	if [ -f "$DOTFILES/$source" ]; then
-		mkdir -p "$(dirname "$HOME/$target")"
-	fi
-
-	if [ ! -e "$HOME/$target" ]; then
-		ln -s "$DOTFILES/$source" "$HOME/$target"
-	fi
+for entry in "${links[@]}"; do
+	link "$DOTFILES/${entry##*::}" "$HOME/${entry%%::*}"
 done
 
 # Symlink dotfiles.
@@ -61,31 +85,21 @@ for config in \
 	rg/rgignore-tests \
 	rg/ripgreprc \
 	zsh/zshrc; do
-	if [ ! -e "$HOME/.$(basename "$config")" ]; then
-		ln -s "$DOTFILES/$config" "$HOME/.$(basename "$config")"
-	fi
+	link "$DOTFILES/$config" "$HOME/.$(basename "$config")"
 done
 
 # Symlink helpers.
 for helper in "$DOTFILES/bin/helpers"/*; do
-	if [ ! -e "$HOME/.bin/$(basename "$helper")" ]; then
-		ln -s "$helper" "$HOME/.bin/$(basename "$helper")"
-	fi
+	link "$helper" "$HOME/.bin/$(basename "$helper")"
 done
 
 # Symlink system files that require sudo.
-links=(
-	'/etc/ssh/sshd_config.d/10-key-only.conf::ssh/10-key-only.conf'
-)
-for link in "${links[@]}"; do
-	source="${link##*::}"
-	target="${link%%::*}"
+#
+# sudo_local enables TouchID for sudo. macOS includes it from /etc/pam.d/sudo
+# and leaves it alone across system updates, which /etc/pam.d/sudo itself is
+# not — so this replaces the manual edit that used to need redoing.
+if [ "$(uname)" = "Darwin" ]; then
+	link "$DOTFILES/pam/sudo_local" "/etc/pam.d/sudo_local" sudo
+fi
 
-	if [ -f "$DOTFILES/$source" ] && [ ! -d "$(dirname "$target")" ]; then
-		sudo mkdir -p "$(dirname "$target")"
-	fi
-
-	if [ ! -e "$target" ]; then
-		sudo ln -s "$DOTFILES/$source" "$target"
-	fi
-done
+link "$DOTFILES/ssh/10-key-only.conf" "/etc/ssh/sshd_config.d/10-key-only.conf" sudo

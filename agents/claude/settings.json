@@ -1,0 +1,6 @@
+{
+  "tui": "fullscreen",
+  "theme": "dark",
+  "agentPushNotifEnabled": true,
+  "skipDangerousModePermissionPrompt": true
+}
