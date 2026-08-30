@@ -17,5 +17,7 @@ if [ "$(uname)" = "Linux" ]; then
 	DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS --network=host"
 fi
 
+# DOCKER_RUN_OPTIONS is a list of flags, so it has to split.
+# shellcheck disable=SC2086
 docker run $DOCKER_RUN_OPTIONS "$@"
 exit $?
