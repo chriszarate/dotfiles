@@ -52,3 +52,4 @@ cask "thebrowsercompany-dia"
 cask "vlc"
 cask "whatcable"
 mas "AdGuard Mini", id: 1440147259
+mas "iA Writer", id: 775737590
