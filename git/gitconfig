@@ -25,6 +25,8 @@
 	sw  = switch
 [bash]
 	showInformativeStatus = true
+[branch]
+	sort = -committerdate
 [color]
 	status = auto
 	ui = true
@@ -33,18 +35,22 @@
 	changed = yellow
 	deleted = red
 	untracked = magenta
+[column]
+	ui = auto
 [commit]
 	gpgsign = true
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim +start
-	compression = 0
 	pager = delta
 [delta]
 	# Skip the OSC 10/11 terminal background query, which leaks into the pager input.
 	dark = true
 [diff]
-	algorithm = patience
+	algorithm = histogram
+	colorMoved = default
+[fetch]
+	prune = true
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
@@ -52,21 +58,27 @@
 	format = ssh
 [gpg "ssh"]
 	allowedSignersFile = ~/.ssh/git_allowed_signers
+[help]
+	autocorrect = prompt
 [init]
 	defaultBranch = main
 [interactive]
 	diffFilter = delta --color-only --features=interactive
-[pack]
-	windowMemory = 10m
-	packSizeLimit = 20m
+[merge]
+	conflictStyle = zdiff3
 [pager]
 	difftool = true
 [push]
 	autoRemoteSetup = true
 	autoSetupRemote = true
+[rebase]
+	autoStash = true
+	updateRefs = true
+[rerere]
+	enabled = true
+[tag]
+	gpgSign = true
 [user]
 	name = chriszarate
 	email = chris.zarate@automattic.com
 	signingkey = ~/.ssh/keys/commit_signing
-[help]
-	autocorrect = prompt
