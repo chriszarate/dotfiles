@@ -78,11 +78,14 @@ if ! jq -e '.rateLimits' "$cache" > /dev/null 2>&1; then
 fi
 
 jq -r '
+	# The leading space belongs to the reset, so a window that has not started
+	# yet — which the API reports as a null reset — does not leave a stray
+	# space behind.
 	def until($t):
 		if $t == null then ""
 		else
 			($t - now) as $s
-			| if $s <= 0 then "now"
+			| " " + if $s <= 0 then "now"
 				elif $s < 3600 then "\(($s / 60) | floor)m"
 				elif $s < 86400 then "\(($s / 3600) | floor)h"
 				else "\(($s / 86400) | floor)d"
@@ -92,7 +95,7 @@ jq -r '
 	# A window missing from the response is dropped rather than shown as zero.
 	def cell($label; $window):
 		if $window == null then empty
-		else "\($label) \($window.usedPercent)% \(until($window.resetsAt))"
+		else "\($label) \($window.usedPercent)%\(until($window.resetsAt))"
 		end;
 
 	# primary is the five-hour window, secondary the weekly one. Weekly leads

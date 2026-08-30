@@ -57,11 +57,14 @@ jq -r '
 	# which fromdateiso8601 accepts.
 	def stamp: sub("\\.[0-9]+"; "") | sub("\\+00:00"; "Z") | fromdateiso8601;
 
+	# The leading space belongs to the reset, so a limit that has not started a
+	# window yet — which the API reports as a null reset — does not leave a
+	# stray space behind.
 	def until($t):
 		if $t == null then ""
 		else
 			(($t | stamp) - now) as $s
-			| if $s <= 0 then "now"
+			| " " + if $s <= 0 then "now"
 				elif $s < 3600 then "\(($s / 60) | floor)m"
 				elif $s < 86400 then "\(($s / 3600) | floor)h"
 				else "\(($s / 86400) | floor)d"
@@ -73,7 +76,7 @@ jq -r '
 	# A limit missing from the response is dropped rather than shown as zero.
 	def cell($label; $limit):
 		if $limit == null then empty
-		else "\($label) \($limit.percent)% \(until($limit.resets_at))"
+		else "\($label) \($limit.percent)%\(until($limit.resets_at))"
 		end;
 
 	[

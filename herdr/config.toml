@@ -12,7 +12,7 @@ accent = "#458588"
 prompt_new_tab_name = false
 show_agent_labels_on_pane_borders = false
 status_indicators = "dots"
-window_title = "herdr: {workspace}"
+window_title = "herdr {hostname}:{workspace}"
 
 # Subscription usage for the agent in the active workspace: Codex when the
 # workspace runs Codex, Claude otherwise. See bin/helpers/agent-quota. The
