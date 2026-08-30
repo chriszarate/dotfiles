@@ -1,13 +1,16 @@
 function gbr --description "Git browse commits"
 	set -l log_line_to_hash "echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
 	set -l view_commit "$log_line_to_hash | xargs -I % sh -c 'git show --color=always %'"
-	set -l copy_commit_hash "$log_line_to_hash | xclip"
 	set -l git_checkout "$log_line_to_hash | xargs -I % sh -c 'git checkout %'"
 	set -l open_cmd "open"
+	set -l clip_cmd "pbcopy"
 
 	if test (uname) = Linux
 		set open_cmd "xdg-open"
+		set clip_cmd "xclip -selection clipboard"
 	end
+
+	set -l copy_commit_hash "$log_line_to_hash | $clip_cmd"
 
 	set github_open "$log_line_to_hash | xargs -I % sh -c '$open_cmd https://github.\$(git config remote.origin.url | cut -f2 -d. | tr \':\' /)/commit/%'"
 
