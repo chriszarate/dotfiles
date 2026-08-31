@@ -12,6 +12,9 @@ touch "$HOME/.hushlogin"
 # Create some placeholder directories.
 for config_dir in \
 	bin \
+	claude/commands \
+	claude/skills \
+	codex/skills \
 	config \
 	config/fzf \
 	config/gh \
@@ -100,6 +103,25 @@ done
 # Symlink helpers.
 for helper in "$DOTFILES/bin/helpers"/*; do
 	link "$helper" "$HOME/.bin/$(basename "$helper")"
+done
+
+# Symlink agent commands and skills one at a time, rather than linking the
+# directories themselves. The agents write their own files into those same
+# directories — Codex maintains ~/.codex/skills/.system — and a symlinked
+# directory would hide them. See agents/README.md.
+#
+# The [ -e ] guards are for the empty case: an unmatched glob in bash comes
+# back as the pattern itself rather than as nothing.
+for command in "$DOTFILES/agents/commands"/*.md; do
+	[ -e "$command" ] || continue
+	link "$command" "$HOME/.claude/commands/$(basename "$command")"
+done
+
+for skill in "$DOTFILES/agents/skills"/*/; do
+	[ -e "$skill" ] || continue
+	skill_name="$(basename "$skill")"
+	link "${skill%/}" "$HOME/.claude/skills/$skill_name"
+	link "${skill%/}" "$HOME/.codex/skills/$skill_name"
 done
 
 # Symlink the system file that requires sudo.
