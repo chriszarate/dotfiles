@@ -11,8 +11,12 @@ autocmd("BufEnter", {
 	callback = function()
 		local file = vim.fn.expand("%:t")
 		local command = "fish_title vim"
-		if file ~= "" then command = command .. " " .. file end
-		local title_str = vim.fn.trim(vim.fn.system('fish -c "' .. command .. '"'))
+		-- Quote the file name for fish, and pass the command as a list so it
+		-- runs directly instead of through 'shell'. Building one string meant
+		-- bash parsed it first, so a name holding a quote ended the command
+		-- early and a name holding a dollar sign was expanded as a variable.
+		if file ~= "" then command = command .. " " .. vim.fn.shellescape(file) end
+		local title_str = vim.fn.trim(vim.fn.system({ "fish", "-c", command }))
 		vim.opt.titlestring = title_str
 		vim.opt.title = true
 	end,

@@ -18,12 +18,18 @@ defaults write com.apple.dock appswitcher-all-displays -bool true
 # Allow text selection in QuickLook.
 defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 
-# Allow key repeats.
+# Allow key repeats, and make them fast. Turning off press-and-hold only
+# enables repeating; these two set how quickly it happens. Both are measured
+# in 15ms ticks, so 2 is about 30ms between repeats and 15 is a 225ms wait
+# before repeating starts. The Keyboard pane bottoms out at 2 and 15.
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Disable font-smoothing
 defaults -currentHost write -g AppleFontSmoothing -int 0
 
-echo "Enter your password to restart applications."
-sudo killall Dock
-sudo killall Finder
+# No sudo: these are the current user's own processes, and asking for a
+# password was the only thing that made this script need one.
+killall Dock
+killall Finder
