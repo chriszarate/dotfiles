@@ -44,6 +44,12 @@
 	excludesfile = ~/.gitignore_global
 	editor = nvim +start
 	pager = delta
+	# The fish prompt runs git status on every prompt. fsmonitor keeps a
+	# daemon watching the working tree so git does not rescan it, and
+	# untrackedCache remembers which directories held untracked files.
+	# Both are what make the prompt usable in gutenberg-sized checkouts.
+	fsmonitor = true
+	untrackedCache = true
 [delta]
 	# Skip the OSC 10/11 terminal background query, which leaks into the pager input.
 	dark = true
@@ -52,9 +58,6 @@
 	colorMoved = default
 [fetch]
 	prune = true
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
 [gpg]
 	format = ssh
 [gpg "ssh"]
