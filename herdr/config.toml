@@ -1,5 +1,31 @@
 onboarding = false
 
+[keys]
+prefix = "ctrl+b"
+
+# Workspaces
+previous_workspace = "alt+up"
+next_workspace = "alt+down"
+new_workspace = "alt+n"
+workspace_picker = "alt+p"
+toggle_sidebar = "alt+s"
+
+# Tabs
+previous_tab = "alt+left"
+next_tab = "alt+right"
+new_tab = "alt+t"
+close_tab = "alt+w"
+
+# Panes
+focus_pane_left = "alt+["
+focus_pane_right = "alt+]"
+focus_pane_down = "alt+shift+]"
+focus_pane_up = "alt+shift+["
+split_vertical = "alt+enter"
+split_horizontal = "alt+shift+enter"
+close_pane = "alt+x"
+zoom = "alt+z"
+
 [theme]
 name = "gruvbox"
 auto_switch = false
@@ -14,10 +40,7 @@ show_agent_labels_on_pane_borders = false
 status_indicators = "dots"
 window_title = "herdr {hostname}:{workspace}"
 
-# Subscription usage for the agent in the active workspace: Codex when the
-# workspace runs Codex, Claude otherwise. See bin/helpers/agent-quota. The
-# short interval only re-picks which agent to show; the quota scripts cache
-# their API responses for a minute.
+# Subscription usage for the agent in the active workspace
 tab_bar_right = [
 	{ type = "command", command = "$HOME/.bin/agent-quota", interval_seconds = 5, timeout_seconds = 5 },
 ]
