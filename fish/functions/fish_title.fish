@@ -14,7 +14,7 @@ function fish_title -d 'Set the title for the current terminal window'
 	switch "$command"
 
 		# Some commands get detailed git information.
-		case bash claude fish docker git npm npx nushell sh vi vim yazi yy zsh
+		case bash claude fish docker git npm npx nushell nvim sh vi vim yazi yy zsh
 			set title (printf '%s %s' "$command" (git_prompt_pwd))
 
 			set -l git_worktree (git_worktree)
