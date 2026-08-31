@@ -6,10 +6,13 @@
 - **Privacy & Security > Privacy > Screen Recording:** Add web browsers to allow screen sharing (must first be requested by the browser).
 - **Privacy & Security > Privacy > Full Disk Access:** Add Kitty, so the `shi` function can read Safari's history database.
 
-## Keep Vim updated
+## Keep Neovim updated
+
+Both commands open a window and work in the background. Quit once they finish.
+`Lazy sync` rewrites `nvim/lazy-lock.json`, so commit that afterwards.
 
 ```sh
-vim -c 'PlugUpgrade | PlugUpdate | CocUpdate'
+nvim -c 'Lazy sync' -c 'MasonToolsUpdate'
 ```
 
 ## Speed up large repositories

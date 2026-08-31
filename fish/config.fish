@@ -1,5 +1,5 @@
 set fish_greeting ""
-set -x EDITOR vim
+set -x EDITOR nvim
 set -x PAGER less
 set -x SHELL (which fish)
 if test -S "$HOME/.ssh/autoproxxy-ssh-agent.socket"
