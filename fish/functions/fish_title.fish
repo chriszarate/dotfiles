@@ -14,17 +14,29 @@ function fish_title -d 'Set the title for the current terminal window'
 	switch "$command"
 
 		# Some commands get detailed git information.
-		case bash claude fish docker git npm npx nushell nvim sh vi vim yazi yy zsh
-			set title (printf '%s %s' "$command" (git_prompt_pwd))
+		case bash claude codex fish docker git npm npx nushell nvim sh vi vim yazi yy zsh
+			set title "$command"
 
-			set -l git_worktree (git_worktree)
-			if test -n "$git_worktree"
-				set title (printf '%s/%s' "$title" "$git_worktree")
+			# If a second argument is passed, consider it a command modifier.
+			if test -n "$argv[2]"
+				set title (printf '%s:%s' "$title" "$argv[2]")
 			end
 
+			set title (printf '%s %s' "$title" (git_prompt_pwd))
+
 			set -l git_branch (git_branch)
-			if test -n "$git_branch"
+			set -l git_worktree (git_worktree)
+
+			# Show current worktree or branch, but not both.
+			if test -n "$git_worktree"
+				set title (printf '%s/%s' "$title" "$git_worktree")
+			else if test -n "$git_branch"
 				set title (printf '%s#%s' "$title" "$git_branch")
+			end
+
+			# If a third argument is passed, consider it a file descriptor.
+			if test -n "$title" -a -n "$argv[3]"
+				set title (printf '%s:%s' "$title" "$argv[3]")
 			end
 
 		# Ignore some commands.
@@ -34,11 +46,6 @@ function fish_title -d 'Set the title for the current terminal window'
 		case '*'
 			set title "$command"
 
-	end
-
-	# If a second argument is passed, consider it a file descriptor.
-	if test -n "$title" -a -n "$argv[2]"
-		set title (printf '%s:%s' "$title" "$argv[2]")
 	end
 
 	# Inside Herdr, keep the tab label in sync with the title. Only send an
