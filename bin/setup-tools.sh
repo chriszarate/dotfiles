@@ -18,6 +18,10 @@ fi
 RUSTUP_BIN="$(command -v rustup || echo /opt/homebrew/opt/rustup/bin/rustup)"
 if [ -x "$RUSTUP_BIN" ]; then
 	mkdir -p ~/.cargo
-	"$RUSTUP_BIN" toolchain install stable
+	# `--force` because an old toolchain can still track a component Rust has since
+	# dropped (rls-preview is the usual one), and rustup otherwise refuses to update
+	# until it is removed by hand. Forcing skips the dead component and rewrites the
+	# toolchain without it, so this only has to happen once per machine.
+	"$RUSTUP_BIN" toolchain install --force stable
 	"$RUSTUP_BIN" default stable
 fi

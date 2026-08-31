@@ -4,7 +4,9 @@
 # rename: the real command appears on the command line before it runs, so it
 # can be edited, and the shell history records what actually ran rather than
 # the nickname. Anything with branching or arguments to inspect stays a
-# function in fish/functions.
+# function in fish/functions. So does `vim`: an abbreviation only expands when
+# you type a space or enter right after it, so a pasted command line leaves the
+# cursor on the last argument and `vim` never becomes `nvim`.
 #
 # Two things to know. Abbreviations only expand at an interactive prompt, so a
 # script or a `fish -c` call gets the real command — see kitty/inc/maps.conf,
@@ -17,5 +19,4 @@ abbr --add icat 'kitty +kitten icat'
 abbr --add ni 'npm i --save-exact'
 abbr --add top htop
 abbr --add vi 'nvim -u NONE'
-abbr --add vim nvim
 abbr --add yy yazi
