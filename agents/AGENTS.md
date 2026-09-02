@@ -26,5 +26,6 @@
 
 ## Operations
 
+- Drafts for my review go through the `drafts` skill. Load it when I ask you to draft something, or to open, post, or send a draft I have reviewed.
 - Always sign commits unless I explicitly say otherwise. Commit signing is configured by the global ~/.gitconfig file. Ensure that commit signing is not disabled in the local repository's .git/config file.
 - When handing off work to a new session, load the `handoff` skill.
