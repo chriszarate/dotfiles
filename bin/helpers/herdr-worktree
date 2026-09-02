@@ -7,6 +7,11 @@
 #
 #   herdr-worktree open <repo-path> <worktree-path>  Open, or focus, a workspace
 #   herdr-worktree close <worktree-path>             Close the workspace
+#   herdr-worktree pane <worktree-path>              Print the workspace's root pane
+#
+# open focuses the workspace for a person at the keyboard. When an agent is
+# driving (CLAUDECODE is set, or HERDR_WORKTREE_NO_FOCUS=1), the workspace
+# opens in the background so the person's view stays put.
 
 set -uo pipefail
 
@@ -15,6 +20,15 @@ shift 2> /dev/null
 
 # How long to wait for a removed worktree to disappear, in fifths of a second.
 close_timeout="${HERDR_WORKTREE_CLOSE_TIMEOUT:-300}"
+
+# How long to wait for a workspace to appear after wt returns, in fifths of a
+# second. The post-switch hook that opens it runs in the background.
+pane_timeout="${HERDR_WORKTREE_PANE_TIMEOUT:-50}"
+
+focus_flag="--focus"
+if [ -n "${HERDR_WORKTREE_NO_FOCUS:-}" ] || [ -n "${CLAUDECODE:-}" ]; then
+	focus_flag="--no-focus"
+fi
 
 # Only herdr sets HERDR_ENV, so this is how we know there's a session to talk to.
 if [ -z "${HERDR_ENV:-}" ] || ! command -v herdr > /dev/null; then
@@ -35,10 +49,51 @@ case "$subcommand" in
 		# herdr focuses the existing workspace when the worktree is already
 		# open, and it treats the repository root as the source workspace, so
 		# this one call covers creating, switching, and switching back to main.
+		#
+		# "Already open" includes any workspace whose shell is sitting in the
+		# worktree directory, so the calling shell must stay put until this
+		# runs. The fish wrapper in fish/functions/wt.fish handles that.
 		herdr worktree open \
 			--cwd "$repo_path" \
 			--path "${worktree_path%/}" \
-			--focus > /dev/null
+			"$focus_flag" > /dev/null
+		;;
+
+	pane)
+		worktree_path="${1:-}"
+
+		if [ -z "$worktree_path" ]; then
+			echo "herdr-worktree: pane needs a worktree path" >&2
+			exit 1
+		fi
+
+		waited=0
+		while :; do
+			workspace_id=$(
+				herdr workspace list | jq -r --arg path "${worktree_path%/}" '
+					.result.workspaces[]
+					| select(.worktree.checkout_path == $path)
+					| .workspace_id
+				' | head -n 1
+			)
+
+			if [ -n "$workspace_id" ]; then
+				break
+			fi
+
+			if [ "$waited" -ge "$pane_timeout" ]; then
+				echo "herdr-worktree: no workspace for $worktree_path" >&2
+				exit 1
+			fi
+
+			sleep 0.2
+			waited=$((waited + 1))
+		done
+
+		# The first pane in the workspace is the root pane herdr created,
+		# sitting at a shell prompt.
+		herdr pane list --workspace "$workspace_id" \
+			| jq -re '.result.panes[0].pane_id'
 		;;
 
 	close)
@@ -84,6 +139,7 @@ case "$subcommand" in
 	*)
 		echo "usage: herdr-worktree open <repo-path> <worktree-path>" >&2
 		echo "       herdr-worktree close <worktree-path>" >&2
+		echo "       herdr-worktree pane <worktree-path>" >&2
 		exit 1
 		;;
 

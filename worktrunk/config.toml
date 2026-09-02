@@ -1,7 +1,7 @@
 worktree-path = "~/Code/worktrees/{{ repo }}/{{ branch | sanitize }}"
 
 [aliases]
-new = "wt switch --no-cd --create {{ args }}"
+new = "wt switch --create {{ args }}"
 
 [commit.generation]
 command = "claude -p --no-session-persistence --model=haiku --tools='' --safe-mode --setting-sources='user' --system-prompt=''"
@@ -14,6 +14,9 @@ herdr = "herdr-worktree close {{ worktree_path }}"
 
 [post-switch]
 herdr = "herdr-worktree open {{ repo_path }} {{ worktree_path }}"
+
+[switch]
+cd = false
 
 # Gutenberg and plugins built around it (WordPress/gutenberg,
 # Automattic/gutenberg-sync-engines). All use wp-env on a per-branch port.
