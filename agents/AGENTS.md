@@ -27,3 +27,4 @@
 ## Operations
 
 - Always sign commits unless I explicitly say otherwise. Commit signing is configured by the global ~/.gitconfig file. Ensure that commit signing is not disabled in the local repository's .git/config file.
+- When handing off work to a new session, load the `handoff` skill.
