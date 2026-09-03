@@ -3,8 +3,8 @@
 -- Private settings are optional. Keep errors visible when the file exists, but
 -- let a fresh checkout start without it.
 local config = {}
-if hs.fs.attributes(hs.configdir .. '/config.lua') then
-	config = require 'config'
+if hs.fs.attributes(hs.configdir .. "/config.lua") then
+	config = require("config")
 end
 
 -- define spoons and config, which will be passed to :start
@@ -12,30 +12,30 @@ local spoons = {
 	AppLauncher = {
 		mappings = {
 			{
-				app = 'Kitty.app',
-				key = 'f3',
-				modifier = 'shift',
+				app = "Kitty.app",
+				key = "f3",
+				modifier = "shift",
 			},
 		},
 		modalMappings = {
 			{
-				key = 'f3',
+				key = "f3",
 				map = {
-					a = 'Autoproxxy.app',
-					b = 'Boop.app',
-					f = 'Finder.app',
-					g = 'https://gemini.google.com/app',
-					h = 'Hammerspoon.app',
-					i = 'iA Writer.app',
-					m = 'Messages.app',
-					n = 'Numi.app',
-					o = 'Orca.app',
-					p = 'Passwords.app',
-					s = 'Safari.app',
-					t = 'Kitty.app',
+					a = "Autoproxxy.app",
+					b = "Boop.app",
+					d = "Dia.app",
+					f = "Finder.app",
+					g = "https://gemini.google.com/app",
+					h = "Hammerspoon.app",
+					i = "iA Writer.app",
+					m = "Messages.app",
+					n = "Numi.app",
+					p = "Passwords.app",
+					s = "Safari.app",
+					t = "Kitty.app",
 				},
 				modifier = nil,
-				name = 'Launcher',
+				name = "Launcher",
 				timeout = 3,
 			},
 		},
@@ -48,14 +48,14 @@ local spoons = {
 		animationDuration = 0,
 		mappings = {
 			hyper = {
-				key = { 'ctrl', 'alt', 'cmd' },
+				key = { "ctrl", "alt", "cmd" },
 				map = {
-					up = 'up',
-					right = 'right',
-					down = 'down',
-					left = 'left',
-					fullscreen = 'return',
-					nextscreen = 'n',
+					up = "up",
+					right = "right",
+					down = "down",
+					left = "left",
+					fullscreen = "return",
+					nextscreen = "n",
 				},
 			},
 		},

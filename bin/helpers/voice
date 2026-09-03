@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+#
+# Rewrite a draft in Chris's voice, using the writing samples in the Notes
+# folder as the reference. Runs a cheap model with no tools, the same shape as
+# the commit message generator in worktrunk/config.toml. Facts, links, code,
+# headings, and list structure are kept; only the prose changes.
+#
+#   voice <file>            Rewrite the file in place
+#   voice --stdout <file>   Print the rewrite and leave the file alone
+#   voice --diff <file>     Show what would change, without writing
+#
+# VOICE_SAMPLES overrides the samples folder. VOICE_BACKEND picks the CLI:
+# "claude" (default, runs haiku) or "codex" (runs gpt-5.4-mini). VOICE_MODEL
+# overrides the model for whichever backend is chosen.
+
+set -euo pipefail
+
+samples_dir="${VOICE_SAMPLES:-$HOME/Documents/Notes/samples}"
+backend="${VOICE_BACKEND:-claude}"
+
+case "$backend" in
+	claude) model="${VOICE_MODEL:-haiku}" ;;
+	codex) model="${VOICE_MODEL:-gpt-5.4-mini}" ;;
+	*)
+		echo "voice: VOICE_BACKEND must be claude or codex, not '$backend'" >&2
+		exit 1
+		;;
+esac
+
+mode="write"
+case "${1:-}" in
+	--stdout) mode="stdout"; shift ;;
+	--diff) mode="diff"; shift ;;
+esac
+
+file="${1:-}"
+if [ -z "$file" ] || [ ! -f "$file" ]; then
+	sed -n '8,10p' "$0" | sed 's/^#  *//' >&2
+	exit 1
+fi
+
+if ! ls "$samples_dir"/*.md > /dev/null 2>&1; then
+	echo "voice: no samples in $samples_dir" >&2
+	exit 1
+fi
+
+system_prompt=$(cat <<'PROMPT'
+You rewrite a draft so that it reads as if Chris Zarate wrote it. You are given samples of his writing and then the draft. Reply with the rewritten draft as Markdown and nothing else: no preamble, no explanation, no code fence around the whole thing.
+
+What to change: sentence-level prose. Word choice, sentence length and rhythm, openers, transitions, how opinions are hedged, how credit is given.
+
+What to keep exactly: every fact and claim, every number, every link URL, every code span and code block, every heading line verbatim and in the same order (including short ones like `## Summary`), every list with its items in the same order, the overall length within about fifteen percent. Do not add content, examples, introductions, summaries, or sign-offs. Do not add reasons, benefits, motivations, or consequences that the draft does not state, even when they seem obvious. Do not remove content. Do not change meaning, even slightly.
+
+How he writes: he leads with the point, then supports it. Sentences are short and plain, and he prefers everyday words to technical or corporate ones. He writes em dashes without spaces around them. He is direct about opinions but does not overstate them. He is specific rather than general. He does not use filler openers, rhetorical questions, or lists of three adjectives.
+
+Pick the sample closest in kind to the draft (a status post, an investigation, an RFC, a diary) and match its register. Do not overdo it: the goal is that the draft stops sounding generated, not that it collects his mannerisms. If the draft already reads like his writing, return it unchanged.
+PROMPT
+)
+
+build_input() {
+	# Codex has no system-prompt flag, so the instructions lead the prompt.
+	if [ "$backend" = "codex" ]; then
+		printf '%s\n\n' "$system_prompt"
+	fi
+	printf '<samples>\n'
+	for sample in "$samples_dir"/*.md; do
+		printf '<sample name="%s">\n' "$(basename "$sample")"
+		cat "$sample"
+		printf '\n</sample>\n'
+	done
+	printf '</samples>\n\n<draft>\n'
+	cat "$file"
+	printf '\n</draft>\n'
+}
+
+output=$(mktemp)
+trap 'rm -f "$output"' EXIT
+
+# Run the model over build_input and leave the reply in $output.
+rewrite() {
+	case "$backend" in
+		claude)
+			build_input | claude -p \
+				--no-session-persistence \
+				--model="$model" \
+				--tools='' \
+				--safe-mode \
+				--setting-sources='user' \
+				--system-prompt="$system_prompt" \
+				> "$output"
+			;;
+		codex)
+			# Codex cannot drop its tools, so the sandbox is read-only. Its
+			# stdout carries progress events; -o captures only the final reply.
+			# The user config is skipped so project trust and AGENTS.md stay out.
+			: > "$output"
+			build_input | codex exec \
+				--ephemeral \
+				--skip-git-repo-check \
+				--ignore-user-config \
+				--sandbox read-only \
+				--color never \
+				--model "$model" \
+				--output-last-message "$output" \
+				- > /dev/null
+			;;
+	esac
+}
+
+# The headings and the list items, which the rewrite must not touch. Used to
+# catch a reply that dropped a heading or reordered a list.
+skeleton() {
+	grep -E '^(#|[-*] |[0-9]+\. )' "$1" | awk '
+		/^#/ { print; next }
+		{ print "item" }
+	'
+}
+
+attempt=0
+while :; do
+	attempt=$((attempt + 1))
+
+	rewrite
+
+	if [ ! -s "$output" ]; then
+		echo "voice: the model returned nothing; file left unchanged" >&2
+		exit 1
+	fi
+
+	# Strip a code fence wrapped around the whole reply.
+	if head -n 1 "$output" | grep -q '^```' && tail -n 1 "$output" | grep -q '^```$'; then
+		sed -i '' -e '1d' -e '$d' "$output"
+	fi
+
+	if [ "$(skeleton "$file")" = "$(skeleton "$output")" ]; then
+		break
+	fi
+
+	if [ "$attempt" -ge 2 ]; then
+		echo "voice: the rewrite changed headings or list structure; file left unchanged" >&2
+		echo "voice: run with --stdout to see it" >&2
+		[ "$mode" = "write" ] && exit 2
+		break
+	fi
+done
+
+case "$mode" in
+	stdout) cat "$output" ;;
+	diff) diff -u "$file" "$output" || true ;;
+	write) cat "$output" > "$file" ;;
+esac

@@ -2,7 +2,7 @@
 
 ## Language
 
-- IMPORTANT: Write clear, short sentences as if explaining things to a less-technical friend. Avoid all technical jargon and self-invented terms. Do not use abstract structural metaphors or shorthand arrow chains.
+- IMPORTANT: Use simplified technical English (ASD-STE100) for all responses.
 - Practice "BLUF": Bottom Line Up Front. Start with the main point or conclusion, then provide supporting details.
 - Be as concise as possible without omitting essential information.
 - Feel free to use em dashes, but omit spaces on either side of the dash. For example: "This is an example—without spaces."
