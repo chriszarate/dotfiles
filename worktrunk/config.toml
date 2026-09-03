@@ -15,11 +15,12 @@ herdr = "herdr-worktree close {{ worktree_path }}"
 [post-switch]
 herdr = "herdr-worktree open {{ repo_path }} {{ worktree_path }}"
 
+[pre-start]
+sync = "git fetch {{ remote }} {{ default_branch }} && git merge --ff-only {{ remote }}/{{ default_branch }} || true"
+
 [switch]
 cd = false
 
-# Gutenberg and plugins built around it (WordPress/gutenberg,
-# Automattic/gutenberg-sync-engines). All use wp-env on a per-branch port.
 [projects."github.com/*/gutenberg*".aliases]
 open = "open http://localhost:{{ branch | hash_port }}/wp-admin/"
 start = "WP_ENV_PORT={{ branch | hash_port }} npm run env start -- --update=false"
@@ -36,9 +37,6 @@ copy = "wt step copy-ignored"
 install1 = "composer install; composer dump-autoload"
 install2 = "npm install"
 
-# remote-data-blocks: wp-env via ./bin/start, which respects WP_ENV_PORT.
-# copy-ignored brings node_modules and vendor from the source worktree;
-# npm install fixes up anything stale (postinstall runs composer install).
 [projects."github.com/Automattic/remote-data-blocks".aliases]
 open = "open http://localhost:{{ branch | hash_port }}/wp-admin/"
 start = "WP_ENV_PORT={{ branch | hash_port }} npm run dev"
@@ -51,10 +49,6 @@ copy = "wt step copy-ignored"
 [[projects."github.com/Automattic/remote-data-blocks".post-start]]
 install = "npm install"
 
-# wordpress-develop: docker-compose env. copy-ignored brings .env and
-# node_modules; LOCAL_PORT set on the command line beats the copied .env,
-# and the compose project name comes from the directory, so each worktree
-# gets its own containers and port.
 [projects."github.com/WordPress/wordpress-develop".aliases]
 open = "open http://localhost:{{ branch | hash_port }}/wp-admin/"
 start = "LOCAL_PORT={{ branch | hash_port }} npm run env:start && LOCAL_PORT={{ branch | hash_port }} npm run env:install"
@@ -69,8 +63,6 @@ install = "npm install"
 [[projects."github.com/WordPress/wordpress-develop".post-start]]
 build = "npm run build:dev"
 
-# blog: copy-ignored brings the gitignored .env (Tina credentials) and
-# node_modules; dev server ports are fixed, so run one worktree at a time.
 [[projects."github.com/chriszarate/blog".post-start]]
 copy = "wt step copy-ignored"
 [[projects."github.com/chriszarate/blog".post-start]]
