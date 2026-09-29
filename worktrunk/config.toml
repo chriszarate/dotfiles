@@ -28,7 +28,8 @@ start = "WP_ENV_PORT={{ branch | hash_port }} npm run env start -- --update=fals
 # pre-remove (not post-remove) so the command runs inside the worktree
 # being removed and targets its wp-env instance.
 [projects."github.com/*/gutenberg*".pre-remove]
-env = "npm run env destroy &> /dev/null || true"
+env = "npm run env -- destroy --force &> /dev/null || true"
+env-tests = "npm run env:tests -- destroy --force &> /dev/null || true"
 
 # [[Pipeline]] steps run in sequence
 [[projects."github.com/*/gutenberg*".post-start]]

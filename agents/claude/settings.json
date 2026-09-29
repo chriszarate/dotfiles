@@ -1,8 +1,13 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "permissions": {
     "defaultMode": "auto"
   },
-  "model": "fable[1m]",
+  "model": "opus",
   "hooks": {
     "PostModelSwitch": [
       {
@@ -22,8 +27,34 @@
             "command": "~/.dotfiles/agents/claude/set-title.sh"
           }
         ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/zzz/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "context-a8c@automattic-claude-code-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "automattic-claude-code-plugins": {
+      "source": {
+        "source": "git",
+        "url": "git@github.a8c.com:Automattic/claude-code-plugins.git"
+      }
+    }
+  },
+  "modelSettings": {
+    "claude-fable-5-1": {
+      "effortLevel": "high"
+    }
   },
   "promptSuggestionEnabled": false,
   "awaySummaryEnabled": false,
@@ -35,15 +66,5 @@
   "switchModelsOnFlag": false,
   "remoteControlAtStartup": true,
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true,
-  "modelSettings": {
-    "claude-fable-5-1": {
-      "effortLevel": "high"
-    }
-  },
-  "attribution": {
-    "commit": "",
-    "pr": "",
-    "sessionUrl": false
-  }
+  "agentPushNotifEnabled": true
 }

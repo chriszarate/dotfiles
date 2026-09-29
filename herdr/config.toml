@@ -4,8 +4,6 @@ onboarding = false
 prefix = "ctrl+b"
 
 # Workspaces
-previous_workspace = "alt+up"
-next_workspace = "alt+down"
 new_workspace = "alt+n"
 workspace_picker = "alt+p"
 toggle_sidebar = "alt+s"
@@ -49,7 +47,7 @@ tab_bar_right = [
 enabled = false
 
 [ui.toast]
-delivery = "herdr"
+delivery = "system"
 
 [worktrees]
 directory = "~/Code/worktrees"
