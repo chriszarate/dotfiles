@@ -24,6 +24,11 @@ split_horizontal = "alt+shift+enter"
 close_pane = "alt+x"
 zoom = "alt+z"
 
+[[keys.command]]
+key = "alt+r"
+type = "plugin_action"
+command = "persiyanov.reviewr.toggle"
+
 [theme]
 name = "gruvbox"
 auto_switch = false
@@ -47,7 +52,7 @@ tab_bar_right = [
 enabled = false
 
 [ui.toast]
-delivery = "system"
+delivery = "off"
 
 [worktrees]
 directory = "~/Code/worktrees"

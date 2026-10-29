@@ -28,6 +28,7 @@ brew "mas"
 brew "mole"
 brew "neovim"
 brew "php@8.4", link: true
+brew "pi-coding-agent"
 brew "ripgrep"
 brew "rustup"
 brew "shellcheck"

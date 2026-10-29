@@ -8,5 +8,5 @@ end
 
 # Don't rely on the order config files are parsed when setting $PATH, because it
 # can change without warning. Do this in deliberate order.
-fish_add_path --append --move $HOME/.bin $HOME/.orbstack/bin /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin
+fish_add_path --append --move $HOME/.bin $HOME/.local/bin $HOME/.orbstack/bin /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin
 fnm env --use-on-cd --log-level=quiet --shell=fish | source
