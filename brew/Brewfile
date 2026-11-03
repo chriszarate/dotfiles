@@ -24,7 +24,6 @@ brew "jqp"
 brew "llama.cpp"
 brew "lua"
 brew "luarocks"
-brew "mas"
 brew "mole"
 brew "neovim"
 brew "php@8.4", link: true
@@ -50,8 +49,5 @@ cask "kitty"
 cask "numi"
 cask "orbstack"
 cask "tailscale-app"
-cask "thebrowsercompany-dia"
 cask "vlc"
 cask "whatcable"
-mas "AdGuard Mini", id: 1440147259
-mas "iA Writer", id: 775737590
