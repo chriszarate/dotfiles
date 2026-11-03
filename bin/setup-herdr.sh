@@ -9,7 +9,6 @@ legacy_registry="$DOTFILES/herdr/plugins.json"
 # Plugins are "id|owner/repo/subdirectory|ref". The ID comes from the plugin's
 # manifest and is used to recognize an existing installation.
 plugins=(
-	'herdr-wakeup|usrivastava92/herdr-wakeup/plugin|v0.1.0'
 )
 
 for tool in herdr jq; do
