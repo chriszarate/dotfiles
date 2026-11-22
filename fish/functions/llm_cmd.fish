@@ -1,21 +1,12 @@
 function llm_cmd -d 'Query the local LLM for a command based on the current command line input'
 	set -l server_port 4040
-	set -l model_name cmd
+	set -l model_name local-agent
 
 	# 1. Get the text currently typed into the command line buffer
 	set -l user_prompt (commandline -b)
 
 	# Do nothing if the buffer is empty
 	if test -z "$user_prompt"
-		return
-	end
-
-	# Ensure the local model server is up before we query it. This is a no-op
-	# (fast health check) when it's already running, but will spin it up and
-	# block until ready on the first invocation.
-	if not llm_server --quiet
-		commandline -r "$user_prompt # (Error: could not start local model server)"
-		commandline -f repaint
 		return
 	end
 

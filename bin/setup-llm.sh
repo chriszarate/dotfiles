@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Unlike the other setup scripts this one skips `set -x`. It moves a few GB
+# Unlike the other setup scripts this one skips `set -x`. It moves ~97GB
 # over the network and prints its own progress; tracing every line would bury
 # that under noise.
 set -euo pipefail
@@ -10,11 +10,16 @@ DOTFILES="$HOME/.dotfiles"
 MODELS_PRESET="$DOTFILES/agents/models.conf"
 MODELS_DIR="${LLM_MODELS_DIR:-$HOME/Code/models}"
 
-# Models to fetch, as "huggingface-repo|filename". The filename must match a
-# `model =` line in models.conf, which is what actually points llama-server at
-# the file. The check at the end of this script enforces that.
+# Models to fetch, as "huggingface-repo|path-in-repo". Each file is saved flat
+# in the models directory under its basename, which must match a `model =`
+# line in models.conf. The check at the end of this script enforces that.
+# A split model needs every part listed; models.conf names only the first.
 MODELS=(
 	'unsloth/Qwen3.5-4B-GGUF|Qwen3.5-4B-UD-Q4_K_XL.gguf'
+	'unsloth/Qwen3.8-Flash-Next-GGUF|UD-IQ4_XS/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00004.gguf'
+	'unsloth/Qwen3.8-Flash-Next-GGUF|UD-IQ4_XS/Qwen3.8-Flash-Next-UD-IQ4_XS-00002-of-00004.gguf'
+	'unsloth/Qwen3.8-Flash-Next-GGUF|UD-IQ4_XS/Qwen3.8-Flash-Next-UD-IQ4_XS-00003-of-00004.gguf'
+	'unsloth/Qwen3.8-Flash-Next-GGUF|UD-IQ4_XS/Qwen3.8-Flash-Next-UD-IQ4_XS-00004-of-00004.gguf'
 )
 
 say() { printf '%s\n' "$*"; }
@@ -52,10 +57,11 @@ local_size() {
 
 for entry in "${MODELS[@]}"; do
 	repo="${entry%%|*}"
-	file="${entry##*|}"
+	repo_path="${entry##*|}"
+	file="${repo_path##*/}"
 	dest="$MODELS_DIR/$file"
 	part="$dest.part"
-	url="https://huggingface.co/$repo/resolve/main/$file"
+	url="https://huggingface.co/$repo/resolve/main/$repo_path"
 
 	expected="$(remote_size "$url" || true)"
 	if [ -z "$expected" ]; then
@@ -110,4 +116,5 @@ done < <(
 [ "$missing" -eq 0 ] || die "Add the missing models to the MODELS list in $0."
 
 say "🎉 Local LLM ready. Press ctrl-e in fish to turn a prompt into a command."
-say "   Start the server now with: llm_server"
+say "   Start the server now and at each login with:"
+say "   bin/launchd-create.sh org.zzz.llama-server"

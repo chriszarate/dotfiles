@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+	Start the local llama.cpp server at login. Install with:
+	bin/launchd-create.sh org.zzz.llama-server
+
+	launchd does not expand ~ or $HOME in a plist, so the command runs through
+	/bin/sh, which does. That keeps this file free of a hard-coded home path.
+
+	KeepAlive restarts the server when it exits. To stop it, run:
+	bin/launchd-disable.sh org.zzz.llama-server
+-->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>org.zzz.llama-server</string>
+
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/sh</string>
+		<string>-c</string>
+		<string>
+			exec 2&gt;&gt;"$HOME/Library/Logs/llama-server.launchd.log"
+			cd "${LLM_MODELS_DIR:-$HOME/Code/models}" || exit 1
+			exec llama-server \
+				--cors-origins http://host.docker.internal:4040 \
+				--log-file "$HOME/Library/Logs/llama-server.log" \
+				--mcp-servers-config "$HOME/.dotfiles/agents/mcp.json" \
+				--models-preset "$HOME/.dotfiles/agents/models.conf" \
+				--port 4040 \
+				--verbose \
+				&gt;/dev/null
+		</string>
+	</array>
+
+	<!-- launchd gives agents a bare system PATH. llama-server and the npx
+	     that agents/mcp.json calls both live in Homebrew. -->
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+	</dict>
+
+	<key>RunAtLoad</key>
+	<true/>
+
+	<key>KeepAlive</key>
+	<true/>
+
+	<!-- Exempt the server from the resource limits launchd puts on
+	     background jobs. -->
+	<key>ProcessType</key>
+	<string>Interactive</string>
+</dict>
+</plist>
