@@ -7,11 +7,13 @@
 set -euo pipefail
 
 if [ $# -ne 1 ]; then
-	echo "usage: $0 <label>" >&2
+	echo "usage: $0 <label | path/to/label.plist>" >&2
 	exit 2
 fi
 
-label="${1%.plist}"
+# Accept the same argument as bin/launchd-create.sh. Only the file name
+# matters here, because the agent is found by its label.
+label="$(basename "$1" .plist)"
 target="$HOME/Library/LaunchAgents/$label.plist"
 domain="gui/$(id -u)"
 
