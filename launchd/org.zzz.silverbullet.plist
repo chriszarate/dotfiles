@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+	Serve ~/Documents/notes with SilverBullet at login. Install with:
+	bin/launchd-create.sh org.zzz.silverbullet
+
+	bin/setup-tools.sh installs the silverbullet binary.
+
+	launchd does not expand ~ or $HOME in a plist, so the command runs through
+	/bin/sh, which does. That keeps this file free of a hard-coded home path.
+
+	The server listens on localhost only. SilverBullet has no login unless
+	SB_USER is set, so it must not listen on the local network.
+	bin/setup-tailscale.sh makes it reachable from the tailnet over HTTPS.
+
+	KeepAlive restarts the server when it exits. To stop it, run:
+	bin/launchd-disable.sh org.zzz.silverbullet
+-->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>org.zzz.silverbullet</string>
+
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/sh</string>
+		<string>-c</string>
+		<string>
+			exec &gt;&gt;"$HOME/Library/Logs/silverbullet.log" 2&gt;&amp;1
+			exec "$HOME/.local/bin/silverbullet" \
+				--hostname 127.0.0.1 \
+				--port 5678 \
+				"$HOME/Documents/notes"
+		</string>
+	</array>
+
+	<key>EnvironmentVariables</key>
+	<dict>
+		<!-- Keep terminal color codes out of the log file. -->
+		<key>NO_COLOR</key>
+		<string>1</string>
+
+		<!-- The page that opens at /. The file is notes.md in the notes
+		     folder. The default is index.md. -->
+		<key>SB_INDEX_PAGE</key>
+		<string>notes</string>
+	</dict>
+
+	<key>RunAtLoad</key>
+	<true/>
+
+	<key>KeepAlive</key>
+	<true/>
+</dict>
+</plist>

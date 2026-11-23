@@ -25,3 +25,25 @@ if [ -x "$RUSTUP_BIN" ]; then
 	"$RUSTUP_BIN" toolchain install --force stable
 	"$RUSTUP_BIN" default stable
 fi
+
+# Install SilverBullet, which launchd/org.zzz.silverbullet.plist runs to serve
+# the notes folder. Homebrew has no formula for it, so fetch the release binary.
+# It only installs once: `silverbullet upgrade` updates the binary in place.
+if [ ! -x "$HOME/.local/bin/silverbullet" ]; then
+	case "$(uname -s)-$(uname -m)" in
+	Darwin-arm64) sb_asset="darwin-aarch64" ;;
+	Darwin-x86_64) sb_asset="darwin-x86_64" ;;
+	Linux-aarch64) sb_asset="linux-aarch64" ;;
+	Linux-x86_64) sb_asset="linux-x86_64" ;;
+	*) sb_asset="" ;;
+	esac
+
+	if [ -n "$sb_asset" ]; then
+		sb_tmp="$(mktemp -d)"
+		curl -L --fail --silent --show-error -o "$sb_tmp/sb.zip" \
+			"https://github.com/silverbulletmd/silverbullet/releases/latest/download/silverbullet-server-$sb_asset.zip"
+		mkdir -p "$HOME/.local/bin"
+		unzip -o -q "$sb_tmp/sb.zip" silverbullet -d "$HOME/.local/bin"
+		rm -rf "$sb_tmp"
+	fi
+fi
