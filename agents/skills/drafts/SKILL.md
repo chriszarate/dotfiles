@@ -9,13 +9,13 @@ The user reviews and edits drafts in their own editor. The file is the source of
 
 ## Writing a draft
 
-Write the draft to `~/Documents/Notes/drafts/agents/<kind>-<id>.md`, creating the folder if needed. Use the PR or issue number when one exists, otherwise the branch with `/` replaced by `-`:
+Write the draft to `~/Documents/notes/drafts/agents/<YYYYmmdd>-<kind>-<id>.md`, creating the folder if needed. Use the PR or issue number when one exists, otherwise the branch with `/` replaced by `-`:
 
 ```
-pr-171.md
-pr-fix-issue-72.md
-comment-gutenberg-1234.md
-email-license-question.md
+20260226-pr-171.md
+20260501-pr-fix-issue-72.md
+20260930-comment-gutenberg-1234.md
+20261002-email-license-question.md
 ```
 
 The file is plain Markdown. If the thing has a title (a PR, an issue, an email subject), put it on the first line as an H1. Everything after that is the body.
@@ -65,10 +65,10 @@ When the user says to proceed ("open the PR", "post it", "send it"):
 4. Publish it. The title is the H1 without the `# `; the body is the rest of the file with leading blank lines removed. For example:
 
    ```bash
-   f=~/Documents/Notes/drafts/agents/pr-fix-issue-72.md
+   f=~/Documents/notes/drafts/agents/20260501-pr-fix-issue-72.md
    gh pr create --title "$(sed -n '1s/^# //p' "$f")" --body "$(tail -n +2 "$f" | sed '/./,$!d')"
    ```
 
    If there is no H1, the whole file is the body. Repo, base, and head come from the conversation and the current branch, as usual.
 
-5. Leave the file where it is. Do not delete it.
+5. Move the file to `~/Documents/notes/drafts/completed/` unless the user requested that it not move.

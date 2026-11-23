@@ -56,3 +56,11 @@ First confirm that public-key login works in a second terminal. Then run:
 
 This is kept out of the normal setup because disabling password login before a
 key works can lock you out of the Mac.
+
+## Prevent sleep
+
+sudo pmset -a sleep 0
+
+## Restart on power failure
+
+sudo pmset -a autorestart 1

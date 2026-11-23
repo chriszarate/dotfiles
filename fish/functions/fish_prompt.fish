@@ -5,12 +5,14 @@ function fish_prompt -d 'Decorate the prompt'
 	# Defaults
 	set -l prompt_character '>'
 	set -l prompt_color '#a89984'
+	set -l hostname_indicator (hostname -s)
 	set -l problem_indicator ''
 	set -l subshell_indicator ''
 
 	set -l branch_prompt_color '#98971a'
 	set -l conflict_prompt_color '#d65d0e'
 	set -l dirty_prompt_color '#d79921'
+	set -l hostname_color '#665c54'
 	set -l untracked_prompt_color '#b16286'
 
 	# Is this a git repo?
@@ -57,5 +59,5 @@ function fish_prompt -d 'Decorate the prompt'
 		set subshell_indicator "<"
 	end
 
-	string join '' (set_color --bold $prompt_color) $subshell_indicator $problem_indicator $prompt_character (set_color normal) ' '
+	string join '' (set_color $hostname_color) '@' $hostname_indicator ' ' (set_color --bold $prompt_color) $subshell_indicator $problem_indicator $prompt_character (set_color normal) ' '
 end

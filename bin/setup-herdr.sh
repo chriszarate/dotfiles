@@ -9,6 +9,7 @@ legacy_registry="$DOTFILES/herdr/plugins.json"
 # Plugins are "id|owner/repo/subdirectory|ref". The ID comes from the plugin's
 # manifest and is used to recognize an existing installation.
 plugins=(
+	"persiyanov.reviewr|persiyanov/herdr-reviewr|main"
 )
 
 for tool in herdr jq; do

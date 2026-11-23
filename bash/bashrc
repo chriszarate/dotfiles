@@ -3,11 +3,8 @@
 export BASH_SILENCE_DEPRECATION_WARNING="1"
 export EDITOR="nvim"
 export PAGER="less"
-export PATH="/opt/homebrew/opt/rustup/bin:$HOME/.bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/opt/homebrew/opt/rustup/bin:$HOME/.bin:$HOME/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PS1="\w > "
-if [ -S "$HOME/.ssh/autoproxxy-ssh-agent.socket" ]; then
-	export SSH_AUTH_SOCK="$HOME/.ssh/autoproxxy-ssh-agent.socket"
-fi
 
 # completions
 if type brew &>/dev/null; then
