@@ -4,25 +4,30 @@ onboarding = false
 prefix = "ctrl+b"
 
 # Workspaces
-new_workspace = "alt+n"
-workspace_picker = "alt+p"
-toggle_sidebar = "alt+s"
+previous_workspace = "cmd+up"
+next_workspace = "cmd+down"
+new_workspace = "cmd+n"
+workspace_picker = "cmd+p"
+toggle_sidebar = "cmd+s"
 
 # Tabs
-previous_tab = "alt+left"
-next_tab = "alt+right"
-new_tab = "alt+t"
-close_tab = "alt+w"
+previous_tab = "cmd+left"
+next_tab = "cmd+right"
+new_tab = "cmd+t"
+close_tab = "cmd+shift+w"
 
 # Panes
+# Cycle through every pane, as kitty's previous_window/next_window do.
+cycle_pane_previous = "cmd+["
+cycle_pane_next = "cmd+]"
 focus_pane_left = "alt+["
 focus_pane_right = "alt+]"
 focus_pane_down = "alt+shift+]"
 focus_pane_up = "alt+shift+["
-split_vertical = "alt+enter"
-split_horizontal = "alt+shift+enter"
-close_pane = "alt+x"
-zoom = "alt+z"
+split_vertical = "cmd+enter"
+split_horizontal = "cmd+shift+enter"
+close_pane = "cmd+w"
+zoom = "cmd+z"
 
 [[keys.command]]
 key = "alt+r"
