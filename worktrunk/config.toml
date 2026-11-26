@@ -1,4 +1,5 @@
 worktree-path = "~/Code/worktrees/{{ repo }}/{{ branch | sanitize }}"
+skip-commit-generation-prompt = true
 
 [aliases]
 new = "wt switch --create {{ args }}"

@@ -30,7 +30,7 @@ close_pane = "cmd+w"
 zoom = "cmd+z"
 
 [[keys.command]]
-key = "alt+r"
+key = "cmd+r"
 type = "plugin_action"
 command = "persiyanov.reviewr.toggle"
 
