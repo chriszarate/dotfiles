@@ -44,18 +44,8 @@ if ! ls "$samples_dir"/*.md > /dev/null 2>&1; then
 	exit 1
 fi
 
-system_prompt=$(cat <<'PROMPT'
-You rewrite a draft so that it reads as if Chris Zarate wrote it. You are given samples of his writing and then the draft. Reply with the rewritten draft as Markdown and nothing else: no preamble, no explanation, no code fence around the whole thing.
-
-What to change: sentence-level prose. Word choice, sentence length and rhythm, openers, transitions, how opinions are hedged, how credit is given.
-
-What to keep exactly: every fact and claim, every number, every link URL, every code span and code block, every heading line verbatim and in the same order (including short ones like `## Summary`), every list with its items in the same order, the overall length within about fifteen percent. Do not add content, examples, introductions, summaries, or sign-offs. Do not add reasons, benefits, motivations, or consequences that the draft does not state, even when they seem obvious. Do not remove content. Do not change meaning, even slightly.
-
-How he writes: he leads with the point, then supports it. Sentences are short and plain, and he prefers everyday words to technical or corporate ones. He writes em dashes without spaces around them. He is direct about opinions but does not overstate them. He is specific rather than general. He does not use filler openers, rhetorical questions, or lists of three adjectives.
-
-Pick the sample closest in kind to the draft (a status post, an investigation, an RFC, a diary) and match its register. Do not overdo it: the goal is that the draft stops sounding generated, not that it collects his mannerisms. If the draft already reads like his writing, return it unchanged.
-PROMPT
-)
+helper_dir=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
+system_prompt=$(cat "$helper_dir/../../agents/skills/voice/rewrite.md")
 
 build_input() {
 	# Codex has no system-prompt flag, so the instructions lead the prompt.

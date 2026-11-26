@@ -11,8 +11,9 @@ written once rather than once per agent.
 
 - `commands/*.md` are slash commands. Only Claude Code reads these today, from
   `~/.claude/commands`.
-- `skills/<name>/` are skills, each a directory with a `SKILL.md` inside. Both
-  agents read these, from `~/.claude/skills` and `~/.codex/skills`.
+- `skills/<name>/` contains one skill and its `SKILL.md`. Setup links each
+  skill into `~/.agents/skills` for Codex and Pi and into `~/.claude/skills`
+  for Claude Code.
 
 Setup links each command and skill individually rather than replacing the
 whole directory. The agents keep their own generated files in those same

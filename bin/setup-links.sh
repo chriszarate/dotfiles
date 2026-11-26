@@ -12,13 +12,13 @@ touch "$HOME/.hushlogin"
 # Create some placeholder directories.
 for config_dir in \
 	bin \
-	claude/commands \
+	agents/skills \
 	claude/skills \
-	codex/skills \
 	config \
 	config/fzf \
 	config/gh \
-	config/nvim; do
+	config/nvim \
+	pi/agent; do
 	mkdir -p "$HOME/.$config_dir"
 done
 
@@ -79,6 +79,7 @@ links=(
 	'.config/worktrunk::worktrunk'
 	'.config/yazi::yazi'
 	'.hammerspoon::hammerspoon'
+	'.pi/agent/AGENTS.md::agents/AGENTS.md'
 	'.ssh/git_allowed_signers::git/allowed_signers'
 )
 for entry in "${links[@]}"; do
@@ -113,16 +114,11 @@ done
 #
 # The [ -e ] guards are for the empty case: an unmatched glob in bash comes
 # back as the pattern itself rather than as nothing.
-for command in "$DOTFILES/agents/commands"/*.md; do
-	[ -e "$command" ] || continue
-	link "$command" "$HOME/.claude/commands/$(basename "$command")"
-done
-
 for skill in "$DOTFILES/agents/skills"/*/; do
 	[ -e "$skill" ] || continue
 	skill_name="$(basename "$skill")"
+	link "${skill%/}" "$HOME/.agents/skills/$skill_name"
 	link "${skill%/}" "$HOME/.claude/skills/$skill_name"
-	link "${skill%/}" "$HOME/.codex/skills/$skill_name"
 done
 
 # Symlink the system file that requires sudo.
