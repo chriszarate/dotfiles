@@ -45,3 +45,7 @@ I read your text in a terminal, often after I worked on something else. I do not
 - Always sign commits unless I explicitly say otherwise. Commit signing is configured by the global ~/.gitconfig file. Ensure that commit signing is not disabled in the local repository's .git/config file.
 - When handing off work to a new session, load the `handoff` skill.
 - I work on GitHub (github.com) and GitHub Enterprise (github.a8c.com). When you use `gh` against github.a8c.com, put `HTTPS_PROXY=socks5://127.0.0.1:8080 GH_HOST=github.a8c.com` directly before each `gh` call.
+
+## Worktree environments
+
+Before installing dependencies or controlling a project environment, run `wt config alias show` in the target worktree. Read the definitions, including any shared aliases they call. Use `wt config alias dry-run <name>` to inspect commands and ports without executing them. Run aliases inside the target worktree, or use `wt -C /path/to/worktree <alias>`.

@@ -2,9 +2,22 @@ worktree-path = "~/Code/worktrees/{{ repo }}/{{ branch | sanitize }}"
 
 [aliases]
 new = "wt switch --create {{ args }}"
+js-install = "wt step copy-ignored && npm install"
+wp-open = "open http://localhost:{{ branch | hash_port }}/wp-admin/"
+wp-start = "WP_ENV_PORT={{ branch | hash_port }} npm run wp-env start -- --update=false"
+wp-start-tests = "WP_ENV_PORT=$(( {{ branch | hash_port }} + 1 )) npm run wp-env-test start -- --update=false"
 
-[commit.generation]
-command = "claude -p --no-session-persistence --model=haiku --tools='' --safe-mode --setting-sources='user' --system-prompt=''"
+[[aliases.wp-destroy]]
+wp-destroy = "npm run wp-env -- destroy --force &> /dev/null || true"
+[[aliases.wp-destroy]]
+wp-destroy-tests = "npm run wp-env-test -- destroy --force &> /dev/null || true"
+
+# Copy first, then run Composer and npm concurrently.
+[[aliases.wp-install]]
+copy = "wt step copy-ignored"
+[[aliases.wp-install]]
+composer = "composer install; composer dump-autoload"
+npm = "npm install"
 
 [list]
 json-schema = 2
@@ -21,54 +34,34 @@ sync = "git fetch {{ remote }} {{ default_branch }} && git merge --ff-only {{ re
 [switch]
 cd = false
 
+##
+## Project config
+##
+
 [projects."github.com/*/gutenberg*".aliases]
-open = "open http://localhost:{{ branch | hash_port }}/wp-admin/"
-start = "WP_ENV_PORT={{ branch | hash_port }} npm run env start -- --update=false"
+open = "wt wp-open"
+start = "wt wp-start"
+install = "wt wp-install"
 
-# pre-remove (not post-remove) so the command runs inside the worktree
-# being removed and targets its wp-env instance.
+# pre-remove (not post-remove) so it runs inside the worktree being removed
 [projects."github.com/*/gutenberg*".pre-remove]
-env = "npm run env -- destroy --force &> /dev/null || true"
-env-tests = "npm run env:tests -- destroy --force &> /dev/null || true"
-
-# [[Pipeline]] steps run in sequence
-[[projects."github.com/*/gutenberg*".post-start]]
-copy = "wt step copy-ignored"
-[[projects."github.com/*/gutenberg*".post-start]]
-install1 = "composer install; composer dump-autoload"
-install2 = "npm install"
+env = "wt wp-destroy"
 
 [projects."github.com/Automattic/remote-data-blocks".aliases]
-open = "open http://localhost:{{ branch | hash_port }}/wp-admin/"
+open = "wt wp-open"
 start = "WP_ENV_PORT={{ branch | hash_port }} npm run dev"
+install = "wt js-install"
 
 [projects."github.com/Automattic/remote-data-blocks".pre-remove]
 env = "npm run dev:destroy &> /dev/null || true"
 
-[[projects."github.com/Automattic/remote-data-blocks".post-start]]
-copy = "wt step copy-ignored"
-[[projects."github.com/Automattic/remote-data-blocks".post-start]]
-install = "npm install"
-
 [projects."github.com/WordPress/wordpress-develop".aliases]
-open = "open http://localhost:{{ branch | hash_port }}/wp-admin/"
+open = "wt wp-open"
 start = "LOCAL_PORT={{ branch | hash_port }} npm run env:start && LOCAL_PORT={{ branch | hash_port }} npm run env:install"
+install = "wt js-install && npm run build:dev"
 
 [projects."github.com/WordPress/wordpress-develop".pre-remove]
 env = "npm run env:clean &> /dev/null || true"
 
-[[projects."github.com/WordPress/wordpress-develop".post-start]]
-copy = "wt step copy-ignored"
-[[projects."github.com/WordPress/wordpress-develop".post-start]]
-install = "npm install"
-[[projects."github.com/WordPress/wordpress-develop".post-start]]
-build = "npm run build:dev"
-
-[[projects."github.com/chriszarate/blog".post-start]]
-copy = "wt step copy-ignored"
-[[projects."github.com/chriszarate/blog".post-start]]
-install = "npm install"
-
-# Notes has no remote, so match its path under any home directory.
-[projects."*/Documents/Notes".aliases]
-digest = "claude -p --model=opus --permission-mode=auto '/context-a8c:digest'"
+[projects."github.com/chriszarate/blog".aliases]
+install = "wt js-install"
