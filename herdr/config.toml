@@ -43,6 +43,7 @@ auto_switch = false
 accent = "#458588"
 
 [ui]
+pane_borders = "off"
 prompt_new_tab_name = false
 show_agent_labels_on_pane_borders = false
 status_indicators = "dots"
@@ -51,6 +52,15 @@ window_title = "herdr {hostname}:{workspace}"
 # Subscription usage for the agent in the active workspace
 tab_bar_right = [
 	{ type = "command", command = "$HOME/.bin/agent-quota", interval_seconds = 5, timeout_seconds = 5 },
+]
+
+# Agents panel. $model and $quota are pane tokens set by the agent-usage plugin
+# (github.com/chriszarate/herdr-agent-usage, linked by bin/setup-herdr.sh); a
+# row without them shows the agent name alone.
+[ui.sidebar.agents]
+rows = [
+	["state_icon", "machine", "workspace", "tab"],
+	["agent", "$model", "$quota"],
 ]
 
 [ui.sound]
