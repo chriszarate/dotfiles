@@ -31,8 +31,9 @@ zoom = "cmd+z"
 
 [[keys.command]]
 key = "cmd+r"
-type = "plugin_action"
-command = "persiyanov.reviewr.toggle"
+type = "pane"
+command = "exec tuicr -w"
+description = "Review working-tree changes"
 
 [theme]
 name = "gruvbox"
