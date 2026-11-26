@@ -75,7 +75,6 @@ links=(
 	'.config/nvim/init.lua::nvim/init.lua'
 	'.config/nvim/lazy-lock.json::nvim/lazy-lock.json'
 	'.config/nvim/lua::nvim/lua'
-	'.config/rex/init.lua::rex/init.lua'
 	'.config/tuicr::tuicr'
 	'.config/worktrunk::worktrunk'
 	'.config/yazi::yazi'
