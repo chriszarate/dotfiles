@@ -48,20 +48,5 @@ function fish_title -d 'Set the title for the current terminal window'
 
 	end
 
-	# Inside Herdr, keep the tab label in sync with the title. Only send an
-	# update when the title actually changes, and do it in the background so
-	# the prompt never waits on the socket.
-	if test -n "$title" -a -n "$HERDR_TAB_ID" -a "$title" != "$__herdr_tab_title"
-		set -g __herdr_tab_title "$title"
-
-		set -l herdr_bin $HERDR_BIN_PATH
-		if test -z "$herdr_bin"
-			set herdr_bin herdr
-		end
-
-		command $herdr_bin tab rename "$HERDR_TAB_ID" "$title" >/dev/null 2>&1 &
-		disown 2>/dev/null
-	end
-
 	printf '%s' "$title"
 end

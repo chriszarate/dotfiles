@@ -14,20 +14,13 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.dotfiles/agents/claude/set-title.sh"
+            "command": "bash '/Users/zzz/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
           }
         ]
       }
     ],
     "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.dotfiles/agents/claude/set-title.sh"
-          }
-        ]
-      },
       {
         "matcher": "^(startup|resume|clear|compact|fork)$",
         "hooks": [
