@@ -54,7 +54,7 @@ window_title = "herdr {hostname}:{workspace}"
 # $quota, or $quota_high when usage is above 85%.
 [ui.sidebar.agents]
 rows = [
-	["state_icon", "machine", "workspace", "tab"],
+	["state_icon", "machine", "workspace"],
 	["agent", "$quota", { token = "$quota_high", fg = "#fb4934" }],
 ]
 
