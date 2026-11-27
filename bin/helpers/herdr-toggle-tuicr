@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+import fcntl
+import json
+import os
+import subprocess
+
+
+def herdr(*args):
+    return subprocess.check_output([os.environ["HERDR_BIN_PATH"], "pane", *args])
+
+
+def toggle():
+    tab = os.environ["HERDR_ACTIVE_TAB_ID"]
+    listing = herdr("list", "--workspace", os.environ["HERDR_ACTIVE_WORKSPACE_ID"])
+    for pane in json.loads(listing)["result"]["panes"]:
+        if pane["tab_id"] == tab and pane.get("tokens", {}).get("tuicr_review") == "1":
+            herdr("close", pane["pane_id"])
+            return
+
+    split = herdr(
+        "split", os.environ["HERDR_ACTIVE_PANE_ID"], "--direction", "right",
+        "--cwd", os.environ["HERDR_ACTIVE_PANE_CWD"], "--focus",
+    )
+    pane_id = json.loads(split)["result"]["pane"]["pane_id"]
+    try:
+        herdr("report-metadata", pane_id, "--source", "herdr-tuicr", "--token", "tuicr_review=1")
+        herdr("run", pane_id, 'exec "$HOME/.bin/herdr-tuicr"')
+    except subprocess.CalledProcessError:
+        herdr("close", pane_id)
+        raise
+
+
+# Herdr starts each key press in a separate process. Finish marking a new
+# pane before another press looks for it.
+with open(__file__, "rb") as lock:
+    fcntl.flock(lock, fcntl.LOCK_EX)
+    toggle()
