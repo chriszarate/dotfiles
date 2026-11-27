@@ -26,3 +26,4 @@ install_plugin() {
 
 # Add one entry per plugin: manifest ID, then GitHub owner/repo[/subdirectory].
 install_plugin chriszarate.agent-usage chriszarate/herdr-agent-usage
+install_plugin chriszarate.terminal-titles chriszarate/herdr-terminal-titles
