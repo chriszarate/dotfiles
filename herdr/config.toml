@@ -50,8 +50,7 @@ show_agent_labels_on_pane_borders = false
 status_indicators = "dots"
 window_title = "herdr {hostname}:{workspace}"
 
-# Agents panel. The agent-usage plugin (github.com/chriszarate/herdr-agent-usage,
-# linked by bin/setup-herdr.sh) renames each agent to "agent:model" and sets
+# Agents panel. The chriszarate.agent-usage plugin renames each agent to "agent:model" and sets
 # $quota, or $quota_high when usage is above 85%.
 [ui.sidebar.agents]
 rows = [
