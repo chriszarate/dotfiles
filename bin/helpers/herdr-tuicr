@@ -1,0 +1,12 @@
+#!/bin/sh
+# This process owns the review split. Exiting it closes only that pane.
+set -- -w
+if changes=$(git status --porcelain --untracked-files=normal 2>/dev/null) && [ -z "$changes" ]; then
+	set -- -r HEAD
+fi
+
+tuicr "$@" && exit 0
+status=$?
+printf '\nPress Enter to close this review pane.\n'
+IFS= read -r _
+exit "$status"

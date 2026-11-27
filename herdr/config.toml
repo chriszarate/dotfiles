@@ -31,9 +31,16 @@ zoom = "cmd+z"
 
 [[keys.command]]
 key = "cmd+r"
-type = "pane"
-command = "exec tuicr -w"
-description = "Review working-tree changes"
+type = "shell"
+command = '''
+split=$("$HERDR_BIN_PATH" pane split "$HERDR_ACTIVE_PANE_ID" --direction right --cwd "$HERDR_ACTIVE_PANE_CWD" --focus) || exit 1
+pane=$(printf '%s\n' "$split" | jq -er '.result.pane.pane_id') || exit 1
+if ! "$HERDR_BIN_PATH" pane run "$pane" 'exec "$HOME/.bin/herdr-tuicr"'; then
+    "$HERDR_BIN_PATH" pane close "$pane"
+    exit 1
+fi
+'''
+description = "Open a tuicr review"
 
 [theme]
 name = "gruvbox"
